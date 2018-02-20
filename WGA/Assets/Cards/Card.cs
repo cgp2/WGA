@@ -19,7 +19,7 @@ public abstract class Card : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		
+		//well done
 	}
 	
 	// Update is called once per frame
