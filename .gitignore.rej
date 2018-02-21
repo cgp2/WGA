@@ -1,0 +1,9 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -4,7 +4,6 @@
+ # =============== #
+ [Tt]emp/
+ [Oo]bj/
+-[Bb]uild/
+ [Bb]uild
+ /[Bb]uilds/
+ /[Ll]ibrary/
