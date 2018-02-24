@@ -290,6 +290,8 @@
   <ItemGroup>
     <Compile Include="Assets\Cards\Card.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Card_Place_Creation.cs" />
+    <Compile Include="Assets\Scripts\Field.cs" />
     <Compile Include="Assets\Skills\Abstract_Skills.cs" />
     <Compile Include="Assets\Skills\AuraSkills.cs" />
     <Compile Include="Assets\Skills\BattleCrySkills.cs" />
