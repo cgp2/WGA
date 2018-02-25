@@ -6,6 +6,8 @@
 [Bb]uild
 /[Bb]uilds/
 /[Ll]ibrary/
+/[Aa]ssets/
+*.meta
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
@@ -29,7 +31,6 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
- *.meta
 # ============ #
 # OS generated #
 # ============ #
