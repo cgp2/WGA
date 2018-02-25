@@ -5,7 +5,7 @@ using System.Text;
 
 public enum Directions { Top, Bottom, Left, Right, Left_Top, Left_Bottom, Right_Top, Right_Bottom, Map }
 
-interface ISkillsInput
+public interface ISkillsInput
 {
     string ParentFunctionName
     {
