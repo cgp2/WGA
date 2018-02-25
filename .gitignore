@@ -7,7 +7,7 @@
 /[Bb]uilds/
 /[Ll]ibrary/
 /[Aa]ssets/
-*.meta
+/*.meta
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
