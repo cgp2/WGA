@@ -1,45 +1,5 @@
-# =============== #
-# Unity generated #
-# =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild
-/[Bb]uilds/
-/[Ll]ibrary/
-sysinfo.txt
-*.stackdump
-/Assets/AssetStoreTools*
-*.apk
-*.unitypackage
- 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
-[Ee]xported[Oo]bj/
-.vs/
-/*.userprefs
-/*.csproj
-/*.pidb
-*.pidb.meta
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
-.consulo/
-/*.tmp
-/*.svd
- 
-# ============ #
-# OS generated #
-# ============ #
-.DS_Store*
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-[Tt]humbs.db
-[Dd]esktop.ini
-WGA/Library/ShaderCache/
-WGA/Library/metadata/
+WGA/Temp/UnityLockfile
+WGA/Library/metadata/6e/6e16b09a01d80a24d88db1c525a8e9cc.info
+WGA/Library/metadata/6e/6e16b09a01d80a24d88db1c525a8e9cc
+WGA/Library/assetDatabase3
+WGA/Assets/Skills/InputParametrs.meta
