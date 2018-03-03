@@ -162,10 +162,10 @@ Camera:
     width: 20
     height: 20
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 990
   field of view: 60
   orthographic: 1
-  orthographic size: 53.440266
+  orthographic size: 48.43564
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -249,7 +249,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 10.044424, y: 10.872215}
+  m_Size: {x: 11, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374064694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: 0.41, z: 0.00390625}
+  m_LocalPosition: {x: -0.2, y: 0.4, z: 0.00390625}
   m_LocalScale: {x: 19, y: 10, z: 1}
   m_Children:
   - {fileID: 2063685779}
@@ -305,8 +305,8 @@ MonoBehaviour:
   DeathRattleName: 
   AuraName: 
   Owner: {fileID: 0}
-  CardBack: {fileID: 21300000, guid: 19065a58948c68e4a9ee8e040698b4e8, type: 3}
-  CardFront: {fileID: 21300000, guid: 74fa3278319ed874599c7df5c7b2f2f4, type: 3}
+  CardBack: {fileID: 0}
+  CardFront: {fileID: 0}
 --- !u!212 &1822743173
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 2063685782}
   - component: {fileID: 2063685781}
   - component: {fileID: 2063685780}
+  - component: {fileID: 2063685783}
   m_Layer: 1
   m_Name: Field
   m_TagString: Untagged
@@ -409,7 +410,7 @@ MonoBehaviour:
   n: 0
   m: 0
   Field: {fileID: 2063685778}
-  Card_Place: {fileID: 0}
+  Card_Place: {fileID: 1218006652207174, guid: 28a29eb843a1f574bb3a820eed02fe74, type: 2}
 --- !u!114 &2063685781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,5 +445,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 5}
+  m_Size: {x: 5, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &2063685783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2063685778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9c1aed2ccf0a34fbad8a53664e9599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  n: 4
+  m: 3
