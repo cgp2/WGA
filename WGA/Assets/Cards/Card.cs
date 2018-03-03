@@ -9,24 +9,45 @@ public class Card : MonoBehaviour
     public int Shield;
     public int Attack;
   
-    public string Name;
-    public string Description;
+    public Text Name;
+    public Text Description;
 
     public string BattleCryName;
     public string DeathRattleName;
     public string AuraName;
 
-    public Card(string name)
+    public Player Owner;
+
+    public Sprite CardBack;
+    public Sprite CardFront;
+
+    public void Initialize(Text name, int health, int shield, int attack, Text description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
     {
         Name = name;
+        Health = health;
+        Shield = shield;
+        Attack = attack;
+
+        BattleCryName = battleCryName;
+        DeathRattleName = deathRattleName;
+        AuraName = auraName;
+
+        CardFront = cardFront;
     }
-	// Use this for initialization
-	void Start ()
+
+    private void Awake()
     {
-        
-		//well done 
-        //thx
-	}
+        SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
+        shipSprite.sprite = CardFront;
+        shipSprite.size = new Vector2(2f, 3f);
+    }
+
+    // Use this for initialization
+    void Start ()
+    {   
+        //well done 
+        //thx   
+    }
 	
 	// Update is called once per frame
 	void Update ()
