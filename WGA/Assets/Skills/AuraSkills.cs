@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AuraSkills : Abstract_Skills
+public class AuraSkills
 {
-    public override void ExecuteSkillByName(string name)
+    public void ExecuteSkillByName(string name)
     {
         throw new System.NotImplementedException();
     }
