@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Xml.Serialization;
+using System.IO;
 
 public class Card : MonoBehaviour
 {
@@ -54,4 +57,5 @@ public class Card : MonoBehaviour
     {
 		
 	}
+   
 }

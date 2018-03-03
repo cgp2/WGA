@@ -294,19 +294,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Cards\Card.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Card_Place_Creation.cs" />
+    <Compile Include="Assets\Scripts\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\Field.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Skills\Abstract_Skills.cs" />
-    <Compile Include="Assets\Skills\AuraSkills.cs" />
-    <Compile Include="Assets\Skills\BattleCrySkills.cs" />
-    <Compile Include="Assets\Skills\DeathGripSkills.cs" />
-    <Compile Include="Assets\Skills\Input\Aura_InputStruct.cs" />
-    <Compile Include="Assets\Skills\Input\BattleCry_InputStruct.cs" />
-    <Compile Include="Assets\Skills\Input\DeathGrip_InputStruct.cs" />
-    <Compile Include="Assets\Skills\Input\ISkillsInput.cs" />
+    <Compile Include="Assets\Scripts\Skills\ASkill.cs" />
+    <Compile Include="Assets\Scripts\Skills\BattleCry\HPBufBC.cs" />
+    <Compile Include="Assets\Scripts\Skills\Input\ISkillsInput.cs" />
+    <Compile Include="Assets\Scripts\Skills\SkillMaster.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
