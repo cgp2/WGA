@@ -7,6 +7,10 @@
 /[Bb]uilds/
 /[Ll]ibrary/
 /[Aa]ssets/
+/WGA/Library/ShaderCache/
+/WGA/Library/metadata/
+/WGA/Library/
+/WGA/WGA.csproj
 /*.meta
 sysinfo.txt
 *.stackdump
@@ -20,11 +24,11 @@ sysinfo.txt
 [Ee]xported[Oo]bj/
 .vs/
 /*.userprefs
-/*.csproj
+*.csproj
 /*.pidb
 *.pidb.meta
 /*.suo
-/*.sln*
+*.sln*
 /*.user
 /*.unityproj
 /*.booproj
@@ -32,6 +36,7 @@ sysinfo.txt
 /*.tmp
 /*.svd
 *.meta
+*.dwlt
 # ============ #
 # OS generated #
 # ============ #
@@ -43,5 +48,3 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
-WGA/Library/ShaderCache/
-WGA/Library/metadata/
