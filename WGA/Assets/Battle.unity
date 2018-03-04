@@ -164,7 +164,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 990
   field of view: 42
-  orthographic: 0
+  orthographic: 1
   orthographic size: 48.43564
   m_Depth: 1
   m_CullingMask:
@@ -405,22 +405,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063685778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f27f9350d7ba04c8e56acd7d889c50, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b21b59d507a350439c8da75cf6aedaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  n: 0
-  m: 0
-  Field: {fileID: 2063685778}
-  Card_Place: {fileID: 1218006652207174, guid: 28a29eb843a1f574bb3a820eed02fe74, type: 2}
 --- !u!114 &2063685781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063685778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b21b59d507a350439c8da75cf6aedaf, type: 3}
   m_Name: 
