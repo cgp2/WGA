@@ -14,7 +14,6 @@ public class Player : MonoBehaviour {
         deck = new List<GameObject>();
         for (int i = 0; i < Hand.Length; i++)
         {
-
             var temp = Instantiate(crd);
             deck.Add(temp);
             deck[i].transform.parent = this.transform;

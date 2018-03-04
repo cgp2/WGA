@@ -7,7 +7,6 @@
 /[Bb]uilds/
 /[Ll]ibrary/
 /[Aa]ssets/
-/*.meta
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
@@ -20,18 +19,17 @@ sysinfo.txt
 [Ee]xported[Oo]bj/
 .vs/
 /*.userprefs
-/*.csproj
+*.csproj
 /*.pidb
 *.pidb.meta
 /*.suo
-/*.sln*
+*.sln*
 /*.user
 /*.unityproj
 /*.booproj
 .consulo/
 /*.tmp
 /*.svd
-*.meta
 # ============ #
 # OS generated #
 # ============ #
@@ -43,5 +41,6 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+WGA/Library/
 WGA/Library/ShaderCache/
 WGA/Library/metadata/
