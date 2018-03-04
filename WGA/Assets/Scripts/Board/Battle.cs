@@ -5,16 +5,23 @@ using UnityEngine;
 public class Battle : MonoBehaviour {
     public int n=4;
     public int m=3;
-    public static Card[,] Board;
+    private static Card[,] Board;
 	// Use this for initialization
 	void Start () {
         Board = new Card[n, m];
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-                Debug.LogWarning(Board[i, j]);
 
 	}
-	
+    public static Card Get_Card(int x, int y)
+    {
+        return Board[x,y] ?? null;
+    }
+    public static void Set_Card(int x,int y, Card tg)
+    {
+        Debug.LogWarning("" + x + y);
+        Debug.LogWarning(tg);
+        Board[x, y] = tg;
+
+    }
 	// Update is called once per frame
 	void Update () {
 		

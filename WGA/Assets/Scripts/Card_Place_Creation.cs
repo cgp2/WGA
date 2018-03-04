@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Card_Place_Creation : MonoBehaviour {
-    public int n;
-    public int m;
-    public GameObject Field;
-    public GameObject Card_Place;
-    private 
+    public int m=3;
+    public int n = 4;
+    public float xmargin = 10;
+    public float ymargin = 10;
+    public GameObject field;
+    public GameObject card_place;
+    public static GameObject[,] card_places;
+    private static int i_pos;
+    private static int j_pos;
 
 	// Use this for initialization
 	void Start () {
-        //Good work braaaaaaaaah
-        var x = Field.GetComponent<Collider2D>();
-        //Field.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
-        var y = Field.GetComponent<BoxCollider2D>().size;
-
-        Debug.LogWarning(x.bounds.size);
-        Debug.LogWarning(y);
-        var pos = Field.GetComponent<Collider2D>().transform;
-        var _as = gameObject.GetComponent<Battle>();
-        _as.m = 2;
-        int n = 10;
-
+        card_places = new GameObject[n, m];
+        float diffx = 0;
+        float diffy = 0;
+        var collider = field.GetComponent<BoxCollider2D>();
+        diffx = (collider.bounds.size.x-2*xmargin)/m;
+        diffy = (collider.bounds.size.y-2*ymargin)/(n);
+        Debug.LogWarning("diffx=" + diffx);
+        Debug.LogWarning("diffy = " + diffy);
+        Debug.LogWarning("size = " + collider.bounds.size);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+            {
+                
+                i_pos = i;
+                j_pos = j;
+                card_places[i, j] = Instantiate(card_place);
+                card_places[i,j].name="Card,"+j+","+i;
+                card_places[i, j].transform.parent = gameObject.transform;
+                card_places[i, j].transform.localScale = new Vector3(0.5f, 1.5f, 1);
+                card_places[i, j].transform.position = new Vector3(card_places[i, j].transform.position.x-collider.bounds.size.x/2+(i+1)*diffx+xmargin, card_places[i,j].transform.position.y-collider.bounds.size.y/2+(j)*diffy+ymargin, -card_places[i, j].transform.position.z);
+            }
 	}
-	
+    public static Vector2 Get_Position_In_table()
+    {
+        return new Vector2(i_pos, j_pos);
+    }
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetMouseButtonDown(0))
-        {
-            Debug.LogWarning("123");
-            var pos = Field.GetComponent<BoxCollider2D>();
-            Debug.LogWarning(pos);
-            var x = Instantiate(Card_Place);
-            var y = Instantiate(Card_Place);
-            Debug.LogWarning(Card_Place);
-            //Card_Place.transform.SetParent(Field.transform);
-            x.transform.position = pos.transform.position+pos.transform.localScale/2;
-            x.transform.position = new Vector3(x.transform.position.x, x.transform.position.y, -10);
-            x.transform.parent = gameObject.transform;
-            x.transform.localScale = new Vector3(0.5f, 1.5f, 1);
 
-
-            
-        }
 	}
 }

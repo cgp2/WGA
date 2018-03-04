@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
 
         CardFront = cardFront;
     }
-
+    
     private void Awake()
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
