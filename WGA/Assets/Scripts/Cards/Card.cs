@@ -24,9 +24,9 @@ public class Card : MonoBehaviour
     public Sprite CardBack;
     public Sprite CardFront;
 
-    public void Initialize(Text name, int health, int shield, int attack, Text description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
+    public void Initialize(Text cardName, int health, int shield, int attack, Text description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
     {
-        Name = name;
+        Name = cardName;
         Health = health;
         Shield = shield;
         Attack = attack;
@@ -43,7 +43,9 @@ public class Card : MonoBehaviour
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
         shipSprite.sprite = CardFront;
         shipSprite.size = new Vector2(2f, 3f);
+
     }
+
 
     // Use this for initialization
     void Start ()

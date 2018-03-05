@@ -1,4 +1,4 @@
-<Skill name="HP_Buf" type="BattleCry" Ally="True">
+<Skill name="HPBufBC" type="BattleCry" Ally="True">
 	<Input>
 		<HpBuf value=" " />
 		<DMGBuf value=" " />

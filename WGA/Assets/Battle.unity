@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1374064696}
   - component: {fileID: 1374064695}
-  - component: {fileID: 1374064697}
   m_Layer: 1
   m_Name: Board
   m_TagString: Respawn
@@ -250,7 +249,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4bac738003057a1459ec40e86d5b0e6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93192eecaaa99e64d8f7490327d6a2d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -275,17 +274,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1374064697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1374064694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78813863d72f4624bb47b5a2f8074c91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1476994823
 Prefab:
   m_ObjectHideFlags: 0
@@ -379,6 +367,7 @@ GameObject:
   - component: {fileID: 2063685780}
   - component: {fileID: 2063685783}
   - component: {fileID: 2063685784}
+  - component: {fileID: 2063685785}
   m_Layer: 1
   m_Name: Field
   m_TagString: Untagged
@@ -476,3 +465,14 @@ MonoBehaviour:
   ymargin: 10
   field: {fileID: 2063685778}
   card_place: {fileID: 1218006652207174, guid: 28a29eb843a1f574bb3a820eed02fe74, type: 2}
+--- !u!114 &2063685785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2063685778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78813863d72f4624bb47b5a2f8074c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

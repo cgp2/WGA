@@ -12,12 +12,12 @@ using System.Xml;
 public abstract class ASkill
 {
     public string Name;
-    public string description;
+    public string Description;
     public ISkillsInput Input;
     public SkillType Type;
     public bool Ally;
 
-    public abstract bool ExecuteSkill(ISkillsInput input);
+    public abstract bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
 
     //public void Serialize(ref XmlDocument document)
     //{
@@ -55,7 +55,7 @@ public abstract class ASkill
             writer.WriteAttributeString("Ally", Ally.ToString());
 
             writer.WriteStartElement("Input");
-            foreach (string param in Input.InputParamsNames)
+            foreach (var param in Input.InputParamsNames)
             {
                 writer.WriteStartElement(param);
                 writer.WriteAttributeString("value", " ");
@@ -64,7 +64,7 @@ public abstract class ASkill
             writer.WriteEndElement();
 
             writer.WriteStartElement("Directions");
-            foreach (Directions dir in Input.Directions)
+            foreach (var dir in Input.Directions)
             {
                 writer.WriteStartElement("dir");
                 writer.WriteAttributeString("type", dir.ToString());
@@ -73,11 +73,64 @@ public abstract class ASkill
             writer.WriteEndElement();
 
             writer.WriteStartElement("Description");
-            writer.WriteRaw(description);
+            writer.WriteRaw(Description);
             writer.WriteEndElement();
         }
 
         writer.WriteEndElement();
+    }
+
+    protected SlotBuff[] GetCardSlotsInDirections(SlotBuff[,] bufMap, Directions[] directionses, int row, int col)
+    {
+        var slots = new List<SlotBuff>();
+        foreach (var dir in directionses)
+        {
+            switch (dir)
+            {
+                case Directions.Bottom:
+                    if(row+1 < bufMap.GetLength(0))
+                        slots.Add(bufMap[row+1, col]);
+                    break;
+                case Directions.Left:
+                    if (col - 1 >= 0)
+                        slots.Add(bufMap[row, col-1]);
+                    break;
+                case Directions.Top:
+                    if (row - 1 >= 0)
+                        slots.Add(bufMap[row-1 , col]);
+                    break;
+                case Directions.Right:
+                    if (col + 1 < bufMap.GetLength(1))
+                        slots.Add(bufMap[row, col+1]);
+                    break;
+                case Directions.LeftTop:
+                    if ((col - 1 >= 0) && (row - 1 >= 0))
+                        slots.Add(bufMap[row -1, col - 1]);
+                    break;
+                case Directions.LeftBottom:
+                    if ((col - 1 >= 0) && (row + 1 < bufMap.GetLength(0)))
+                        slots.Add(bufMap[row + 1, col - 1]);
+                    break;
+                case Directions.RightTop:
+                    if ((col + 1 < bufMap.GetLength(1)) && (row - 1 >= 0))
+                        slots.Add(bufMap[row - 1, col + 1]);
+                    break;
+                case Directions.RightBottom:
+                    if ((col + 1 < bufMap.GetLength(1)) && (row + 1 < bufMap.GetLength(0)))
+                        slots.Add(bufMap[row + 1, col + 1]);
+                    break;
+                case Directions.Map:
+                    foreach (var slot in bufMap)
+                    {
+                        slots.Add(slot);
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        return slots.ToArray();
     }
 }
 
