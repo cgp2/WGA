@@ -13,9 +13,11 @@ public class test : MonoBehaviour {
 	void Update () {
 		
 	}
-    private void OnMouseUp()
+    private void OnMouseDown()
     {
-        Player.Selectedcard = gameObject;
-        Debug.LogWarning(Player.Selectedcard);
+        if (gameObject.GetComponent<Card>().Owner == Battle.turn)
+        {
+            Player.Selectedcard = gameObject;
+        }
     }
 }

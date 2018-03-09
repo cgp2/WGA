@@ -1,35 +1,43 @@
 # =============== #
 # Unity generated #
 # =============== #
+/WGA/Library/
+/WGA/Library/ShaderCache/
+/WGA/Library/metadata/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
-/[Bb]uilds/
-/[Ll]ibrary/
+[Bb]uilds/
+[Ll]ibrary/
 /[Aa]ssets/
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
 *.apk
 *.unitypackage
+/WGA/Library/assetDatabase3
+/WGA/Library/CurrentLayout.dwlt
+/WGA/Library/expandedItems
+.csproj
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 [Ee]xported[Oo]bj/
-.vs/
-/*.userprefs
-*.csproj
-/*.pidb
+*.vs
+*.mdb
+*.userprefs
+*.csproj*
+*.pidb
 *.pidb.meta
-/*.suo
+*.suo
 *.sln*
-/*.user
-/*.unityproj
-/*.booproj
+*.user
+*.unityproj
+*.booproj
 .consulo/
-/*.tmp
-/*.svd
+*.tmp
+*.svd
 # ============ #
 # OS generated #
 # ============ #
@@ -41,6 +49,4 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
-WGA/Library/
-WGA/Library/ShaderCache/
-WGA/Library/metadata/
+
