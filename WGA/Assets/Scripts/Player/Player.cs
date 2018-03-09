@@ -5,31 +5,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     public int[] Hand;
-    private  static List<GameObject> deck;
+    public List<GameObject> deck;
     public GameObject crd;
 
     public static GameObject Selectedcard;
     // Use this for initialization
-	void Start () {
+    void Start() {
         deck = new List<GameObject>();
         for (int i = 0; i < Hand.Length; i++)
         {
             var temp = Instantiate(crd);
             deck.Add(temp);
             deck[i].transform.parent = this.transform;
-            deck[i].transform.position = new Vector3(this.transform.position.x + 20 * i,deck[i].transform.position.y,-30);
+            deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 15, -this.transform.position.y, -30);
+            deck[i].GetComponent<Card>().Owner = this.GetComponent<Player>();
+            deck[i].name = "card#" + i + "/player=" + this.name;
         }
-            
+        var own = deck[0].GetComponent<Card>().Owner;
+        for (int i = 0; i < Hand.Length; i++)
+            if (own != Battle.turn)
+                deck[i].GetComponent<Card>().Spin(true);
+            else
+                deck[i].GetComponent<Card>().Spin(false);
 	}
+   
 
     // Update is called once per frame
-    void Update () {
-       
-            
+    void Update () {     
 	}
-    public static void Delete_Card_From_Deck(GameObject obj)
+    public void Delete_Card_From_Deck(GameObject obj)
     {
-        Destroy(obj.gameObject);
+        //Destroy(obj.gameObject);
         deck.Remove(obj);
     }
 }

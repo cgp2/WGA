@@ -21,9 +21,9 @@ public class Card_Place_Creation : MonoBehaviour {
         var collider = field.GetComponent<BoxCollider2D>();
         diffx = (collider.bounds.size.x-2*xmargin)/m;
         diffy = (collider.bounds.size.y-2*ymargin)/(n);
-        Debug.LogWarning("diffx=" + diffx);
-        Debug.LogWarning("diffy = " + diffy);
-        Debug.LogWarning("size = " + collider.bounds.size);
+        //Debug.LogWarning("diffx=" + diffx);
+        //Debug.LogWarning("diffy = " + diffy);
+        //Debug.LogWarning("size = " + collider.bounds.size);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
             {
@@ -34,7 +34,7 @@ public class Card_Place_Creation : MonoBehaviour {
                 card_places[i,j].name="Card,"+j+","+i;
                 card_places[i, j].transform.parent = gameObject.transform;
                 card_places[i, j].transform.localScale = new Vector3(0.5f, 1.5f, 1);
-                card_places[i, j].transform.position = new Vector3(card_places[i, j].transform.position.x-collider.bounds.size.x/2+(i+1)*diffx+xmargin, card_places[i,j].transform.position.y-collider.bounds.size.y/2+(j)*diffy+ymargin, -card_places[i, j].transform.position.z);
+                card_places[i, j].transform.position = new Vector3(card_places[i, j].transform.position.x-collider.bounds.size.x/2+(i+1)*diffx+xmargin, card_places[i,j].transform.position.y-collider.bounds.size.y/2+(j+0.3f)*diffy+ymargin, -card_places[i, j].transform.position.z);
             }
 	}
     public static Vector2 Get_Position_In_table()
