@@ -25,17 +25,8 @@ class SkillMaster : MonoBehaviour
         
         BufMap = new SlotBuff[battle.m, battle.n];
 
-        var inp = new HPBufBC.HPBufBCInput
-        {
-            directions = new [] {Directions.Left},
-            inputParamsNames = new []{"HpBuf"},
-            inputParamsValues = new [] {"5"},
-            parentFunctionName = "HPBufBC"
-        };
-
-        ExecuteSkillByName(0, 2, 2, inp);
-
         SerializeSkills();
+        DeserializeSkills();
     }
 
     private void Start()
@@ -65,6 +56,61 @@ class SkillMaster : MonoBehaviour
             skill.Serialize(ref writer);
    
         writer.Close();
+    }
+
+    public ISkillsInput GetISkillInputByName(string name)
+    {
+        var aSkill = SkillsList.Find(skill => skill.Name == name);
+        return aSkill.Input;
+    }
+
+    public void DeserializeSkills()
+    {
+        var reader = new XmlTextReader(Path.GetDirectoryName((Application.dataPath)) + "/CardsInfo/ChangedSkills.xml");
+        while (reader.ReadToFollowing("Skill"))
+        {
+            reader.MoveToAttribute("name");
+            var name = reader.Value;
+
+            var aSkill = SkillsList.Find(skill => skill.Name == name);
+
+            reader.MoveToAttribute("type");
+            aSkill.Type = (SkillType)Enum.Parse(typeof(SkillType), reader.Value);
+            reader.MoveToAttribute("Ally");
+            aSkill.Ally = bool.Parse(reader.Value);
+
+            var inp = GetISkillInputByName(name);
+
+            reader.ReadToFollowing("Input");
+            reader.Read();
+            reader.Read();
+            var t = new List<string>();
+            while (reader.Name == "inp")
+            {
+                reader.MoveToAttribute("value");
+                t.Add(reader.Value);
+                reader.Read();
+                reader.Read();
+            }
+            inp.InputParamsValues = t.ToArray();
+
+            reader.ReadToFollowing("Directions");
+            var dirs = new List<Directions>();
+            reader.Read();
+            reader.Read();
+            while (reader.Name == "dir")
+            {
+                reader.MoveToAttribute("type");
+                dirs.Add((Directions)Enum.Parse(typeof(Directions), reader.Value));
+                reader.Read();
+                reader.Read();
+            }
+            inp.Directions = dirs.ToArray();
+
+            reader.ReadToFollowing("Description");
+            aSkill.Description = reader.ReadElementContentAsString();
+        }
+
     }
 }
 

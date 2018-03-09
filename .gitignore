@@ -1,24 +1,20 @@
 # =============== #
 # Unity generated #
 # =============== #
-/WGA/Library/
-/WGA/Library/ShaderCache/
-/WGA/Library/metadata/
+
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
 [Bb]uilds/
 [Ll]ibrary/
+*
 /[Aa]ssets/
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*
 *.apk
 *.unitypackage
-/WGA/Library/assetDatabase3
-/WGA/Library/CurrentLayout.dwlt
-/WGA/Library/expandedItems
-.csproj
+*.csproj
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

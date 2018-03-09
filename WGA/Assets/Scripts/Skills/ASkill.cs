@@ -57,7 +57,8 @@ public abstract class ASkill
             writer.WriteStartElement("Input");
             foreach (var param in Input.InputParamsNames)
             {
-                writer.WriteStartElement(param);
+                writer.WriteStartElement("inp");
+                writer.WriteAttributeString("name", param);
                 writer.WriteAttributeString("value", " ");
                 writer.WriteEndElement();
             }

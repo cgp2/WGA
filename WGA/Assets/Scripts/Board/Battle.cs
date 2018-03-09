@@ -39,7 +39,7 @@ public class Battle : MonoBehaviour {
             for (int i = 0; i < pl1.deck.Count; i++)
                 pl1.deck[i].GetComponent<Card>().Spin(true);
             for (int i = 0; i < pl2.deck.Count; i++)
-                if (!pl2.deck[i].GetComponent<Card>().onBoard)
+                if (!pl2.deck[i].GetComponent<Card>().OnBoard)
                     pl2.deck[i].GetComponent<Card>().Spin(false);
         }
         else
@@ -47,7 +47,7 @@ public class Battle : MonoBehaviour {
             for (int i = 0; i < pl2.deck.Count; i++)
                 pl2.deck[i].GetComponent<Card>().Spin(true);
             for (int i = 0; i < pl1.deck.Count; i++)
-                if (!pl1.deck[i].GetComponent<Card>().onBoard)
+                if (!pl1.deck[i].GetComponent<Card>().OnBoard)
                     pl1.deck[i].GetComponent<Card>().Spin(false);
         }
     }

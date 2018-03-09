@@ -14,14 +14,12 @@ namespace Assets.Scripts.Skills.BattleCry
             var dirs = new[] { Directions.Left, Directions.Right };
             Type = SkillType.BattleCry;
 
-            var input = new HPBufBCInput
+            Input = new HPBufBCInput
             {
                 parentFunctionName = Name,
                 inputParamsNames = inputParams,
                 directions = dirs
             };
-
-            Input = input;
         }
 
         public struct HPBufBCInput : ISkillsInput

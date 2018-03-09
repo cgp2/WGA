@@ -33,12 +33,11 @@ public class Set_Card : MonoBehaviour {
             //for (int i = 0; i < 4; i++)
                // for (int j = 0; j < 3; j++)
                   //  Debug.LogWarning("i="+i+", j="+j+Battle.Get_Card(i, j));
-            Player.Selectedcard.GetComponent<Card>().onBoard = true;
+            Player.Selectedcard.GetComponent<Card>().OnBoard = true;
             Battle.NextTurn();
             Battle.RollTheCards();
             Debug.LogWarning(Battle.turn);
-            Player.Selectedcard = null;
-            
+            Player.Selectedcard = null;          
         }
     }
 }

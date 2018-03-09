@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
     public Sprite CardBack;
     public Sprite CardFront;
 
-    public bool onBoard;
+    public bool OnBoard;
 
     public void Initialize(Text cardName, int health, int shield, int attack, Text description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
     {
@@ -38,7 +38,7 @@ public class Card : MonoBehaviour
         AuraName = auraName;
 
         CardFront = cardFront;
-        onBoard = false;
+        OnBoard = false;
     }
     
     private void Awake()
@@ -50,10 +50,7 @@ public class Card : MonoBehaviour
     public void Spin(bool front)
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        if (front)
-            shipSprite.sprite = CardFront;
-        else
-            shipSprite.sprite = CardBack;
+        shipSprite.sprite = front ? CardFront : CardBack;
     }
 
     // Use this for initialization
