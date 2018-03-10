@@ -21,6 +21,10 @@ public class Card : MonoBehaviour
 
     public Player Owner;
 
+    public int staticHP;
+    public int staticDMG;
+    public int staticSHLD;
+
     public Sprite CardBack;
     public Sprite CardFront;
 

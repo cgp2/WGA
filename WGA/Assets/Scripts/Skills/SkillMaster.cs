@@ -23,7 +23,7 @@ class SkillMaster : MonoBehaviour
         SkillsList.Add(hpBufBC);
         battle = GetComponentInParent<Battle>();
         
-        BufMap = new SlotBuff[battle.m, battle.n];
+        BufMap = new SlotBuff[Battle.m, Battle.n];
 
         //SerializeSkills();
         //DeserializeSkills();
