@@ -35,7 +35,6 @@ public class Player : MonoBehaviour {
         }
     }
     void Start() {
-        var own = deck[0].GetComponent<Card>().Owner;
         foreach (var crd in deck)
         {
             crd.GetComponent<Card>().Initialize("kek", 2, 3, 2, "lolkek? kekLol", crd.GetComponent<Card>().CardFront, GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" });

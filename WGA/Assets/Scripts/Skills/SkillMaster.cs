@@ -14,7 +14,6 @@ public class SkillMaster : MonoBehaviour
 {
     public List<ASkill> SkillsList;
     public SlotBuff[,] BufMap;
-    private Battle battle;
 
     private void Awake()
     {
@@ -45,23 +44,23 @@ public class SkillMaster : MonoBehaviour
                 {
                     if (Battle.Board[i,j].Owner.name == "Player1")
                     {
-                        Battle.Board[i, j].staticHP += BufMap[i, j].StaticHPBufPlayer1;
+                        Battle.Board[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
                         Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer1;
                         Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer1;
 
-                        Battle.Board[i, j].Health = Battle.Board[i, j].staticHP + BufMap[i, j].FloatingHPBufPlayer1;
-                        Battle.Board[i, j].Attack = Battle.Board[i, j].staticDMG + BufMap[i, j].FloatingDMGBufPlayer1;
-                        Battle.Board[i, j].Shield = Battle.Board[i, j].staticSHLD + BufMap[i, j].FloatingShieldBufPlayer1;
+                        Battle.Board[i, j].Health = Battle.Board[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1;
+                        Battle.Board[i, j].Attack = Battle.Board[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer1;
+                        Battle.Board[i, j].Shield = Battle.Board[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer1;
                     }
                     else
                     {
-                        Battle.Board[i, j].staticHP += BufMap[i, j].StaticHPBufPlayer2;
+                        Battle.Board[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
                         Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer2;
                         Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer2;
 
-                        Battle.Board[i, j].Health = Battle.Board[i, j].staticHP + BufMap[i, j].FloatingHPBufPlayer2;
-                        Battle.Board[i, j].Attack = Battle.Board[i, j].staticDMG + BufMap[i, j].FloatingDMGBufPlayer2;
-                        Battle.Board[i, j].Shield = Battle.Board[i, j].staticSHLD + BufMap[i, j].FloatingShieldBufPlayer2;
+                        Battle.Board[i, j].Health = Battle.Board[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2;
+                        Battle.Board[i, j].Attack = Battle.Board[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2;
+                        Battle.Board[i, j].Shield = Battle.Board[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2;
                     }
 
                     BufMap[i, j].StaticHPBufPlayer1 = 0;
@@ -105,6 +104,29 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
+        ApplyBufsToField(out Battle.Board);
+    }
+
+    public void ReExecuteSkillByInput(Card card, ISkillsInput input)
+    {
+        var playerID = (card.Owner.name == "Player1") ? 0 : 1;
+
+        int cardRow = 0, cardCol = 0;
+        for (var i = 0; i < Battle.Board.GetLength(0); i++)
+        {
+            for (var j = 0; j < Battle.Board.GetLength(1); j++)
+            {
+                if (Battle.Board[i, j] == card)
+                {
+                    cardRow = i;
+                    cardCol = j;
+                    break;
+                }
+            }
+        }
+
+        var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
+        t.ReExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
         ApplyBufsToField(out Battle.Board);
     }
 
