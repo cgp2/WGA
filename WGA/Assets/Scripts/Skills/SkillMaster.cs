@@ -25,8 +25,8 @@ class SkillMaster : MonoBehaviour
         
         BufMap = new SlotBuff[battle.m, battle.n];
 
-        SerializeSkills();
-        DeserializeSkills();
+        //SerializeSkills();
+        //DeserializeSkills();
     }
 
     private void Start()
