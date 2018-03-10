@@ -72,5 +72,27 @@ namespace Assets.Scripts.Skills.BattleCry
 
             return true;
         }
+
+        public override bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
+        {
+            var t = (HPBufBCInput)input;
+            var buffedSlots = GetCardSlotsInDirections(bufMap, input.Directions, row, col);
+
+            var n = Array.IndexOf(input.InputParamsNames, "HpBuf");
+            var buf = input.InputParamsValues[n];
+            for (var i = 0; i < buffedSlots.Length; i++)
+            {
+                if (playerID == 0)
+                {
+                    buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf);
+                }
+                else
+                {
+                    buffedSlots[i].StaticHPBufPlayer2 -= int.Parse(buf);
+                }
+            }
+
+            return true;
+        }
     }
 }

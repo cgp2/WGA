@@ -18,6 +18,7 @@ public abstract class ASkill
     public bool Ally;
 
     public abstract bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
+    public abstract bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
 
     //public void Serialize(ref XmlDocument document)
     //{

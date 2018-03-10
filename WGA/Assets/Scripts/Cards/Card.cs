@@ -11,18 +11,18 @@ public class Card : MonoBehaviour
     public int Health;
     public int Shield;
     public int Attack;
-    public Text Name;
-    public Text Description;
+    public string Name;
+    public string Description;
     public string[] DeathRattleName;
     public string[] BattleCryNames;
     public string[] AuraNames;
     public Player Owner;
-    public int staticHP;
-    public int staticDMG;
-    public int staticSHLD;
     public Sprite CardBack;
     public Sprite CardFront;
     public bool OnBoard;
+    public int StaticHP;
+    public int StaticDMG;
+    public int StaticSHLD;
 
     private SkillMaster skillMaster;
     private ISkillsInput[] battleCryInput;
@@ -30,10 +30,10 @@ public class Card : MonoBehaviour
     private ISkillsInput[] deathRattleInput;
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
-    {
+    { 
         this.skillMaster = skillMaster;
-        Name.text = cardName;
-        Description.text = description;
+        Name= cardName;
+        Description = description;
         Health = health;
         Shield = shield;
         Attack = attack;
@@ -108,6 +108,14 @@ public class Card : MonoBehaviour
             for (var i = 0; i < DeathRattleName.Length; i++)
             {
                 skillMaster.ExecuteSkillByInput(this, deathRattleInput[i]);
+
+                if (auraInput != null)
+                {
+                    foreach (var inp in auraInput)
+                    {
+                        skillMaster.ReExecuteSkillByInput(this, inp);
+                    }
+                }
             }
         }
     }
