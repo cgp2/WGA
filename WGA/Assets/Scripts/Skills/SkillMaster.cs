@@ -90,16 +90,26 @@ public class SkillMaster : MonoBehaviour
             }
         }
 
-
         field = ret;
         Battle.UpdateUI();
     }
 
-    public SlotBuff[,] RebuidBufMap()
+    public void RebuidBufMap()
     {
-        var ret = BufMap;
-
-        return ret;
+        BufMap = new SlotBuff[Battle.n, Battle.m];
+        for (var i = 0; i < Battle.n; i++)
+        {
+            for (var j = 0; j < Battle.m; j++)
+            {
+                if (Battle.Board[i, j] != null)
+                {
+                    foreach (var inp in Battle.Board[i, j].AuraInput)
+                    {
+                        ExecuteSkillByInput(Battle.Board[i, j], inp);
+                    }
+                }
+            }
+        }
     }
 
     public void ExecuteSkillByInput(Card card, SkillsInput input)
