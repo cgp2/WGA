@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -70,8 +72,9 @@ public class Battle : MonoBehaviour
         }
         UpdateUI();
     }
+
     public static void UpdateUI()
-    {
+    {      
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
             {
@@ -97,7 +100,7 @@ public class Battle : MonoBehaviour
         //Debug.LogWarning(tg);
         Board[x, y] = tg;
         tg.Play();
-        //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToField(out Battle.Board);
+        //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
 
     }
     // Update is called once per frame
@@ -120,10 +123,12 @@ public class Battle : MonoBehaviour
                                     Board[i, j] = temp[0];
                                     Board[i - 1, j] = temp[1];
                                     if (Board[i, j].Health <= 0)
-                                        Destroy(Board[i, j].gameObject);
+                                    {
+                                       DestroyCard(i, j);
+                                    }
                                     if (Board[i - 1, j].Health <= 0)
                                     {
-                                        Destroy(Board[i - 1, j].gameObject);
+                                      DestroyCard(i-1, j);
                                         //Board[i + 1, j] = null;
                                         if (Board[i, j] != null)
                                         {
@@ -133,7 +138,6 @@ public class Battle : MonoBehaviour
                                         }
                                     }
                                 }
-
                             }
                             else
                             {
@@ -144,9 +148,9 @@ public class Battle : MonoBehaviour
                         }
                     }
                 }
-            UpdateUI();
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             for (int i = n - 2; i >= 0; i--)
                 for (int j = 0; j < m; j++)
@@ -163,10 +167,12 @@ public class Battle : MonoBehaviour
                                     Board[i, j] = temp[0];
                                     Board[i + 1, j] = temp[1];
                                     if (Board[i, j].Health <= 0)
-                                        Destroy(Board[i, j].gameObject);
+                                    {
+                                      DestroyCard(i, j);
+                                    }
                                     if (Board[i + 1, j].Health <= 0)
                                     {
-                                        Destroy(Board[i + 1, j].gameObject);
+                                        DestroyCard(i+1, j);
                                         //Board[i + 1, j] = null;
                                         if (Board[i, j] != null)
                                         {
@@ -176,7 +182,6 @@ public class Battle : MonoBehaviour
                                         }
                                     }
                                 }
-
                             }
                             else
                             {
@@ -188,9 +193,9 @@ public class Battle : MonoBehaviour
                     }
 
                 }
-            UpdateUI();
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();        
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             for (int i = 0; i < n; i++)
                 for (int j = 1; j < m; j++)
@@ -206,10 +211,13 @@ public class Battle : MonoBehaviour
                                     Board[i, j] = temp[0];
                                     Board[i, j-1] = temp[1];
                                     if (Board[i, j].Health <= 0)
-                                        Destroy(Board[i, j].gameObject);
-                                    if (Board[i, j-1].Health <= 0)
                                     {
-                                        Destroy(Board[i, j-1].gameObject);
+                                        DestroyCard(i, j);
+                                    }
+
+                                    if (Board[i, j-1].Health <= 0)
+                                    {                                      
+                                        DestroyCard(i, j-1);
                                         //Board[i + 1, j] = null;
                                         if (Board[i, j] != null)
                                         {
@@ -229,9 +237,9 @@ public class Battle : MonoBehaviour
                             }
                         }
                 }
-            UpdateUI();
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();         
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             for (int i = 0; i < n; i++)
                 for (int j = m - 2; j >= 0; j--)
@@ -246,11 +254,15 @@ public class Battle : MonoBehaviour
                                     var temp = Fight(Board[i, j], Board[i, j + 1]);
                                     Board[i, j] = temp[0];
                                     Board[i, j + 1] = temp[1];
+
                                     if (Board[i, j].Health <= 0)
-                                        Destroy(Board[i, j].gameObject);
+                                    {
+                                        DestroyCard(i, j);
+                                    }
+
                                     if (Board[i, j + 1].Health <= 0)
                                     {
-                                        Destroy(Board[i, j + 1].gameObject);
+                                        DestroyCard(i, j+1);
                                         //Board[i + 1, j] = null;
                                         if (Board[i, j] != null)
                                         {
@@ -270,17 +282,27 @@ public class Battle : MonoBehaviour
                             }
                         }
                 }
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
-        UpdateUI();
+
+    }
+
+    public static void DestroyCard(int n, int m)
+    {
+        if (Board[n, m] != null)
+        {
+            Board[n, m].Destroy();
+            Destroy(Board[n, m].gameObject);
+        }
     }
     
     public List<Card> Fight(Card c1, Card c2)
     {
         var ret = new List<Card>();
-        c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
-        c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
-        c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
-        c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
+        c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
+        c1.StaticSHLD = c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
+        c2.StaticHP = c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
+        c2.StaticSHLD = c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
         ret.Add(c1);
         ret.Add(c2);
         return ret;

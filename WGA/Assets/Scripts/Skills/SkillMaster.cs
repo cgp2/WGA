@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml;
 using Assets.Scripts.Skills.Aura;
 using Assets.Scripts.Skills.BattleCry;
+using Assets.Scripts.Skills.DeathRattle;
 using UnityEngine;
 
 
@@ -26,8 +27,11 @@ public class SkillMaster : MonoBehaviour
         var dmgBufAura = new DmgBufAura();
         SkillsList.Add(dmgBufAura);
 
-        var dmgRedAura = new DmgRedAura();
-        SkillsList.Add(dmgRedAura);
+        var dmgDebufAura = new DmgDebufAura();
+        SkillsList.Add(dmgDebufAura);
+
+        var ShldDebufDR = new ShldDebufDR();
+        SkillsList.Add(ShldDebufDR);
 
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
@@ -49,35 +53,52 @@ public class SkillMaster : MonoBehaviour
 
     }
 
-    public void ApplyBufsToField(out Card[,] field)
+    public void ApplyBufsToBoard(out Card[,] field)
     {
         var ret = Battle.Board;
+
 
         for (var i = 0; i < Battle.n; i++)
         {
             for (var j = 0; j < Battle.m; j++)
             {
-                if (Battle.Board[i, j] != null)
+                if (ret[i, j] != null)
                 {
-                    if (Battle.Board[i,j].Owner.name == "Player1")
+                    if (ret[i,j].Owner.name == "Player1")
                     {
-                        Battle.Board[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
-                        Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer1;
-                        Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer1;
+                        ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
+                        ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer1;
+                        ret[i, j].StaticSHLD += BufMap[i, j].StaticShieldBufPlayer1;
 
-                        Battle.Board[i, j].Health = Battle.Board[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1;
-                        Battle.Board[i, j].Attack = Battle.Board[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer1;
-                        Battle.Board[i, j].Shield = Battle.Board[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer1;
+                        if(ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1 <= 0)
+                        {
+                           // Battle.DestroyCard(i, j);
+                        }
+                        else
+                        {
+                            ret[i, j].Health = ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1;
+                        }
+
+                        ret[i, j].Attack = Math.Max(ret[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer1, 0);
+                        ret[i, j].Shield = Math.Max(ret[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer1, 0);
                     }
                     else
                     {
-                        Battle.Board[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
-                        Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer2;
-                        Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer2;
+                        ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
+                        ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer2;
+                        ret[i, j].StaticSHLD += BufMap[i, j].StaticShieldBufPlayer2;
 
-                        Battle.Board[i, j].Health = Battle.Board[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2;
-                        Battle.Board[i, j].Attack = Battle.Board[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2;
-                        Battle.Board[i, j].Shield = Battle.Board[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2;
+                        if (ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2 <= 0)
+                        {
+                           // Battle.DestroyCard(i, j);
+                        }
+                        else
+                        {
+                            ret[i, j].Health = ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2;
+                        }
+
+                        ret[i, j].Attack = Math.Max(ret[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2, 0);
+                        ret[i, j].Shield = Math.Max(ret[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2, 0);
                     }
                 }
 
@@ -97,6 +118,15 @@ public class SkillMaster : MonoBehaviour
     public void RebuidBufMap()
     {
         BufMap = new SlotBuff[Battle.n, Battle.m];
+        for (int i = 0; i < BufMap.GetLength(0); i++)
+        {
+            for (int j = 0; j < BufMap.GetLength(1); j++)
+            {
+                BufMap[i, j].Row = i;
+                BufMap[i, j].Col = j;
+            }
+        }
+
         for (var i = 0; i < Battle.n; i++)
         {
             for (var j = 0; j < Battle.m; j++)
@@ -110,6 +140,7 @@ public class SkillMaster : MonoBehaviour
                 }
             }
         }
+        ApplyBufsToBoard(out Battle.Board);
     }
 
     public void ExecuteSkillByInput(Card card, SkillsInput input)
@@ -132,7 +163,7 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
-        ApplyBufsToField(out Battle.Board);
+        ApplyBufsToBoard(out Battle.Board);
     }
 
     public void ReExecuteSkillByInput(Card card, SkillsInput input)
@@ -155,7 +186,7 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ReExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
-        ApplyBufsToField(out Battle.Board);
+        ApplyBufsToBoard(out Battle.Board);
     }
 
     public SkillsInput GetISkillInputByName(string skillName)

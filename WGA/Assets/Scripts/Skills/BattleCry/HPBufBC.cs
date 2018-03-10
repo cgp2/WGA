@@ -8,7 +8,7 @@ namespace Assets.Scripts.Skills.BattleCry
         public HPBufBC()
         {
             Name = "HPBufBC";
-            Description = "This skill add HP to ally cards";
+            Description = "This skill add HP to ally cards on card play";
             Ally = true;
 
             InputParametrs = new[] { "HpBuf" };
