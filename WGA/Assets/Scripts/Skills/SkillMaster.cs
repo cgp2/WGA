@@ -23,11 +23,22 @@ class SkillMaster : MonoBehaviour
         SkillsList.Add(hpBufBC);
         battle = GetComponentInParent<Battle>();
         
-        BufMap = new SlotBuff[battle.m, battle.n];
+        
+        BufMap = new SlotBuff[battle.n, battle.m];
 
         //SerializeSkills();
         //DeserializeSkills();
     }
+
+    public SlotBuff[,] RebuidBufMap()
+    {
+        var ret = BufMap;
+
+
+        return ret;
+    }
+
+
 
     private void Start()
     {
@@ -38,6 +49,12 @@ class SkillMaster : MonoBehaviour
     {
        var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
        t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
+    }
+
+    public ISkillsInput GetISkillInputByName(string skillName)
+    {
+        var aSkill = SkillsList.Find(skill => skill.Name == skillName);
+        return aSkill.Input;
     }
 
     public void SerializeSkills()
@@ -58,18 +75,12 @@ class SkillMaster : MonoBehaviour
         writer.Close();
     }
 
-    public ISkillsInput GetISkillInputByName(string name)
-    {
-        var aSkill = SkillsList.Find(skill => skill.Name == name);
-        return aSkill.Input;
-    }
-
     public void DeserializeSkills()
     {
         var reader = new XmlTextReader(Path.GetDirectoryName((Application.dataPath)) + "/CardsInfo/ChangedSkills.xml");
         while (reader.ReadToFollowing("Skill"))
         {
-            reader.MoveToAttribute("name");
+            reader.MoveToAttribute("skillName");
             var name = reader.Value;
 
             var aSkill = SkillsList.Find(skill => skill.Name == name);
@@ -116,13 +127,19 @@ class SkillMaster : MonoBehaviour
 
 public struct SlotBuff
 {
-    public int HPBufPlayer0;
-    public int DMGBufPlayer0;
-    public int ShieldBufPlayer0;
+    public int StaticHPBufPlayer0;
+    public int StaticDMGBufPlayer0;
+    public int StaticShieldBufPlayer0;
+    public int FloatingHPBufPlayer0;
+    public int FloatingDMGBufPlayer0;
+    public int FloatingShieldBufPlayer0;
 
-    public int HPBufPlayer1;
-    public int DMGBufPlayer1;
-    public int ShieldBufPlayer1;
+    public int StaticHPBufPlayer1;
+    public int StaticDMGBufPlayer1;
+    public int StaticShieldBufPlayer1;
+    public int FloatingHPBufPlayer1;
+    public int FloatingDMGBufPlayer1;
+    public int FloatingShieldBufPlayer1;
 };
 
 public enum SkillType
