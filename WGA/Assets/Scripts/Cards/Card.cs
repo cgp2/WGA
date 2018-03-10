@@ -12,8 +12,8 @@ public class Card : MonoBehaviour
     public int Shield;
     public int Attack;
   
-    public Text Name;
-    public Text Description;
+    public string Name;
+    public string Description;
 
     public string BattleCryName;
     public string DeathRattleName;
@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
 
     public bool OnBoard;
 
-    public void Initialize(Text cardName, int health, int shield, int attack, Text description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
+    public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, string battleCryName = null, string deathRattleName = null, string auraName = null)
     {
         Name = cardName;
         Health = health;

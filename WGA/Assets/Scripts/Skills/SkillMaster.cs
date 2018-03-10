@@ -24,7 +24,7 @@ class SkillMaster : MonoBehaviour
         battle = GetComponentInParent<Battle>();
         
         
-        BufMap = new SlotBuff[battle.n, battle.m];
+        BufMap = new SlotBuff[Battle.n, Battle.m];
 
         //SerializeSkills();
         //DeserializeSkills();

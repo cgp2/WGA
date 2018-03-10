@@ -6,7 +6,7 @@ using UnityEngine;
 public class Battle : MonoBehaviour {
     public static int  n = 4;
     public static int m = 3;
-    private static Card[,] Board;
+    public static Card[,] Board;
     public static Transform[,] coor;
     public static Player turn;
     public static Player pl1;
@@ -87,10 +87,6 @@ public class Battle : MonoBehaviour {
                     var q = 0;
                 }
             }
-    }
-    public int get_n()
-    {
-        return n;
     }
     public static void Set_Card(int x, int y, Card tg)
     {

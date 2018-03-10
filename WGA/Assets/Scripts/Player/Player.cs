@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public int[] Hand;
     public List<GameObject> deck;
     public GameObject crd;
-
+    public Card c;
     public static GameObject Selectedcard;
     // Use this for initialization
     private void Awake()
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
         for (int i = 0; i < Hand.Length; i++)
         {
             var temp = Instantiate(crd);
+            temp.GetComponent<Card>().Initialize("", 6, 6, 6, "", temp.GetComponent<Card>().CardFront);
             deck.Add(temp);
             deck[i].transform.parent = transform;
             deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 15, -this.transform.position.y, -30);
