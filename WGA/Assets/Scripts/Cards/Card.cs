@@ -30,17 +30,18 @@ public class Card : MonoBehaviour
     private ISkillsInput[] deathRattleInput;
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
-    { 
+    {
         this.skillMaster = skillMaster;
-        Name= cardName;
+        Name = cardName;
         Description = description;
-        Health = health;
-        Shield = shield;
-        Attack = attack;
+        StaticHP = Health = health;
+        StaticSHLD = Shield = shield;
+        StaticDMG = Attack = attack;
 
         BattleCryNames = battleCryName;
         DeathRattleName = deathRattleName;
         AuraNames = auraName;
+
         if (battleCryName != null)
         {
             var t = new List<ISkillsInput>();

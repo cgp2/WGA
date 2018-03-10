@@ -20,6 +20,7 @@ public abstract class ASkill
     public abstract bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
     public abstract bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
 
+
     //public void Serialize(ref XmlDocument document)
     //{
     //    XmlElement skillElement = document.CreateElement("Skill");
@@ -82,7 +83,7 @@ public abstract class ASkill
         writer.WriteEndElement();
     }
 
-    protected SlotBuff[] GetCardSlotsInDirections(SlotBuff[,] bufMap, Directions[] directionses, int row, int col)
+    protected SlotBuff[] GetCardSlotsInDirections(ref SlotBuff[,] bufMap, Directions[] directionses, int row, int col)
     {
         var slots = new List<SlotBuff>();
         foreach (var dir in directionses)
@@ -133,6 +134,14 @@ public abstract class ASkill
         }
 
         return slots.ToArray();
+    }
+
+    protected void ApplyBufToBufMap(SlotBuff[] buffedSlots, ref SlotBuff[,] bufMap)
+    {
+        foreach (var slot in buffedSlots)
+        {
+            bufMap[slot.Row, slot.Col] = slot;
+        }
     }
 }
 

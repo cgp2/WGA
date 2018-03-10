@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 
 namespace Assets.Scripts.Skills.BattleCry
 {
@@ -18,6 +19,7 @@ namespace Assets.Scripts.Skills.BattleCry
             {
                 parentFunctionName = Name,
                 inputParamsNames = inputParams,
+                inputParamsValues = new []{"2"},
                 directions = dirs
             };
         }
@@ -54,7 +56,7 @@ namespace Assets.Scripts.Skills.BattleCry
         public override bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
         {
             var t = (HPBufBCInput) input;
-            var buffedSlots = GetCardSlotsInDirections(bufMap, input.Directions, row, col);
+            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, row, col);
 
             var n = Array.IndexOf(input.InputParamsNames, "HpBuf");
             var buf = input.InputParamsValues[n];
@@ -70,13 +72,15 @@ namespace Assets.Scripts.Skills.BattleCry
                 }              
             }
 
+            ApplyBufToBufMap(buffedSlots, ref bufMap);
+
             return true;
         }
 
         public override bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
         {
             var t = (HPBufBCInput)input;
-            var buffedSlots = GetCardSlotsInDirections(bufMap, input.Directions, row, col);
+            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, row, col);
 
             var n = Array.IndexOf(input.InputParamsNames, "HpBuf");
             var buf = input.InputParamsValues[n];
@@ -91,6 +95,7 @@ namespace Assets.Scripts.Skills.BattleCry
                     buffedSlots[i].StaticHPBufPlayer2 -= int.Parse(buf);
                 }
             }
+            ApplyBufToBufMap(buffedSlots, ref bufMap);
 
             return true;
         }

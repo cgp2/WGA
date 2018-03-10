@@ -23,6 +23,15 @@ public class SkillMaster : MonoBehaviour
             
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
+        for (int i = 0; i < BufMap.GetLength(0); i++)
+        {
+            for (int j = 0; j < BufMap.GetLength(1); j++)
+            {
+                BufMap[i, j].Row = i;
+                BufMap[i, j].Col = j;
+            }
+        }
+
         //SerializeSkills();
         //DeserializeSkills();
     }
@@ -34,7 +43,7 @@ public class SkillMaster : MonoBehaviour
 
     public void ApplyBufsToField(out Card[,] field)
     {
-        var ret = new Card[Battle.n, Battle.m];
+        var ret = Battle.Board;
 
         for (var i = 0; i < Battle.n; i++)
         {
@@ -62,19 +71,20 @@ public class SkillMaster : MonoBehaviour
                         Battle.Board[i, j].Attack = Battle.Board[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2;
                         Battle.Board[i, j].Shield = Battle.Board[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2;
                     }
-
-                    BufMap[i, j].StaticHPBufPlayer1 = 0;
-                    BufMap[i, j].StaticDMGBufPlayer1 = 0;
-                    BufMap[i, j].StaticShieldBufPlayer1 = 0;
-                    BufMap[i, j].StaticHPBufPlayer2 = 0;
-                    BufMap[i, j].StaticDMGBufPlayer2 = 0;
-                    BufMap[i, j].StaticShieldBufPlayer2 = 0;
                 }
+
+                BufMap[i, j].StaticHPBufPlayer1 = 0;
+                BufMap[i, j].StaticDMGBufPlayer1 = 0;
+                BufMap[i, j].StaticShieldBufPlayer1 = 0;
+                BufMap[i, j].StaticHPBufPlayer2 = 0;
+                BufMap[i, j].StaticDMGBufPlayer2 = 0;
+                BufMap[i, j].StaticShieldBufPlayer2 = 0;
             }
         }
 
 
         field = ret;
+        Battle.UpdateUI();
     }
 
     public SlotBuff[,] RebuidBufMap()
@@ -219,6 +229,9 @@ public struct SlotBuff
     public int FloatingHPBufPlayer2;
     public int FloatingDMGBufPlayer2;
     public int FloatingShieldBufPlayer2;
+
+    public int Row;
+    public int Col;
 };
 
 public enum SkillType

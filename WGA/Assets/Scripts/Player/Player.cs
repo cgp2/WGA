@@ -26,11 +26,7 @@ public class Player : MonoBehaviour {
             {
                 deck[i].GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             }
-            var x = temp.transform.GetChild(0);
-            x.GetChild(0).GetComponent<Text>().text = "" + temp.GetComponent<Card>().Health; 
-            x.GetChild(1).GetComponent<Text>().text = "" + temp.GetComponent<Card>().Shield;
-            x.GetChild(2).GetComponent<Text>().text = "" + temp.GetComponent<Card>().Attack;
-            x.GetChild(3).GetComponent<Text>().text = "" + temp.GetComponent<Card>().Name;
+
             deck[i].name = "card#" + i + "/player=" + this.name;
         }
     }

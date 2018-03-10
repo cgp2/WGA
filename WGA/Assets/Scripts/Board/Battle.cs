@@ -93,6 +93,8 @@ public class Battle : MonoBehaviour {
         //Debug.LogWarning("" + x + y);
         //Debug.LogWarning(tg);
         Board[x, y] = tg;
+        tg.Play();
+        //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToField(out Battle.Board);
 
     }
 	// Update is called once per frame
