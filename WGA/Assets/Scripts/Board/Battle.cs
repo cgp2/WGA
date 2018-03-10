@@ -6,7 +6,7 @@ using UnityEngine;
 public class Battle : MonoBehaviour {
     public static int  n = 4;
     public static int m = 3;
-    private static Card[,] Board;
+    public static Card[,] Board;
     public static Transform[,] coor;
     public static Player turn;
     public static Player pl1;

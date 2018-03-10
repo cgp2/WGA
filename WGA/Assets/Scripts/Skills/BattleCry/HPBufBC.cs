@@ -62,11 +62,11 @@ namespace Assets.Scripts.Skills.BattleCry
             {
                 if (playerID == 0)
                 {
-                    buffedSlots[i].StaticHPBufPlayer0 += int.Parse(buf);
+                    buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
                 }
                 else
                 {
-                    buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
+                    buffedSlots[i].StaticHPBufPlayer2 += int.Parse(buf);
                 }              
             }
 
