@@ -13,12 +13,16 @@ public abstract class ASkill
 {
     public string Name;
     public string Description;
-    public ISkillsInput Input;
+    public SkillsInput Input;
     public SkillType Type;
     public bool Ally;
 
-    public abstract bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
-    public abstract bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
+    public string[] InputParametrs;
+    public Directions[] Dirs;
+    public string[] InputValues;
+
+    public abstract bool ExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
+    public abstract bool ReExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
 
 
     //public void Serialize(ref XmlDocument document)
@@ -35,8 +39,8 @@ public abstract class ASkill
     //        inputElem.AppendChild(el);
     //    }
 
-    //    XmlElement dirRootElement = document.CreateElement("Directions");
-    //    foreach (Directions dir in Input.Directions)
+    //    XmlElement dirRootElement = document.CreateElement("Dirs");
+    //    foreach (Dirs dir in Input.Dirs)
     //    {
     //        XmlElement dirElement = document.CreateElement("dir");
     //        XmlText txt = document.CreateTextNode(dir.ToString());
@@ -57,16 +61,18 @@ public abstract class ASkill
             writer.WriteAttributeString("Ally", Ally.ToString());
 
             writer.WriteStartElement("Input");
-            foreach (var param in Input.InputParamsNames)
+            for (var i = 0; i < Input.InputParamsNames.Length; i++)
             {
+                var param = Input.InputParamsNames[i];
                 writer.WriteStartElement("inp");
                 writer.WriteAttributeString("name", param);
-                writer.WriteAttributeString("value", " ");
+                writer.WriteAttributeString("value", Input.InputParamsValues[i]);
                 writer.WriteEndElement();
             }
+
             writer.WriteEndElement();
 
-            writer.WriteStartElement("Directions");
+            writer.WriteStartElement("Dirs");
             foreach (var dir in Input.Directions)
             {
                 writer.WriteStartElement("dir");
@@ -83,7 +89,7 @@ public abstract class ASkill
         writer.WriteEndElement();
     }
 
-    protected SlotBuff[] GetCardSlotsInDirections(ref SlotBuff[,] bufMap, Directions[] directionses, int row, int col)
+    protected SlotBuff[] GetCardSlotsInDirections(ref SlotBuff[,] bufMap, Directions[] directionses, int playerID, int row, int col)
     {
         var slots = new List<SlotBuff>();
         foreach (var dir in directionses)
@@ -91,36 +97,103 @@ public abstract class ASkill
             switch (dir)
             {
                 case Directions.Bottom:
-                    if(row+1 < bufMap.GetLength(0))
-                        slots.Add(bufMap[row+1, col]);
+                    if (playerID == 0)
+                    {
+                        if (row - 1 >= 0)
+                            slots.Add(bufMap[row - 1, col]);
+                    }
+                    else
+                    {
+                        if (row + 1 < bufMap.GetLength(0))
+                            slots.Add(bufMap[row + 1, col]);
+                    }
                     break;
                 case Directions.Left:
-                    if (col - 1 >= 0)
-                        slots.Add(bufMap[row, col-1]);
+                    if (playerID == 0)
+                    {
+                        if (col - 1 >= 0)
+                            slots.Add(bufMap[row, col - 1]);
+                    }
+                    else
+                    {
+                        if (col + 1 < bufMap.GetLength(1))
+                            slots.Add(bufMap[row, col + 1]);
+                    }
                     break;
                 case Directions.Top:
-                    if (row - 1 >= 0)
-                        slots.Add(bufMap[row-1 , col]);
+                    if (playerID == 0)
+                    {
+                        if (row + 1 < bufMap.GetLength(0))
+                            slots.Add(bufMap[row + 1, col]);
+                    }
+                    else
+                    {
+                        if (row - 1 >= 0)
+                            slots.Add(bufMap[row - 1, col]);
+                    }                     
                     break;
                 case Directions.Right:
-                    if (col + 1 < bufMap.GetLength(1))
-                        slots.Add(bufMap[row, col+1]);
+                    if (playerID == 0)
+                    {
+                        if (col + 1 < bufMap.GetLength(1))
+                            slots.Add(bufMap[row, col + 1]);
+                    }
+                    else
+                    {
+                         if (col - 1 >= 0)
+                            slots.Add(bufMap[row, col - 1]);
+                    }
                     break;
                 case Directions.LeftTop:
-                    if ((col - 1 >= 0) && (row - 1 >= 0))
-                        slots.Add(bufMap[row -1, col - 1]);
+                    if (playerID == 0)
+                    {
+                        if ((col - 1 >= 0) && (row + 1 < bufMap.GetLength(0)))
+                            slots.Add(bufMap[row + 1, col - 1]);
+                    }
+                    else
+                    {
+                        if ((col + 1 < bufMap.GetLength(1)) && (row - 1 >= 0))
+                            slots.Add(bufMap[row - 1, col + 1]);
+                    }                
                     break;
                 case Directions.LeftBottom:
-                    if ((col - 1 >= 0) && (row + 1 < bufMap.GetLength(0)))
-                        slots.Add(bufMap[row + 1, col - 1]);
+                    if (playerID == 0)
+                    {
+                        if ((col - 1 >= 0) && (row - 1 >= 0))
+                            slots.Add(bufMap[row - 1, col - 1]);
+                    }
+                    else
+                    {
+                        if ((col + 1 < bufMap.GetLength(1)) && (row + 1 < bufMap.GetLength(0)))
+                            slots.Add(bufMap[row + 1, col + 1]);
+                    }
+
                     break;
                 case Directions.RightTop:
-                    if ((col + 1 < bufMap.GetLength(1)) && (row - 1 >= 0))
-                        slots.Add(bufMap[row - 1, col + 1]);
+                    if (playerID == 0)
+                    {
+                        if ((col + 1 < bufMap.GetLength(1)) && (row + 1 < bufMap.GetLength(0)))
+                            slots.Add(bufMap[row + 1, col + 1]);
+                    }
+                    else
+                    {                    
+                        if ((col - 1 >= 0) && (row - 1 >= 0))
+                            slots.Add(bufMap[row - 1, col - 1]);
+                    }
+
                     break;
                 case Directions.RightBottom:
-                    if ((col + 1 < bufMap.GetLength(1)) && (row + 1 < bufMap.GetLength(0)))
-                        slots.Add(bufMap[row + 1, col + 1]);
+                    if (playerID == 0)
+                    {
+                        if ((col + 1 < bufMap.GetLength(1)) && (row - 1 >= 0))
+                            slots.Add(bufMap[row - 1, col + 1]);
+                    }
+                    else
+                    {
+                        if ((col - 1 >= 0) && (row + 1 < bufMap.GetLength(0)))
+                            slots.Add(bufMap[row + 1, col - 1]);
+                    }
+
                     break;
                 case Directions.Map:
                     foreach (var slot in bufMap)

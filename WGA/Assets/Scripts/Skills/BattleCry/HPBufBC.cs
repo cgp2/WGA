@@ -11,52 +11,24 @@ namespace Assets.Scripts.Skills.BattleCry
             Description = "This skill add HP to ally cards";
             Ally = true;
 
-            var inputParams = new[] { "HpBuf" };
-            var dirs = new[] { Directions.Left, Directions.Right };
+            InputParametrs = new[] { "HpBuf" };
+            InputValues = new[] {"2"};
+            Dirs = new[] { Directions.Left, Directions.Right };
             Type = SkillType.BattleCry;
 
-            Input = new HPBufBCInput
+            Input = new SkillsInput()
             {
-                parentFunctionName = Name,
-                inputParamsNames = inputParams,
-                inputParamsValues = new []{"2"},
-                directions = dirs
+                ParentFunctionName = Name,
+                InputParamsNames = InputParametrs,
+                InputParamsValues = InputValues,
+                Directions = Dirs
             };
         }
 
-        public struct HPBufBCInput : ISkillsInput
+        public override bool ExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
         {
-            public string parentFunctionName;
-            public string[] inputParamsNames;
-            public string[] inputParamsValues;
-            public Directions[] directions;
-
-            string ISkillsInput.ParentFunctionName
-            {
-                get { return parentFunctionName; }
-                set { parentFunctionName = value; }
-            }
-            string[] ISkillsInput.InputParamsNames
-            {
-                get { return inputParamsNames; }
-                set { inputParamsNames = value; }
-            }
-            string[] ISkillsInput.InputParamsValues
-            {
-                get { return inputParamsValues; }
-                set { inputParamsValues = value; }
-            }
-            Directions[] ISkillsInput.Directions
-            {
-                get { return directions; }
-                set { directions = value; }
-            }
-        }
-
-        public override bool ExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
-        {
-            var t = (HPBufBCInput) input;
-            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, row, col);
+            var t = input;
+            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, playerID, row, col);
 
             var n = Array.IndexOf(input.InputParamsNames, "HpBuf");
             var buf = input.InputParamsValues[n];
@@ -64,11 +36,25 @@ namespace Assets.Scripts.Skills.BattleCry
             {
                 if (playerID == 0)
                 {
-                    buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
+                    if (Ally)
+                    {
+                        buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].StaticHPBufPlayer2 += int.Parse(buf);
+                    }
                 }
                 else
                 {
-                    buffedSlots[i].StaticHPBufPlayer2 += int.Parse(buf);
+                    if (Ally)
+                    {
+                        buffedSlots[i].StaticHPBufPlayer2 += int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
+                    }
                 }              
             }
 
@@ -77,10 +63,10 @@ namespace Assets.Scripts.Skills.BattleCry
             return true;
         }
 
-        public override bool ReExecuteSkill(ISkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
+        public override bool ReExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
         {
-            var t = (HPBufBCInput)input;
-            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, row, col);
+            var t = input;
+            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, playerID, row, col);
 
             var n = Array.IndexOf(input.InputParamsNames, "HpBuf");
             var buf = input.InputParamsValues[n];

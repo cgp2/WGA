@@ -25,9 +25,9 @@ public class Card : MonoBehaviour
     public int StaticSHLD;
 
     private SkillMaster skillMaster;
-    private ISkillsInput[] battleCryInput;
-    private ISkillsInput[] auraInput;
-    private ISkillsInput[] deathRattleInput;
+    private SkillsInput[] battleCryInput;
+    private SkillsInput[] auraInput;
+    private SkillsInput[] deathRattleInput;
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
@@ -44,7 +44,7 @@ public class Card : MonoBehaviour
 
         if (battleCryName != null)
         {
-            var t = new List<ISkillsInput>();
+            var t = new List<SkillsInput>();
             foreach (var n in battleCryName)
                 t.Add(skillMaster.GetISkillInputByName(n));
             battleCryInput = t.ToArray();
@@ -52,7 +52,7 @@ public class Card : MonoBehaviour
 
         if (deathRattleName != null)
         {
-            var t = new List<ISkillsInput>();
+            var t = new List<SkillsInput>();
             foreach (var n in deathRattleName)
                 t.Add(skillMaster.GetISkillInputByName(n));
             deathRattleInput = t.ToArray();
@@ -60,7 +60,7 @@ public class Card : MonoBehaviour
 
         if (auraName != null)
         {
-            var t = new List<ISkillsInput>();
+            var t = new List<SkillsInput>();
             foreach (var n in AuraNames)
                 t.Add(skillMaster.GetISkillInputByName(n));
             auraInput = t.ToArray();

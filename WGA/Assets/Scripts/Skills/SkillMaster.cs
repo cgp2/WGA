@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using Assets.Scripts.Skills.Aura;
 using Assets.Scripts.Skills.BattleCry;
 using UnityEngine;
 
@@ -18,9 +19,16 @@ public class SkillMaster : MonoBehaviour
     private void Awake()
     {
         SkillsList = new List<ASkill>();
+
         var hpBufBC = new HPBufBC();
         SkillsList.Add(hpBufBC);
-            
+
+        var dmgBufAura = new DmgBufAura();
+        SkillsList.Add(dmgBufAura);
+
+        var dmgRedAura = new DmgRedAura();
+        SkillsList.Add(dmgRedAura);
+
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
         for (int i = 0; i < BufMap.GetLength(0); i++)
@@ -32,7 +40,7 @@ public class SkillMaster : MonoBehaviour
             }
         }
 
-        //SerializeSkills();
+        SerializeSkills();
         //DeserializeSkills();
     }
 
@@ -94,7 +102,7 @@ public class SkillMaster : MonoBehaviour
         return ret;
     }
 
-    public void ExecuteSkillByInput(Card card, ISkillsInput input)
+    public void ExecuteSkillByInput(Card card, SkillsInput input)
     {
         var playerID = (card.Owner.name == "Player1") ? 0 : 1;
 
@@ -117,7 +125,7 @@ public class SkillMaster : MonoBehaviour
         ApplyBufsToField(out Battle.Board);
     }
 
-    public void ReExecuteSkillByInput(Card card, ISkillsInput input)
+    public void ReExecuteSkillByInput(Card card, SkillsInput input)
     {
         var playerID = (card.Owner.name == "Player1") ? 0 : 1;
 
@@ -140,7 +148,7 @@ public class SkillMaster : MonoBehaviour
         ApplyBufsToField(out Battle.Board);
     }
 
-    public ISkillsInput GetISkillInputByName(string skillName)
+    public SkillsInput GetISkillInputByName(string skillName)
     {
         var aSkill = SkillsList.Find(skill => skill.Name == skillName);
         return aSkill.Input;
@@ -194,7 +202,7 @@ public class SkillMaster : MonoBehaviour
             }
             inp.InputParamsValues = t.ToArray();
 
-            reader.ReadToFollowing("Directions");
+            reader.ReadToFollowing("Dirs");
             var dirs = new List<Directions>();
             reader.Read();
             reader.Read();
