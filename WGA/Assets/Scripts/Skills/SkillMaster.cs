@@ -10,7 +10,7 @@ using Assets.Scripts.Skills.BattleCry;
 using UnityEngine;
 
 
-class SkillMaster : MonoBehaviour
+public class SkillMaster : MonoBehaviour
 {
     public List<ASkill> SkillsList;
     public SlotBuff[,] BufMap;
@@ -21,34 +21,91 @@ class SkillMaster : MonoBehaviour
         SkillsList = new List<ASkill>();
         var hpBufBC = new HPBufBC();
         SkillsList.Add(hpBufBC);
-        battle = GetComponentInParent<Battle>();
-        
-        
+            
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
         //SerializeSkills();
         //DeserializeSkills();
     }
 
+    private void Start()
+    {
+
+    }
+
+    public void ApplyBufsToField(out Card[,] field)
+    {
+        var ret = new Card[Battle.n, Battle.m];
+
+        for (var i = 0; i < Battle.n; i++)
+        {
+            for (var j = 0; j < Battle.m; j++)
+            {
+                if (Battle.Board[i, j] != null)
+                {
+                    if (Battle.Board[i,j].Owner.name == "Player1")
+                    {
+                        Battle.Board[i, j].staticHP += BufMap[i, j].StaticHPBufPlayer1;
+                        Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer1;
+                        Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer1;
+
+                        Battle.Board[i, j].Health = Battle.Board[i, j].staticHP + BufMap[i, j].FloatingHPBufPlayer1;
+                        Battle.Board[i, j].Attack = Battle.Board[i, j].staticDMG + BufMap[i, j].FloatingDMGBufPlayer1;
+                        Battle.Board[i, j].Shield = Battle.Board[i, j].staticSHLD + BufMap[i, j].FloatingShieldBufPlayer1;
+                    }
+                    else
+                    {
+                        Battle.Board[i, j].staticHP += BufMap[i, j].StaticHPBufPlayer2;
+                        Battle.Board[i, j].Attack += BufMap[i, j].StaticDMGBufPlayer2;
+                        Battle.Board[i, j].Shield += BufMap[i, j].StaticShieldBufPlayer2;
+
+                        Battle.Board[i, j].Health = Battle.Board[i, j].staticHP + BufMap[i, j].FloatingHPBufPlayer2;
+                        Battle.Board[i, j].Attack = Battle.Board[i, j].staticDMG + BufMap[i, j].FloatingDMGBufPlayer2;
+                        Battle.Board[i, j].Shield = Battle.Board[i, j].staticSHLD + BufMap[i, j].FloatingShieldBufPlayer2;
+                    }
+
+                    BufMap[i, j].StaticHPBufPlayer1 = 0;
+                    BufMap[i, j].StaticDMGBufPlayer1 = 0;
+                    BufMap[i, j].StaticShieldBufPlayer1 = 0;
+                    BufMap[i, j].StaticHPBufPlayer2 = 0;
+                    BufMap[i, j].StaticDMGBufPlayer2 = 0;
+                    BufMap[i, j].StaticShieldBufPlayer2 = 0;
+                }
+            }
+        }
+
+
+        field = ret;
+    }
+
     public SlotBuff[,] RebuidBufMap()
     {
         var ret = BufMap;
 
-
         return ret;
     }
 
-
-
-    private void Start()
+    public void ExecuteSkillByInput(Card card, ISkillsInput input)
     {
-        
-    }
+        var playerID = (card.Owner.name == "Player1") ? 0 : 1;
 
-    public void ExecuteSkillByName(int playerID, int cardRow, int cardCol, ISkillsInput input)
-    {
-       var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
-       t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
+        int cardRow = 0, cardCol = 0;
+        for (var i = 0; i < Battle.Board.GetLength(0); i++)
+        {
+            for (var j = 0; j < Battle.Board.GetLength(1); j++)
+            {
+                if (Battle.Board[i, j] == card)
+                {
+                    cardRow = i;
+                    cardCol = j;
+                    break;
+                }
+            }
+        }
+
+        var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
+        t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
+        ApplyBufsToField(out Battle.Board);
     }
 
     public ISkillsInput GetISkillInputByName(string skillName)
@@ -127,19 +184,19 @@ class SkillMaster : MonoBehaviour
 
 public struct SlotBuff
 {
-    public int StaticHPBufPlayer0;
-    public int StaticDMGBufPlayer0;
-    public int StaticShieldBufPlayer0;
-    public int FloatingHPBufPlayer0;
-    public int FloatingDMGBufPlayer0;
-    public int FloatingShieldBufPlayer0;
-
     public int StaticHPBufPlayer1;
     public int StaticDMGBufPlayer1;
     public int StaticShieldBufPlayer1;
     public int FloatingHPBufPlayer1;
     public int FloatingDMGBufPlayer1;
     public int FloatingShieldBufPlayer1;
+
+    public int StaticHPBufPlayer2;
+    public int StaticDMGBufPlayer2;
+    public int StaticShieldBufPlayer2;
+    public int FloatingHPBufPlayer2;
+    public int FloatingDMGBufPlayer2;
+    public int FloatingShieldBufPlayer2;
 };
 
 public enum SkillType
