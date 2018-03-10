@@ -41,7 +41,6 @@ public class Card : MonoBehaviour
         BattleCryNames = battleCryName;
         DeathRattleName = deathRattleName;
         AuraNames = auraName;
-
         if (battleCryName != null)
         {
             var t = new List<ISkillsInput>();

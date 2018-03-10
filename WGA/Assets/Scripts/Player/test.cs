@@ -18,8 +18,6 @@ public class test : MonoBehaviour {
         if (gameObject.GetComponent<Card>().Owner == Battle.turn)
         {
             Player.Selectedcard = gameObject;
-            var q = GameObject.Find("Field");
-            int qwe = 0;
 
         }
     }
