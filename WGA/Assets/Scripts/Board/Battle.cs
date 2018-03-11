@@ -111,40 +111,50 @@ public class Battle : MonoBehaviour
             for (int i = 1; i < n; i++)
                 for (int j = 0; j < m; j++)
                 {
+                    
                     if (Board[i, j] != null)
                     {
-                        if (Board[i, j].Owner == turn)
-                        {
-                            if (Board[i -1, j] != null)
+
+                        int k = i;
+                        if (Board[k, j].Owner == turn)
                             {
-                                if (Board[i - 1, j].Owner != turn)
+                            while (k >= 1)
+                            {
+                                if (Board[k - 1, j] != null)
                                 {
-                                    var temp = Fight(Board[i, j], Board[i - 1, j]);
-                                    Board[i, j] = temp[0];
-                                    Board[i - 1, j] = temp[1];
-                                    if (Board[i, j].Health <= 0)
+                                    if (Board[k - 1, j].Owner != turn)
                                     {
-                                       DestroyCard(i, j);
-                                    }
-                                    if (Board[i - 1, j].Health <= 0)
-                                    {
-                                      DestroyCard(i-1, j);
-                                        //Board[i + 1, j] = null;
-                                        if (Board[i, j] != null)
+
+                                        var temp = Fight(Board[k, j], Board[k - 1, j]);
+                                        Board[k, j] = temp[0];
+                                        Board[k - 1, j] = temp[1];
+                                        if (Board[k, j].Health <= 0)
                                         {
-                                            Board[i - 1, j] = Board[i, j];
-                                            Board[i, j].transform.position = coor[i - 1, j].position;
-                                            Board[i, j] = null;
+                                            DestroyCard(k, j);
+                                        }
+                                        if (Board[k - 1, j].Health <= 0)
+                                        {
+                                            DestroyCard(k - 1, j);
+                                            //Board[i + 1, j] = null;
+                                            if (Board[k, j] != null)
+                                            {
+                                                Board[k - 1, j] = Board[k, j];
+                                                Board[k, j].transform.position = coor[k - 1, j].position;
+                                                Board[k, j] = null;
+                                            }
                                         }
                                     }
+                                    break;
                                 }
+                                else
+                                {
+                                    Board[k - 1, j] = Board[k, j];
+                                    Board[k, j].transform.position = coor[k - 1, j].position;
+                                    Board[k, j] = null;
+                                }
+                                k--;
                             }
-                            else
-                            {
-                                Board[i - 1, j] = Board[i, j];
-                                Board[i, j].transform.position = coor[i - 1, j].position;
-                                Board[i, j] = null;
-                            }
+                      
                         }
                     }
                 }
@@ -157,43 +167,51 @@ public class Battle : MonoBehaviour
                 {
                     if (Board[i, j] != null)
                     {
-                        if (Board[i, j].Owner == turn)
+                        int k = i;
+
+                        if (Board[k, j].Owner == turn)
                         {
-                            if (Board[i + 1, j] != null)
+                            while (k <= n - 2)
                             {
-                                if (Board[i + 1, j].Owner != turn)
+                                if (Board[k + 1, j] != null)
                                 {
-                                    var temp = Fight(Board[i, j], Board[i + 1, j]);
-                                    Board[i, j] = temp[0];
-                                    Board[i + 1, j] = temp[1];
-                                    if (Board[i, j].Health <= 0)
+                                    if (Board[k + 1, j].Owner != turn)
                                     {
-                                      DestroyCard(i, j);
-                                    }
-                                    if (Board[i + 1, j].Health <= 0)
-                                    {
-                                        DestroyCard(i+1, j);
-                                        //Board[i + 1, j] = null;
-                                        if (Board[i, j] != null)
+                                        var temp = Fight(Board[k, j], Board[k + 1, j]);
+                                        Board[k, j] = temp[0];
+                                        Board[k + 1, j] = temp[1];
+                                        if (Board[k, j].Health <= 0)
                                         {
-                                            Board[i + 1, j] = Board[i, j];
-                                            Board[i, j].transform.position = coor[i + 1, j].position;
-                                            Board[i, j] = null;
+                                            DestroyCard(k, j);
+                                        }
+                                        if (Board[k + 1, j].Health <= 0)
+                                        {
+                                            DestroyCard(k + 1, j);
+                                            //Board[i + 1, j] = null;
+                                            if (Board[k, j] != null)
+                                            {
+                                                Board[k + 1, j] = Board[k, j];
+                                                Board[k, j].transform.position = coor[k + 1, j].position;
+                                                Board[k, j] = null;
+                                            }
                                         }
                                     }
+                                    break;
                                 }
+                                else
+                                {
+                                    Board[k + 1, j] = Board[k, j];
+                                    Board[k, j].transform.position = coor[k + 1, j].position;
+                                    Board[k, j] = null;
+                                }
+                                k++;
                             }
-                            else
-                            {
-                                Board[i + 1, j] = Board[i, j];
-                                Board[i, j].transform.position = coor[i + 1, j].position;
-                                Board[i, j] = null;
-                            }
+
                         }
                     }
 
                 }
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();        
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -201,43 +219,51 @@ public class Battle : MonoBehaviour
                 for (int j = 1; j < m; j++)
                 {
                     if (Board[i, j] != null)
-                        if (Board[i, j].Owner == turn)
+                    {
+                        int k = j;
+                        if (Board[i, k].Owner == turn)
                         {
-                            if (Board[i, j-1] != null)
+                            while (k >0)
                             {
-                                if (Board[i, j-1].Owner != turn)
+                                if (Board[i, k - 1] != null)
                                 {
-                                    var temp = Fight(Board[i, j], Board[i, j-1]);
-                                    Board[i, j] = temp[0];
-                                    Board[i, j-1] = temp[1];
-                                    if (Board[i, j].Health <= 0)
+                                    if (Board[i, k - 1].Owner != turn)
                                     {
-                                        DestroyCard(i, j);
-                                    }
-
-                                    if (Board[i, j-1].Health <= 0)
-                                    {                                      
-                                        DestroyCard(i, j-1);
-                                        //Board[i + 1, j] = null;
-                                        if (Board[i, j] != null)
+                                        var temp = Fight(Board[i, k], Board[i, k - 1]);
+                                        Board[i, k] = temp[0];
+                                        Board[i, k - 1] = temp[1];
+                                        if (Board[i, k].Health <= 0)
                                         {
-                                            Board[i, j-1] = Board[i, j];
-                                            Board[i, j].transform.position = coor[i, j-1].position;
-                                            Board[i, j] = null;
+                                            DestroyCard(i, k);
+                                        }
+
+                                        if (Board[i, k - 1].Health <= 0)
+                                        {
+                                            DestroyCard(i, k - 1);
+                                            //Board[i + 1, j] = null;
+                                            if (Board[i, k] != null)
+                                            {
+                                                Board[i, k - 1] = Board[i, k];
+                                                Board[i, k].transform.position = coor[i, k - 1].position;
+                                                Board[i, k] = null;
+                                            }
                                         }
                                     }
+                                    break;
+                                }
+                                else
+                                {
+                                    Board[i, k - 1] = Board[i, k];
+                                    Board[i, k].transform.position = coor[i, k - 1].position;
+                                    Board[i, k] = null;
                                 }
 
-                            }
-                            else
-                            {
-                                Board[i, j-1] = Board[i, j];
-                                Board[i, j].transform.position = coor[i, j-1].position;
-                                Board[i, j] = null;
+                                k--;
                             }
                         }
+                    }
+                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                 }
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();         
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -245,42 +271,51 @@ public class Battle : MonoBehaviour
                 for (int j = m - 2; j >= 0; j--)
                 {
                     if (Board[i, j] != null)
-                        if (Board[i, j].Owner == turn)
+                    {
+                        int k = j;
+                        if (Board[i, k].Owner == turn)
                         {
-                            if (Board[i, j + 1] != null)
+                          
+                            while (k <= m - 2)
                             {
-                                if (Board[i, j + 1].Owner != turn)
+                                if (Board[i, k + 1] != null)
                                 {
-                                    var temp = Fight(Board[i, j], Board[i, j + 1]);
-                                    Board[i, j] = temp[0];
-                                    Board[i, j + 1] = temp[1];
-
-                                    if (Board[i, j].Health <= 0)
+                                    if (Board[i, k + 1].Owner != turn)
                                     {
-                                        DestroyCard(i, j);
-                                    }
+                                        var temp = Fight(Board[i, k], Board[i, k + 1]);
+                                        Board[i, k] = temp[0];
+                                        Board[i, k + 1] = temp[1];
 
-                                    if (Board[i, j + 1].Health <= 0)
-                                    {
-                                        DestroyCard(i, j+1);
-                                        //Board[i + 1, j] = null;
-                                        if (Board[i, j] != null)
+                                        if (Board[i, k].Health <= 0)
                                         {
-                                            Board[i, j + 1] = Board[i, j];
-                                            Board[i, j].transform.position = coor[i, j + 1].position;
-                                            Board[i, j] = null;
+                                            DestroyCard(i, k);
+                                        }
+
+                                        if (Board[i, k + 1].Health <= 0)
+                                        {
+                                            DestroyCard(i, k + 1);
+                                            //Board[i + 1, j] = null;
+                                            if (Board[i, k] != null)
+                                            {
+                                                Board[i, k + 1] = Board[i, k];
+                                                Board[i, k].transform.position = coor[i, k + 1].position;
+                                                Board[i, k] = null;
+                                            }
                                         }
                                     }
+                                    break;
                                 }
+                                else
+                                {
+                                    Board[i, k + 1] = Board[i, k];
+                                    Board[i, k].transform.position = coor[i, k + 1].position;
+                                    Board[i, k] = null;
+                                }
+                                k++;
+                            }
 
-                            }
-                            else
-                            {
-                                Board[i, j + 1] = Board[i, j];
-                                Board[i, j].transform.position = coor[i, j + 1].position;
-                                Board[i, j] = null;
-                            }
                         }
+                    }
                 }
             GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
