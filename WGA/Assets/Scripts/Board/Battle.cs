@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine.UI;
 using UnityEngine;
@@ -12,9 +13,13 @@ public class Battle : MonoBehaviour
     public static Card[,] Board;
     public static Transform[,] coor = new Transform[n, m];
     public static Player turn;
-    public static Player pl1;
-    public static Player pl2;
+    public static Player Player1;
+    public static Player Player2;
     public GameObject go;
+
+    public static int TurnNumber;
+
+    private static bool lockedInput = false;
     // Use this for initialization
     void Start()
     {
@@ -28,53 +33,115 @@ public class Battle : MonoBehaviour
     {
         Board = new Card[n, m];
 
-        pl1 = GameObject.Find("Player1").GetComponent<Player>();
-        pl2 = GameObject.Find("Player2").GetComponent<Player>();
-        turn = pl1;
-
+        Player1 = GameObject.Find("Player1").GetComponent<Player>();
+        Player2 = GameObject.Find("Player2").GetComponent<Player>();
+        turn = Player1;
+        TurnNumber = 1;
+        GameObject.Find("RaundText").GetComponent<Text>().text = "Raund " + TurnNumber;
     }
     public static void NextTurn()
     {
-        if (turn == pl2)
-            turn = pl1;
+        if (turn == Player2)
+        {
+            turn = Player1;
+            TurnNumber++;
+            GameObject.Find("RaundText").GetComponent<Text>().text = "Raund " + TurnNumber;
+            //for (var i = 0; i < Board.GetLength(0); i++)
+            //{
+            //    for (var j = 0; j < Board.GetLength(1); j++)
+            //    {
+            //        var crd = Board[i, j];
+            //        if (crd != null)
+            //        {
+            //            if (crd.Info.InitialShield > crd.Shield)
+            //            {
+            //                crd.Shield++;
+            //                if (crd.Owner.name == "Player1")
+            //                {
+            //                    GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer1++;
+            //                }
+            //                else
+            //                {
+            //                    GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer2++;
+            //                }
+
+            //                var x = crd.transform.GetChild(0);
+            //                x.GetChild(1).GetComponent<Text>().text = "" + crd.Shield;
+            //            }
+            //        }
+            //    }
+            //}
+
+            //UpdateUI();
+        }
         else
-            turn = pl2;
+            turn = Player2;
+     
+        if (TurnNumber == 20)
+        {
+            var winner = CalculateWiningPlayer();
+            lockedInput = true;
+           
+        }
     }
+
+    private static Player CalculateWiningPlayer()
+    {
+        var pl1Score = 0;
+        var pl2Score = 0;
+
+        foreach (var card in Board)
+        {
+            if (card != null)
+            {
+                if (card.Owner.name == "Player0")
+                {
+                    pl1Score += card.Attack + card.Health + card.Shield;
+                }
+                else
+                    pl2Score += card.Attack + card.Health + card.Shield;
+            }
+        }
+
+        var ret = pl1Score >= pl2Score ? Player1 : Player2;
+        return ret;
+    }
+
     public static void RollTheCards()
     {
-        if (turn == pl1)
+        if (turn == Player1)
         {
-            for (int i = 0; i < pl1.deck.Count; i++)
+            for (int i = 0; i < Player1.deck.Count; i++)
             {
-                pl1.deck[i].GetComponent<Card>().Spin(true);
-                pl1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
+                Player1.deck[i].GetComponent<Card>().Spin(true);
+                Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
             }
-            for (int i = 0; i < pl2.deck.Count; i++)
-                if (!pl2.deck[i].GetComponent<Card>().OnBoard)
+            for (int i = 0; i < Player2.deck.Count; i++)
+                if (!Player2.deck[i].GetComponent<Card>().OnBoard)
                 {
-                    pl2.deck[i].GetComponent<Card>().Spin(false);
-                    pl2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
+                    Player2.deck[i].GetComponent<Card>().Spin(false);
+                    Player2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                 }
         }
         else
-        { 
-            for (int i = 0; i < pl2.deck.Count; i++)
+        {
+            for (int i = 0; i < Player2.deck.Count; i++)
             {
-                pl2.deck[i].GetComponent<Card>().Spin(true);
-                pl2.deck[i].GetComponentInChildren<Canvas>().enabled = true;
+                Player2.deck[i].GetComponent<Card>().Spin(true);
+                Player2.deck[i].GetComponentInChildren<Canvas>().enabled = true;
             }
-            for (int i = 0; i < pl1.deck.Count; i++)
-                if (!pl1.deck[i].GetComponent<Card>().OnBoard)
+            for (int i = 0; i < Player1.deck.Count; i++)
+                if (!Player1.deck[i].GetComponent<Card>().OnBoard)
                 {
-                    pl1.deck[i].GetComponent<Card>().Spin(false);
-                    pl1.deck[i].GetComponentInChildren<Canvas>().enabled = false;
+                    Player1.deck[i].GetComponent<Card>().Spin(false);
+                    Player1.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                 }
         }
         UpdateUI();
     }
 
     public static void UpdateUI()
-    {      
+    {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
             {
@@ -106,19 +173,21 @@ public class Battle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (!lockedInput)
         {
-            bool moved = false;
-            for (int i = 1; i < n; i++)
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                bool moved = false;
+                for (int i = 1; i < n; i++)
                 for (int j = 0; j < m; j++)
                 {
-                    
+
                     if (Board[i, j] != null)
                     {
 
                         int k = i;
                         if (Board[k, j].Owner == turn)
-                            {
+                        {
                             while (k >= 1)
                             {
                                 if (Board[k - 1, j] != null)
@@ -133,6 +202,7 @@ public class Battle : MonoBehaviour
                                         {
                                             DestroyCard(k, j);
                                         }
+
                                         if (Board[k - 1, j].Health <= 0)
                                         {
                                             DestroyCard(k - 1, j);
@@ -143,9 +213,10 @@ public class Battle : MonoBehaviour
                                                 Board[k, j] = null;
                                             }
                                         }
+
                                         moved = true;
                                     }
-                                   
+
                                     break;
                                 }
                                 else
@@ -155,23 +226,25 @@ public class Battle : MonoBehaviour
                                     Board[k, j] = null;
                                     moved = true;
                                 }
+
                                 k--;
                             }
-                      
+
                         }
                     }
                 }
-            if (moved)
-            {
-                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                NextTurn();
-                RollTheCards();
+
+                if (moved)
+                {
+                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    NextTurn();
+                    RollTheCards();
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            bool moved = false;
-            for (int i = n - 2; i >= 0; i--)
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                bool moved = false;
+                for (int i = n - 2; i >= 0; i--)
                 for (int j = 0; j < m; j++)
                 {
                     if (Board[i, j] != null)
@@ -193,6 +266,7 @@ public class Battle : MonoBehaviour
                                         {
                                             DestroyCard(k, j);
                                         }
+
                                         if (Board[k + 1, j].Health <= 0)
                                         {
                                             DestroyCard(k + 1, j);
@@ -203,18 +277,17 @@ public class Battle : MonoBehaviour
                                                 Board[k, j] = null;
                                             }
                                         }
+
                                         moved = true;
                                     }
-                                    
+
                                     break;
                                 }
-                                else
-                                {
-                                    Board[k + 1, j] = Board[k, j];
-                                    Board[k, j].transform.position = coor[k + 1, j].position;
-                                    Board[k, j] = null;
-                                    moved = true;
-                                }
+
+                                Board[k + 1, j] = Board[k, j];
+                                Board[k, j].transform.position = coor[k + 1, j].position;
+                                Board[k, j] = null;
+                                moved = true;
                                 k++;
                             }
 
@@ -222,26 +295,27 @@ public class Battle : MonoBehaviour
                     }
 
                 }
-            if (moved)
-            {
-                NextTurn();
-                RollTheCards();
-                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+
+                if (moved)
+                {
+                    NextTurn();
+                    RollTheCards();
+                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            bool moved = false;
-            for (int i = 0; i < n; i++)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                bool moved = false;
+                for (int i = 0; i < n; i++)
                 for (int j = 1; j < m; j++)
                 {
-                    
+
                     if (Board[i, j] != null)
                     {
                         int k = j;
                         if (Board[i, k].Owner == turn)
                         {
-                            while (k >0)
+                            while (k > 0)
                             {
                                 if (Board[i, k - 1] != null)
                                 {
@@ -263,11 +337,13 @@ public class Battle : MonoBehaviour
                                                 Board[i, k - 1] = Board[i, k];
                                                 Board[i, k].transform.position = coor[i, k - 1].position;
                                                 Board[i, k] = null;
-                                                
+
                                             }
                                         }
+
                                         moved = true;
                                     }
+
                                     break;
                                 }
                                 else
@@ -282,19 +358,20 @@ public class Battle : MonoBehaviour
                             }
                         }
                     }
-                    
+
                 }
-            if (moved)
-            {
-                NextTurn();
-                RollTheCards();
-                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+
+                if (moved)
+                {
+                    NextTurn();
+                    RollTheCards();
+                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            bool moved = false;
-            for (int i = 0; i < n; i++)
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                bool moved = false;
+                for (int i = 0; i < n; i++)
                 for (int j = m - 2; j >= 0; j--)
                 {
                     if (Board[i, j] != null)
@@ -302,7 +379,7 @@ public class Battle : MonoBehaviour
                         int k = j;
                         if (Board[i, k].Owner == turn)
                         {
-                          
+
                             while (k <= m - 2)
                             {
                                 if (Board[i, k + 1] != null)
@@ -328,8 +405,10 @@ public class Battle : MonoBehaviour
                                                 Board[i, k] = null;
                                             }
                                         }
+
                                         moved = true;
                                     }
+
                                     break;
                                 }
                                 else
@@ -339,20 +418,22 @@ public class Battle : MonoBehaviour
                                     Board[i, k] = null;
                                     moved = true;
                                 }
+
                                 k++;
                             }
 
                         }
                     }
                 }
-            if (moved)
-            {
-                NextTurn();
-                RollTheCards();
-                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+
+                if (moved)
+                {
+                    NextTurn();
+                    RollTheCards();
+                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                }
             }
         }
-
     }
 
     public static void DestroyCard(int n, int m)
@@ -364,7 +445,7 @@ public class Battle : MonoBehaviour
             Board[n, m] = null;
         }
     }
-    
+
     public List<Card> Fight(Card c1, Card c2)
     {
         var ret = new List<Card>();

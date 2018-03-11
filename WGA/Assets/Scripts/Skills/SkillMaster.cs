@@ -68,7 +68,7 @@ public class SkillMaster : MonoBehaviour
                     {
                         ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
                         ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer1;
-                        ret[i, j].StaticSHLD += BufMap[i, j].StaticShieldBufPlayer1;
+                        ret[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer1 + ret[i, j].StaticSHLD);
 
                         if(ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1 <= 0)
                         {
@@ -86,7 +86,7 @@ public class SkillMaster : MonoBehaviour
                     {
                         ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
                         ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer2;
-                        ret[i, j].StaticSHLD += BufMap[i, j].StaticShieldBufPlayer2;
+                        ret[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer2 + ret[i, j].StaticSHLD);
 
                         if (ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2 <= 0)
                         {
