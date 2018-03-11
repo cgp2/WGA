@@ -31,7 +31,7 @@ public class Set_Card : MonoBehaviour {
             //Debug.LogWarning(Player.Selectedcard.GetComponent<Card>());
 
             Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
-            if (Battle.pl1 == Battle.turn)
+            if (Battle.Player1 == Battle.turn)
                 pl1.deck.Remove(Player.Selectedcard);
             else
                 pl2.deck.Remove(Player.Selectedcard);
