@@ -36,7 +36,7 @@ public class Battle : MonoBehaviour
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         turn = Player1;
         TurnNumber = 1;
-        GameObject.Find("RaundText").GetComponent<Text>().text = "Raund " + TurnNumber;
+        GameObject.Find("RaundText").GetComponent<Text>().text = "Round " + TurnNumber;
     }
     public static void NextTurn()
     {
@@ -44,7 +44,7 @@ public class Battle : MonoBehaviour
         {
             turn = Player1;
             TurnNumber++;
-            GameObject.Find("RaundText").GetComponent<Text>().text = "Raund " + TurnNumber;
+            GameObject.Find("RaundText").GetComponent<Text>().text = "Round " + TurnNumber;
             for (var i = 0; i < Board.GetLength(0); i++)
             {
                 for (var j = 0; j < Board.GetLength(1); j++)
