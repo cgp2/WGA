@@ -158,6 +158,8 @@ public class Battle : MonoBehaviour
                     }
                 }
             GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            NextTurn();
+            RollTheCards();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -209,6 +211,8 @@ public class Battle : MonoBehaviour
                     }
 
                 }
+            NextTurn();
+            RollTheCards();
             GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -259,8 +263,11 @@ public class Battle : MonoBehaviour
                             }
                         }
                     }
-                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    
                 }
+            NextTurn();
+            RollTheCards();
+            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -313,6 +320,8 @@ public class Battle : MonoBehaviour
                         }
                     }
                 }
+            NextTurn();
+            RollTheCards();
             GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
         }
 
