@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
     private SkillMaster skillMaster;
 
 
-    public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
+    public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, Sprite cardBack, Sprite ship, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
         this.skillMaster = skillMaster;
 
@@ -42,9 +42,11 @@ public class Card : MonoBehaviour
             AuraNames = auraName,
 
             CardFront = cardFront,
+            CardBack = cardBack,
+            Ship = ship
     };
 
-
+     
         StaticHP = Health = health;
         StaticSHLD = Shield = shield;
         StaticDMG = Attack = attack;
@@ -158,5 +160,6 @@ public class Card : MonoBehaviour
 
         public Sprite CardBack;
         public Sprite CardFront;
+        public Sprite Ship;
     }
 }
