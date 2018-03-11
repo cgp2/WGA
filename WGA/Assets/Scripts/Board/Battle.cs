@@ -108,6 +108,7 @@ public class Battle : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            bool moved = false;
             for (int i = 1; i < n; i++)
                 for (int j = 0; j < m; j++)
                 {
@@ -142,7 +143,9 @@ public class Battle : MonoBehaviour
                                                 Board[k, j] = null;
                                             }
                                         }
+                                        moved = true;
                                     }
+                                   
                                     break;
                                 }
                                 else
@@ -150,6 +153,7 @@ public class Battle : MonoBehaviour
                                     Board[k - 1, j] = Board[k, j];
                                     Board[k, j].transform.position = coor[k - 1, j].position;
                                     Board[k, j] = null;
+                                    moved = true;
                                 }
                                 k--;
                             }
@@ -157,12 +161,16 @@ public class Battle : MonoBehaviour
                         }
                     }
                 }
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-            NextTurn();
-            RollTheCards();
+            if (moved)
+            {
+                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                NextTurn();
+                RollTheCards();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            bool moved = false;
             for (int i = n - 2; i >= 0; i--)
                 for (int j = 0; j < m; j++)
                 {
@@ -195,7 +203,9 @@ public class Battle : MonoBehaviour
                                                 Board[k, j] = null;
                                             }
                                         }
+                                        moved = true;
                                     }
+                                    
                                     break;
                                 }
                                 else
@@ -203,6 +213,7 @@ public class Battle : MonoBehaviour
                                     Board[k + 1, j] = Board[k, j];
                                     Board[k, j].transform.position = coor[k + 1, j].position;
                                     Board[k, j] = null;
+                                    moved = true;
                                 }
                                 k++;
                             }
@@ -211,15 +222,20 @@ public class Battle : MonoBehaviour
                     }
 
                 }
-            NextTurn();
-            RollTheCards();
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            if (moved)
+            {
+                NextTurn();
+                RollTheCards();
+                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            bool moved = false;
             for (int i = 0; i < n; i++)
                 for (int j = 1; j < m; j++)
                 {
+                    
                     if (Board[i, j] != null)
                     {
                         int k = j;
@@ -247,8 +263,10 @@ public class Battle : MonoBehaviour
                                                 Board[i, k - 1] = Board[i, k];
                                                 Board[i, k].transform.position = coor[i, k - 1].position;
                                                 Board[i, k] = null;
+                                                
                                             }
                                         }
+                                        moved = true;
                                     }
                                     break;
                                 }
@@ -257,6 +275,7 @@ public class Battle : MonoBehaviour
                                     Board[i, k - 1] = Board[i, k];
                                     Board[i, k].transform.position = coor[i, k - 1].position;
                                     Board[i, k] = null;
+                                    moved = true;
                                 }
 
                                 k--;
@@ -265,12 +284,16 @@ public class Battle : MonoBehaviour
                     }
                     
                 }
-            NextTurn();
-            RollTheCards();
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            if (moved)
+            {
+                NextTurn();
+                RollTheCards();
+                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            bool moved = false;
             for (int i = 0; i < n; i++)
                 for (int j = m - 2; j >= 0; j--)
                 {
@@ -305,6 +328,7 @@ public class Battle : MonoBehaviour
                                                 Board[i, k] = null;
                                             }
                                         }
+                                        moved = true;
                                     }
                                     break;
                                 }
@@ -313,6 +337,7 @@ public class Battle : MonoBehaviour
                                     Board[i, k + 1] = Board[i, k];
                                     Board[i, k].transform.position = coor[i, k + 1].position;
                                     Board[i, k] = null;
+                                    moved = true;
                                 }
                                 k++;
                             }
@@ -320,9 +345,12 @@ public class Battle : MonoBehaviour
                         }
                     }
                 }
-            NextTurn();
-            RollTheCards();
-            GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            if (moved)
+            {
+                NextTurn();
+                RollTheCards();
+                GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            }
         }
 
     }

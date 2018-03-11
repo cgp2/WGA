@@ -31,9 +31,10 @@ public class Player : MonoBehaviour {
         }
     }
     void Start() {
-        foreach (var cord in deck)
+        for(int i =0;i<deck.Count;i++)
         {
-            cord.GetComponent<Card>().Initialize("kek", 2, 2, 2, "lolkek? kekLol", crd.GetComponent<Card>().CardFront, GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "ShldDebufDR" }, new []{"DMGBufAura"});
+            var cord = deck[i];
+            cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", crd.GetComponent<Card>().CardFront, GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "ShldDebufDR" }, new []{"DMGBufAura"});
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
             var x = cord.transform.GetChild(0);
             x.GetChild(0).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Health;
