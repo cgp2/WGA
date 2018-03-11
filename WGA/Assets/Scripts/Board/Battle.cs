@@ -81,7 +81,7 @@ public class Battle : MonoBehaviour
         {
             var winner = CalculateWiningPlayer();
             lockedInput = true;
-           
+            GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  "+winner.name;
         }
     }
 
@@ -94,7 +94,7 @@ public class Battle : MonoBehaviour
         {
             if (card != null)
             {
-                if (card.Owner.name == "Player0")
+                if (card.Owner.name == "Player1")
                 {
                     pl1Score += card.Attack + card.Health + card.Shield;
                 }
@@ -115,12 +115,14 @@ public class Battle : MonoBehaviour
             {
                 Player1.deck[i].GetComponent<Card>().Spin(true);
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
+                Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
             }
             for (int i = 0; i < Player2.deck.Count; i++)
                 if (!Player2.deck[i].GetComponent<Card>().OnBoard)
                 {
                     Player2.deck[i].GetComponent<Card>().Spin(false);
                     Player2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
+                    Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false ;
                 }
         }
         else
@@ -129,12 +131,14 @@ public class Battle : MonoBehaviour
             {
                 Player2.deck[i].GetComponent<Card>().Spin(true);
                 Player2.deck[i].GetComponentInChildren<Canvas>().enabled = true;
+                Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
             }
             for (int i = 0; i < Player1.deck.Count; i++)
                 if (!Player1.deck[i].GetComponent<Card>().OnBoard)
                 {
                     Player1.deck[i].GetComponent<Card>().Spin(false);
                     Player1.deck[i].GetComponentInChildren<Canvas>().enabled = false;
+                    Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
                 }
         }
         UpdateUI();
