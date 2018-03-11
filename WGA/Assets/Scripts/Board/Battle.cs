@@ -79,16 +79,16 @@ public class Battle : MonoBehaviour
             for (int j = 0; j < m; j++)
             {
                 //var x = Board[i, j].GetComponentInParent<Canvas>().GetComponent<GUIText>();
-                // x.text = "" + Board[i, j].Health;
+                // x.text = "" + Board[i, j].InitialHealth;
 
                 if (Board[i, j] != null)
                 {
-                    //Board[i, j].Health += 1;
+                    //Board[i, j].InitialHealth += 1;
                     var x = Board[i, j].transform.GetChild(0);
                     x.GetChild(0).GetComponent<Text>().text = "" + Board[i, j].Health;
                     x.GetChild(1).GetComponent<Text>().text = "" + Board[i, j].Shield;
                     x.GetChild(2).GetComponent<Text>().text = "" + Board[i, j].Attack;
-                    x.GetChild(3).GetComponent<Text>().text = "" + Board[i, j].Name;
+                    x.GetChild(3).GetComponent<Text>().text = "" + Board[i, j].Info.Name;
                 }
             }
         Debug.LogWarning(Board);

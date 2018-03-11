@@ -9,7 +9,7 @@ namespace Assets.Scripts.Skills.DeathRattle
     {
         public ShldDebufDR()
         {
-            Name = "ShldDebufDR";
+            Name = "SHLDDebufDR";
             Description = "This skill reduce SHLD to eneme cards on card death";
             Ally = false;
 

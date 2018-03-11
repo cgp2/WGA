@@ -8,46 +8,53 @@ using System.IO;
 
 public class Card : MonoBehaviour
 {
+    public CardInfo Info;
+
     public int Health;
     public int Shield;
     public int Attack;
-    public string Name;
-    public string Description;
-    public string[] DeathRattleName;
-    public string[] BattleCryNames;
-    public string[] AuraNames;
+
     public Player Owner;
-    public Sprite CardBack;
-    public Sprite CardFront;
+
     public bool OnBoard;
     public int StaticHP;
     public int StaticDMG;
     public int StaticSHLD;
 
     private SkillMaster skillMaster;
-    public SkillsInput[] BattleCryInput;
-    public SkillsInput[] AuraInput;
-    public SkillsInput[] DeathRattleInput;
+
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
         this.skillMaster = skillMaster;
-        Name = cardName;
-        Description = description;
+
+        Info = new CardInfo
+        {
+            Name = cardName,
+            Description = description,
+
+            InitialHealth = health,
+            InitialShield = shield,
+            InitialAttack = attack,
+
+            BattleCryNames = battleCryName,
+            DeathRattleName = deathRattleName,
+            AuraNames = auraName,
+
+            CardFront = cardFront,
+    };
+
+
         StaticHP = Health = health;
         StaticSHLD = Shield = shield;
         StaticDMG = Attack = attack;
-
-        BattleCryNames = battleCryName;
-        DeathRattleName = deathRattleName;
-        AuraNames = auraName;
 
         if (battleCryName != null)
         {
             var t = new List<SkillsInput>();
             foreach (var n in battleCryName)
                 t.Add(skillMaster.GetISkillInputByName(n));
-            BattleCryInput = t.ToArray();
+            Info.BattleCryInput = t.ToArray();
         }
 
         if (deathRattleName != null)
@@ -55,63 +62,62 @@ public class Card : MonoBehaviour
             var t = new List<SkillsInput>();
             foreach (var n in deathRattleName)
                 t.Add(skillMaster.GetISkillInputByName(n));
-            DeathRattleInput = t.ToArray();
+            Info.DeathRattleInput = t.ToArray();
         }
 
         if (auraName != null)
         {
             var t = new List<SkillsInput>();
-            foreach (var n in AuraNames)
+            foreach (var n in Info.AuraNames)
                 t.Add(skillMaster.GetISkillInputByName(n));
-            AuraInput = t.ToArray();
+            Info.AuraInput = t.ToArray();
         }
 
-        CardFront = cardFront;
         OnBoard = false;
     }
 
     private void Awake()
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        shipSprite.sprite = CardBack;
+        shipSprite.sprite = Info.CardBack;
         shipSprite.size = new Vector2(2f, 3f);
     }
     public void Spin(bool front)
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        shipSprite.sprite = front ? CardFront : CardBack;
+        shipSprite.sprite = front ? Info.CardFront : Info.CardBack;
     }
 
     public void Play()
     {
-        if (BattleCryNames != null)
+        if (Info.BattleCryNames != null)
         {
-            for (var i = 0; i < BattleCryNames.Length; i++)
+            for (var i = 0; i < Info.BattleCryNames.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, BattleCryInput[i]);
+                skillMaster.ExecuteSkillByInput(this, Info.BattleCryInput[i]);
             }
         }
 
-        if (AuraNames != null)
+        if (Info.AuraNames != null)
         {
-            for (var i = 0; i < AuraNames.Length; i++)
+            for (var i = 0; i < Info.AuraNames.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, AuraInput[i]);
+                skillMaster.ExecuteSkillByInput(this, Info.AuraInput[i]);
             }
         }
     }
 
     public void Destroy()
     {
-        if (DeathRattleName != null)
+        if (Info.DeathRattleName != null)
         {
-            for (var i = 0; i < DeathRattleName.Length; i++)
+            for (var i = 0; i < Info.DeathRattleName.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, DeathRattleInput[i]);
+                skillMaster.ExecuteSkillByInput(this, Info.DeathRattleInput[i]);
 
-                if (AuraInput != null)
+                if (Info.AuraInput != null)
                 {
-                    foreach (var inp in AuraInput)
+                    foreach (var inp in Info.AuraInput)
                     {
                         skillMaster.ReExecuteSkillByInput(this, inp);
                     }
@@ -133,4 +139,24 @@ public class Card : MonoBehaviour
 
     }
 
+    public struct CardInfo
+    {
+        public string Name;
+        public string Description;
+
+        public int InitialHealth;
+        public int InitialShield;
+        public int InitialAttack;
+
+        public string[] DeathRattleName;
+        public string[] BattleCryNames;
+        public string[] AuraNames;
+
+        public SkillsInput[] BattleCryInput;
+        public SkillsInput[] AuraInput;
+        public SkillsInput[] DeathRattleInput;
+
+        public Sprite CardBack;
+        public Sprite CardFront;
+    }
 }

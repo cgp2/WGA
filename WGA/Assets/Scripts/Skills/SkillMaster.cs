@@ -133,7 +133,7 @@ public class SkillMaster : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    foreach (var inp in Battle.Board[i, j].AuraInput)
+                    foreach (var inp in Battle.Board[i, j].Info.AuraInput)
                     {
                         ExecuteSkillByInput(Battle.Board[i, j], inp);
                     }
