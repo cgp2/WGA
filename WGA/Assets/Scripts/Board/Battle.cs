@@ -82,8 +82,42 @@ public class Battle : MonoBehaviour
             lockedInput = true;
             GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
             GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
-
         }
+        else
+        {
+            bool pl1HasCard = Player1.deck.Count != 0;
+            bool pl2HasCard = Player2.deck.Count != 0;
+            foreach (var card in Board)
+            {
+                if (card != null)
+                {
+                    if (card.Owner == Player1)
+                    {
+                        pl1HasCard = true;
+                    }
+                    else if (card.Owner == Player2)
+                    {
+                        pl2HasCard = true;
+                    }
+                }
+            }
+
+            if ( !pl1HasCard && pl2HasCard)
+            {
+                var winner = Player2;
+                lockedInput = true;
+                GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
+                GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+            }
+            else if (!pl2HasCard && pl1HasCard)
+            {
+                var winner = Player1;
+                lockedInput = true;
+                GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
+                GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+            }
+        }
+      
     }
 
     private static Player CalculateWiningPlayer()
@@ -178,7 +212,11 @@ public class Battle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!lockedInput)
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+        else if (!lockedInput)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
