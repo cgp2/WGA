@@ -135,7 +135,6 @@ public class Battle : MonoBehaviour
                                         if (Board[k - 1, j].Health <= 0)
                                         {
                                             DestroyCard(k - 1, j);
-                                            //Board[i + 1, j] = null;
                                             if (Board[k, j] != null)
                                             {
                                                 Board[k - 1, j] = Board[k, j];
@@ -187,7 +186,6 @@ public class Battle : MonoBehaviour
                                         if (Board[k + 1, j].Health <= 0)
                                         {
                                             DestroyCard(k + 1, j);
-                                            //Board[i + 1, j] = null;
                                             if (Board[k, j] != null)
                                             {
                                                 Board[k + 1, j] = Board[k, j];
@@ -240,7 +238,6 @@ public class Battle : MonoBehaviour
                                         if (Board[i, k - 1].Health <= 0)
                                         {
                                             DestroyCard(i, k - 1);
-                                            //Board[i + 1, j] = null;
                                             if (Board[i, k] != null)
                                             {
                                                 Board[i, k - 1] = Board[i, k];
@@ -294,7 +291,6 @@ public class Battle : MonoBehaviour
                                         if (Board[i, k + 1].Health <= 0)
                                         {
                                             DestroyCard(i, k + 1);
-                                            //Board[i + 1, j] = null;
                                             if (Board[i, k] != null)
                                             {
                                                 Board[i, k + 1] = Board[i, k];
@@ -328,6 +324,7 @@ public class Battle : MonoBehaviour
         {
             Board[n, m].Destroy();
             Destroy(Board[n, m].gameObject);
+            Board[n, m] = null;
         }
     }
     
