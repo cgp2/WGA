@@ -46,32 +46,32 @@ public class Battle : MonoBehaviour
             turn = Player1;
             TurnNumber++;
             GameObject.Find("RaundText").GetComponent<Text>().text = "Raund " + TurnNumber;
-            //for (var i = 0; i < Board.GetLength(0); i++)
-            //{
-            //    for (var j = 0; j < Board.GetLength(1); j++)
-            //    {
-            //        var crd = Board[i, j];
-            //        if (crd != null)
-            //        {
-            //            if (crd.Info.InitialShield > crd.Shield)
-            //            {
-            //                crd.Shield++;
-            //                if (crd.Owner.name == "Player1")
-            //                {
-            //                    GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer1++;
-            //                }
-            //                else
-            //                {
-            //                    GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer2++;
-            //                }
+            for (var i = 0; i < Board.GetLength(0); i++)
+            {
+                for (var j = 0; j < Board.GetLength(1); j++)
+                {
+                    var crd = Board[i, j];
+                    if (crd != null)
+                    {
+                        if (crd.Info.InitialShield > crd.Shield)
+                        {
+                            crd.Shield++;
+                            if (crd.Owner.name == "Player1")
+                            {
+                                GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer1++;
+                            }
+                            else
+                            {
+                                GameObject.Find("Field").GetComponent<SkillMaster>().BufMap[i, j].StaticShieldBufPlayer2++;
+                            }
 
-            //                var x = crd.transform.GetChild(0);
-            //                x.GetChild(1).GetComponent<Text>().text = "" + crd.Shield;
-            //            }
-            //        }
-            //    }
-            //}
-
+                            var x = crd.transform.GetChild(0);
+                            x.GetChild(1).GetComponent<Text>().text = "" + crd.Shield;
+                        }
+                    }
+                }
+            }
+            GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Board);
             //UpdateUI();
         }
         else
@@ -81,7 +81,9 @@ public class Battle : MonoBehaviour
         {
             var winner = CalculateWiningPlayer();
             lockedInput = true;
-            GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  "+winner.name;
+            GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
+            GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+
         }
     }
 

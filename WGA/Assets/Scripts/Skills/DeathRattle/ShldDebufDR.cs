@@ -14,7 +14,7 @@ namespace Assets.Scripts.Skills.DeathRattle
             Ally = false;
 
             InputParametrs = new[] { "ShldBuf" };
-            InputValues = new[] { "-5" };
+            InputValues = new[] { "-1" };
             Dirs = new[] { Directions.Map};
             Type = SkillType.DeathRattle;
 
