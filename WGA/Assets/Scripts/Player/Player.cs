@@ -17,15 +17,17 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
-        Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
+        //var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
         deck = new List<GameObject>();
-        for (int i = 0; i < Hand.Length; i++)
+       /* for (int i = 0; i < cards.Length; i++)
         {
             var temp = Instantiate(crd);
-
+            
             deck.Add(temp);
             deck[i].transform.parent = transform;
             deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 15, -this.transform.position.y, -30);
+            deck[i].GetComponent<Card>().Info = cards[i].Info;
+            deck[i].GetComponent<Card>().Owner = this;
 
             if (this.name == "Player2")
             {
@@ -34,15 +36,30 @@ public class Player : MonoBehaviour {
                 deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             }
             deck[i].name = "card#" + i + "/player=" + this.name;
-        }
+        }*/
     }
     void Start()
     {
-       
-        for (int i =0;i<deck.Count;i++)
+        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
+        for (int i =0;i<cards.Length;i++)
         {
+            var temp = Instantiate(crd);
+            deck.Add(temp);
+            deck[i].transform.parent = transform;
+            deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 15, -this.transform.position.y, -30);
+            deck[i].GetComponent<Card>().Initialize(cards[i]);
+            deck[i].GetComponent<Card>().Owner = this;
+
+            if (this.name == "Player2")
+            {
+                deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+                deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+                deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            }
+            deck[i].name = "card#" + i + "/player=" + this.name;
+
             var cord = deck[i];
-            cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
+            //cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
             cord.GetComponent<Card>().InitializeSprites(fronSprite, backSprite, sprites[0]);
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
             deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = fronSprite;

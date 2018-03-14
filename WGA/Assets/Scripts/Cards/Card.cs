@@ -24,6 +24,7 @@ public class Card : MonoBehaviour
 
     private SkillMaster skillMaster;
 
+    
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
@@ -78,6 +79,58 @@ public class Card : MonoBehaviour
         OnBoard = false;
     }
 
+    public void Initialize(Card_Data data)
+    {
+        this.skillMaster = data.SM;
+
+        Info = new CardInfo
+        {
+            Name = data.Name,
+            Description = data.Desk,
+
+            InitialHealth = data.HP,
+            InitialShield = data.Shield,
+            InitialAttack =data.Attack,
+
+            BattleCryNames = data.BC,
+            DeathRattleName = data.DR,
+            AuraNames = data.AU,
+
+            // CardFrontSprite = cardFront,
+            // CardBackSprite = cardBack,
+            //ShipSprite = ship
+        };
+
+        StaticHP = Health = data.HP;
+        StaticSHLD = Shield = data.Shield;
+        StaticDMG = Attack = data.Attack;
+
+        if (data.BC.Length !=0)
+        {
+            var t = new List<SkillsInput>();
+            foreach (var n in data.BC)
+                t.Add(skillMaster.GetISkillInputByName(n));
+            Info.BattleCryInput = t.ToArray();
+        }
+
+        if (data.DR.Length != 0)
+        {
+            var t = new List<SkillsInput>();
+            foreach (var n in data.DR)
+                t.Add(skillMaster.GetISkillInputByName(n));
+            Info.DeathRattleInput = t.ToArray();
+        }
+
+        if (data.AU.Length != 0)
+        {
+            var t = new List<SkillsInput>();
+            foreach (var n in data.AU)
+                t.Add(skillMaster.GetISkillInputByName(n));
+            Info.AuraInput = t.ToArray();
+        }
+
+        OnBoard = false;
+    }
     public void InitializeSprites(Sprite cardFront, Sprite cardBack, Sprite ship)
     {
         Info.CardFrontSprite = cardFront;
@@ -135,13 +188,13 @@ public class Card : MonoBehaviour
         }
     }
 
-    public static Card[] Deserialize(string pathToFile)
+    public static Card_Data[] Deserialize(string pathToFile)
     {
-        List<Card> cards = new List<Card>();
+        List<Card_Data> cards = new List<Card_Data>();
         var reader = new XmlTextReader(pathToFile);
         while (reader.ReadToFollowing("CardInfo"))
         {
-            Card crd = new Card();
+
 
             reader.ReadToFollowing("Health");
             reader.Read();
@@ -201,15 +254,28 @@ public class Card : MonoBehaviour
                 reader.Read();
                 reader.Read();
             }
+            Card_Data crd = new Card_Data { Name = name,HP =  int.Parse(health), Shield= int.Parse(shield), Attack = int.Parse(attack), Desk = desk, SM = GameObject.Find("Field").GetComponent<SkillMaster>(), BC = battleCry.ToArray(), DR = deathRattle.ToArray(), AU =aura.ToArray() };
 
 
-            crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
+            //crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
             cards.Add(crd);
         }
 
         return cards.ToArray();
     }
-
+    public struct Card_Data
+    {
+        public string Name;
+        public int HP;
+        public int Shield;
+        public int Attack;
+        public string Desk;
+        public SkillMaster SM;
+        public string[] BC;
+        public string[] DR;
+        public string[] AU;
+        
+    }
     // Use this for initialization
     void Start()
     {
