@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 public class Card : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class Card : MonoBehaviour
     private SkillMaster skillMaster;
 
 
-    public void Initialize(string cardName, int health, int shield, int attack, string description, Sprite cardFront, Sprite cardBack, Sprite ship, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
+    public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
         this.skillMaster = skillMaster;
 
@@ -41,12 +42,11 @@ public class Card : MonoBehaviour
             DeathRattleName = deathRattleName,
             AuraNames = auraName,
 
-            CardFront = cardFront,
-            CardBack = cardBack,
-            Ship = ship
-    };
+            // CardFrontSprite = cardFront,
+            // CardBackSprite = cardBack,
+            //ShipSprite = ship
+        };
 
-     
         StaticHP = Health = health;
         StaticSHLD = Shield = shield;
         StaticDMG = Attack = attack;
@@ -78,16 +78,23 @@ public class Card : MonoBehaviour
         OnBoard = false;
     }
 
+    public void InitializeSprites(Sprite cardFront, Sprite cardBack, Sprite ship)
+    {
+        Info.CardFrontSprite = cardFront;
+        Info.CardBackSprite = cardBack;
+        Info.ShipSprite = ship;
+    }
+
     private void Awake()
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        shipSprite.sprite = Info.CardBack;
+        shipSprite.sprite = Info.CardBackSprite;
         shipSprite.size = new Vector2(2f, 3f);
     }
     public void Spin(bool front)
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        shipSprite.sprite = front ? Info.CardFront : Info.CardBack;
+        shipSprite.sprite = front ? Info.CardFrontSprite : Info.CardBackSprite;
     }
 
     public void Play()
@@ -128,6 +135,81 @@ public class Card : MonoBehaviour
         }
     }
 
+    public static Card[] Deserialize(string pathToFile)
+    {
+        List<Card> cards = new List<Card>();
+        var reader = new XmlTextReader(pathToFile);
+        while (reader.ReadToFollowing("CardInfo"))
+        {
+            Card crd = new Card();
+
+            reader.ReadToFollowing("Health");
+            reader.Read();
+            var health = reader.Value;
+
+            reader.ReadToFollowing("Shield");
+            reader.Read();
+            var shield = reader.Value;
+
+            reader.ReadToFollowing("Attack");
+            reader.Read();
+            var attack = reader.Value;
+
+            reader.ReadToFollowing("Name");
+            reader.Read();
+            var name = reader.Value;
+
+            reader.ReadToFollowing("Description");
+            reader.Read();
+            var desk = reader.Value;
+
+            reader.ReadToFollowing("BattleCryName");
+            reader.Read();
+            reader.Read();
+            var battleCry = new List<string>();
+            while (reader.Name == "string")
+            {
+                reader.Read();
+                battleCry.Add(reader.Value);
+                reader.Read();
+                reader.Read();
+                reader.Read();
+            }
+
+            reader.ReadToFollowing("DeathRattleName");
+            reader.Read();
+            reader.Read();
+            var deathRattle = new List<string>();
+            while (reader.Name == "string")
+            {
+                reader.Read();
+                deathRattle.Add(reader.Value);
+                reader.Read();
+                reader.Read();
+                reader.Read();
+            }
+
+            reader.ReadToFollowing("AuraName");
+            reader.Read();
+            reader.Read();
+            var aura = new List<string>();
+            while (reader.Name == "string")
+            {
+                reader.Read();
+                aura.Add(reader.Value);
+                reader.Read();
+                reader.Read();
+                reader.Read();
+            }
+
+
+            crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
+            cards.Add(crd);
+        }
+
+        return cards.ToArray();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -158,8 +240,8 @@ public class Card : MonoBehaviour
         public SkillsInput[] AuraInput;
         public SkillsInput[] DeathRattleInput;
 
-        public Sprite CardBack;
-        public Sprite CardFront;
-        public Sprite Ship;
+        public Sprite CardBackSprite;
+        public Sprite CardFrontSprite;
+        public Sprite ShipSprite;
     }
 }

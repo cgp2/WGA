@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
+        Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
         deck = new List<GameObject>();
         for (int i = 0; i < Hand.Length; i++)
         {
@@ -36,10 +38,12 @@ public class Player : MonoBehaviour {
     }
     void Start()
     {
-        for(int i =0;i<deck.Count;i++)
+       
+        for (int i =0;i<deck.Count;i++)
         {
             var cord = deck[i];
-            cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", fronSprite,backSprite,sprites[0], GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
+            cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
+            cord.GetComponent<Card>().InitializeSprites(fronSprite, backSprite, sprites[0]);
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
             deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = fronSprite;
             deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = backSprite;

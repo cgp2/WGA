@@ -56,9 +56,17 @@ public abstract class ASkill
     {
         writer.WriteStartElement("Skill");
         {
-            writer.WriteAttributeString("name", Name);
-            writer.WriteAttributeString("type", Type.ToString());
-            writer.WriteAttributeString("Ally", Ally.ToString());
+            writer.WriteStartElement("Name");
+            writer.WriteRaw(Name);
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("Type");
+            writer.WriteRaw(Type.ToString());
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("Ally");
+            writer.WriteRaw(Ally.ToString());
+            writer.WriteEndElement();
 
             writer.WriteStartElement("Input");
             for (var i = 0; i < Input.InputParamsNames.Length; i++)

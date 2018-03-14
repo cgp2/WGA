@@ -44,6 +44,8 @@ public class SkillMaster : MonoBehaviour
             }
         }
 
+ 
+
         SerializeSkills();
         //DeserializeSkills();
     }
@@ -118,9 +120,9 @@ public class SkillMaster : MonoBehaviour
     public void RebuidBufMap()
     {
         BufMap = new SlotBuff[Battle.n, Battle.m];
-        for (int i = 0; i < BufMap.GetLength(0); i++)
+        for (var i = 0; i < BufMap.GetLength(0); i++)
         {
-            for (int j = 0; j < BufMap.GetLength(1); j++)
+            for (var j = 0; j < BufMap.GetLength(1); j++)
             {
                 BufMap[i, j].Row = i;
                 BufMap[i, j].Col = j;
@@ -191,8 +193,16 @@ public class SkillMaster : MonoBehaviour
 
     public SkillsInput GetISkillInputByName(string skillName)
     {
-        var aSkill = SkillsList.Find(skill => skill.Name == skillName);
-        return aSkill.Input;
+        try
+        {
+            var aSkill = SkillsList.Find(skill => skill.Name == skillName);
+            return aSkill.Input;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }   
     }
 
     public void SerializeSkills()
@@ -203,13 +213,17 @@ public class SkillMaster : MonoBehaviour
             Indentation = 1,
             IndentChar = '\t'
         };
-        //writer.WriteStartDocument();
+     
 
         var document = new XmlDocument();
         var xRoot = document.DocumentElement;
+        writer.WriteStartDocument();
+        //var r = "<? xml version = 1.0"?";
+        //writer.WriteRaw();
+        writer.WriteStartElement("ArrayOfSkill");
         foreach (var skill in SkillsList)
             skill.Serialize(ref writer);
-   
+        writer.WriteEndElement();
         writer.Close();
     }
 
