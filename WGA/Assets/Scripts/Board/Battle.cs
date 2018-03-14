@@ -151,7 +151,7 @@ public class Battle : MonoBehaviour
                 Player1.deck[i].GetComponent<Card>().Spin(true);
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-                Player1.deck[i].transform.Rotate(0, 180, 0);
+                Player1.deck[i].transform.rotation = new Quaternion(0, 0, 0, 1);
             }
             for (int i = 0; i < Player2.deck.Count; i++)
                 if (!Player2.deck[i].GetComponent<Card>().OnBoard)
@@ -159,7 +159,7 @@ public class Battle : MonoBehaviour
                     Player2.deck[i].GetComponent<Card>().Spin(false);
                     Player2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                     Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false ;
-                    Player2.deck[i].transform.Rotate(0, 180, 0);
+                    Player2.deck[i].transform.rotation = new Quaternion(0, 180, 0, 1);
                 }
         }
         else
@@ -169,7 +169,7 @@ public class Battle : MonoBehaviour
                 Player2.deck[i].GetComponent<Card>().Spin(true);
                 Player2.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-                Player2.deck[i].transform.Rotate(0, 180, 0);
+                Player2.deck[i].transform.rotation = new Quaternion(0, 0, 0, 1);
             }
             for (int i = 0; i < Player1.deck.Count; i++)
                 if (!Player1.deck[i].GetComponent<Card>().OnBoard)
@@ -177,7 +177,7 @@ public class Battle : MonoBehaviour
                     Player1.deck[i].GetComponent<Card>().Spin(false);
                     Player1.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                     Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
-                    Player1.deck[i].transform.Rotate(0, 180, 0);
+                    Player1.deck[i].transform.rotation = new Quaternion(0, 180, 0, 1);
                 }
         }
         UpdateUI();
