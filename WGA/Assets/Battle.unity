@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &10976822
+--- !u!1001 &152180290
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,7 +133,7 @@ Prefab:
     - target: {fileID: 224523429236106944, guid: 71a9c45df1774cf43bef27997c6e8b3f,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: -19.714924
+      value: -29.154306
       objectReference: {fileID: 0}
     - target: {fileID: 224523429236106944, guid: 71a9c45df1774cf43bef27997c6e8b3f,
         type: 2}
@@ -163,12 +163,12 @@ Prefab:
     - target: {fileID: 224523429236106944, guid: 71a9c45df1774cf43bef27997c6e8b3f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -58.291306
+      value: -24.325043
       objectReference: {fileID: 0}
     - target: {fileID: 224523429236106944, guid: 71a9c45df1774cf43bef27997c6e8b3f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -2.0291262
+      value: 1.3347721
       objectReference: {fileID: 0}
     - target: {fileID: 224523429236106944, guid: 71a9c45df1774cf43bef27997c6e8b3f,
         type: 2}
@@ -209,11 +209,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212140967060250886, guid: 71a9c45df1774cf43bef27997c6e8b3f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71a9c45df1774cf43bef27997c6e8b3f, type: 2}
@@ -1044,7 +1039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9c1aed2ccf0a34fbad8a53664e9599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go: {fileID: 0}
 --- !u!114 &2063685784
 MonoBehaviour:
   m_ObjectHideFlags: 0

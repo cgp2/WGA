@@ -70,15 +70,16 @@ public class Player : MonoBehaviour {
             x.GetChild(2).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Attack;
             x.GetChild(3).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Info.Name;
             deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[0];
-  
+            
         }
         Battle.UpdateUI();
+        //Battle.NextTurn();
         //for (int i = 0; i < Hand.Length; i++)
         //    if (own != Battle.turn)
         //        deck[i].GetComponent<Card>().Spin(true);
         //    else
         //        deck[i].GetComponent<Card>().Spin(false);
-        Battle.RollTheCards();
+       // Battle.RollTheCards();
 	}
    
     // Update is called once per frame

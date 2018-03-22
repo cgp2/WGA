@@ -14,7 +14,6 @@ public class Battle : MonoBehaviour
     public static Player turn;
     public static Player Player1;
     public static Player Player2;
-    public GameObject go;
 
     public static int TurnNumber;
 
@@ -22,7 +21,7 @@ public class Battle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        RollTheCards();
     }
     public static Card Get_Card(int x, int y)
     {
@@ -148,10 +147,12 @@ public class Battle : MonoBehaviour
         {
             for (int i = 0; i < Player1.deck.Count; i++)
             {
+               
                 Player1.deck[i].GetComponent<Card>().Spin(true);
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-                Player1.deck[i].transform.rotation = new Quaternion(0, 0, 0, 1);
+                if (Player1.deck[i].transform.rotation.y != 0)
+                Player1.deck[i].GetComponent<Card>().front_rotate = true;
             }
             for (int i = 0; i < Player2.deck.Count; i++)
                 if (!Player2.deck[i].GetComponent<Card>().OnBoard)
@@ -159,7 +160,7 @@ public class Battle : MonoBehaviour
                     Player2.deck[i].GetComponent<Card>().Spin(false);
                     Player2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                     Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false ;
-                    Player2.deck[i].transform.rotation = new Quaternion(0, 180, 0, 1);
+                    Player2.deck[i].GetComponent<Card>().back_rotate = true;
                 }
         }
         else
@@ -169,7 +170,7 @@ public class Battle : MonoBehaviour
                 Player2.deck[i].GetComponent<Card>().Spin(true);
                 Player2.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-                Player2.deck[i].transform.rotation = new Quaternion(0, 0, 0, 1);
+                Player2.deck[i].GetComponent<Card>().front_rotate = true;
             }
             for (int i = 0; i < Player1.deck.Count; i++)
                 if (!Player1.deck[i].GetComponent<Card>().OnBoard)
@@ -177,7 +178,7 @@ public class Battle : MonoBehaviour
                     Player1.deck[i].GetComponent<Card>().Spin(false);
                     Player1.deck[i].GetComponentInChildren<Canvas>().enabled = false;
                     Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
-                    Player1.deck[i].transform.rotation = new Quaternion(0, 180, 0, 1);
+                    Player1.deck[i].GetComponent<Card>().back_rotate = true;
                 }
         }
         UpdateUI();
@@ -216,6 +217,10 @@ public class Battle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
+
+
+
         if (Input.GetKeyDown("escape"))
         {
             Application.Quit();

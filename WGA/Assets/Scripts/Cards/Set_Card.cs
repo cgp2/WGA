@@ -29,7 +29,7 @@ public class Set_Card : MonoBehaviour {
             targetcard.GetComponent<BoxCollider2D>().enabled = false;
             
             //Debug.LogWarning(Player.Selectedcard.GetComponent<Card>());
-
+            Player.Selectedcard.transform.localScale= new Vector3(0.2601453f, 0.4947458f, 1);
             Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
             if (Battle.Player1 == Battle.turn)
                 pl1.deck.Remove(Player.Selectedcard);

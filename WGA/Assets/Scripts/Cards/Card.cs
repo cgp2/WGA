@@ -23,7 +23,8 @@ public class Card : MonoBehaviour
     public int StaticSHLD;
 
     private SkillMaster skillMaster;
-
+    public bool front_rotate = false;
+    public bool back_rotate = false;
     
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
