@@ -4,17 +4,17 @@ Strategy card game for Wargaming Academy 2017-2018 (Unity)
 <p>&mdash; Tool to add, or edit cards in game </p>
 
 <h1>Version 0.1a</h1>
-<h3>Что реализовано:</h3>
-<p>&mdash; Поле боя, выставление карт, движение карт, столкновения карт, переворот карт</p>
-<p>&mdash; Сами карты, здоровье, щит восстанавливающийся на 1 каждый раунд, атака</p>
-<p>&mdash; Способности карт: <i>ауры</i> (постоянные +3 атаки соседям), <i>боевые кличи</i> ( разовые +2 здоровья союзникам слева и справа), <i>предсмертные хрипы</i> (-1 щит у всех вражеских карт на столе)</pre>
-<p>&mdash; Раунды, условия победы (истечение времени, и полное уничтожение), очередности хода</p>
-<h3>В ближайшем будущем</h3>
-&mdash; Инструмент для создания новых карт и редактирования заклинаний
-&mdash; ИИ для оппонента
+<h3>Implemmented:</h3>
+<p>&mdash; Battlefield, card placing, card movement, card fighting, card rolling</p>
+<p>&mdash; Cards class, health, energy shield (restore per 1 every round), attack</p>
+<p>&mdash; Cards skills: <i>Auras</i> ( constant buff +3 attack at each sides), <i>Battle cries</i> (one time +2 health buff to ally on left and right), <i>Death Rattle</i> (-1 shield to all enemies card's on board)</pre>
+<p>&mdash; Rounds, Winning Conditions (passing of time, total victory), turns order </p>
+<h3>Soon:</h3>
+&mdash; Tool to add and eddit cards and skills
+&mdash; AI to the opponent player
 
 
-<h2>Управление:</h2>
-<p><b>Выставление карты:</b> клик по карте + клик по свободной клетке поля</p>
-<p><b>Движение карт:</b> Стрелочки</p>
-<p><b>Выход из игры:</b> Esc</p>
+<h2>Controll:</h2>
+<p><b>Card placing:</b> Left mouse button + click on empty battle cell</p>
+<p><b>Cards movement:</b> Arrow keys</p>
+<p><b>Close the game:</b> Esc</p>
