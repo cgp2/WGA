@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CardInfo>
+    <Health>11</Health>
+    <Shield>1</Shield>
+    <Attack>1</Attack>
+    <Name>kek</Name>
+    <Description>fhvjbh</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+  </CardInfo>
+  <CardInfo>
+    <Health>2</Health>
+    <Shield>20</Shield>
+    <Attack>10</Attack>
+    <Name>Звезда смерти</Name>
+    <Description>Жесткий треш</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>deathrattle</string>
+    </DeathRattleName>
+    <AuraName />
+  </CardInfo>
+  <CardInfo>
+    <Health>1</Health>
+    <Shield>1</Shield>
+    <Attack>1000</Attack>
+    <Name>Убиватор</Name>
+    <Description>Ну вы поняли</Description>
+    <BattleCryName>
+      <string>battlecry</string>
+      <string>battlecry</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName>
+      <string>aura</string>
+    </AuraName>
+  </CardInfo>
+</ArrayOfCardInfo>
