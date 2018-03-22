@@ -1,5 +1,7 @@
 # WGA
 Strategy card game for Wargaming Academy 2017-2018 (Unity)
+<h1>22.03.2018 Card editing tool</h1>
+<p>&mdash; Tool to add, or edit cards in game </p>
 
 <h1>Version 0.1a</h1>
 <h3>Что реализовано:</h3>
