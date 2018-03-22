@@ -30,21 +30,19 @@ public class SkillMaster : MonoBehaviour
         var dmgDebufAura = new DmgDebufAura();
         SkillsList.Add(dmgDebufAura);
 
-        var ShldDebufDR = new ShldDebufDR();
-        SkillsList.Add(ShldDebufDR);
+        var shldDebufDR = new ShldDebufDR();
+        SkillsList.Add(shldDebufDR);
 
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
-        for (int i = 0; i < BufMap.GetLength(0); i++)
+        for (var i = 0; i < BufMap.GetLength(0); i++)
         {
-            for (int j = 0; j < BufMap.GetLength(1); j++)
+            for (var j = 0; j < BufMap.GetLength(1); j++)
             {
                 BufMap[i, j].Row = i;
                 BufMap[i, j].Col = j;
             }
         }
-
- 
 
         SerializeSkills();
         //DeserializeSkills();
@@ -165,7 +163,6 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
-        ApplyBufsToBoard(out Battle.Board);
     }
 
     public void ReExecuteSkillByInput(Card card, SkillsInput input)
@@ -273,7 +270,6 @@ public class SkillMaster : MonoBehaviour
             reader.ReadToFollowing("Description");
             aSkill.Description = reader.ReadElementContentAsString();
         }
-
     }
 }
 

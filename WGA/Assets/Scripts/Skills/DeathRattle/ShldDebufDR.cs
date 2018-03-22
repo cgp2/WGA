@@ -67,7 +67,40 @@ namespace Assets.Scripts.Skills.DeathRattle
 
         public override bool ReExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap)
         {
-            throw new NotImplementedException();
+            var t = input;
+            var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, playerID, row, col);
+
+            var n = Array.IndexOf(input.InputParamsNames, "ShldBuf");
+            var buf = input.InputParamsValues[n];
+            for (var i = 0; i < buffedSlots.Length; i++)
+            {
+                if (playerID == 0)
+                {
+                    if (Ally)
+                    {
+                        buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].StaticShieldBufPlayer2 -= int.Parse(buf);
+                    }
+                }
+                else
+                {
+                    if (Ally)
+                    {
+                        buffedSlots[i].StaticShieldBufPlayer2 -= int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].StaticShieldBufPlayer1 -= int.Parse(buf);
+                    }
+                }
+            }
+
+            ApplyBufToBufMap(buffedSlots, ref bufMap);
+
+            return true;
         }
     }
 }

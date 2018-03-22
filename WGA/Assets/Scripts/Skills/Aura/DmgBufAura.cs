@@ -108,11 +108,25 @@ namespace Assets.Scripts.Skills.Aura
             {
                 if (playerID == 0)
                 {
-                    buffedSlots[i].FloatingDMGBufPlayer1 += int.Parse(buf);
+                    if (Ally == true)
+                    {
+                        buffedSlots[i].FloatingDMGBufPlayer1 -= int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].FloatingDMGBufPlayer2 -= int.Parse(buf);
+                    }
                 }
                 else
                 {
-                    buffedSlots[i].FloatingDMGBufPlayer2 += int.Parse(buf);
+                    if (Ally == true)
+                    {
+                        buffedSlots[i].FloatingDMGBufPlayer2 -= int.Parse(buf);
+                    }
+                    else
+                    {
+                        buffedSlots[i].FloatingDMGBufPlayer1 -= int.Parse(buf);
+                    }
                 }
             }
 
