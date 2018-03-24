@@ -219,44 +219,56 @@ public class Card : MonoBehaviour
             reader.Read();
             var desk = reader.Value;
 
-            reader.ReadToFollowing("BattleCryName");
-            reader.Read();
-            reader.Read();
             var battleCry = new List<string>();
-            while (reader.Name == "string")
+            reader.ReadToFollowing("BattleCryName");
+            if (!reader.IsEmptyElement)
             {
                 reader.Read();
-                battleCry.Add(reader.Value);
                 reader.Read();
-                reader.Read();
-                reader.Read();
+                while (reader.Name == "string")
+                {
+                    reader.Read();
+                    battleCry.Add(reader.Value);
+                    reader.Read();
+                    reader.Read();
+                    reader.Read();
+                }
             }
-
-            reader.ReadToFollowing("DeathRattleName");
-            reader.Read();
-            reader.Read();
+       
             var deathRattle = new List<string>();
-            while (reader.Name == "string")
+            reader.ReadToFollowing("DeathRattleName");  
+            if (!reader.IsEmptyElement)
             {
                 reader.Read();
-                deathRattle.Add(reader.Value);
                 reader.Read();
-                reader.Read();
-                reader.Read();
+                while (reader.Name == "string")
+                {
+                    reader.Read();
+                    deathRattle.Add(reader.Value);
+                    reader.Read();
+                    reader.Read();
+                    reader.Read();
+                }
             }
 
-            reader.ReadToFollowing("AuraName");
-            reader.Read();
-            reader.Read();
             var aura = new List<string>();
-            while (reader.Name == "string")
+            reader.ReadToFollowing("AuraName");
+            if (!reader.IsEmptyElement)
             {
                 reader.Read();
-                aura.Add(reader.Value);
                 reader.Read();
-                reader.Read();
-                reader.Read();
+                while (reader.Name == "string")
+                {
+                    reader.Read();
+                    aura.Add(reader.Value);
+                    reader.Read();
+                    reader.Read();
+                    reader.Read();
+                }
             }
+
+          
+        
             CardData crd = new CardData { Name = name,HP =  int.Parse(health), Shield= int.Parse(shield), Attack = int.Parse(attack), Desk = desk, SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(), BattleCryNames = battleCry.ToArray(), DeathRattleNames = deathRattle.ToArray(), AurasNames =aura.ToArray() };
 
 

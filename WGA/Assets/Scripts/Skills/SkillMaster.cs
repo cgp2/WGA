@@ -133,9 +133,12 @@ public class SkillMaster : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    foreach (var inp in Battle.Board[i, j].Info.AuraInput)
+                    if (Battle.Board[i, j].Info.AuraInput != null)
                     {
-                        ExecuteSkillByInput(Battle.Board[i, j], inp);
+                        foreach (var inp in Battle.Board[i, j].Info.AuraInput)
+                        {
+                            ExecuteSkillByInput(Battle.Board[i, j], inp);
+                        }
                     }
                 }
             }
@@ -163,6 +166,7 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
+       // ApplyBufsToBoard(out Battle.Board);
     }
 
     public void ReExecuteSkillByInput(Card card, SkillsInput input)
