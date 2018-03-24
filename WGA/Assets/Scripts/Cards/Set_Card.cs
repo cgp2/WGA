@@ -40,7 +40,8 @@ public class Set_Card : MonoBehaviour {
                // for (int j = 0; j < 3; j++)
                   //  Debug.LogWarning("i="+i+", j="+j+Battle.Get_Card(i, j));
             Player.Selectedcard.GetComponent<Card>().OnBoard = true;
-            
+            //Battle.turn.transform.parent.GetComponent<test>().needtorescaleminus = false;
+            Player.Selectedcard.GetComponent<test>().SetFalse();
             Battle.NextTurn();
             Battle.RollTheCards();
             Debug.LogWarning(Battle.turn);

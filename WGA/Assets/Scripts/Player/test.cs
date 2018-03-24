@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class test : MonoBehaviour {
-    bool needtorescaleplus, needtorescaleminus;
+    public bool needtorescaleplus, needtorescaleminus;
     float standartscalex, standartscaley,standartcoorz;
     float deltaxscale, deltayscale;
     
@@ -34,6 +34,11 @@ public class test : MonoBehaviour {
         if (IsClose(transform.localScale.x, 20.942762f) || IsClose(transform.localScale.y,20.947458f))
             needtorescaleplus = false;
 	}
+    public void SetFalse()
+    {
+        needtorescaleminus = false;
+        needtorescaleplus = false;
+    }
     private void OnMouseDown()
     {
         if (gameObject.GetComponent<Card>().Owner == Battle.turn)

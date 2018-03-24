@@ -14,7 +14,7 @@ public class Battle : MonoBehaviour
     public static Player turn;
     public static Player Player1;
     public static Player Player2;
-
+    public enum Direction { Top, Bottom, Left, Right}
     public static int TurnNumber;
 
     private static bool lockedInput = false;
@@ -229,62 +229,64 @@ public class Battle : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
+               // var temp = MoveField(Direction.Bottom);
+                //Debug.LogWarning("test");
                 bool moved = false;
                 for (int i = 1; i < n; i++)
-                for (int j = 0; j < m; j++)
-                {
-
-                    if (Board[i, j] != null)
+                    for (int j = 0; j < m; j++)
                     {
 
-                        int k = i;
-                        if (Board[k, j].Owner == turn)
+                        if (Board[i, j] != null)
                         {
-                            while (k >= 1)
+
+                            int k = i;
+                            if (Board[k, j].Owner == turn)
                             {
-                                if (Board[k - 1, j] != null)
+                                while (k >= 1)
                                 {
-                                    if (Board[k - 1, j].Owner != turn)
+                                    if (Board[k - 1, j] != null)
                                     {
-
-                                        var temp = Fight(Board[k, j], Board[k - 1, j]);
-                                        Board[k, j] = temp[0];
-                                        Board[k - 1, j] = temp[1];
-                                        if (Board[k, j].Health <= 0)
+                                        if (Board[k - 1, j].Owner != turn)
                                         {
-                                            DestroyCard(k, j);
-                                        }
 
-                                        if (Board[k - 1, j].Health <= 0)
-                                        {
-                                            DestroyCard(k - 1, j);
-                                            if (Board[k, j] != null)
+                                            var temp = Fight(Board[k, j], Board[k - 1, j]);
+                                            Board[k, j] = temp[0];
+                                            Board[k - 1, j] = temp[1];
+                                            if (Board[k, j].Health <= 0)
                                             {
-                                                Board[k - 1, j] = Board[k, j];
-                                                Board[k, j].transform.position = coor[k - 1, j].position;
-                                                Board[k, j] = null;
+                                                DestroyCard(k, j);
                                             }
+
+                                            if (Board[k - 1, j].Health <= 0)
+                                            {
+                                                DestroyCard(k - 1, j);
+                                                if (Board[k, j] != null)
+                                                {
+                                                    Board[k - 1, j] = Board[k, j];
+                                                    Board[k, j].transform.position = coor[k - 1, j].position;
+                                                    Board[k, j] = null;
+                                                }
+                                            }
+
+                                            moved = true;
                                         }
 
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Board[k - 1, j] = Board[k, j];
+                                        Board[k, j].transform.position = coor[k - 1, j].position;
+                                        Board[k, j] = null;
                                         moved = true;
                                     }
 
-                                    break;
-                                }
-                                else
-                                {
-                                    Board[k - 1, j] = Board[k, j];
-                                    Board[k, j].transform.position = coor[k - 1, j].position;
-                                    Board[k, j] = null;
-                                    moved = true;
+                                    k--;
                                 }
 
-                                k--;
                             }
-
                         }
                     }
-                }
 
                 if (moved)
                 {
@@ -487,7 +489,321 @@ public class Battle : MonoBehaviour
             }
         }
     }
+    public Card[,] GetField()
+    {
+        return Board;
+    }
+    public Card[,] MoveField(Direction dir)
+    { 
+        var result = new Card[n, m];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+            {
+                if (Board[i, j] != null)
+                {
+                    Card temp = new Card() ;
+                    SkillMaster skm = GameObject.Find("Field").GetComponent<SkillMaster>();
+                    temp.Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    result[i, j] = temp;
+                }
+            }
+        switch (dir)
+        {
+            case Direction.Top:
+                {
+                    bool moved = false;
+                    for (int i = n - 2; i >= 0; i--)
+                        for (int j = 0; j < m; j++)
+                        {
+                            if (result[i, j] != null)
+                            {
+                                int k = i;
 
+                                if (result[k, j].Owner == turn)
+                                {
+                                    while (k <= n - 2)
+                                    {
+                                        if (result[k + 1, j] != null)
+                                        {
+                                            if (result[k + 1, j].Owner != turn)
+                                            {
+                                                var temp = Fight(result[k, j], result[k + 1, j]);
+                                                result[k, j] = temp[0];
+                                                result[k + 1, j] = temp[1];
+                                                if (result[k, j].Health <= 0)
+                                                {
+                                                    //DestroyCard(k, j);
+                                                    
+                                                    result[k, j] = null;
+                                                    result[k, j].Destroy();
+                                                }
+
+                                                if (result[k + 1, j].Health <= 0)
+                                                {
+                                                    //DestroyCard(k + 1, j);
+                                                    result[k + 1, j].Destroy();
+                                                    result[k + 1, j] = null;
+                                                    if (result[k, j] != null)
+                                                    {
+                                                        result[k + 1, j] = result[k, j];
+                                                        //result[k, j].transform.position = coor[k + 1, j].position;
+                                                        result[k, j] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+
+                                        result[k + 1, j] = result[k, j];
+                                        //result[k, j].transform.position = coor[k + 1, j].position;
+                                        result[k, j] = null;
+                                        moved = true;
+                                        k++;
+                                    }
+
+                                }
+                            }
+
+                        }
+
+                    if (moved)
+                    {
+                        return result;
+                        //NextTurn();
+                        //RollTheCards();
+                        //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    }
+                    else
+                        return Board;
+                    break;
+                }
+            case Direction.Bottom:
+                {
+                    bool moved = false;
+                    for (int i = 1; i < n; i++)
+                        for (int j = 0; j < m; j++)
+                        {
+
+                            if (result[i, j] != null)
+                            {
+
+                                int k = i;
+                                if (result[k, j].Owner == turn)
+                                {
+                                    while (k >= 1)
+                                    {
+                                        if (result[k - 1, j] != null)
+                                        {
+                                            if (result[k - 1, j].Owner != turn)
+                                            {
+
+                                                var temp = Fight(result[k, j], result[k - 1, j]);
+                                                result[k, j] = temp[0];
+                                                result[k - 1, j] = temp[1];
+                                                if (result[k, j].Health <= 0)
+                                                {
+                                                    //DestroyCard(k, j);//переписать DestroyCard
+                                                    result[k, j].Destroy();
+                                                    //Destroy(result[n, m].gameObject);
+                                                    result[k, j] = null;
+                                                }
+
+                                                if (result[k - 1, j].Health <= 0)
+                                                {
+                                                    //DestroyCard(k - 1, j);
+                                                    result[k-1, j].Destroy();
+                                                    result[k-1, j] = null;
+                                                    if (result[k, j] != null)
+                                                    {
+                                                        result[k - 1, j] = result[k, j];
+                                                        //result[k, j].transform.position = coor[k - 1, j].position;
+                                                        result[k, j] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            result[k - 1, j] = result[k, j];
+                                            //result[k, j].transform.position = coor[k - 1, j].position;
+                                            result[k, j] = null;
+                                            moved = true;
+                                        }
+
+                                        k--;
+                                    }
+
+                                }
+                            }
+                        }
+
+                    if (moved)
+                    {
+                        return result;
+                        //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                        // NextTurn();
+                        //RollTheCards();
+                    }
+                    else
+                        return Board;
+                    break;
+                }
+            case Direction.Left:
+                {
+                    bool moved = false;
+                    for (int i = 0; i < n; i++)
+                        for (int j = 1; j < m; j++)
+                        {
+
+                            if (result[i, j] != null)
+                            {
+                                int k = j;
+                                if (result[i, k].Owner == turn)
+                                {
+                                    while (k > 0)
+                                    {
+                                        if (result[i, k - 1] != null)
+                                        {
+                                            if (result[i, k - 1].Owner != turn)
+                                            {
+                                                var temp = Fight(result[i, k], result[i, k - 1]);
+                                                result[i, k] = temp[0];
+                                                result[i, k - 1] = temp[1];
+                                                if (result[i, k].Health <= 0)
+                                                {
+                                                    //DestroyCard(i, k);
+                                                    result[i, k].Destroy();
+                                                    result[i, k] = null;
+                                                }
+
+                                                if (result[i, k - 1].Health <= 0)
+                                                {
+                                                    //DestroyCard(i, k - 1);
+                                                    result[i, k - 1].Destroy();
+                                                    result[i, k - 1] = null;
+                                                    if (Board[i, k] != null)
+                                                    {
+                                                        result[i, k - 1] = result[i, k];
+                                                        //result[i, k].transform.position = coor[i, k - 1].position;
+                                                        result[i, k] = null;
+
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            result[i, k - 1] = result[i, k];
+                                            //result[i, k].transform.position = coor[i, k - 1].position;
+                                            result[i, k] = null;
+                                            moved = true;
+                                        }
+
+                                        k--;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    if (moved)
+                    {
+                        return result;
+                        //NextTurn();
+                        //RollTheCards();
+
+                    }
+                    else
+                        return Board;
+                    break;
+                }
+            case Direction.Right:
+                {
+                    bool moved = false;
+                    for (int i = 0; i < n; i++)
+                        for (int j = m - 2; j >= 0; j--)
+                        {
+                            if (result[i, j] != null)
+                            {
+                                int k = j;
+                                if (result[i, k].Owner == turn)
+                                {
+
+                                    while (k <= m - 2)
+                                    {
+                                        if (result[i, k + 1] != null)
+                                        {
+                                            if (result[i, k + 1].Owner != turn)
+                                            {
+                                                var temp = Fight(result[i, k], result[i, k + 1]);
+                                                result[i, k] = temp[0];
+                                                result[i, k + 1] = temp[1];
+
+                                                if (result[i, k].Health <= 0)
+                                                {
+                                                    // DestroyCard(i, k);
+                                                    result[i, k].Destroy();
+                                                    result[i, k] = null;
+                                                }
+
+                                                if (result[i, k + 1].Health <= 0)
+                                                {
+                                                    //DestroyCard(i, k + 1);
+                                                    result[i, k + 1].Destroy();
+                                                    result[i, k + 1] = null;
+                                                    if (result[i, k] != null)
+                                                    {
+                                                        result[i, k + 1] = Board[i, k];
+                                                        //result[i, k].transform.position = coor[i, k + 1].position;
+                                                        result[i, k] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            result[i, k + 1] = result[i, k];
+                                            //result[i, k].transform.position = coor[i, k + 1].position;
+                                            result[i, k] = null;
+                                            moved = true;
+                                        }
+
+                                        k++;
+                                    }
+
+                                }
+                            }
+                        }
+
+                    if (moved)
+                    {
+                        return result;
+                        //NextTurn();
+                        //RollTheCards();
+                       // GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    }
+                    else
+                        return Board;
+                    break;
+                }
+        }
+        return result;
+    }
     public static void DestroyCard(int n, int m)
     {
         if (Board[n, m] != null)
