@@ -151,14 +151,14 @@ public class Card : MonoBehaviour
         shipSprite.sprite = front ? Info.CardFrontSprite : Info.CardBackSprite;
     }
 
-    public void Play()
+    public void Play(ref Card[,] board)
     {
         if (Info.BattleCryNames != null)
         {
             for (var i = 0; i < Info.BattleCryNames.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, Info.BattleCryInput[i]);
-                skillMaster.ApplyBufsToBoard(out Battle.Board);
+                skillMaster.ExecuteSkillByInput(this, Info.BattleCryInput[i], ref board);
+                skillMaster.ApplyBufsToBoard(ref board);
             }
         }
 
@@ -166,30 +166,33 @@ public class Card : MonoBehaviour
         {
             for (var i = 0; i < Info.AuraNames.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, Info.AuraInput[i]);
-                skillMaster.ApplyBufsToBoard(out Battle.Board);
+                skillMaster.ExecuteSkillByInput(this, Info.AuraInput[i], ref board);
+                skillMaster.ApplyBufsToBoard(ref board);
             }
         }
+
+        Battle.UpdateUI();
     }
 
-    public void Destroy()
+    public void Destroy(ref Card[,] board)
     {
         if (Info.DeathRattleName != null)
         {
             for (var i = 0; i < Info.DeathRattleName.Length; i++)
             {
-                skillMaster.ExecuteSkillByInput(this, Info.DeathRattleInput[i]);
-                skillMaster.ApplyBufsToBoard(out Battle.Board);
+                skillMaster.ExecuteSkillByInput(this, Info.DeathRattleInput[i], ref board);
+                skillMaster.ApplyBufsToBoard(ref board);
 
                 if (Info.AuraInput != null)
                 {
                     foreach (var inp in Info.AuraInput)
                     {
-                        skillMaster.ReExecuteSkillByInput(this, inp);
-                        skillMaster.ApplyBufsToBoard(out Battle.Board);
+                        skillMaster.ReExecuteSkillByInput(this, inp, ref board);
+                        skillMaster.ApplyBufsToBoard(ref board);
                     }
                 }
             }
+            Battle.UpdateUI();
         }
     }
 

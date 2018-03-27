@@ -53,52 +53,49 @@ public class SkillMaster : MonoBehaviour
 
     }
 
-    public void ApplyBufsToBoard(out Card[,] field)
+    public void ApplyBufsToBoard(ref Card[,] field)
     {
-        var ret = Battle.Board;
-
-
         for (var i = 0; i < Battle.n; i++)
         {
             for (var j = 0; j < Battle.m; j++)
             {
-                if (ret[i, j] != null)
+                if (field[i, j] != null)
                 {
-                    if (ret[i,j].Owner.name == "Player1")
+                    if (field[i,j].Owner.name == "Player1")
                     {
-                        ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
-                        ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer1;
-                        ret[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer1 + ret[i, j].StaticSHLD);
+                        field[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer1;
+                        field[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer1;
+                        field[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer1 + field[i, j].StaticSHLD);
 
-                        if(ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1 <= 0)
+                        if(field[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1 <= 0)
                         {
                            // Battle.DestroyCard(i, j);
                         }
                         else
                         {
-                            ret[i, j].Health = ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1;
+                            field[i, j].Health = field[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer1;
                         }
 
-                        ret[i, j].Attack = Math.Max(ret[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer1, 0);
-                        ret[i, j].Shield = Math.Max(ret[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer1, 0);
+                        field[i, j].Attack = Math.Max(field[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer1, 0);
+                        field[i, j].Shield = Math.Max(field[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer1, 0);
                     }
                     else
                     {
-                        ret[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
-                        ret[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer2;
-                        ret[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer2 + ret[i, j].StaticSHLD);
+                        field[i, j].StaticHP += BufMap[i, j].StaticHPBufPlayer2;
+                        field[i, j].StaticDMG += BufMap[i, j].StaticDMGBufPlayer2;
+                        field[i, j].StaticSHLD = Math.Max(0, BufMap[i, j].StaticShieldBufPlayer2 + field[i, j].StaticSHLD);
 
-                        if (ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2 <= 0)
+                        if (field[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2 <= 0)
                         {
                            // Battle.DestroyCard(i, j);
                         }
                         else
                         {
-                            ret[i, j].Health = ret[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2;
+                            field[i, j].Health = field[i, j].StaticHP + BufMap[i, j].FloatingHPBufPlayer2;
                         }
 
-                        ret[i, j].Attack = Math.Max(ret[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2, 0);
-                        ret[i, j].Shield = Math.Max(ret[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2, 0);
+                        field[i, j].Attack = Math.Max(field[i, j].StaticDMG + BufMap[i, j].FloatingDMGBufPlayer2, 0);
+                        field[i, j].Shield = Math.Max(field[i, j].StaticSHLD + BufMap[i, j].FloatingShieldBufPlayer2, 0);
                     }
                 }
 
@@ -111,8 +108,7 @@ public class SkillMaster : MonoBehaviour
             }
         }
 
-        field = ret;
-        Battle.UpdateUI();
+        //Battle.UpdateUI();
     }
 
     public void RebuidBufMap()
@@ -137,25 +133,26 @@ public class SkillMaster : MonoBehaviour
                     {
                         foreach (var inp in Battle.Board[i, j].Info.AuraInput)
                         {
-                            ExecuteSkillByInput(Battle.Board[i, j], inp);
+                            ExecuteSkillByInput(Battle.Board[i, j], inp, ref Battle.Board);
                         }
                     }
                 }
             }
         }
-        ApplyBufsToBoard(out Battle.Board);
+        ApplyBufsToBoard(ref Battle.Board);
+        Battle.UpdateUI();
     }
 
-    public void ExecuteSkillByInput(Card card, SkillsInput input)
+    public void ExecuteSkillByInput(Card card, SkillsInput input, ref Card[,] board)
     {
         var playerID = (card.Owner.name == "Player1") ? 0 : 1;
 
         int cardRow = 0, cardCol = 0;
-        for (var i = 0; i < Battle.Board.GetLength(0); i++)
+        for (var i = 0; i < board.GetLength(0); i++)
         {
-            for (var j = 0; j < Battle.Board.GetLength(1); j++)
+            for (var j = 0; j < board.GetLength(1); j++)
             {
-                if (Battle.Board[i, j] == card)
+                if (board[i, j] == card)
                 {
                     cardRow = i;
                     cardCol = j;
@@ -169,16 +166,16 @@ public class SkillMaster : MonoBehaviour
        // ApplyBufsToBoard(out Battle.Board);
     }
 
-    public void ReExecuteSkillByInput(Card card, SkillsInput input)
+    public void ReExecuteSkillByInput(Card card, SkillsInput input, ref Card[,] board)
     {
         var playerID = (card.Owner.name == "Player1") ? 0 : 1;
 
         int cardRow = 0, cardCol = 0;
-        for (var i = 0; i < Battle.Board.GetLength(0); i++)
+        for (var i = 0; i <board.GetLength(0); i++)
         {
-            for (var j = 0; j < Battle.Board.GetLength(1); j++)
+            for (var j = 0; j <board.GetLength(1); j++)
             {
-                if (Battle.Board[i, j] == card)
+                if (board[i, j] == card)
                 {
                     cardRow = i;
                     cardCol = j;
@@ -189,7 +186,7 @@ public class SkillMaster : MonoBehaviour
 
         var t = SkillsList.Find((skill => skill.Name == input.ParentFunctionName));
         t.ReExecuteSkill(input, cardRow, cardCol, playerID, ref BufMap);
-        ApplyBufsToBoard(out Battle.Board);
+        //ApplyBufsToBoard(out Battle.Board);
     }
 
     public SkillsInput GetISkillInputByName(string skillName)

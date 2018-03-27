@@ -14,7 +14,7 @@ public class Battle : MonoBehaviour
     public static Player turn;
     public static Player Player1;
     public static Player Player2;
-    public enum Direction { Top, Bottom, Left, Right}
+  
     public static int TurnNumber;
 
     private static bool lockedInput = false;
@@ -69,12 +69,27 @@ public class Battle : MonoBehaviour
                     }
                 }
             }
-            GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Board);
-            //UpdateUI();
+            GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(ref Board);
+            UpdateUI();
         }
         else
+        {
             turn = Player2;
-     
+            var r =  Player2.GetComponent<AIEnemy>().MakeMove();
+            if (r.IsMoving)
+            {
+                var dir = r.Movement.Direction;
+                //Тут двигать поле в сторону дир
+            }
+            else
+            {
+                var col = r.Placing.Col;
+                var row = r.Placing.Row;
+                var crd = r.Placing.CardNum; //Номер карты в руке
+                //Тут выставлять карту
+            }
+        }
+
         if (TurnNumber == 20)
         {
             var winner = CalculateWiningPlayer();
@@ -210,17 +225,13 @@ public class Battle : MonoBehaviour
         //Debug.LogWarning("" + x + y);
         //Debug.LogWarning(tg);
         Board[x, y] = tg;
-        tg.Play();
+        tg.Play(ref Board);
         //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
 
     }
     // Update is called once per frame
     void Update()
     {
-     
-
-
-
         if (Input.GetKeyDown("escape"))
         {
             Application.Quit();
@@ -493,61 +504,48 @@ public class Battle : MonoBehaviour
     {
         return Board;
     }
-    public Card[,] MoveField(Direction dir)
+    public Card[,] MoveField(Card[,] field, Directions dir)
     { 
-        var result = new Card[n, m];
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
-            {
-                if (Board[i, j] != null)
-                {
-                    Card temp = new Card() ;
-                    SkillMaster skm = GameObject.Find("Field").GetComponent<SkillMaster>();
-                    temp.Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
-                    result[i, j] = temp;
-                }
-            }
         switch (dir)
         {
-            case Direction.Top:
+            case Directions.Top:
                 {
                     bool moved = false;
                     for (int i = n - 2; i >= 0; i--)
                         for (int j = 0; j < m; j++)
                         {
-                            if (result[i, j] != null)
+                            if (field[i, j] != null)
                             {
                                 int k = i;
 
-                                if (result[k, j].Owner == turn)
+                                if (field[k, j].Owner == turn)
                                 {
                                     while (k <= n - 2)
                                     {
-                                        if (result[k + 1, j] != null)
+                                        if (field[k + 1, j] != null)
                                         {
-                                            if (result[k + 1, j].Owner != turn)
+                                            if (field[k + 1, j].Owner != turn)
                                             {
-                                                var temp = Fight(result[k, j], result[k + 1, j]);
-                                                result[k, j] = temp[0];
-                                                result[k + 1, j] = temp[1];
-                                                if (result[k, j].Health <= 0)
+                                                var temp = Fight(field[k, j], field[k + 1, j]);
+                                                field[k, j] = temp[0];
+                                                field[k + 1, j] = temp[1];
+                                                if (field[k, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k, j);
-                                                    
-                                                    result[k, j] = null;
-                                                    result[k, j].Destroy();
+                                                    field[k, j].Destroy(ref field);
+                                                    field[k, j] = null;
                                                 }
 
-                                                if (result[k + 1, j].Health <= 0)
+                                                if (field[k + 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k + 1, j);
-                                                    result[k + 1, j].Destroy();
-                                                    result[k + 1, j] = null;
-                                                    if (result[k, j] != null)
+                                                    field[k + 1, j].Destroy(ref field);
+                                                    field[k + 1, j] = null;
+                                                    if (field[k, j] != null)
                                                     {
-                                                        result[k + 1, j] = result[k, j];
+                                                        field[k + 1, j] = field[k, j];
                                                         //result[k, j].transform.position = coor[k + 1, j].position;
-                                                        result[k, j] = null;
+                                                        field[k, j] = null;
                                                     }
                                                 }
 
@@ -557,9 +555,9 @@ public class Battle : MonoBehaviour
                                             break;
                                         }
 
-                                        result[k + 1, j] = result[k, j];
+                                        field[k + 1, j] = field[k, j];
                                         //result[k, j].transform.position = coor[k + 1, j].position;
-                                        result[k, j] = null;
+                                        field[k, j] = null;
                                         moved = true;
                                         k++;
                                     }
@@ -571,56 +569,55 @@ public class Battle : MonoBehaviour
 
                     if (moved)
                     {
-                        return result;
+                        return field;
                         //NextTurn();
                         //RollTheCards();
                         //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                     }
                     else
                         return Board;
-                    break;
                 }
-            case Direction.Bottom:
+            case Directions.Bottom:
                 {
                     bool moved = false;
                     for (int i = 1; i < n; i++)
                         for (int j = 0; j < m; j++)
                         {
 
-                            if (result[i, j] != null)
+                            if (field[i, j] != null)
                             {
 
                                 int k = i;
-                                if (result[k, j].Owner == turn)
+                                if (field[k, j].Owner == turn)
                                 {
                                     while (k >= 1)
                                     {
-                                        if (result[k - 1, j] != null)
+                                        if (field[k - 1, j] != null)
                                         {
-                                            if (result[k - 1, j].Owner != turn)
+                                            if (field[k - 1, j].Owner != turn)
                                             {
 
-                                                var temp = Fight(result[k, j], result[k - 1, j]);
-                                                result[k, j] = temp[0];
-                                                result[k - 1, j] = temp[1];
-                                                if (result[k, j].Health <= 0)
+                                                var temp = Fight(field[k, j], field[k - 1, j]);
+                                                field[k, j] = temp[0];
+                                                field[k - 1, j] = temp[1];
+                                                if (field[k, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k, j);//переписать DestroyCard
-                                                    result[k, j].Destroy();
+                                                    field[k, j].Destroy(ref field);
                                                     //Destroy(result[n, m].gameObject);
-                                                    result[k, j] = null;
+                                                    field[k, j] = null;
                                                 }
 
-                                                if (result[k - 1, j].Health <= 0)
+                                                if (field[k - 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k - 1, j);
-                                                    result[k-1, j].Destroy();
-                                                    result[k-1, j] = null;
-                                                    if (result[k, j] != null)
+                                                    field[k-1, j].Destroy(ref field);
+                                                    field[k-1, j] = null;
+                                                    if (field[k, j] != null)
                                                     {
-                                                        result[k - 1, j] = result[k, j];
+                                                        field[k - 1, j] = field[k, j];
                                                         //result[k, j].transform.position = coor[k - 1, j].position;
-                                                        result[k, j] = null;
+                                                        field[k, j] = null;
                                                     }
                                                 }
 
@@ -631,9 +628,9 @@ public class Battle : MonoBehaviour
                                         }
                                         else
                                         {
-                                            result[k - 1, j] = result[k, j];
+                                            field[k - 1, j] = field[k, j];
                                             //result[k, j].transform.position = coor[k - 1, j].position;
-                                            result[k, j] = null;
+                                            field[k, j] = null;
                                             moved = true;
                                         }
 
@@ -646,53 +643,53 @@ public class Battle : MonoBehaviour
 
                     if (moved)
                     {
-                        return result;
+                        return field;
                         //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                         // NextTurn();
                         //RollTheCards();
                     }
                     else
                         return Board;
-                    break;
+
                 }
-            case Direction.Left:
+            case Directions.Left:
                 {
                     bool moved = false;
                     for (int i = 0; i < n; i++)
                         for (int j = 1; j < m; j++)
                         {
 
-                            if (result[i, j] != null)
+                            if (field[i, j] != null)
                             {
                                 int k = j;
-                                if (result[i, k].Owner == turn)
+                                if (field[i, k].Owner == turn)
                                 {
                                     while (k > 0)
                                     {
-                                        if (result[i, k - 1] != null)
+                                        if (field[i, k - 1] != null)
                                         {
-                                            if (result[i, k - 1].Owner != turn)
+                                            if (field[i, k - 1].Owner != turn)
                                             {
-                                                var temp = Fight(result[i, k], result[i, k - 1]);
-                                                result[i, k] = temp[0];
-                                                result[i, k - 1] = temp[1];
-                                                if (result[i, k].Health <= 0)
+                                                var temp = Fight(field[i, k], field[i, k - 1]);
+                                                field[i, k] = temp[0];
+                                                field[i, k - 1] = temp[1];
+                                                if (field[i, k].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k);
-                                                    result[i, k].Destroy();
-                                                    result[i, k] = null;
+                                                    field[i, k].Destroy(ref field);
+                                                    field[i, k] = null;
                                                 }
 
-                                                if (result[i, k - 1].Health <= 0)
+                                                if (field[i, k - 1].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k - 1);
-                                                    result[i, k - 1].Destroy();
-                                                    result[i, k - 1] = null;
+                                                    field[i, k - 1].Destroy(ref field);
+                                                    field[i, k - 1] = null;
                                                     if (Board[i, k] != null)
                                                     {
-                                                        result[i, k - 1] = result[i, k];
+                                                        field[i, k - 1] = field[i, k];
                                                         //result[i, k].transform.position = coor[i, k - 1].position;
-                                                        result[i, k] = null;
+                                                        field[i, k] = null;
 
                                                     }
                                                 }
@@ -704,9 +701,9 @@ public class Battle : MonoBehaviour
                                         }
                                         else
                                         {
-                                            result[i, k - 1] = result[i, k];
+                                            field[i, k - 1] = field[i, k];
                                             //result[i, k].transform.position = coor[i, k - 1].position;
-                                            result[i, k] = null;
+                                            field[i, k] = null;
                                             moved = true;
                                         }
 
@@ -719,54 +716,53 @@ public class Battle : MonoBehaviour
 
                     if (moved)
                     {
-                        return result;
+                        return field;
                         //NextTurn();
                         //RollTheCards();
 
                     }
                     else
                         return Board;
-                    break;
                 }
-            case Direction.Right:
+            case Directions.Right:
                 {
                     bool moved = false;
                     for (int i = 0; i < n; i++)
                         for (int j = m - 2; j >= 0; j--)
                         {
-                            if (result[i, j] != null)
+                            if (field[i, j] != null)
                             {
                                 int k = j;
-                                if (result[i, k].Owner == turn)
+                                if (field[i, k].Owner == turn)
                                 {
 
                                     while (k <= m - 2)
                                     {
-                                        if (result[i, k + 1] != null)
+                                        if (field[i, k + 1] != null)
                                         {
-                                            if (result[i, k + 1].Owner != turn)
+                                            if (field[i, k + 1].Owner != turn)
                                             {
-                                                var temp = Fight(result[i, k], result[i, k + 1]);
-                                                result[i, k] = temp[0];
-                                                result[i, k + 1] = temp[1];
+                                                var temp = Fight(field[i, k], field[i, k + 1]);
+                                                field[i, k] = temp[0];
+                                                field[i, k + 1] = temp[1];
 
-                                                if (result[i, k].Health <= 0)
+                                                if (field[i, k].Health <= 0)
                                                 {
                                                     // DestroyCard(i, k);
-                                                    result[i, k].Destroy();
-                                                    result[i, k] = null;
+                                                    field[i, k].Destroy(ref field);
+                                                    field[i, k] = null;
                                                 }
 
-                                                if (result[i, k + 1].Health <= 0)
+                                                if (field[i, k + 1].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k + 1);
-                                                    result[i, k + 1].Destroy();
-                                                    result[i, k + 1] = null;
-                                                    if (result[i, k] != null)
+                                                    field[i, k + 1].Destroy(ref field);
+                                                    field[i, k + 1] = null;
+                                                    if (field[i, k] != null)
                                                     {
-                                                        result[i, k + 1] = Board[i, k];
+                                                        field[i, k + 1] = Board[i, k];
                                                         //result[i, k].transform.position = coor[i, k + 1].position;
-                                                        result[i, k] = null;
+                                                        field[i, k] = null;
                                                     }
                                                 }
 
@@ -777,9 +773,9 @@ public class Battle : MonoBehaviour
                                         }
                                         else
                                         {
-                                            result[i, k + 1] = result[i, k];
+                                            field[i, k + 1] = field[i, k];
                                             //result[i, k].transform.position = coor[i, k + 1].position;
-                                            result[i, k] = null;
+                                            field[i, k] = null;
                                             moved = true;
                                         }
 
@@ -792,23 +788,22 @@ public class Battle : MonoBehaviour
 
                     if (moved)
                     {
-                        return result;
+                        return field;
                         //NextTurn();
                         //RollTheCards();
                        // GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                     }
                     else
                         return Board;
-                    break;
                 }
         }
-        return result;
+        return field;
     }
     public static void DestroyCard(int n, int m)
     {
         if (Board[n, m] != null)
         {
-            Board[n, m].Destroy();
+            Board[n, m].Destroy(ref Board);
             Destroy(Board[n, m].gameObject);
             Board[n, m] = null;
         }
