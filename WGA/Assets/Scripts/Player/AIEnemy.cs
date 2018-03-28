@@ -29,7 +29,8 @@ public class AIEnemy : MonoBehaviour
     private CardPlacingAction CalculateCardPlacingUtility()
     {
         var ret = new CardPlacingAction();
-        var maxUtility = float.MinValue;
+        ret.Utillity = int.MinValue;
+        var maxUtility = int.MinValue;
         for (var i = 0; i < possesedPlayer.deck.Count; i++)
         {
             var crdObj = possesedPlayer.deck[i];
@@ -121,18 +122,47 @@ public class AIEnemy : MonoBehaviour
     private MovementAction CalculateMovementUtility()
     {
         var ret = new MovementAction();
-
+        ret.Utillity = int.MinValue;
         var fields = new List<Card[,]>();
-        var field0 = (Card[,])Battle.Board.Clone();
-        var field1 = (Card[,])Battle.Board.Clone();
-        var field2 = (Card[,])Battle.Board.Clone();
-        var field3 = (Card[,])Battle.Board.Clone();
-        fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field0, Directions.Top));
-        fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field1, Directions.Left));
-        fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
-        fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field3, Directions.Bottom));
+        //var field0 = (Card[,])Battle.Board.Clone();
+        //var field1 = (Card[,])Battle.Board.Clone();
+        //var field2 = (Card[,])Battle.Board.Clone();
+        //var field3 = (Card[,])Battle.Board.Clone();
+        var field0 = new Card[Battle.n,Battle.m];
+        var field1 = new Card[Battle.n, Battle.m];
+        var field2 = new Card[Battle.n, Battle.m];
+        var field3 = new Card[Battle.n, Battle.m];
 
-        var maxUtility = float.MinValue;
+        for (int i =0;i<Battle.n;i++)
+            for(int j=0;j<Battle.m;j++)
+            {
+                if (Battle.Board[i, j] != null)
+                {
+                    var Board = Battle.Board;
+                    SkillMaster skm = GameObject.Find("Field").GetComponent<SkillMaster>();
+                    field0[i, j] = new Card();
+                    field1[i, j] = new Card();
+                    field2[i, j] = new Card();
+                    field3[i, j] = new Card();
+
+
+                    field0[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field1[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field2[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+
+                }
+            }
+
+        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field0, Directions.Top));
+        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field1, Directions.Left));
+        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
+        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field3, Directions.Bottom));
+        fields.Add(Battle.MoveField(field0, Directions.Top));
+        fields.Add(Battle.MoveField(field1, Directions.Left));
+        fields.Add(Battle.MoveField(field2, Directions.Right));
+        fields.Add(Battle.MoveField(field3, Directions.Bottom));
+        var maxUtility = int.MinValue;
         for (var i = 0; i < fields.Count; i++)
         {
             var field = fields[i];

@@ -10,7 +10,7 @@ public class Battle : MonoBehaviour
     public static int n = 4;
     public static int m = 3;
     public static Card[,] Board;
-    public static Transform[,] coor = new Transform[n, m];
+    public static GameObject[,] coor = new GameObject[n, m];
     public static Player turn;
     public static Player Player1;
     public static Player Player2;
@@ -71,6 +71,7 @@ public class Battle : MonoBehaviour
             }
             GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(ref Board);
             UpdateUI();
+
         }
         else
         {
@@ -79,6 +80,7 @@ public class Battle : MonoBehaviour
             if (r.IsMoving)
             {
                 var dir = r.Movement.Direction;
+                Move(dir);
                 //Тут двигать поле в сторону дир
             }
             else
@@ -86,6 +88,8 @@ public class Battle : MonoBehaviour
                 var col = r.Placing.Col;
                 var row = r.Placing.Row;
                 var crd = r.Placing.CardNum; //Номер карты в руке
+                Player.Selectedcard = Player2.deck[crd];
+                Set_Card(row, col,Player.Selectedcard.GetComponent<Card>());
                 //Тут выставлять карту
             }
         }
@@ -198,6 +202,274 @@ public class Battle : MonoBehaviour
         }
         UpdateUI();
     }
+    public static void Move(Directions dir)
+    {
+        switch(dir)
+        {
+            case Directions.Top:
+                {
+                    bool moved = false;
+                    for (int i = n - 2; i >= 0; i--)
+                        for (int j = 0; j < m; j++)
+                        {
+                            if (Board[i, j] != null)
+                            {
+                                int k = i;
+
+                                if (Board[k, j].Owner == turn)
+                                {
+                                    while (k <= n - 2)
+                                    {
+                                        if (Board[k + 1, j] != null)
+                                        {
+                                            if (Board[k + 1, j].Owner != turn)
+                                            {
+                                                var temp = Fight(Board[k, j], Board[k + 1, j]);
+                                                Board[k, j] = temp[0];
+                                                Board[k + 1, j] = temp[1];
+                                                if (Board[k, j].Health <= 0)
+                                                {
+                                                    DestroyCard(k, j);
+                                                }
+
+                                                if (Board[k + 1, j].Health <= 0)
+                                                {
+                                                    DestroyCard(k + 1, j);
+                                                    if (Board[k, j] != null)
+                                                    {
+                                                        Board[k + 1, j] = Board[k, j];
+                                                        Board[k, j].transform.position = coor[k + 1, j].transform.position;
+                                                        Board[k, j] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+
+                                        Board[k + 1, j] = Board[k, j];
+                                        Board[k, j].transform.position = coor[k + 1, j].transform.position;
+                                        Board[k, j] = null;
+                                        moved = true;
+                                        k++;
+                                    }
+
+                                }
+                            }
+
+                        }
+
+                    if (moved)
+                    {
+                        NextTurn();
+                        RollTheCards();
+                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    }
+                    break;
+                }
+            case Directions.Bottom:
+                {
+                    bool moved = false;
+                    for (int i = 1; i < n; i++)
+                        for (int j = 0; j < m; j++)
+                        {
+
+                            if (Board[i, j] != null)
+                            {
+
+                                int k = i;
+                                if (Board[k, j].Owner == turn)
+                                {
+                                    while (k >= 1)
+                                    {
+                                        if (Board[k - 1, j] != null)
+                                        {
+                                            if (Board[k - 1, j].Owner != turn)
+                                            {
+
+                                                var temp = Fight(Board[k, j], Board[k - 1, j]);
+                                                Board[k, j] = temp[0];
+                                                Board[k - 1, j] = temp[1];
+                                                if (Board[k, j].Health <= 0)
+                                                {
+                                                    DestroyCard(k, j);
+                                                }
+
+                                                if (Board[k - 1, j].Health <= 0)
+                                                {
+                                                    DestroyCard(k - 1, j);
+                                                    if (Board[k, j] != null)
+                                                    {
+                                                        Board[k - 1, j] = Board[k, j];
+                                                        Board[k, j].transform.position = coor[k - 1, j].transform.position;
+                                                        Board[k, j] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            Board[k - 1, j] = Board[k, j];
+                                            Board[k, j].transform.position = coor[k - 1, j].transform.position;
+                                            Board[k, j] = null;
+                                            moved = true;
+                                        }
+
+                                        k--;
+                                    }
+
+                                }
+                            }
+                        }
+
+                    if (moved)
+                    {
+                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                        NextTurn();
+                        //RollTheCards();
+                    }
+                    break;
+                }
+            case Directions.Left:
+                {
+                    bool moved = false;
+                    for (int i = 0; i < n; i++)
+                        for (int j = 1; j < m; j++)
+                        {
+
+                            if (Board[i, j] != null)
+                            {
+                                int k = j;
+                                if (Board[i, k].Owner == turn)
+                                {
+                                    while (k > 0)
+                                    {
+                                        if (Board[i, k - 1] != null)
+                                        {
+                                            if (Board[i, k - 1].Owner != turn)
+                                            {
+                                                var temp = Fight(Board[i, k], Board[i, k - 1]);
+                                                Board[i, k] = temp[0];
+                                                Board[i, k - 1] = temp[1];
+                                                if (Board[i, k].Health <= 0)
+                                                {
+                                                    DestroyCard(i, k);
+                                                }
+
+                                                if (Board[i, k - 1].Health <= 0)
+                                                {
+                                                    DestroyCard(i, k - 1);
+                                                    if (Board[i, k] != null)
+                                                    {
+                                                        Board[i, k - 1] = Board[i, k];
+                                                        Board[i, k].transform.position = coor[i, k - 1].transform.position;
+                                                        Board[i, k] = null;
+
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            Board[i, k - 1] = Board[i, k];
+                                            Board[i, k].transform.position = coor[i, k - 1].transform.position;
+                                            Board[i, k] = null;
+                                            moved = true;
+                                        }
+
+                                        k--;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    if (moved)
+                    {
+                        NextTurn();
+                        RollTheCards();
+                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    }
+                    break;
+                }
+            case Directions.Right:
+                {
+                    bool moved = false;
+                    for (int i = 0; i < n; i++)
+                        for (int j = m - 2; j >= 0; j--)
+                        {
+                            if (Board[i, j] != null)
+                            {
+                                int k = j;
+                                if (Board[i, k].Owner == turn)
+                                {
+
+                                    while (k <= m - 2)
+                                    {
+                                        if (Board[i, k + 1] != null)
+                                        {
+                                            if (Board[i, k + 1].Owner != turn)
+                                            {
+                                                var temp = Fight(Board[i, k], Board[i, k + 1]);
+                                                Board[i, k] = temp[0];
+                                                Board[i, k + 1] = temp[1];
+
+                                                if (Board[i, k].Health <= 0)
+                                                {
+                                                    DestroyCard(i, k);
+                                                }
+
+                                                if (Board[i, k + 1].Health <= 0)
+                                                {
+                                                    DestroyCard(i, k + 1);
+                                                    if (Board[i, k] != null)
+                                                    {
+                                                        Board[i, k + 1] = Board[i, k];
+                                                        Board[i, k].transform.position = coor[i, k + 1].transform.position;
+                                                        Board[i, k] = null;
+                                                    }
+                                                }
+
+                                                moved = true;
+                                            }
+
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            Board[i, k + 1] = Board[i, k];
+                                            Board[i, k].transform.position = coor[i, k + 1].transform.position;
+                                            Board[i, k] = null;
+                                            moved = true;
+                                        }
+
+                                        k++;
+                                    }
+
+                                }
+                            }
+                        }
+
+                    if (moved)
+                    {
+                        NextTurn();
+                        RollTheCards();
+                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                    }
+                    break;
+                }
+        }
+    }
 
     public static void UpdateUI()
     {
@@ -222,12 +494,25 @@ public class Battle : MonoBehaviour
     }
     public static void Set_Card(int x, int y, Card tg)
     {
+        var targetcard = Player.Selectedcard;
+        targetcard.transform.parent = coor[x,y].transform.parent;
+        targetcard.transform.position = coor[x,y].transform.position;
+        targetcard.GetComponent<BoxCollider2D>().enabled = false;
+        Player.Selectedcard.transform.localScale = new Vector3(0.2601453f, 0.4947458f, 1);
+        Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0,1);
+        Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
+        Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+        targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
+        targetcard.GetComponent<Card>().OnBoard = true;
+        targetcard.GetComponent<test>().SetFalse();
+        
         //Debug.LogWarning("" + x + y);
         //Debug.LogWarning(tg);
         Board[x, y] = tg;
         tg.Play(ref Board);
         //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
-
+        Player.Selectedcard = null;
+        Battle.NextTurn();
     }
     // Update is called once per frame
     void Update()
@@ -240,272 +525,25 @@ public class Battle : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-               // var temp = MoveField(Direction.Bottom);
-                //Debug.LogWarning("test");
-                bool moved = false;
-                for (int i = 1; i < n; i++)
-                    for (int j = 0; j < m; j++)
-                    {
-
-                        if (Board[i, j] != null)
-                        {
-
-                            int k = i;
-                            if (Board[k, j].Owner == turn)
-                            {
-                                while (k >= 1)
-                                {
-                                    if (Board[k - 1, j] != null)
-                                    {
-                                        if (Board[k - 1, j].Owner != turn)
-                                        {
-
-                                            var temp = Fight(Board[k, j], Board[k - 1, j]);
-                                            Board[k, j] = temp[0];
-                                            Board[k - 1, j] = temp[1];
-                                            if (Board[k, j].Health <= 0)
-                                            {
-                                                DestroyCard(k, j);
-                                            }
-
-                                            if (Board[k - 1, j].Health <= 0)
-                                            {
-                                                DestroyCard(k - 1, j);
-                                                if (Board[k, j] != null)
-                                                {
-                                                    Board[k - 1, j] = Board[k, j];
-                                                    Board[k, j].transform.position = coor[k - 1, j].position;
-                                                    Board[k, j] = null;
-                                                }
-                                            }
-
-                                            moved = true;
-                                        }
-
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Board[k - 1, j] = Board[k, j];
-                                        Board[k, j].transform.position = coor[k - 1, j].position;
-                                        Board[k, j] = null;
-                                        moved = true;
-                                    }
-
-                                    k--;
-                                }
-
-                            }
-                        }
-                    }
-
-                if (moved)
-                {
-                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                    NextTurn();
-                    RollTheCards();
-                }
+                Move(Directions.Bottom);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                bool moved = false;
-                for (int i = n - 2; i >= 0; i--)
-                for (int j = 0; j < m; j++)
-                {
-                    if (Board[i, j] != null)
-                    {
-                        int k = i;
-
-                        if (Board[k, j].Owner == turn)
-                        {
-                            while (k <= n - 2)
-                            {
-                                if (Board[k + 1, j] != null)
-                                {
-                                    if (Board[k + 1, j].Owner != turn)
-                                    {
-                                        var temp = Fight(Board[k, j], Board[k + 1, j]);
-                                        Board[k, j] = temp[0];
-                                        Board[k + 1, j] = temp[1];
-                                        if (Board[k, j].Health <= 0)
-                                        {
-                                            DestroyCard(k, j);
-                                        }
-
-                                        if (Board[k + 1, j].Health <= 0)
-                                        {
-                                            DestroyCard(k + 1, j);
-                                            if (Board[k, j] != null)
-                                            {
-                                                Board[k + 1, j] = Board[k, j];
-                                                Board[k, j].transform.position = coor[k + 1, j].position;
-                                                Board[k, j] = null;
-                                            }
-                                        }
-
-                                        moved = true;
-                                    }
-
-                                    break;
-                                }
-
-                                Board[k + 1, j] = Board[k, j];
-                                Board[k, j].transform.position = coor[k + 1, j].position;
-                                Board[k, j] = null;
-                                moved = true;
-                                k++;
-                            }
-
-                        }
-                    }
-
-                }
-
-                if (moved)
-                {
-                    NextTurn();
-                    RollTheCards();
-                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                }
+                Move(Directions.Top);
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                bool moved = false;
-                for (int i = 0; i < n; i++)
-                for (int j = 1; j < m; j++)
-                {
-
-                    if (Board[i, j] != null)
-                    {
-                        int k = j;
-                        if (Board[i, k].Owner == turn)
-                        {
-                            while (k > 0)
-                            {
-                                if (Board[i, k - 1] != null)
-                                {
-                                    if (Board[i, k - 1].Owner != turn)
-                                    {
-                                        var temp = Fight(Board[i, k], Board[i, k - 1]);
-                                        Board[i, k] = temp[0];
-                                        Board[i, k - 1] = temp[1];
-                                        if (Board[i, k].Health <= 0)
-                                        {
-                                            DestroyCard(i, k);
-                                        }
-
-                                        if (Board[i, k - 1].Health <= 0)
-                                        {
-                                            DestroyCard(i, k - 1);
-                                            if (Board[i, k] != null)
-                                            {
-                                                Board[i, k - 1] = Board[i, k];
-                                                Board[i, k].transform.position = coor[i, k - 1].position;
-                                                Board[i, k] = null;
-
-                                            }
-                                        }
-
-                                        moved = true;
-                                    }
-
-                                    break;
-                                }
-                                else
-                                {
-                                    Board[i, k - 1] = Board[i, k];
-                                    Board[i, k].transform.position = coor[i, k - 1].position;
-                                    Board[i, k] = null;
-                                    moved = true;
-                                }
-
-                                k--;
-                            }
-                        }
-                    }
-
-                }
-
-                if (moved)
-                {
-                    NextTurn();
-                    RollTheCards();
-                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                }
+                Move(Directions.Left);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                bool moved = false;
-                for (int i = 0; i < n; i++)
-                for (int j = m - 2; j >= 0; j--)
-                {
-                    if (Board[i, j] != null)
-                    {
-                        int k = j;
-                        if (Board[i, k].Owner == turn)
-                        {
-
-                            while (k <= m - 2)
-                            {
-                                if (Board[i, k + 1] != null)
-                                {
-                                    if (Board[i, k + 1].Owner != turn)
-                                    {
-                                        var temp = Fight(Board[i, k], Board[i, k + 1]);
-                                        Board[i, k] = temp[0];
-                                        Board[i, k + 1] = temp[1];
-
-                                        if (Board[i, k].Health <= 0)
-                                        {
-                                            DestroyCard(i, k);
-                                        }
-
-                                        if (Board[i, k + 1].Health <= 0)
-                                        {
-                                            DestroyCard(i, k + 1);
-                                            if (Board[i, k] != null)
-                                            {
-                                                Board[i, k + 1] = Board[i, k];
-                                                Board[i, k].transform.position = coor[i, k + 1].position;
-                                                Board[i, k] = null;
-                                            }
-                                        }
-
-                                        moved = true;
-                                    }
-
-                                    break;
-                                }
-                                else
-                                {
-                                    Board[i, k + 1] = Board[i, k];
-                                    Board[i, k].transform.position = coor[i, k + 1].position;
-                                    Board[i, k] = null;
-                                    moved = true;
-                                }
-
-                                k++;
-                            }
-
-                        }
-                    }
-                }
-
-                if (moved)
-                {
-                    NextTurn();
-                    RollTheCards();
-                    GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                }
+                Move(Directions.Right);
             }
         }
     }
-    public Card[,] GetField()
-    {
-        return Board;
-    }
-    public Card[,] MoveField(Card[,] field, Directions dir)
+    public static Card[,] MoveField(Card[,] field, Directions dir)
     { 
+
         switch (dir)
         {
             case Directions.Top:
@@ -809,7 +847,7 @@ public class Battle : MonoBehaviour
         }
     }
 
-    public List<Card> Fight(Card c1, Card c2)
+    public static List<Card> Fight(Card c1, Card c2)
     {
         var ret = new List<Card>();
         c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;

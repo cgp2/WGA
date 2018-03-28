@@ -35,7 +35,7 @@ public class Card_Place_Creation : MonoBehaviour {
                 card_places[i, j].transform.parent = gameObject.transform;
                 card_places[i, j].transform.localScale = new Vector3(0.5f, 1.5f, 1);
                 card_places[i, j].transform.position = new Vector3(card_places[i, j].transform.position.x-collider.bounds.size.x/2+(i+1)*diffx+xmargin, card_places[i,j].transform.position.y-collider.bounds.size.y/2+(j+0.3f)*diffy+ymargin, -card_places[i, j].transform.position.z);
-                Battle.coor[j,i] = card_places[i, j].transform;
+                Battle.coor[j,i] = card_places[i, j];
 
             }
 	}
