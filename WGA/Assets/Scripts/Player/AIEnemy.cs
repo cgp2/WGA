@@ -6,7 +6,7 @@ public class AIEnemy : MonoBehaviour
 {
     private Player possesedPlayer;
     private SkillMaster skillMaster;
-
+    public GameObject prefab;
     private void Awake()
     {
 
@@ -138,8 +138,9 @@ public class AIEnemy : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    var c= Instantiate(GameObject.Find("card#0/player=Player2"));
-                    if(Battle.Board[i,j].Owner!=Battle.Player2)
+                    //var c= Instantiate(prefab);
+                    var c = Instantiate(GameObject.Find("card#0/player=Player2"));
+                    if (Battle.Board[i,j].Owner!=Battle.Player2)
                     {
                         c.GetComponent<Card>().Owner = Battle.Player1;
                     }
@@ -158,6 +159,10 @@ public class AIEnemy : MonoBehaviour
                     field2[i, j] = c.GetComponent<Card>();
                     c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                     field3[i, j] = c.GetComponent<Card>();
+                    field0[i, j].OnBoard = true;
+                    field1[i, j].OnBoard = true;
+                    field2[i, j].OnBoard = true;
+                    field3[i, j].OnBoard = true;
                     // field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                     Destroy(c);
                 }
