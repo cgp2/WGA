@@ -149,7 +149,6 @@ public class AIEnemy : MonoBehaviour
                     field1[i, j] = new Card();
                     field2[i, j] = new Card();
                     field3[i, j] = new Card();
-                    GameObject obj = new GameObject();
 
                     c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                     field0[i, j] = c.GetComponent<Card>();
@@ -169,81 +168,86 @@ public class AIEnemy : MonoBehaviour
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field3, Directions.Bottom));
 
-        var temp = Battle.MoveField(field0, Directions.Top);
-        if (temp != null)
-            fields.Add(temp);
-        //fields.Add(Battle.MoveField(field0, Directions.Top));
-        temp = Battle.MoveField(field1, Directions.Left);
-        if (temp != null)
-            fields.Add(temp);
-        //fields.Add(Battle.MoveField(field1, Directions.Left));
-        temp = Battle.MoveField(field2, Directions.Right);
-        if (temp != null)
-            fields.Add(temp);
-        //fields.Add(Battle.MoveField(field2, Directions.Right));
-        temp = Battle.MoveField(field3, Directions.Right);
-        if (temp != null)
-            fields.Add(temp);
-        //fields.Add(Battle.MoveField(field3, Directions.Bottom));
+        //var temp = Battle.MoveField(field0, Directions.Top);
+        //if (temp != null)
+        //    fields.Add(temp);
+        fields.Add(Battle.MoveField(field0, Directions.Top));
+        //temp = Battle.MoveField(field1, Directions.Left);
+        //if (temp != null)
+        //    fields.Add(temp);
+        fields.Add(Battle.MoveField(field1, Directions.Left));
+        //temp = Battle.MoveField(field2, Directions.Right);
+        //if (temp != null)
+        //    fields.Add(temp);
+        fields.Add(Battle.MoveField(field2, Directions.Right));
+        //temp = Battle.MoveField(field3, Directions.Right);
+        //if (temp != null)
+        //    fields.Add(temp);
+        fields.Add(Battle.MoveField(field3, Directions.Bottom));
         var maxUtility = int.MinValue;
+        int numberOfMax=0;
         for (var i = 0; i < fields.Count; i++)
         {
             var field = fields[i];
             var utility = 0;
-            foreach (var card in field)
-            {
-                if (card)
+            if (field != null)
+                foreach (var card in field)
                 {
-                    if (card.Owner == possesedPlayer)
+                    if (card)
                     {
-                        utility += card.Attack + card.Health + card.Shield;
-                    }
-                    else
-                    {
-                        utility -= card.Attack + card.Health + card.Shield;
+                        if (card.Owner == possesedPlayer)
+                        {
+                            utility += card.Attack + card.Health + card.Shield;
+                        }
+                        else
+                        {
+                            utility -= card.Attack + card.Health + card.Shield;
+                        }
                     }
                 }
-            }
+            else
+                utility = int.MinValue;
 
             if (utility > maxUtility)
             {
                 maxUtility = utility;
-
-                switch (i)
-                {
-                    case 0:
-                        ret = new MovementAction()
-                        {
-                            Utillity = utility,
-                            Direction = Directions.Top
-                        };
-                        break;
-                    case 1:
-                        ret = new MovementAction()
-                        {
-                            Utillity = utility,
-                            Direction = Directions.Left
-                        };
-                        break;
-                    case 2:
-                        ret = new MovementAction()
-                        {
-                            Utillity = utility,
-                            Direction = Directions.Right
-                        };
-                        break;
-                    case 3:
-                        ret = new MovementAction()
-                        {
-                            Utillity = utility,
-                            Direction = Directions.Bottom
-                        };
-                        break;
-                }
-               
+                numberOfMax = i;
             }
+               
         }
+        switch (numberOfMax)
+        {
+            case 0:
+                ret = new MovementAction()
+                {
+                    Utillity = maxUtility,
+                    Direction = Directions.Top
+                };
+                break;
+            case 1:
+                ret = new MovementAction()
+                {
+                    Utillity = maxUtility,
+                    Direction = Directions.Left
+                };
+                break;
+            case 2:
+                ret = new MovementAction()
+                {
+                    Utillity = maxUtility,
+                    Direction = Directions.Right
+                };
+                break;
+            case 3:
+                ret = new MovementAction()
+                {
+                    Utillity = maxUtility,
+                    Direction = Directions.Bottom
+                };
+                break;
 
+
+        }
         return ret;
     }
 

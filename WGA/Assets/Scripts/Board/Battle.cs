@@ -8,7 +8,7 @@ using UnityEngine;
 public class Battle : MonoBehaviour
 {
     public static int n =4;
-    public static int m = 3;
+    public static int m = 4;
     public static Card[,] Board;
     public static GameObject[,] coor = new GameObject[n, m];
     public static Player turn;
@@ -492,8 +492,6 @@ public class Battle : MonoBehaviour
                     x.GetChild(3).GetComponent<Text>().text = "" + Board[i, j].Info.Name;
                 }
             }
-        Debug.LogWarning(Board);
-        Debug.LogWarning(coor);
     }
     public static void Set_Card(int x, int y, Card tg)
     {
@@ -509,8 +507,6 @@ public class Battle : MonoBehaviour
         targetcard.GetComponent<Card>().OnBoard = true;
         targetcard.GetComponent<test>().SetFalse();
         
-        //Debug.LogWarning("" + x + y);
-        //Debug.LogWarning(tg);
         Board[x, y] = tg;
         tg.Play(ref Board);
         //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
