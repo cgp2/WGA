@@ -7,21 +7,24 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
-    public static int n = 4;
+    public static int n =4;
     public static int m = 3;
     public static Card[,] Board;
     public static GameObject[,] coor = new GameObject[n, m];
     public static Player turn;
     public static Player Player1;
     public static Player Player2;
-  
+    static Vector3 rescalecard;
     public static int TurnNumber;
 
     private static bool lockedInput = false;
     // Use this for initialization
     void Start()
     {
+        float defaultscalex = 0.2601453f;
+        float defaultscaley = 0.4947458f;
         RollTheCards();
+        rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 3 / Battle.m, 1);
     }
     public static Card Get_Card(int x, int y)
     {
@@ -498,7 +501,7 @@ public class Battle : MonoBehaviour
         targetcard.transform.parent = coor[x,y].transform.parent;
         targetcard.transform.position = coor[x,y].transform.position;
         targetcard.GetComponent<BoxCollider2D>().enabled = false;
-        Player.Selectedcard.transform.localScale = new Vector3(0.2601453f, 0.4947458f, 1);
+        Player.Selectedcard.transform.localScale = rescalecard;
         Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0,1);
         Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
         Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
@@ -552,7 +555,8 @@ public class Battle : MonoBehaviour
                     for (int i = n - 2; i >= 0; i--)
                         for (int j = 0; j < m; j++)
                         {
-                            if (field[i, j] != null)
+                            
+                            if (field[i, j]!= null)
                             {
                                 int k = i;
 
@@ -613,7 +617,7 @@ public class Battle : MonoBehaviour
                         //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                     }
                     else
-                        return Board;
+                        return null;
                 }
             case Directions.Bottom:
                 {
@@ -687,7 +691,7 @@ public class Battle : MonoBehaviour
                         //RollTheCards();
                     }
                     else
-                        return Board;
+                        return null;
 
                 }
             case Directions.Left:
@@ -760,7 +764,7 @@ public class Battle : MonoBehaviour
 
                     }
                     else
-                        return Board;
+                        return  null;
                 }
             case Directions.Right:
                 {
@@ -832,7 +836,7 @@ public class Battle : MonoBehaviour
                        // GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                     }
                     else
-                        return Board;
+                        return null;
                 }
         }
         return field;

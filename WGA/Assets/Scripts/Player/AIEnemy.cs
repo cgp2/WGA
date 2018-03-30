@@ -138,30 +138,53 @@ public class AIEnemy : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
+                    var c= Instantiate(GameObject.Find("card#0/player=Player2"));
+                    if(Battle.Board[i,j].Owner!=Battle.Player2)
+                    {
+                        c.GetComponent<Card>().Owner = Battle.Player1;
+                    }
                     var Board = Battle.Board;
                     SkillMaster skm = GameObject.Find("Field").GetComponent<SkillMaster>();
                     field0[i, j] = new Card();
                     field1[i, j] = new Card();
                     field2[i, j] = new Card();
                     field3[i, j] = new Card();
+                    GameObject obj = new GameObject();
 
-
-                    field0[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
-                    field1[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
-                    field2[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
-                    field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
-
+                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field0[i, j] = c.GetComponent<Card>();
+                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field1[i, j] = c.GetComponent<Card>();
+                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field2[i, j] = c.GetComponent<Card>();
+                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    field3[i, j] = c.GetComponent<Card>();
+                    // field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    Destroy(c);
                 }
             }
-
+        
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field0, Directions.Top));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field1, Directions.Left));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field3, Directions.Bottom));
-        fields.Add(Battle.MoveField(field0, Directions.Top));
-        fields.Add(Battle.MoveField(field1, Directions.Left));
-        fields.Add(Battle.MoveField(field2, Directions.Right));
-        fields.Add(Battle.MoveField(field3, Directions.Bottom));
+
+        var temp = Battle.MoveField(field0, Directions.Top);
+        if (temp != null)
+            fields.Add(temp);
+        //fields.Add(Battle.MoveField(field0, Directions.Top));
+        temp = Battle.MoveField(field1, Directions.Left);
+        if (temp != null)
+            fields.Add(temp);
+        //fields.Add(Battle.MoveField(field1, Directions.Left));
+        temp = Battle.MoveField(field2, Directions.Right);
+        if (temp != null)
+            fields.Add(temp);
+        //fields.Add(Battle.MoveField(field2, Directions.Right));
+        temp = Battle.MoveField(field3, Directions.Right);
+        if (temp != null)
+            fields.Add(temp);
+        //fields.Add(Battle.MoveField(field3, Directions.Bottom));
         var maxUtility = int.MinValue;
         for (var i = 0; i < fields.Count; i++)
         {

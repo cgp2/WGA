@@ -942,7 +942,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!114 &2063685783
 MonoBehaviour:
@@ -966,10 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d997359cef1946ba63d3c7c089507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: 4
-  n: 3
-  xmargin: 10
-  ymargin: 10
   field: {fileID: 2063685778}
   card_place: {fileID: 1218006652207174, guid: 28a29eb843a1f574bb3a820eed02fe74, type: 2}
 --- !u!114 &2063685785
