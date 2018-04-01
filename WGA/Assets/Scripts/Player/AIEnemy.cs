@@ -138,8 +138,8 @@ public class AIEnemy : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    //var c= Instantiate(prefab);
-                    var c = Instantiate(prefab);
+                    var c= Instantiate(prefab);
+                    //var c = prefab;
                     if (Battle.Board[i,j].Owner!=Battle.Player2)
                     {
                         c.GetComponent<Card>().Owner = Battle.Player1;
@@ -163,8 +163,8 @@ public class AIEnemy : MonoBehaviour
                     field1[i, j].OnBoard = true;
                     field2[i, j].OnBoard = true;
                     field3[i, j].OnBoard = true;
-                    // field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                     Destroy(c);
+                    // field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                 }
             }
         

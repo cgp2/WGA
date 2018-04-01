@@ -11,8 +11,8 @@ public class Card_Place_Creation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        int standartn=4, standartm=3;
-        float xmarginstandart=20, ymarginstandart=15;
+        int standartn=4, standartm=4;
+        float xmarginstandart=20, ymarginstandart=20;
         Vector3 standartsize = new Vector3(0.5f, 1.5f, 1);
         card_places = new GameObject[n, m];
         var collider = field.GetComponent<BoxCollider2D>();
@@ -31,7 +31,7 @@ public class Card_Place_Creation : MonoBehaviour {
                 //card_places[i, j].transform.localScale = new Vector3(0.5f, 1.5f, 1);
                 card_places[i, j].transform.localScale = scale;
                 var t = card_places[i, j].GetComponent<MeshCollider>().bounds.size;
-                card_places[i, j].transform.position = new Vector3(field.transform.position.x -collider.bounds.size.x/5 + j *(xmargin), field.transform.position.y -  collider.bounds.size.y/4 + i * ymargin, -20);
+                card_places[i, j].transform.position = new Vector3(field.transform.position.x -collider.bounds.size.x/5 + j *(xmargin), field.transform.position.y -  collider.bounds.size.y/3 + i * ymargin, -20);
                 Battle.coor[i,j] = card_places[i, j];
 
             }
