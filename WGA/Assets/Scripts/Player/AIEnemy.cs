@@ -6,7 +6,7 @@ public class AIEnemy : MonoBehaviour
 {
     private Player possesedPlayer;
     private SkillMaster skillMaster;
-    public GameObject prefab;
+    private GameObject prefab;
     private void Awake()
     {
 
@@ -139,7 +139,7 @@ public class AIEnemy : MonoBehaviour
                 if (Battle.Board[i, j] != null)
                 {
                     //var c= Instantiate(prefab);
-                    var c = Instantiate(GameObject.Find("card#0/player=Player2"));
+                    var c = Instantiate(prefab);
                     if (Battle.Board[i,j].Owner!=Battle.Player2)
                     {
                         c.GetComponent<Card>().Owner = Battle.Player1;
@@ -261,6 +261,9 @@ public class AIEnemy : MonoBehaviour
     {
         possesedPlayer = GetComponentInParent<Player>();
         skillMaster = GameObject.Find("Field").GetComponent<SkillMaster>();
+        prefab = Instantiate(GameObject.Find("card#0/player=Player2"));
+        prefab.GetComponent<CardRotation>().enabled = false;
+        prefab.transform.position = new Vector3(0, 0, 10000);
     }
 
     // Update is called once per frameя
