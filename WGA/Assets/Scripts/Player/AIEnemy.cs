@@ -15,8 +15,12 @@ public class AIEnemy : MonoBehaviour
     public Action MakeMove()
     {
         var ret = new Action();
+
+        Battle.SaveBoard();
+
         var maxPlacingActionUt = CalculateCardPlacingUtility();
         var maxMovingActionUt = CalculateMovementUtility();
+
 
         ret.Movement = maxMovingActionUt;
         ret.Placing = maxPlacingActionUt;
@@ -43,28 +47,47 @@ public class AIEnemy : MonoBehaviour
                 {
                     if (!Battle.Board[m, n])
                     {
-                        var field = (Card[,])Battle.Board.Clone();
+                        //var field = (Card[,])Battle.Board.Clone();
+
+                        var field = new Card[Battle.n, Battle.m];
+
+                        for (int l = 0; l < Battle.n; l++)
+                        {
+                            for (int j = 0; j < Battle.m; j++)
+                            {
+                                if (Battle.Board[l, j] != null)
+                                {
+                                    var c = Instantiate(prefab);
+
+                                    if (Battle.Board[l, j].Owner != Battle.Player2)
+                                    {
+                                        c.GetComponent<Card>().Owner = Battle.Player1;
+                                    }
+
+
+                                    //field0[i, j] = Battle.Board[i, j];
+                                    //field1[i, j] = Battle.Board[i, j];
+                                    //field2[i, j] = Battle.Board[i, j];
+                                    //field3[i, j] = Battle.Board[i, j];
+
+                                    field[l, j] = new Card();
+                             
+                                    c.GetComponent<Card>().Initialize(Battle.Board[l, j].Info.Name, Battle.Board[l, j].Health, Battle.Board[l, j].Shield, Battle.Board[l, j].Attack, Battle.Board[l, j].Info.Description, skillMaster,
+                                        Battle.Board[l, j].Info.BattleCryNames);
+                                    field[l, j] = c.GetComponent<Card>();
+
+                                    field[l, j].OnBoard = true;
+
+                                    Destroy(c);
+                                }
+                            }
+                        }
+
+                        var bufMap = (SlotBuff[,]) GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
                         var utility = 0;
                         field[m, n] = crd;
 
-                        crd.Play(ref field);
-                        //if (crd.Info.BattleCryNames.Length != 0)
-                        //{
-                        //    foreach (var input in crd.Info.BattleCryInput)
-                        //    {
-                        //        skillMaster.ExecuteSkillByInput(crd, input, ref field);
-                        //        skillMaster.ApplyBufsToBoard(ref field);
-                        //    }
-                        //}
-
-                        //if (crd.Info.AuraNames.Length != 0)
-                        //{
-                        //    foreach (var input in crd.Info.AuraInput)
-                        //    {
-                        //        skillMaster.ExecuteSkillByInput(crd, input, ref field);
-                        //        skillMaster.ApplyBufsToBoard(ref field);
-                        //    }
-                        //}
+                        crd.Play(ref field, ref bufMap);
 
                         foreach (var card in field)
                         {
@@ -86,7 +109,7 @@ public class AIEnemy : MonoBehaviour
                             foreach (var input in crd.Info.BattleCryInput)
                             {
                                 skillMaster.ReExecuteSkillByInput(crd, input, ref field);
-                                skillMaster.ApplyBufsToBoard(ref field);
+                                skillMaster.ApplyBufsToBoard(ref field, ref bufMap);
                             }
                         }
 
@@ -95,7 +118,7 @@ public class AIEnemy : MonoBehaviour
                             foreach (var input in crd.Info.AuraInput)
                             {
                                 skillMaster.ReExecuteSkillByInput(crd, input, ref field);
-                                skillMaster.ApplyBufsToBoard(ref field);
+                                skillMaster.ApplyBufsToBoard(ref field, ref bufMap);
                             }
                         }
 
@@ -116,6 +139,7 @@ public class AIEnemy : MonoBehaviour
             }
         }
 
+        Battle.RestoreBoard();
         return ret;
     }
 
@@ -133,60 +157,56 @@ public class AIEnemy : MonoBehaviour
         var field2 = new Card[Battle.n, Battle.m];
         var field3 = new Card[Battle.n, Battle.m];
 
-        for (int i =0;i<Battle.n;i++)
-            for(int j=0;j<Battle.m;j++)
+        for (int i = 0; i < Battle.n; i++)
+        {
+            for (int j = 0; j < Battle.m; j++)
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    var c= Instantiate(prefab);
-                    //var c = prefab;
-                    if (Battle.Board[i,j].Owner!=Battle.Player2)
+                    var c = Instantiate(prefab);
+
+                    if (Battle.Board[i, j].Owner != Battle.Player2)
                     {
                         c.GetComponent<Card>().Owner = Battle.Player1;
                     }
-                    var Board = Battle.Board;
-                    SkillMaster skm = GameObject.Find("Field").GetComponent<SkillMaster>();
+
+
+                    //field0[i, j] = Battle.Board[i, j];
+                    //field1[i, j] = Battle.Board[i, j];
+                    //field2[i, j] = Battle.Board[i, j];
+                    //field3[i, j] = Battle.Board[i, j];
+
                     field0[i, j] = new Card();
                     field1[i, j] = new Card();
                     field2[i, j] = new Card();
                     field3[i, j] = new Card();
 
-                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+                    c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        Battle.Board[i, j].Info.BattleCryNames);
                     field0[i, j] = c.GetComponent<Card>();
-                    c = Instantiate(prefab);
-                    //var c = prefab;
-                    if (Battle.Board[i, j].Owner != Battle.Player2)
-                    {
-                        c.GetComponent<Card>().Owner = Battle.Player1;
-                    }
-                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+
+                    c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        Battle.Board[i, j].Info.BattleCryNames);
                     field1[i, j] = c.GetComponent<Card>();
-                    Destroy(c);
-                    c = Instantiate(prefab);
-                    //var c = prefab;
-                    if (Battle.Board[i, j].Owner != Battle.Player2)
-                    {
-                        c.GetComponent<Card>().Owner = Battle.Player1;
-                    }
-                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+
+                    c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        Battle.Board[i, j].Info.BattleCryNames);
                     field2[i, j] = c.GetComponent<Card>();
-                    c = Instantiate(prefab);
-                    //var c = prefab;
-                    if (Battle.Board[i, j].Owner != Battle.Player2)
-                    {
-                        c.GetComponent<Card>().Owner = Battle.Player1;
-                    }
-                    c.GetComponent<Card>().Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
+
+                    c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        Battle.Board[i, j].Info.BattleCryNames);
                     field3[i, j] = c.GetComponent<Card>();
+
                     field0[i, j].OnBoard = true;
                     field1[i, j].OnBoard = true;
                     field2[i, j].OnBoard = true;
                     field3[i, j].OnBoard = true;
+
                     Destroy(c);
-                    // field3[i, j].Initialize(Board[i, j].Info.Name, Board[i, j].Health, Board[i, j].Shield, Board[i, j].Attack, Board[i, j].Info.Description, skm, Board[i, j].Info.BattleCryNames);
                 }
             }
-        
+        }
+
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field0, Directions.Top));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field1, Directions.Left));
         //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
@@ -195,27 +215,40 @@ public class AIEnemy : MonoBehaviour
         //var temp = Battle.MoveField(field0, Directions.Top);
         //if (temp != null)
         //    fields.Add(temp);
-        fields.Add(Battle.MoveField(field0, Directions.Top));
+        var bufMap = (SlotBuff[,]) GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
+        fields.Add(Battle.MoveField(field0, bufMap, Directions.Top));
+        skillMaster.RebuidBufMap();
+        Battle.RestoreBoard();
         //temp = Battle.MoveField(field1, Directions.Left);
         //if (temp != null)
         //    fields.Add(temp);
-        fields.Add(Battle.MoveField(field1, Directions.Left));
+        bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
+        fields.Add(Battle.MoveField(field1, bufMap, Directions.Left));
+        skillMaster.RebuidBufMap();
+        Battle.RestoreBoard();
         //temp = Battle.MoveField(field2, Directions.Right);
         //if (temp != null)
         //    fields.Add(temp);
-        fields.Add(Battle.MoveField(field2, Directions.Right));
+        bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
+        fields.Add(Battle.MoveField(field2, bufMap, Directions.Right));
+        skillMaster.RebuidBufMap();
+        Battle.RestoreBoard();
         //temp = Battle.MoveField(field3, Directions.Right);
         //if (temp != null)
         //    fields.Add(temp);
-        fields.Add(Battle.MoveField(field3, Directions.Bottom));
+        bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
+        fields.Add(Battle.MoveField(field3, bufMap, Directions.Bottom));
+        skillMaster.RebuidBufMap();
+        Battle.RestoreBoard();
+
         var maxUtility = int.MinValue;
-        int numberOfMax=0;
+        var numberOfMax=0;
         for (var i = 0; i < fields.Count; i++)
         {
-            var field = fields[i];
             var utility = 0;
-            if (field != null)
-                foreach (var card in field)
+            if (fields[i] != null)
+            {
+                foreach (var card in fields[i])
                 {
                     if (card)
                     {
@@ -229,16 +262,16 @@ public class AIEnemy : MonoBehaviour
                         }
                     }
                 }
-            else
-                utility = int.MinValue;
+            }
+            else utility = int.MinValue;
 
             if (utility > maxUtility)
             {
                 maxUtility = utility;
                 numberOfMax = i;
-            }
-               
+            }       
         }
+
         switch (numberOfMax)
         {
             case 0:
