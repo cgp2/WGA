@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class test : MonoBehaviour {
     public bool needtorescaleplus, needtorescaleminus;
-    float standartscalex, standartscaley,standartcoorz;
+    public float standartscalex, standartscaley, standartcoorz;
+    public Vector3 standartpos;
     float deltaxscale, deltayscale,deltaypos;
     int counter;
     // Use this for initialization
@@ -17,6 +18,8 @@ public class test : MonoBehaviour {
         deltaxscale = (20.942762f - standartscalex) / 20;
         deltayscale = (20.947458f - standartscaley) / 20;
         deltaypos =transform.position.y/Mathf.Abs(transform.position.y)*25/20;
+        standartpos = transform.position;
+
     }
 	
 	// Update is called once per frame
@@ -89,7 +92,7 @@ public class test : MonoBehaviour {
             counter = 0;
         }
     }
-    private bool IsClose(float actual, float ideal)
+    public bool IsClose(float actual, float ideal)
     {
         if (Mathf.Abs(actual - ideal) < 0.5f)
             return true;

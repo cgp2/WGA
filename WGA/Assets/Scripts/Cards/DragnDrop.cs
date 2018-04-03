@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DragnDrop : MonoBehaviour {
     public bool dragnow;
-    private Vector3 defpos;
+    public Vector3 defpos;
     // Use this for initialization
     void Start () {
         dragnow = false;
@@ -23,8 +23,10 @@ public class DragnDrop : MonoBehaviour {
     private void OnMouseDown()
     {
         dragnow = true;
-        defpos = this.transform.position;
-        if(this.GetComponent<test>().needtorescaleplus)
+        
+        var testscript = this.GetComponent<test>();
+        defpos = testscript.standartpos;
+        if (testscript.needtorescaleplus || testscript.IsClose(this.transform.localScale.x,testscript.standartscalex) || testscript.IsClose(transform.localScale.y,testscript.standartscaley))
         {
             this.GetComponent<test>().needtorescaleplus = false;
             this.GetComponent<test>().needtorescaleminus = true;
@@ -34,6 +36,23 @@ public class DragnDrop : MonoBehaviour {
     private void OnMouseUp()
     {
         dragnow = false;
-        this.transform.position = defpos;
+        if(!DropCard(Input.mousePosition))
+            this.transform.position = defpos;
+
+    }
+    private bool DropCard(Vector3 mousePosition)
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        if(Physics.Raycast(ray,out hit))
+        {
+            Transform objectHit = hit.transform;
+            var xy = objectHit.name.Split(',');
+            if (Battle.Get_Card(int.Parse(xy[1]), int.Parse(xy[2])) != null)
+                return false ;
+            Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
+            return true;
+        }
+        return false;
     }
 }
