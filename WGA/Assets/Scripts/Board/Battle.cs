@@ -18,6 +18,8 @@ public class Battle : MonoBehaviour
     public static int TurnNumber;
 
     private static bool lockedInput = false;
+    private static Card[,] savedBoard;
+
     // Use this for initialization
     void Start()
     {
@@ -72,7 +74,7 @@ public class Battle : MonoBehaviour
                     }
                 }
             }
-            GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(ref Board);
+            GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
             UpdateUI();
 
         }
@@ -508,7 +510,7 @@ public class Battle : MonoBehaviour
         targetcard.GetComponent<test>().SetFalse();
         
         Board[x, y] = tg;
-        tg.Play(ref Board);
+        tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
         //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
         Player.Selectedcard = null;
         Battle.NextTurn();
@@ -540,7 +542,7 @@ public class Battle : MonoBehaviour
             }
         }
     }
-    public static Card[,] MoveField(Card[,] field, Directions dir)
+    public static Card[,] MoveField(Card[,] field, SlotBuff[,] bufMap, Directions dir)
     { 
 
         switch (dir)
@@ -570,14 +572,14 @@ public class Battle : MonoBehaviour
                                                 if (field[k, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k, j);
-                                                    field[k, j].Destroy(ref field);
+                                                    field[k, j].Destroy(ref field, ref bufMap);
                                                     field[k, j] = null;
                                                 }
 
                                                 if (field[k + 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k + 1, j);
-                                                    field[k + 1, j].Destroy(ref field);
+                                                    field[k + 1, j].Destroy(ref field, ref bufMap);
                                                     field[k + 1, j] = null;
                                                     if (field[k, j] != null)
                                                     {
@@ -641,7 +643,7 @@ public class Battle : MonoBehaviour
                                                 if (field[k, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k, j);//переписать DestroyCard
-                                                    field[k, j].Destroy(ref field);
+                                                    field[k, j].Destroy(ref field, ref bufMap);
                                                     //Destroy(result[n, m].gameObject);
                                                     field[k, j] = null;
                                                 }
@@ -649,7 +651,7 @@ public class Battle : MonoBehaviour
                                                 if (field[k - 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k - 1, j);
-                                                    field[k-1, j].Destroy(ref field);
+                                                    field[k-1, j].Destroy(ref field, ref bufMap);
                                                     field[k-1, j] = null;
                                                     if (field[k, j] != null)
                                                     {
@@ -714,14 +716,14 @@ public class Battle : MonoBehaviour
                                                 if (field[i, k].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k);
-                                                    field[i, k].Destroy(ref field);
+                                                    field[i, k].Destroy(ref field, ref bufMap);
                                                     field[i, k] = null;
                                                 }
 
                                                 if (field[i, k - 1].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k - 1);
-                                                    field[i, k - 1].Destroy(ref field);
+                                                    field[i, k - 1].Destroy(ref field, ref bufMap);
                                                     field[i, k - 1] = null;
                                                     if (Board[i, k] != null)
                                                     {
@@ -787,14 +789,14 @@ public class Battle : MonoBehaviour
                                                 if (field[i, k].Health <= 0)
                                                 {
                                                     // DestroyCard(i, k);
-                                                    field[i, k].Destroy(ref field);
+                                                    field[i, k].Destroy(ref field, ref bufMap);
                                                     field[i, k] = null;
                                                 }
 
                                                 if (field[i, k + 1].Health <= 0)
                                                 {
                                                     //DestroyCard(i, k + 1);
-                                                    field[i, k + 1].Destroy(ref field);
+                                                    field[i, k + 1].Destroy(ref field, ref bufMap);
                                                     field[i, k + 1] = null;
                                                     if (field[i, k] != null)
                                                     {
@@ -841,19 +843,49 @@ public class Battle : MonoBehaviour
     {
         if (Board[n, m] != null)
         {
-            Board[n, m].Destroy(ref Board);
+            Board[n, m].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
             Destroy(Board[n, m].gameObject);
             Board[n, m] = null;
+        }
+    }
+
+    public static void SaveBoard()
+    {
+        savedBoard = new Card[n, m];
+        for (int l = 0; l < n; l++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (Board[l, j] != null)
+                {
+                    savedBoard[l, j] = Board[l, j];               
+                }
+            }
+        }
+    }
+
+    public static void RestoreBoard()
+    {
+        Board = new Card[n, m];
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (savedBoard[i, j] != null)
+                {
+                    Board[i, j] = savedBoard[i, j];
+                }
+            }
         }
     }
 
     public static List<Card> Fight(Card c1, Card c2)
     {
         var ret = new List<Card>();
-        c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
-        c1.StaticSHLD = c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
-        c2.StaticHP = c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
-        c2.StaticSHLD = c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
+      /*  c1.StaticHP = */c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
+      /*  c1.StaticSHLD = */c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
+      /*  c2.StaticHP = */c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
+      /*  c2.StaticSHLD = */c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
         ret.Add(c1);
         ret.Add(c2);
         return ret;
