@@ -59,29 +59,35 @@ public class test : MonoBehaviour {
     }
     private void OnMouseEnter()
     {
-        counter = 0;
-        if(gameObject.GetComponent<Card>().Owner == Battle.turn)
+        if (!this.GetComponent<DragnDrop>().dragnow)
         {
-            this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = gameObject.GetComponent<Card>().Info.Description;
-            //this.transform.localScale = new Vector3(10.942762f, 10.947458f, 1);
-            needtorescaleplus = true;
-            needtorescaleminus = false;
+            counter = 0;
+            if (gameObject.GetComponent<Card>().Owner == Battle.turn)
+            {
+                this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = gameObject.GetComponent<Card>().Info.Description;
+                //this.transform.localScale = new Vector3(10.942762f, 10.947458f, 1);
+                needtorescaleplus = true;
+                needtorescaleminus = false;
+            }
         }
     }
     public void OnMouseExit()
     {
-        counter = 0;
-        this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = "";
-        if (!this.GetComponent<Card>().OnBoard)
+        if (!this.GetComponent<DragnDrop>().dragnow)
         {
-            if (gameObject.GetComponent<Card>().Owner == Battle.turn)
+            counter = 0;
+            this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = "";
+            if (!this.GetComponent<Card>().OnBoard)
             {
-                needtorescaleplus = false;
-                needtorescaleminus = true;
+                if (gameObject.GetComponent<Card>().Owner == Battle.turn)
+                {
+                    needtorescaleplus = false;
+                    needtorescaleminus = true;
+                }
+                // this.transform.localScale = new Vector3(4.942762f, 4.947458f, 1);
             }
-           // this.transform.localScale = new Vector3(4.942762f, 4.947458f, 1);
+            counter = 0;
         }
-        counter = 0;
     }
     private bool IsClose(float actual, float ideal)
     {
