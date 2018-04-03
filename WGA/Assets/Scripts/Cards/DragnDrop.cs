@@ -17,6 +17,7 @@ public class DragnDrop : MonoBehaviour {
         {
             var worldpos= Camera.main.ScreenToWorldPoint(Input.mousePosition);
             this.transform.position = new Vector3(worldpos.x, worldpos.y, this.transform.position.z);
+
         }
 	}
     private void OnMouseDown()
@@ -28,11 +29,11 @@ public class DragnDrop : MonoBehaviour {
             this.GetComponent<test>().needtorescaleplus = false;
             this.GetComponent<test>().needtorescaleminus = true;
         }
+
     }
     private void OnMouseUp()
     {
         dragnow = false;
         this.transform.position = defpos;
-
     }
 }
