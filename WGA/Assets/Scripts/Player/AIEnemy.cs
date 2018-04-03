@@ -163,12 +163,7 @@ public class AIEnemy : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    var c = Instantiate(prefab);
-
-                    if (Battle.Board[i, j].Owner != Battle.Player2)
-                    {
-                        c.GetComponent<Card>().Owner = Battle.Player1;
-                    }
+                    
 
 
                     //field0[i, j] = Battle.Board[i, j];
@@ -180,29 +175,52 @@ public class AIEnemy : MonoBehaviour
                     field1[i, j] = new Card();
                     field2[i, j] = new Card();
                     field3[i, j] = new Card();
+                    var c = Instantiate(prefab);
 
+                    if (Battle.Board[i, j].Owner != Battle.Player2)
+                    {
+                        c.GetComponent<Card>().Owner = Battle.Player1;
+                    }
                     c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                         Battle.Board[i, j].Info.BattleCryNames);
                     field0[i, j] = c.GetComponent<Card>();
+                    Destroy(c);
 
+                    c = Instantiate(prefab);
+                    if (Battle.Board[i, j].Owner != Battle.Player2)
+                    {
+                        c.GetComponent<Card>().Owner = Battle.Player1;
+                    }
                     c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                         Battle.Board[i, j].Info.BattleCryNames);
                     field1[i, j] = c.GetComponent<Card>();
+                    Destroy(c);
 
+                    c = Instantiate(prefab);
+                    if (Battle.Board[i, j].Owner != Battle.Player2)
+                    {
+                        c.GetComponent<Card>().Owner = Battle.Player1;
+                    }
                     c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                         Battle.Board[i, j].Info.BattleCryNames);
                     field2[i, j] = c.GetComponent<Card>();
+                    Destroy(c);
 
+                    c = Instantiate(prefab);
+                    if (Battle.Board[i, j].Owner != Battle.Player2)
+                    {
+                        c.GetComponent<Card>().Owner = Battle.Player1;
+                    }
                     c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                         Battle.Board[i, j].Info.BattleCryNames);
                     field3[i, j] = c.GetComponent<Card>();
+                    Destroy(c);
 
                     field0[i, j].OnBoard = true;
                     field1[i, j].OnBoard = true;
                     field2[i, j].OnBoard = true;
                     field3[i, j].OnBoard = true;
 
-                    Destroy(c);
                 }
             }
         }
