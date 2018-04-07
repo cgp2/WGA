@@ -51,4 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783311138590bb4ba1fed9362ed9d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hand: []
+  Hand: 
+  deck: []
+  crd: {fileID: 0}
+  sprites: []
+  fronSprite: {fileID: 0}
+  backSprite: {fileID: 0}

@@ -41,12 +41,18 @@ public class Player : MonoBehaviour {
     void Start()
     {
         var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
-        for (int i =0;i<cards.Length;i++)
+        var k = 0;
+        for (int i =0; i < cards.Length;i++)
         {
+            if (i % 2 != 0)
+                k++;
+
             var temp = Instantiate(crd);
             deck.Add(temp);
+
             deck[i].transform.parent = transform;
-            deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 15, -this.transform.position.y, -30);
+            //deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 12, this.transform.position.y, this.transform.position.z);
+            deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 15 * k , transform.position.y, -30);
             deck[i].GetComponent<Card>().Initialize(cards[i]);
             deck[i].GetComponent<Card>().Owner = this;
 
@@ -70,6 +76,8 @@ public class Player : MonoBehaviour {
             x.GetChild(2).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Attack;
             x.GetChild(3).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Info.Name;
             deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[0];
+
+           
             
         }
         Battle.UpdateUI();
