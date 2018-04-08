@@ -23,10 +23,11 @@ public class Battle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        float defaultscalex = 0.2601453f;
-        float defaultscaley = 0.5f;
+        //float defaultscalex = 0.2601453f;
+        //float defaultscaley = 0.5f;
         RollTheCards();
-        rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
+        //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
+        rescalecard = new Vector3(5, 5, 1);
     }
     public static Card Get_Card(int x, int y)
     {

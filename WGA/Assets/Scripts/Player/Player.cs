@@ -70,6 +70,11 @@ public class Player : MonoBehaviour {
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
             deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = fronSprite;
             deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = backSprite;
+            if (this.name == "Player1")
+            {
+                
+                //deck[i].GetComponent<Animator>().Play("Zalupon",0);
+            }
             var x = cord.transform.GetChild(0);
             x.GetChild(0).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Health;
             x.GetChild(1).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Shield;
