@@ -36,12 +36,12 @@ public class Battle : MonoBehaviour
     private void Awake()
     {
         Board = new Card[n, m];
-
+        
         Player1 = GameObject.Find("Player1").GetComponent<Player>();
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         turn = Player1;
         TurnNumber = 1;
-        GameObject.Find("RaundText").GetComponent<Text>().text = "Round " + TurnNumber;
+        GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
     }
     public static void NextTurn()
     {
@@ -49,7 +49,7 @@ public class Battle : MonoBehaviour
         {
             turn = Player1;
             TurnNumber++;
-            GameObject.Find("RaundText").GetComponent<Text>().text = "Round " + TurnNumber;
+            GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
             for (var i = 0; i < Board.GetLength(0); i++)
             {
                 for (var j = 0; j < Board.GetLength(1); j++)
@@ -104,8 +104,15 @@ public class Battle : MonoBehaviour
         {
             var winner = CalculateWiningPlayer();
             lockedInput = true;
-            GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
-            GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+            GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+
+            var t = GameObject.Find("BattleEndMenu");
+            var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+            CanvGroupBattleMenu.alpha = 1f;
+            CanvGroupBattleMenu.blocksRaycasts = true;
+
+            t = GameObject.Find("Main");
+            t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
         }
         else
         {
@@ -130,15 +137,29 @@ public class Battle : MonoBehaviour
             {
                 var winner = Player2;
                 lockedInput = true;
-                GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
-                GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+                GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+
+                var t = GameObject.Find("BattleEndMenu");
+                var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+                CanvGroupBattleMenu.alpha = 1f;
+                CanvGroupBattleMenu.blocksRaycasts = true;
+
+                t = GameObject.Find("Main");
+                t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
             }
             else if (!pl2HasCard && pl1HasCard)
             {
                 var winner = Player1;
                 lockedInput = true;
-                GameObject.Find("WinnerText").GetComponent<Text>().text = "Winner is  " + winner.name;
-                GameObject.Find("WinnerText").GetComponent<Text>().color = Color.white;
+                GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+
+                var t = GameObject.Find("BattleEndMenu");
+                var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+                CanvGroupBattleMenu.alpha = 1f;
+                CanvGroupBattleMenu.blocksRaycasts = true;
+
+                t = GameObject.Find("Main");
+                t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
             }
         }
       
@@ -521,6 +542,7 @@ public class Battle : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
+            UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
         else if (!lockedInput)
