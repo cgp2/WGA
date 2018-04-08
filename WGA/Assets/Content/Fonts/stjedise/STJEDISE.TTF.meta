@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7f5ee654763e02448ab399631efd11fa
+timeCreated: 1523124647
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: StarJedi Special Edition
+  fontNames:
+  - StarJedi Special Edition
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 67aa83ab00a6d784ebc1d3d907091fa8
+timeCreated: 1523124647
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 300
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Star Jedi Logo MonoLine
+  fontNames:
+  - Star Jedi Logo MonoLine
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
