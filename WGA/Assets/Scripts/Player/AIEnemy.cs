@@ -21,7 +21,6 @@ public class AIEnemy : MonoBehaviour
         var maxPlacingActionUt = CalculateCardPlacingUtility();
         var maxMovingActionUt = CalculateMovementUtility();
 
-
         ret.Movement = maxMovingActionUt;
         ret.Placing = maxPlacingActionUt;
 
@@ -47,8 +46,6 @@ public class AIEnemy : MonoBehaviour
                 {
                     if (!Battle.Board[m, n])
                     {
-                        //var field = (Card[,])Battle.Board.Clone();
-
                         var field = new Card[Battle.n, Battle.m];
 
                         for (int l = 0; l < Battle.n; l++)
@@ -63,12 +60,6 @@ public class AIEnemy : MonoBehaviour
                                     {
                                         c.GetComponent<Card>().Owner = Battle.Player1;
                                     }
-
-
-                                    //field0[i, j] = Battle.Board[i, j];
-                                    //field1[i, j] = Battle.Board[i, j];
-                                    //field2[i, j] = Battle.Board[i, j];
-                                    //field3[i, j] = Battle.Board[i, j];
 
                                     field[l, j] = new Card();
                              
@@ -148,10 +139,7 @@ public class AIEnemy : MonoBehaviour
         var ret = new MovementAction();
         ret.Utillity = int.MinValue;
         var fields = new List<Card[,]>();
-        //var field0 = (Card[,])Battle.Board.Clone();
-        //var field1 = (Card[,])Battle.Board.Clone();
-        //var field2 = (Card[,])Battle.Board.Clone();
-        //var field3 = (Card[,])Battle.Board.Clone();
+  
         var field0 = new Card[Battle.n,Battle.m];
         var field1 = new Card[Battle.n, Battle.m];
         var field2 = new Card[Battle.n, Battle.m];
@@ -163,14 +151,6 @@ public class AIEnemy : MonoBehaviour
             {
                 if (Battle.Board[i, j] != null)
                 {
-                    
-
-
-                    //field0[i, j] = Battle.Board[i, j];
-                    //field1[i, j] = Battle.Board[i, j];
-                    //field2[i, j] = Battle.Board[i, j];
-                    //field3[i, j] = Battle.Board[i, j];
-
                     field0[i, j] = new Card();
                     field1[i, j] = new Card();
                     field2[i, j] = new Card();
@@ -220,40 +200,26 @@ public class AIEnemy : MonoBehaviour
                     field1[i, j].OnBoard = true;
                     field2[i, j].OnBoard = true;
                     field3[i, j].OnBoard = true;
-
                 }
             }
         }
 
-        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field0, Directions.Top));
-        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field1, Directions.Left));
-        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field2, Directions.Right));
-        //fields.Add(GameObject.Find("Field").GetComponent<Battle>().MoveField(field3, Directions.Bottom));
-
-        //var temp = Battle.MoveField(field0, Directions.Top);
-        //if (temp != null)
-        //    fields.Add(temp);
+  
         var bufMap = (SlotBuff[,]) GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
         fields.Add(Battle.MoveField(field0, bufMap, Directions.Top));
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
-        //temp = Battle.MoveField(field1, Directions.Left);
-        //if (temp != null)
-        //    fields.Add(temp);
+    
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
         fields.Add(Battle.MoveField(field1, bufMap, Directions.Left));
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
-        //temp = Battle.MoveField(field2, Directions.Right);
-        //if (temp != null)
-        //    fields.Add(temp);
+    
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
         fields.Add(Battle.MoveField(field2, bufMap, Directions.Right));
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
-        //temp = Battle.MoveField(field3, Directions.Right);
-        //if (temp != null)
-        //    fields.Add(temp);
+     
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
         fields.Add(Battle.MoveField(field3, bufMap, Directions.Bottom));
         skillMaster.RebuidBufMap();
@@ -320,8 +286,6 @@ public class AIEnemy : MonoBehaviour
                     Direction = Directions.Bottom
                 };
                 break;
-
-
         }
         return ret;
     }
@@ -333,7 +297,7 @@ public class AIEnemy : MonoBehaviour
         skillMaster = GameObject.Find("Field").GetComponent<SkillMaster>();
         prefab = Instantiate(GameObject.Find("card#0/player=Player2"));
         prefab.GetComponent<CardRotation>().enabled = false;
-        prefab.transform.position = new Vector3(0, 0, 10000);
+        prefab.transform.position = new Vector3(0, 0, -10000);
     }
 
     // Update is called once per frameя

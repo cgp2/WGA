@@ -269,10 +269,7 @@ public class Card : MonoBehaviour
                 }
             }
 
-          
-        
-            CardData crd = new CardData { Name = name,HP =  int.Parse(health), Shield= int.Parse(shield), Attack = int.Parse(attack), Desk = desk, SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(), BattleCryNames = battleCry.ToArray(), DeathRattleNames = deathRattle.ToArray(), AurasNames =aura.ToArray() };
-
+            var crd = new CardData { Name = name,HP =  int.Parse(health), Shield= int.Parse(shield), Attack = int.Parse(attack), Desk = desk, SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(), BattleCryNames = battleCry.ToArray(), DeathRattleNames = deathRattle.ToArray(), AurasNames =aura.ToArray() };
 
             //crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
             cards.Add(crd);
