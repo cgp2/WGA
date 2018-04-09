@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 114704897549181674}
   - component: {fileID: 114160788103087902}
   - component: {fileID: 114142999252591414}
+  - component: {fileID: 111174049859251140}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -238,8 +239,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9, y: 5.12}
-    newSize: {x: 9, y: 5.12}
+    oldSize: {x: 2, y: 3}
+    newSize: {x: 20, y: 12.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -247,6 +248,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
+--- !u!111 &111174049859251140
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832378187937878}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114045515213172098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -600,7 +616,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9, y: 5.12}
+  m_Size: {x: 20, y: 12.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -798,7 +814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.415985, y: -19.617554}
+  m_AnchoredPosition: {x: -44.62896, y: -13.924517}
   m_SizeDelta: {x: 2, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224622814245628924

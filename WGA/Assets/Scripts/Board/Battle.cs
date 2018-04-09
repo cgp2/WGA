@@ -28,6 +28,7 @@ public class Battle : MonoBehaviour
         RollTheCards();
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
         rescalecard = new Vector3(5, 5, 1);
+
     }
     public static Card Get_Card(int x, int y)
     {
