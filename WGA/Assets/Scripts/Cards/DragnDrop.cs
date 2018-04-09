@@ -25,11 +25,11 @@ public class DragnDrop : MonoBehaviour {
         dragnow = true;
         
         var testscript = this.GetComponent<test>();
-        defpos = testscript.standartpos;
-        if (testscript.needtorescaleplus || testscript.IsClose(this.transform.localScale.x,testscript.standartscalex) || testscript.IsClose(transform.localScale.y,testscript.standartscaley))
+        defpos = testscript.defaultPosition;
+        if (testscript.needToRescalePlus || testscript.IsClose(this.transform.localScale.x,testscript.defaultXScale) || testscript.IsClose(transform.localScale.y,testscript.defaultYScale))
         {
-            this.GetComponent<test>().needtorescaleplus = false;
-            this.GetComponent<test>().needtorescaleminus = true;
+            this.GetComponent<test>().needToRescalePlus = false;
+            this.GetComponent<test>().needToRescaleMinus = true;
         }
 
     }

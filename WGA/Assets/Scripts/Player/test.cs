@@ -4,54 +4,54 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class test : MonoBehaviour {
-    public bool needtorescaleplus, needtorescaleminus;
-    public float standartscalex, standartscaley, standartcoorz;
-    public Vector3 standartpos;
-    float deltaxscale, deltayscale,deltaypos;
+    public bool needToRescalePlus, needToRescaleMinus;
+    public float defaultXScale, defaultYScale, defaultZCoordinats;
+    public Vector3 defaultPosition;
+    float deltaXScale, deltaYScale,deltaYPosition;
     int counter;
     // Use this for initialization
     void Start () {
         counter = 0;
-        standartscalex = transform.localScale.x;
-        standartscaley = transform.localScale.y;
-        standartcoorz = transform.position.z;
-        deltaxscale = (20.942762f - standartscalex) / 20;
-        deltayscale = (20.947458f - standartscaley) / 20;
-        deltaypos =transform.position.y/Mathf.Abs(transform.position.y)*25/20;
-        standartpos = transform.position;
+        defaultXScale = transform.localScale.x;
+        defaultYScale = transform.localScale.y;
+        defaultZCoordinats = transform.position.z;
+        deltaXScale = (20.942762f - defaultXScale) / 20;
+        deltaYScale = (20.947458f - defaultYScale) / 20;
+        deltaYPosition =transform.position.y/Mathf.Abs(transform.position.y)*25/20;
+        defaultPosition = transform.position;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (IsClose(transform.localScale.x, standartscalex) || IsClose(transform.localScale.y, standartscaley))
+        if (IsClose(transform.localScale.x, defaultXScale) || IsClose(transform.localScale.y, defaultYScale))
         {
-            needtorescaleminus = false;
+            needToRescaleMinus = false;
         }
         if (IsClose(transform.localScale.x, 20.942762f) || IsClose(transform.localScale.y, 20.947458f))
-            needtorescaleplus = false;
+            needToRescalePlus = false;
 
-        if (needtorescaleplus)
+        if (needToRescalePlus)
             counter++;
         if (counter >= 30)
         {
-            if (needtorescaleplus)
+            if (needToRescalePlus)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - deltaypos, transform.position.z-1);
-                transform.localScale = new Vector3(transform.localScale.x + deltaxscale, transform.localScale.y + deltayscale, transform.localScale.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y - deltaYPosition, transform.position.z-1);
+                transform.localScale = new Vector3(transform.localScale.x + deltaXScale, transform.localScale.y + deltaYScale, transform.localScale.z);
             }
         }
-        if (needtorescaleminus)
+        if (needToRescaleMinus)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + deltaypos, transform.position.z+1);
-            transform.localScale = new Vector3(transform.localScale.x - deltaxscale, transform.localScale.y - deltayscale, transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + deltaYPosition, transform.position.z+1);
+            transform.localScale = new Vector3(transform.localScale.x - deltaXScale, transform.localScale.y - deltaYScale, transform.localScale.z);
         }
   
 	}
     public void SetFalse()
     {
-        needtorescaleminus = false;
-        needtorescaleplus = false;
+        needToRescaleMinus = false;
+        needToRescalePlus = false;
     }
     private void OnMouseDown()
     {
