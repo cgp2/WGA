@@ -4,17 +4,10 @@
 
 [Tt]emp/
 [Oo]bj/
-[Bb]uild
+[Bb]uild/
 [Bb]uilds/
 [Ll]ibrary/
-*
-/[Aa]ssets/
-sysinfo.txt
-*.stackdump
-/Assets/AssetStoreTools*
-*.apk
-*.unitypackage
-*.csproj
+
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -41,7 +34,7 @@ sysinfo.txt
 ._*
 .Spotlight-V100
 .Trashes
-Icon?
+
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
