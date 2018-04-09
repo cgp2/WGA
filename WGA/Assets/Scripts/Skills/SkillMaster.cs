@@ -205,7 +205,8 @@ public class SkillMaster : MonoBehaviour
 
     public void SerializeSkills()
     {
-        var writer = new XmlTextWriter(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Skills.xml", Encoding.GetEncoding(1251))
+        var fileStream = File.Create(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Skills.xml");
+        var writer = new XmlTextWriter(fileStream, Encoding.GetEncoding(1251))
         {
             Formatting = Formatting.Indented,
             Indentation = 1,
@@ -222,7 +223,10 @@ public class SkillMaster : MonoBehaviour
         foreach (var skill in SkillsList)
             skill.Serialize(ref writer);
         writer.WriteEndElement();
+        writer.WriteEndDocument();
+
         writer.Close();
+        fileStream.Close();
     }
 
     public void DeserializeSkills()

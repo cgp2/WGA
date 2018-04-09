@@ -1,23 +1,11 @@
 <?xml version="1.0"?>
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
-    <Health>666</Health>
-    <Shield>0</Shield>
-    <Attack>1</Attack>
-    <Name>kek</Name>
-    <Description>Для такого даже\n названия еще не придумали</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
     <Health>3</Health>
     <Shield>3</Shield>
     <Attack>10</Attack>
-    <Name>Бомбардировщик</Name>
-    <Description>Бомбардирует</Description>
+    <Name>Bombard</Name>
+    <Description>It will bombard your ass!</Description>
     <BattleCryName>
       <string>HPBufBC</string>
     </BattleCryName>
@@ -28,8 +16,8 @@
     <Health>1</Health>
     <Shield>0</Shield>
     <Attack>1000</Attack>
-    <Name>Ракета</Name>
-    <Description>Осторожно! Взрывоопасно...</Description>
+    <Name>Rocket</Name>
+    <Description>Carefull! Highly exKEKive !!!!</Description>
     <BattleCryName>
       <string>HPBufBC</string>
     </BattleCryName>
@@ -41,45 +29,9 @@
   <CardInfo>
     <Health>666</Health>
     <Shield>0</Shield>
-    <Attack>1</Attack>
+    <Attack>12</Attack>
     <Name>kek</Name>
-    <Description>Для такого даже названия еще не придумали</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
-    <Health>3</Health>
-    <Shield>3</Shield>
-    <Attack>10</Attack>
-    <Name>Бомбардировщик</Name>
-    <Description>Бомбардирует</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
-    <Health>666</Health>
-    <Shield>0</Shield>
-    <Attack>1</Attack>
-    <Name>kek</Name>
-    <Description>Для такого даже названия еще не придумали</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
-    <Health>3</Health>
-    <Shield>3</Shield>
-    <Attack>10</Attack>
-    <Name>Бомбардировщик</Name>
-    <Description>Бомбардирует</Description>
+    <Description>It is real shit</Description>
     <BattleCryName>
       <string>HPBufBC</string>
     </BattleCryName>

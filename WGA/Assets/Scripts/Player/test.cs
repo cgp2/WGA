@@ -1,29 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class test : MonoBehaviour {
+public class test : MonoBehaviour
+{
     public bool needToRescalePlus, needToRescaleMinus;
     public float defaultXScale, defaultYScale, defaultZCoordinats;
     public Vector3 defaultPosition;
-    float deltaXScale, deltaYScale,deltaYPosition;
+    float deltaXScale, deltaYScale, deltaYPosition;
     int counter;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         counter = 0;
         defaultXScale = transform.localScale.x;
         defaultYScale = transform.localScale.y;
         defaultZCoordinats = transform.position.z;
         deltaXScale = (20.942762f - defaultXScale) / 20;
         deltaYScale = (20.947458f - defaultYScale) / 20;
-        deltaYPosition =transform.position.y/Mathf.Abs(transform.position.y)*25/20;
+        deltaYPosition = transform.position.y / Mathf.Abs(transform.position.y) * 25 / 20;
         defaultPosition = transform.position;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (IsClose(transform.localScale.x, defaultXScale) || IsClose(transform.localScale.y, defaultYScale))
         {
             needToRescaleMinus = false;
@@ -37,17 +41,17 @@ public class test : MonoBehaviour {
         {
             if (needToRescalePlus)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - deltaYPosition, transform.position.z-1);
+                transform.position = new Vector3(transform.position.x, transform.position.y - deltaYPosition, transform.position.z - 1);
                 transform.localScale = new Vector3(transform.localScale.x + deltaXScale, transform.localScale.y + deltaYScale, transform.localScale.z);
             }
         }
         if (needToRescaleMinus)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + deltaYPosition, transform.position.z+1);
+            transform.position = new Vector3(transform.position.x, transform.position.y + deltaYPosition, transform.position.z + 1);
             transform.localScale = new Vector3(transform.localScale.x - deltaXScale, transform.localScale.y - deltaYScale, transform.localScale.z);
         }
-  
-	}
+
+    }
     public void SetFalse()
     {
         needToRescaleMinus = false;
@@ -62,17 +66,36 @@ public class test : MonoBehaviour {
     }
     private void OnMouseEnter()
     {
-        //if (!this.GetComponent<DragnDrop>().dragnow)
-        //{
-        //    counter = 0;
-        //    if (gameObject.GetComponent<Card>().Owner == Battle.turn)
-        //    {
-        //        this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = gameObject.GetComponent<Card>().Info.Description;
-        //        //this.transform.localScale = new Vector3(10.942762f, 10.947458f, 1);
-        //        needtorescaleplus = true;
-        //        needtorescaleminus = false;
-        //    }
-        //}
+        if (!this.GetComponent<DragnDrop>().dragnow)
+        {
+            //this.transform.GetChild(0).GetChild(4).GetComponent<Text>().text = gameObject.GetComponent<Card>().Info.Description;
+            var im = GameObject.Find("CardDetail").GetComponentsInChildren<Image>();
+            foreach (var image in im)
+            {
+                if (image.name == "ShipImage")
+                    image.sprite = gameObject.GetComponent<Card>().Info.ShipSprite;
+            }
+
+            var t = GameObject.Find("CardDetail").GetComponentsInChildren<Text>();
+            foreach (var txt in t)
+            {
+                if (txt.name == "CardName")
+                {
+                    txt.text = gameObject.GetComponent<Card>().Info.Name;
+                }
+                if (txt.name == "Description")
+                {
+                    txt.text = gameObject.GetComponent<Card>().Info.Description;
+                }
+            }
+
+            var canvasGroup = GameObject.Find("CardDetail").GetComponentInChildren<CanvasGroup>();
+            if (canvasGroup.alpha < 1f)
+            {
+                canvasGroup.alpha = 1f;
+            }
+
+        }
     }
     public void OnMouseExit()
     {

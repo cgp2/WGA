@@ -523,7 +523,7 @@ public class Battle : MonoBehaviour
         var targetcard = Player.Selectedcard;
         targetcard.transform.parent = coor[x,y].transform.parent;
         targetcard.transform.position = coor[x,y].transform.position;
-        targetcard.GetComponent<BoxCollider2D>().enabled = false;
+       // targetcard.GetComponent<BoxCollider2D>().enabled = false;
         Player.Selectedcard.transform.localScale = rescalecard;
         Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0,1);
         Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;

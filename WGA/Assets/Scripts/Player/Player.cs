@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
     }
     void Start()
     {
-        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Cards.dat");
+        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
         var k = 0;
         for (int i =0; i < cards.Length;i++)
         {
