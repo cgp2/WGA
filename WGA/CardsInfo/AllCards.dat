@@ -1,21 +1,9 @@
 <?xml version="1.0"?>
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
-    <Health>3</Health>
-    <Shield>3</Shield>
-    <Attack>10</Attack>
-    <Name>Bombard</Name>
-    <Description>It will bombard your ass!</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
     <Health>1</Health>
     <Shield>0</Shield>
-    <Attack>1000</Attack>
+    <Attack>99</Attack>
     <Name>Rocket</Name>
     <Description>Carefull! Highly exKEKive !!!!</Description>
     <BattleCryName>
@@ -27,15 +15,37 @@
     </AuraName>
   </CardInfo>
   <CardInfo>
-    <Health>666</Health>
+    <Health>3</Health>
+    <Shield>3</Shield>
+    <Attack>10</Attack>
+    <Name>Bombard</Name>
+    <Description>It will bombard your ass!</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+  </CardInfo>
+  <CardInfo>
+    <Health>66</Health>
     <Shield>0</Shield>
     <Attack>12</Attack>
     <Name>kek</Name>
     <Description>It is real shit</Description>
     <BattleCryName>
       <string>HPBufBC</string>
+      <string>HPBufBC</string>
     </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName>
+      <string>DMGBufAura</string>
+      <string>DMGBufAura</string>
+      <string>DMGDebufAura</string>
+    </AuraName>
   </CardInfo>
 </ArrayOfCardInfo>
