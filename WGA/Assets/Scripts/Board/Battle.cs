@@ -92,9 +92,10 @@ public class Battle : MonoBehaviour
             }
             else
             {
-                var col = r.Placing.Col;
-                var row = r.Placing.Row;
-                var crd = r.Placing.CardNum; //Номер карты в руке
+               
+                    var col = r.Placing.Col;
+                    var row = r.Placing.Row;
+                    var crd = r.Placing.CardNum; //Номер карты в руке
                 Player.Selectedcard = Player2.deck[crd];
                 Set_Card(row, col,Player.Selectedcard.GetComponent<Card>());
                 //Тут выставлять карту

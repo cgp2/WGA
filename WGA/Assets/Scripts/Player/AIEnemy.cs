@@ -8,10 +8,18 @@ public class AIEnemy : MonoBehaviour
     private SkillMaster skillMaster;
     private GameObject prefab;
 
+    //Отвечает за то, насколько ИИ будет стараться убить как можно больше врагов 0<Aggression
     public const float Aggression = 100f;
+    //Отвечает за то, насколько ИИ будет стараться нанести как можно больше урона 0<Maddness<100
     public const float Maddness = 10f;
+    //Отвечает за то, насколько ИИ будет стараться потерять как можно меньше кораблей 0<Сaution
     public const float Сaution = 1f;
+    //Отвечает за то, насколько ИИ будет стараться получить как можно меньше урона 0<Safeness
     public const float Safeness = 1f;
+    //Отвечает за то, насколько ИИ будет бояться выставлять корабли при доминации противника 0<Fear<1
+    public const float Fear = 0.1f;
+    //Отвечает за то, насколько ИИ будет стараться выставлять новые корабли 0<Domination
+    public const float Domination = 50f;
 
     private void Awake()
     {
@@ -40,6 +48,23 @@ public class AIEnemy : MonoBehaviour
         var ret = new CardPlacingAction();
         ret.Utillity = int.MinValue;
         var maxUtility = int.MinValue;
+
+        int initialStr0 = 0, initialStr1 = 0;
+        foreach (var card in Battle.Board)
+        {
+            if (card)
+            {
+                if (card.Owner == possesedPlayer)
+                {
+                    initialStr1 += card.Attack + card.Health + card.Shield;
+                }
+                else
+                {
+                    initialStr0 -= card.Attack + card.Health + card.Shield;
+                }
+            }
+        }
+
         for (var i = 0; i < possesedPlayer.deck.Count; i++)
         {
             var crdObj = possesedPlayer.deck[i];
@@ -86,17 +111,18 @@ public class AIEnemy : MonoBehaviour
 
                         crd.Play(ref field, ref bufMap);
 
+                        int str0 = 0, str1 = 0;
                         foreach (var card in field)
                         {
                             if (card)
                             {
                                 if (card.Owner == possesedPlayer)
                                 {
-                                    utility += card.Attack + card.Health + card.Shield;
+                                    str1 += card.Attack + card.Health + card.Shield;
                                 }
                                 else
                                 {
-                                    utility -= card.Attack + card.Health + card.Shield;
+                                    str0 += card.Attack + card.Health + card.Shield;
                                 }
                             }
                         }
@@ -119,6 +145,10 @@ public class AIEnemy : MonoBehaviour
                             }
                         }
 
+
+
+                        utility = Mathf.RoundToInt(Domination * (str1 - initialStr1) - Fear * (str0 - initialStr0)); 
+
                         if (utility > maxUtility)
                         {
                             maxUtility = utility;
@@ -130,6 +160,21 @@ public class AIEnemy : MonoBehaviour
                                 Row = m,
                                 Col = n,
                             };
+                        }
+                        else if (utility == maxUtility)
+                        {
+                            if (Random.value >= 0.5)
+                            {
+                                maxUtility = utility;
+
+                                ret = new CardPlacingAction
+                                {
+                                    Utillity = utility,
+                                    CardNum = i,
+                                    Row = m,
+                                    Col = n,
+                                };
+                            }
                         }
                     }
                 }

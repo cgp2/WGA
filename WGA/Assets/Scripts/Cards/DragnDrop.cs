@@ -41,7 +41,7 @@ public class DragnDrop : MonoBehaviour {
     private void OnMouseUp()
     {
 
-            dragnow = false;
+        dragnow = false;
         if (!GetComponentInParent<Card>().OnBoard)
         {
             if (!DropCard(Input.mousePosition))
