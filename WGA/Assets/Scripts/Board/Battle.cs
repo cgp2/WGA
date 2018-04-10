@@ -566,9 +566,13 @@ public class Battle : MonoBehaviour
             }
         }
     }
-    public static Card[,] MoveField(Card[,] field, SlotBuff[,] bufMap, Directions dir)
-    { 
-
+    public static Card[,] MoveField(Card[,] field, SlotBuff[,] bufMap, Directions dir, out int enemiesKilled, out int alliesDead, out int damageDone, out int damageReceived)
+    {
+        enemiesKilled = 0;
+        alliesDead = 0;
+        damageDone = 0;
+        damageReceived = 0;
+        int initialHP0 = 0, initialHP1 = 0;
         switch (dir)
         {
             case Directions.Top:
@@ -589,13 +593,32 @@ public class Battle : MonoBehaviour
                                         if (field[k + 1, j] != null)
                                         {
                                             if (field[k + 1, j].Owner != turn)
-                                            {
+                                            {                                              
+                                                initialHP0 = field[k, j].Health + field[k, j].Shield;
+                                                initialHP1 = field[k+1, j].Health + field[k+1, j].Shield;
+
                                                 var temp = Fight(field[k, j], field[k + 1, j]);
+
+                                                if (field[k, j].Owner == Player1)
+                                                    damageDone += initialHP0 - field[k, j].Health - field[k, j].Shield;
+                                                else
+                                                    damageReceived += initialHP0 - field[k, j].Health - field[k, j].Shield;
+
+                                                if (field[k+1, j].Owner == Player1)
+                                                    damageDone += initialHP1 - field[k+1, j].Health - field[k+1, j].Shield;
+                                                else
+                                                    damageReceived += initialHP1 - field[k+1, j].Health - field[k+1, j].Shield;
+
                                                 field[k, j] = temp[0];
                                                 field[k + 1, j] = temp[1];
                                                 if (field[k, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k, j);
+                                                    if (field[k, j].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
+
                                                     field[k, j].Destroy(ref field, ref bufMap);
                                                     field[k, j] = null;
                                                 }
@@ -603,6 +626,11 @@ public class Battle : MonoBehaviour
                                                 if (field[k + 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k + 1, j);
+                                                    if (field[k+1, j].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
+
                                                     field[k + 1, j].Destroy(ref field, ref bufMap);
                                                     field[k + 1, j] = null;
                                                     if (field[k, j] != null)
@@ -660,12 +688,29 @@ public class Battle : MonoBehaviour
                                         {
                                             if (field[k - 1, j].Owner != turn)
                                             {
+                                                initialHP0 = field[k, j].Health + field[k, j].Shield;
+                                                initialHP1 = field[k - 1, j].Health + field[k - 1, j].Shield;
 
                                                 var temp = Fight(field[k, j], field[k - 1, j]);
+
+                                                if (field[k, j].Owner == Player1)
+                                                    damageDone += initialHP0 - field[k, j].Health - field[k, j].Shield;
+                                                else
+                                                    damageReceived += initialHP0 - field[k, j].Health - field[k, j].Shield;
+
+                                                if (field[k +-1, j].Owner == Player1)
+                                                    damageDone += initialHP1 - field[k - 1, j].Health - field[k - 1, j].Shield;
+                                                else
+                                                    damageReceived += initialHP1 - field[k - 1, j].Health - field[k - 1, j].Shield;
+
                                                 field[k, j] = temp[0];
                                                 field[k - 1, j] = temp[1];
                                                 if (field[k, j].Health <= 0)
                                                 {
+                                                    if (field[k, j].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     //DestroyCard(k, j);//переписать DestroyCard
                                                     field[k, j].Destroy(ref field, ref bufMap);
                                                     //Destroy(result[n, m].gameObject);
@@ -674,6 +719,10 @@ public class Battle : MonoBehaviour
 
                                                 if (field[k - 1, j].Health <= 0)
                                                 {
+                                                    if (field[k-1, j].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     //DestroyCard(k - 1, j);
                                                     field[k-1, j].Destroy(ref field, ref bufMap);
                                                     field[k-1, j] = null;
@@ -734,11 +783,29 @@ public class Battle : MonoBehaviour
                                         {
                                             if (field[i, k - 1].Owner != turn)
                                             {
+                                                initialHP0 = field[i, k].Health + field[i, k].Shield;
+                                                initialHP1 = field[i, k-1].Health + field[i, k - 1].Shield;
+
                                                 var temp = Fight(field[i, k], field[i, k - 1]);
+
+                                                if (field[i, k].Owner == Player1)
+                                                    damageDone += initialHP0 - field[i, k].Health - field[i, k].Shield;
+                                                else
+                                                    damageReceived += initialHP0 - field[i, k].Health - field[i, k].Shield;
+
+                                                if (field[i, k - 1].Owner == Player1)
+                                                    damageDone += initialHP1 - field[i, k - 1].Health - field[i, k - 1].Shield;
+                                                else
+                                                    damageReceived += initialHP1 - field[i, k - 1].Health - field[i, k - 1].Shield;
+
                                                 field[i, k] = temp[0];
                                                 field[i, k - 1] = temp[1];
                                                 if (field[i, k].Health <= 0)
                                                 {
+                                                    if (field[i, k].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     //DestroyCard(i, k);
                                                     field[i, k].Destroy(ref field, ref bufMap);
                                                     field[i, k] = null;
@@ -746,6 +813,10 @@ public class Battle : MonoBehaviour
 
                                                 if (field[i, k - 1].Health <= 0)
                                                 {
+                                                    if (field[i, k-1].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     //DestroyCard(i, k - 1);
                                                     field[i, k - 1].Destroy(ref field, ref bufMap);
                                                     field[i, k - 1] = null;
@@ -806,12 +877,30 @@ public class Battle : MonoBehaviour
                                         {
                                             if (field[i, k + 1].Owner != turn)
                                             {
+                                                initialHP0 = field[i, k].Health + field[i, k].Shield;
+                                                initialHP1 = field[i, k + 1].Health + field[i, k + 1].Shield;
+
                                                 var temp = Fight(field[i, k], field[i, k + 1]);
+
+                                                if (field[i, k].Owner == Player1)
+                                                    damageDone += initialHP0 - field[i, k].Health - field[i, k].Shield;
+                                                else
+                                                    damageReceived += initialHP0 - field[i, k].Health - field[i, k].Shield;
+
+                                                if (field[i, k + 1].Owner == Player1)
+                                                    damageDone += initialHP1 - field[i, k + 1].Health - field[i, k + 1].Shield;
+                                                else
+                                                    damageReceived += initialHP1 - field[i, k + 1].Health - field[i, k + 1].Shield;
+
                                                 field[i, k] = temp[0];
                                                 field[i, k + 1] = temp[1];
 
                                                 if (field[i, k].Health <= 0)
                                                 {
+                                                    if (field[i, k].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     // DestroyCard(i, k);
                                                     field[i, k].Destroy(ref field, ref bufMap);
                                                     field[i, k] = null;
@@ -819,6 +908,10 @@ public class Battle : MonoBehaviour
 
                                                 if (field[i, k + 1].Health <= 0)
                                                 {
+                                                    if (field[i, k+1].Owner == Player1)
+                                                        enemiesKilled++;
+                                                    else
+                                                        alliesDead++;
                                                     //DestroyCard(i, k + 1);
                                                     field[i, k + 1].Destroy(ref field, ref bufMap);
                                                     field[i, k + 1] = null;

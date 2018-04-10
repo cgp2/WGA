@@ -7,6 +7,12 @@ public class AIEnemy : MonoBehaviour
     private Player possesedPlayer;
     private SkillMaster skillMaster;
     private GameObject prefab;
+
+    public const float Aggression = 100f;
+    public const float Maddness = 10f;
+    public const float Сaution = 1f;
+    public const float Safeness = 1f;
+
     private void Awake()
     {
 
@@ -204,24 +210,41 @@ public class AIEnemy : MonoBehaviour
             }
         }
 
-  
+        ActionCoofs[] killedDead = new ActionCoofs[4];
+        int alDead0, enDead0, dmgDone0, dmgReceived0, alDead1, enDead1, dmgDone1, dmgReceived1, alDead2, enDead2, dmgDone2, dmgReceived2, alDead3, enDead3, dmgDone3, dmgReceived3;
         var bufMap = (SlotBuff[,]) GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
-        fields.Add(Battle.MoveField(field0, bufMap, Directions.Top));
+        fields.Add(Battle.MoveField(field0, bufMap, Directions.Top, out enDead0, out alDead0, out dmgDone0, out dmgReceived0));
+        killedDead[0].AlliesDead = alDead0;
+        killedDead[0].EnemiesDead = enDead0;
+        killedDead[0].DamageDone = dmgDone0;
+        killedDead[0].DamageReceived = dmgReceived0;
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
     
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
-        fields.Add(Battle.MoveField(field1, bufMap, Directions.Left));
+        fields.Add(Battle.MoveField(field1, bufMap, Directions.Left, out enDead1, out alDead1, out dmgDone1, out dmgReceived1));
+        killedDead[1].AlliesDead = alDead1;
+        killedDead[1].EnemiesDead = enDead1;
+        killedDead[1].DamageDone = dmgDone1;
+        killedDead[1].DamageReceived = dmgReceived1;
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
     
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
-        fields.Add(Battle.MoveField(field2, bufMap, Directions.Right));
+        fields.Add(Battle.MoveField(field2, bufMap, Directions.Right, out enDead2, out alDead2, out dmgDone2, out dmgReceived2));
+        killedDead[2].AlliesDead = alDead2;
+        killedDead[2].EnemiesDead = enDead2;
+        killedDead[2].DamageDone = dmgDone2;
+        killedDead[2].DamageReceived = dmgReceived2;
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
      
         bufMap = (SlotBuff[,])GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
-        fields.Add(Battle.MoveField(field3, bufMap, Directions.Bottom));
+        fields.Add(Battle.MoveField(field3, bufMap, Directions.Bottom, out enDead3, out alDead3, out dmgDone3, out dmgReceived3));
+        killedDead[3].AlliesDead = alDead3;
+        killedDead[3].EnemiesDead = enDead3;
+        killedDead[3].DamageDone = dmgDone3;
+        killedDead[3].DamageReceived = dmgReceived3;
         skillMaster.RebuidBufMap();
         Battle.RestoreBoard();
 
@@ -246,6 +269,8 @@ public class AIEnemy : MonoBehaviour
                         }
                     }
                 }
+
+                utility += Mathf.RoundToInt(Aggression * killedDead[i].EnemiesDead - Safeness * killedDead[i].DamageReceived  - (Maddness - 100) * killedDead[i].DamageReceived - Сaution * killedDead[i].AlliesDead);
             }
             else utility = int.MinValue;
 
@@ -256,6 +281,7 @@ public class AIEnemy : MonoBehaviour
             }       
         }
 
+        int mult = 1;
         switch (numberOfMax)
         {
             case 0:
@@ -325,6 +351,14 @@ public class AIEnemy : MonoBehaviour
         public MovementAction Movement;
         public CardPlacingAction Placing;
         public bool IsMoving;
+    }
+
+    public struct ActionCoofs
+    {
+        public int AlliesDead;
+        public int EnemiesDead;
+        public int DamageDone;
+        public int DamageReceived;
     }
 
 }
