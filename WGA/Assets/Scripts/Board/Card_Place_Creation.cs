@@ -38,7 +38,7 @@ public class Card_Place_Creation : MonoBehaviour {
                 var xOffset = field.transform.position.x + l * (xMarginStandart +  t.x) + t.x;
                 var yOffset = field.transform.position.y + k * (yMarginStandart + t.y) + t.y;
                
-                card_places[i, j].transform.position = new Vector3(xOffset, yOffset, -20);
+                card_places[i, j].transform.position = new Vector3(xOffset, yOffset, -21);
 
                 Battle.coor[i, j] = card_places[i, j];
                 l++;

@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 114704897549181674}
   - component: {fileID: 114160788103087902}
   - component: {fileID: 114142999252591414}
+  - component: {fileID: 114203279525565134}
   m_Layer: 0
   m_Name: card
   m_TagString: Untagged
@@ -362,6 +363,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d2dc2106b245f4c8a7e0cbf8026ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114203279525565134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832378187937878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b4a029efb58cb4186c0ec558d561ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114241959311063282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,12 +502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae5be9a459fb6c4bba71977c9dc1247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needtorescaleplus: 0
-  needtorescaleminus: 0
-  standartscalex: 0
-  standartscaley: 0
-  standartcoorz: 0
-  standartpos: {x: 0, y: 0, z: 0}
+  needToRescalePlus: 0
+  needToRescaleMinus: 0
+  defaultXScale: 0
+  defaultYScale: 0
+  defaultZCoordinats: 0
+  defaultPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114752483857856358
 MonoBehaviour:
   m_ObjectHideFlags: 1
