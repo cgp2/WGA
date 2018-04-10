@@ -8,11 +8,12 @@ public class Card_Place_Creation : MonoBehaviour {
     public GameObject field;
     public GameObject card_place;
     public static GameObject[,] card_places;
-    
+    public static Vector3 t;
     public const float xMarginStandart = 5, yMarginStandart = 5;
 
     // Use this for initialization
     void Start () {
+
         int standartN=4, standartm=4;       
         Vector3 standartsize = new Vector3(0.5f, 1.5f, 1);
         card_places = new GameObject[n, m];
@@ -33,8 +34,8 @@ public class Card_Place_Creation : MonoBehaviour {
                 card_places[i, j].transform.parent = gameObject.transform;
                 card_places[i, j].transform.localScale = new Vector3(10f, 15f, 1);
                 //card_places[i, j].transform.localScale = scale;
-                var t = card_places[i, j].GetComponent<MeshCollider>().bounds.size;
-          
+
+                t = card_places[i, j].GetComponent<MeshCollider>().bounds.size;
                 var xOffset = field.transform.position.x + l * (xMarginStandart +  t.x) + t.x;
                 var yOffset = field.transform.position.y + k * (yMarginStandart + t.y) + t.y;
                
