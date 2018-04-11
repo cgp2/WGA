@@ -61,7 +61,7 @@ public class test : MonoBehaviour
     {
         if (gameObject.GetComponent<Card>().Owner == Battle.turn)
         {
-            Player.Selectedcard = gameObject;
+            //Player.Selectedcard = gameObject;
         }
     }
     private void OnMouseEnter()

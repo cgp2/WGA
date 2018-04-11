@@ -6,7 +6,8 @@ public class CardRotation : MonoBehaviour {
     Player owner;
 	// Use this for initialization
 	void Start () {
-        owner = gameObject.transform.parent.GetComponent<Player>();
+        owner = this.GetComponent<Card>().Owner;
+        //owner = gameObject.transform.parent.GetComponent<Player>();
 	}
     private int rotate = 0;
 	// Update is called once per frame

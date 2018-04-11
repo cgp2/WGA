@@ -25,7 +25,7 @@ public class Battle : MonoBehaviour
     {
         //float defaultscalex = 0.2601453f;
         //float defaultscaley = 0.5f;
-        RollTheCards();
+        //RollTheCards();
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
         rescalecard = new Vector3(5, 5, 1);
 
@@ -501,7 +501,7 @@ public class Battle : MonoBehaviour
     //}
     public static void Move(Directions dir)
     {
-       Board= GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir);
+       GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir);
     }
     public static void UpdateUI()
     {
@@ -1003,9 +1003,9 @@ public class Battle : MonoBehaviour
     public static List<Card> Fight(Card c1, Card c2)
     {
         var ret = new List<Card>();
-      /*  c1.StaticHP = */c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
+        c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
       /*  c1.StaticSHLD = */c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
-      /*  c2.StaticHP = */c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
+        c2.StaticHP = c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
       /*  c2.StaticSHLD = */c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
         ret.Add(c1);
         ret.Add(c2);

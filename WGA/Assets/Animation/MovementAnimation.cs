@@ -19,39 +19,47 @@ public class MovementAnimation : MonoBehaviour {
         public int ticks;
         public Directions dir;
         public Acts action;
-        public float delta;
-        
-        public CardAction(Acts act, Directions _dir, float range, int time =0)
+        public float deltaPosition;
+        public float deltaRotation;
+        public CardAction(Acts act, Directions _dir, float range, int time = 0, bool rotation = false)
         {
             action = act;
             ticks = time==0 ? GetTimeFromAction(act) : time;
             dir = _dir;
-            delta = range / ticks;
+            deltaPosition = range / ticks;
+            if (rotation)
+                deltaRotation = 180f / ticks;
+            else
+                deltaRotation = 0;
         }
         public int GetTimeFromAction(Acts act)
         {
             switch (act)
             {
                 case Acts.fight:
-                    return 60;
+                    return 30;
 
                 case Acts.move:
-                    return 60;
+                    return 30;
 
                 case Acts.stop:
-                    return 120;
+                    return 75;
                 case Acts.destroy:
-                    return 30;
+                    return 15;
                 default:
                     return 0;
 
             }
         }
     }
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
         actions = new List<CardAction>();
         totalTime = 0;
+    }
+    // Use this for initialization
+    void Start () {
+        
 	}
 	
 	// Update is called once per frame
@@ -66,22 +74,22 @@ public class MovementAnimation : MonoBehaviour {
                         {
                             case Directions.Top:
                                 {
-                                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + actions[0].delta, this.transform.position.z);
+                                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + actions[0].deltaPosition, this.transform.position.z);
                                     break;
                                 }
                             case Directions.Bottom:
                                 {
-                                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - actions[0].delta, this.transform.position.z);
+                                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - actions[0].deltaPosition, this.transform.position.z);
                                     break;
                                 }
                             case Directions.Right:
                                 {
-                                    this.transform.position = new Vector3(this.transform.position.x + actions[0].delta, this.transform.position.y, this.transform.position.z);
+                                    this.transform.position = new Vector3(this.transform.position.x + actions[0].deltaPosition, this.transform.position.y, this.transform.position.z);
                                     break;
                                 }
                             case Directions.Left:
                                 {
-                                    this.transform.position = new Vector3(this.transform.position.x - actions[0].delta, this.transform.position.y, this.transform.position.z);
+                                    this.transform.position = new Vector3(this.transform.position.x - actions[0].deltaPosition, this.transform.position.y, this.transform.position.z);
                                     break;
                                 }
                         }
@@ -94,7 +102,10 @@ public class MovementAnimation : MonoBehaviour {
                 //        break;
                 //    }
             }
-
+            if(actions[0].deltaRotation!=0)
+            {
+                this.transform.Rotate(0, actions[0].deltaRotation, 0);
+            }
             tickCounter++;
             if (actions[0].ticks <= tickCounter)
             {
@@ -117,16 +128,18 @@ public class MovementAnimation : MonoBehaviour {
                 needToMove = false;
         }
 	}
-    public void Add_Action(Acts act, Directions dir, float range, int time = 0)
+    public void Add_Action(Acts act, Directions dir, float range, int time = 0, bool rotation = false)
     {
         if (time == 0)
         {
-            actions.Add(new CardAction(act, dir, range));
-           
+            
+            actions.Add(new CardAction(act, dir, range, time, rotation));
+            
+
         }
         else
         {
-            actions.Add(new CardAction(act, dir, range, time));
+            actions.Add(new CardAction(act, dir, range, time,rotation));
         }
         totalTime += actions[actions.Count - 1].ticks;
         needToMove = true;

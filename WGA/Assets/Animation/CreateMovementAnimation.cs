@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CreateMovementAnimation : MonoBehaviour
 {
-
+    List<Card> DestroyedThisRound;
     //Use this for initialization
     public bool nextTurn = false;
     void Start()
     {
-
+        DestroyedThisRound = new List<Card>();
     }
 
     //Update is called once per frame
@@ -18,17 +18,28 @@ public class CreateMovementAnimation : MonoBehaviour
         if (nextTurn)
         {
             bool temp = true ;
-            for (int i = 0; i < Battle.n; i++)
-                for (int j =0;j<Battle.m; j++)
-                    if(Battle.Board[i,j]!=null)
-                        if (Battle.Board[i, j].GetComponent<MovementAnimation>().actions.Count != 0)
-                            temp = false;
+            foreach (Card c in Battle.Board)
+                if (c != null)
+                {
+                    if (c.GetComponent<MovementAnimation>().actions.Count != 0)
+                        temp = false;
+                }
+                foreach(Card c in DestroyedThisRound)
+                if(c!=null)
+                if (c.GetComponent<MovementAnimation>().actions.Count != 0)
+                    temp = false;
             if (temp)
-            {
-                Battle.NextTurn();
+                {
                 nextTurn = false;
-            }
+                Battle.NextTurn();
+
+                   
+                DestroyedThisRound.Clear();
+                }
+        
+            
         }
+
     }
     public static Directions ReverseDirection(Directions dir)
     {
@@ -317,12 +328,12 @@ public class CreateMovementAnimation : MonoBehaviour
         int n = Battle.n;
         int m = Battle.m;
         var coor = Battle.coor;
-
+        bool moved = false;
         switch (dir)
         {
             case Directions.Top:
                 {
-                    bool moved = false;
+                    
                     for (int i = n - 2; i >= 0; i--)
                         for (int j = 0; j < m; j++)
                         {
@@ -347,21 +358,22 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
                                                 Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
 
-                                                for (int q = i - 1; q >= 0; q--)
+
+                                                for (int q = k - 1; q >= 0; q--)
                                                     if (Board[q, j] != null)
                                                         if (Board[q, j].Owner == Battle.turn)
                                                         {
                                                             int w = q;
-                                                            while (w < k - 1 && Board[w + 1, j] == null)
+                                                            while (w < k && Board[w + 1, j] == null)
                                                             {
                                                                 Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[w + 1, j].transform.position.y - coor[w, j].transform.position.y);
                                                                 Board[w + 1, j] = Board[w, j];
                                                                 Board[w, j] = null;
+                                                                moved = true;
                                                                 w++;
                                                             }
                                                             Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-                                                            if (w != n - 1)
-                                                                i = w + 1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
+                                                                i = w+1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
 
                                                         }
 
@@ -371,6 +383,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 if (Board[k, j].Health <= 0)
                                                 {
                                                     //Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
+                                                    DestroyedThisRound.Add(Board[k, j]);
+                                                    Board[k, j].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
                                                     Board[k, j] = null;
                                                 }
                                                 else
@@ -380,6 +394,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 if (Board[k + 1, j].Health <= 0)
                                                 {
                                                     //Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
+                                                    Board[k+1, j].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[k + 1, j]);
                                                     Board[k + 1, j] = null;
                                                     if (Board[k, j] != null)
                                                     {
@@ -397,6 +413,14 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 moved = true;
                                                 break;
                                             }
+                                            else
+                                            {
+
+                                                //if (Board[k + 1, j].GetComponent<MovementAnimation>().totalTime < Board[k, j].GetComponent<MovementAnimation>().totalTime)
+                                                //    Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[k, j].GetComponent<MovementAnimation>().totalTime - Board[k + 1, j].GetComponent<MovementAnimation>().totalTime);
+                                                if (Board[k, j].GetComponent<MovementAnimation>().totalTime < Board[k + 1, j].GetComponent<MovementAnimation>().totalTime)
+                                                    Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[k + 1, j].GetComponent<MovementAnimation>().totalTime - Board[k, j].GetComponent<MovementAnimation>().totalTime);
+                                            }
                                         }
                                         else
                                         {
@@ -405,8 +429,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                             //Board[k, j].transform.position = coor[k + 1, j].transform.position;
                                             Board[k, j] = null;
                                             moved = true;
-                                            k++;
+                                           
                                         }
+                                        k++;
                                     }
 
                                 }
@@ -414,18 +439,12 @@ public class CreateMovementAnimation : MonoBehaviour
 
                         }
 
-                    if(moved)
-                    {
-                        nextTurn = true;
-                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                        //Battle.NextTurn();
-
-                    }
+                    
                     break;
                 }
             case Directions.Bottom:
                 {
-                    bool moved = false;
+                    
                     for (int i = 1; i < n; i++)
                         for (int j = 0; j < m; j++)
                         {
@@ -451,21 +470,21 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
                                                 Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
 
-                                                for (int q = i + 1; q < n; q++)
+                                                for (int q = k + 1; q < n; q++)
                                                     if (Board[q, j] != null)
                                                         if (Board[q, j].Owner == Battle.turn)
                                                         {
                                                             int w = q;
-                                                            while (w < k + 1 && Board[w - 1, j] == null)
+                                                            while (w > k && Board[w - 1, j] == null)
                                                             {
-                                                                Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[w - 1, j].transform.position.y - coor[w, j].transform.position.y);
+                                                                Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -coor[w - 1, j].transform.position.y + coor[w, j].transform.position.y);
                                                                 Board[w - 1, j] = Board[w, j];
                                                                 Board[w, j] = null;
+                                                                moved = true;
                                                                 w--;
                                                             }
                                                             Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-                                                            if (w != 0)
-                                                                i = w - 1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
+                                                            i = w -1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
 
                                                         }
 
@@ -475,6 +494,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 Board[k - 1, j] = temp[1];
                                                 if (Board[k, j].Health <= 0)
                                                 {
+                                                    Board[k, j].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[k, j]);
                                                     Board[k, j] = null;
                                                 }
                                                 else
@@ -484,6 +505,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 if (Board[k - 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k - 1, j);
+                                                    Board[k-1, j].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[k - 1, j]);
                                                     Board[k - 1, j] = null;
                                                     if (Board[k, j] != null)
                                                     {
@@ -521,17 +544,12 @@ public class CreateMovementAnimation : MonoBehaviour
                             }
                         }
 
-                    if (moved)
-                    {
-                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                        nextTurn = true;
-                        //Battle.NextTurn();
-                    }
+                  
                     break;
                 }
             case Directions.Left:
                 {
-                    bool moved = false;
+                   
                     for (int i = 0; i < n; i++)
                         for (int j = 1; j < m; j++)
                         {
@@ -555,30 +573,32 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                 Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
                                                 Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                
-                                                for (int q = j + 1; q < m; q++)
+
+                                                for (int q = k + 1; q < m; q++)
                                                     if (Board[i, q] != null)
                                                         if (Board[i, q].Owner == Battle.turn)
                                                         {
                                                             int w = q;
-                                                            while (w < k + 1 && Board[i, w - 1] == null)
+                                                            while (w > k && Board[i, w-1] == null)
                                                             {
-                                                                Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[i, w - 1].transform.position.x - coor[i, w].transform.position.x);
-                                                                Board[i, w - 1] = Board[i, w];
+                                                                Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -coor[i, w-1].transform.position.x + coor[i, w].transform.position.x);
+                                                                Board[i, w-1] = Board[i, w];
                                                                 Board[i, w] = null;
                                                                 w--;
+                                                                moved = true;
                                                             }
                                                             Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-                                                            if (w != 0)
-                                                                j = w -1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
+                                                            j = w - 1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
 
                                                         }
-                                                
+
                                                 var temp = Battle.Fight(Board[i, k], Board[i, k - 1]);
                                                 Board[i, k] = temp[0];
                                                 Board[i, k - 1] = temp[1];
                                                 if (Board[i, k].Health <= 0)
                                                 {
+                                                    Board[i, k].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[i, k]);
                                                     //DestroyCard(i, k);
                                                     Board[i, k] = null;
                                                 }
@@ -588,6 +608,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 if (Board[i, k - 1].Health <= 0)
                                                 {
+                                                    Board[i, k-1].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[i, k - 1]);
+                                                    Board[i, k - 1] = null;
                                                     //DestroyCard(i, k - 1);
                                                     if (Board[i, k] != null)
                                                     {
@@ -612,7 +635,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                         else
                                         {
                                             Board[i, k - 1] = Board[i, k];
-                                            Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[i, k + 1].transform.position.x - coor[i, k].transform.position.x);
+                                            Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, -coor[i, k - 1].transform.position.x + coor[i, k].transform.position.x);
                                             //Board[i, k].transform.position = coor[i, k - 1].transform.position;
                                             Board[i, k] = null;
                                             moved = true;
@@ -626,16 +649,12 @@ public class CreateMovementAnimation : MonoBehaviour
 
                         }
 
-                    if (moved)
-                    {
-                        nextTurn = true;
-                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                    }
+                   
                     break;
                 }
             case Directions.Right:
                 {
-                    bool moved = false;
+                   
                     for (int i = 0; i < n; i++)
                         for (int j = m - 2; j >= 0; j--)
                         {
@@ -661,30 +680,32 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 Board[i, k + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
                                                 Board[i, k + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
 
-                                                for (int q = j - 1; q >= 0; q--)
+                                                for (int q = k - 1; q >= 0; q--)
                                                     if (Board[i, q] != null)
                                                         if (Board[i, q].Owner == Battle.turn)
                                                         {
                                                             int w = q;
-                                                            while (w < k - 1 && Board[i, w + 1] == null)
+                                                            while (w < k && Board[i,w+1] == null)
                                                             {
-                                                                Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[i, w + 1].transform.position.x - coor[i, w].transform.position.x);
-                                                                Board[i, w + 1] = Board[i, w];
+                                                                Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, coor[i,w+1].transform.position.x - coor[i,w].transform.position.x);
+                                                                Board[i, w+1] = Board[i, w];
                                                                 Board[i, w] = null;
                                                                 w++;
+                                                                moved = true;
                                                             }
                                                             Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-                                                            if (w != m-1)
-                                                                j = w + 1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
+                                                            j = w + 1; //ОСТОРОЖНО, ЛУЧШЕ НЕ ПОВТОРЯТЬ ЭТУ ХУЙНЮ САМОСТОЯТЕЛЬНО
 
                                                         }
-                                                
+
                                                 var temp = Battle.Fight(Board[i, k], Board[i, k + 1]);
                                                 Board[i, k] = temp[0];
                                                 Board[i, k + 1] = temp[1];
 
                                                 if (Board[i, k].Health <= 0)
                                                 {
+                                                    Board[i, k].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[i, k]);
                                                     Board[i, k] = null;
                                                     //DestroyCard(i, k);
                                                 }
@@ -695,6 +716,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 if (Board[i, k + 1].Health <= 0)
                                                 {
                                                     //[p;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;DestroyCard(i, k + 1);
+                                                    Board[i, k + 1].Destroy(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                                                    DestroyedThisRound.Add(Board[i, k + 1]);
                                                     Board[i, k + 1] = null;
                                                     if (Board[i, k] != null)
                                                     {
@@ -729,13 +752,19 @@ public class CreateMovementAnimation : MonoBehaviour
                             }
                         }
 
-                    if (moved)
-                    {
-                        nextTurn = true;
-                        GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
-                    }
+                    
                     break;
                 }
+        }
+        if (moved)
+        {
+            //foreach (Card c in Board)
+            //    if(c!=null)
+            //        c.GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, 50);
+            nextTurn = true;
+            //GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+            //Battle.NextTurn();
+
         }
         return Board;
     }

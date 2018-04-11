@@ -26,7 +26,8 @@ public class DragnDrop : MonoBehaviour {
     private void OnMouseDown()
     {
             dragnow = true;
-
+        if(gameObject.GetComponent<Card>().Owner==Battle.turn)
+            Player.Selectedcard = gameObject;
         if (!GetComponentInParent<Card>().OnBoard)
         {
             var testscript = this.GetComponent<test>();
@@ -45,7 +46,11 @@ public class DragnDrop : MonoBehaviour {
         if (!GetComponentInParent<Card>().OnBoard)
         {
             if (!DropCard(Input.mousePosition))
+            {
                 this.transform.position = defpos;
+                Player.Selectedcard = null;
+            }
+
         }
 
     }
@@ -61,7 +66,7 @@ public class DragnDrop : MonoBehaviour {
                 return false ;
             if (GetComponentInParent<Card>().OnBoard)
                 return false;
-            
+            if(Player.Selectedcard!=null)
                 Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
             return true;
         }

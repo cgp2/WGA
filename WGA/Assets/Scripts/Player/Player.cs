@@ -52,7 +52,13 @@ public class Player : MonoBehaviour {
 
             deck[i].transform.parent = transform;
             //deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 12, this.transform.position.y, this.transform.position.z);
-            deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 15 * k , transform.position.y, -30);
+            if (this.name == "Player1")
+            {
+                deck[i].transform.position = new Vector3(93, -40.1f, -30);
+                deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x,0,true);
+            }
+            else
+                deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 15 * k , transform.position.y, -30);
             deck[i].GetComponent<Card>().Initialize(cards[i]);
             deck[i].GetComponent<Card>().Owner = this;
 
