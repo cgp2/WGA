@@ -501,7 +501,7 @@ public class Battle : MonoBehaviour
     //}
     public static void Move(Directions dir)
     {
-        CreateMovementAnimation.Move(Board, dir);
+       Board= GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir);
     }
     public static void UpdateUI()
     {
