@@ -1,16 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
-    <Health>2</Health>
-    <Shield>0</Shield>
-    <Attack>2</Attack>
-    <Name>Frigate</Name>
-    <Description>Some description </Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-  </CardInfo>
-  <CardInfo>
     <Health>4</Health>
     <Shield>2</Shield>
     <Attack>4</Attack>
@@ -45,6 +35,16 @@
     <AuraName>
       <string>DMGDebufAura</string>
     </AuraName>
+  </CardInfo>
+  <CardInfo>
+    <Health>2</Health>
+    <Shield>0</Shield>
+    <Attack>2</Attack>
+    <Name>Frigate</Name>
+    <Description>Some description </Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
   </CardInfo>
   <CardInfo>
     <Health>2</Health>
