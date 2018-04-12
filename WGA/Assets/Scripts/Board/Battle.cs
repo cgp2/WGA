@@ -28,7 +28,7 @@ public class Battle : MonoBehaviour
         //RollTheCards();
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
         //rescalecard = new Vector3(5, 5, 1);
-        rescalecard = new Vector3(3.6f, 2.9f, 1);
+        rescalecard = new Vector3(3.2f, 2.5f, 1);
 
     }
     public static Card Get_Card(int x, int y)
@@ -94,9 +94,9 @@ public class Battle : MonoBehaviour
             else
             {
                
-                    var col = r.Placing.Col;
-                    var row = r.Placing.Row;
-                    var crd = r.Placing.CardNum; //Номер карты в руке
+                var col = r.Placing.Col;
+                var row = r.Placing.Row;
+                var crd = r.Placing.CardNum; //Номер карты в руке
                 Player.Selectedcard = Player2.deck[crd];
                 Set_Card(row, col,Player.Selectedcard.GetComponent<Card>());
                 //Тут выставлять карту
@@ -201,7 +201,7 @@ public class Battle : MonoBehaviour
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
                 if (Player1.deck[i].transform.rotation.y != 0)
-                Player1.deck[i].GetComponent<Card>().front_rotate = true;
+                    Player1.deck[i].GetComponent<Card>().front_rotate = true;
             }
             for (int i = 0; i < Player2.deck.Count; i++)
                 if (!Player2.deck[i].GetComponent<Card>().OnBoard)
@@ -539,6 +539,17 @@ public class Battle : MonoBehaviour
         
         Board[x, y] = tg;
         tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+        //if (tg.Owner == Player2)
+        //{
+        //    var r = targetcard.GetComponents<Canvas>();
+        //    foreach (var text in r)
+        //    {
+        //    //    if (text.name == "Name")
+        //    //    {
+        //    //        text.color = Color.red;
+        //    //    }
+        //    }
+        //}
         //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
         Player.Selectedcard = null;
         Battle.NextTurn();

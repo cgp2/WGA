@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     public GameObject crd;
     public Sprite[] sprites;
     public static GameObject Selectedcard;
-    public Sprite fronSprite;
+    public Sprite frontSprite;
     public Sprite backSprite;
 
     // Use this for initialization
@@ -72,9 +72,9 @@ public class Player : MonoBehaviour {
 
             var cord = deck[i];
             //cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
-            cord.GetComponent<Card>().InitializeSprites(fronSprite, backSprite, sprites[0]);
+            cord.GetComponent<Card>().InitializeSprites(frontSprite, backSprite, sprites[i]);
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
-            deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = fronSprite;
+            deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = frontSprite;
             deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = backSprite;
             if (this.name == "Player1")
             {
