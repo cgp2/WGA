@@ -548,7 +548,7 @@ public class Battle : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+           // UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
         else if (!lockedInput)

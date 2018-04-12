@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour
 
     public void CloseGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();    
     }
 
