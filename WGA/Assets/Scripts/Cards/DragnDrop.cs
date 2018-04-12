@@ -8,7 +8,7 @@ public class DragnDrop : MonoBehaviour {
     // Use this for initialization
     void Start () {
         dragnow = false;
-        defpos = this.transform.position;
+        //defpos = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -26,12 +26,14 @@ public class DragnDrop : MonoBehaviour {
     private void OnMouseDown()
     {
             dragnow = true;
+        defpos = this.transform.position;
         if(gameObject.GetComponent<Card>().Owner==Battle.turn)
             Player.Selectedcard = gameObject;
         if (!GetComponentInParent<Card>().OnBoard)
         {
             var testscript = this.GetComponent<test>();
-            defpos = testscript.defaultPosition;
+            //defpos = testscript.defaultPosition;
+            
             if (testscript.needToRescalePlus || testscript.IsClose(this.transform.localScale.x, testscript.defaultXScale) || testscript.IsClose(transform.localScale.y, testscript.defaultYScale))
             {
                 this.GetComponent<test>().needToRescalePlus = false;

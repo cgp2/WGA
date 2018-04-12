@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
             //deck[i].transform.position = new Vector3(deck[i].transform.position.x + i * 12, this.transform.position.y, this.transform.position.z);
             if (this.name == "Player1")
             {
-                deck[i].transform.position = new Vector3(93, -40.1f, -30);
+                deck[i].transform.position = new Vector3(93, -37.1f, -30);
                 deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x,0,true);
             }
             else
@@ -62,12 +62,12 @@ public class Player : MonoBehaviour {
             deck[i].GetComponent<Card>().Initialize(cards[i]);
             deck[i].GetComponent<Card>().Owner = this;
 
-            if (this.name == "Player2")
-            {
-                deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-                deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-                deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-            }
+            //if (this.name == "Player2")
+            //{
+            //    deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            //    deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            //    deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            //}
             deck[i].name = "card#" + i + "/player=" + this.name;
 
             var cord = deck[i];
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour {
             x.GetChild(1).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Shield;
             x.GetChild(2).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Attack;
             x.GetChild(3).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Info.Name;
-            deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[0];
+            deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[i];
 
            
             

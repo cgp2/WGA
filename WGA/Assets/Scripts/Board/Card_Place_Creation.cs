@@ -9,7 +9,7 @@ public class Card_Place_Creation : MonoBehaviour {
     public GameObject card_place;
     public static GameObject[,] card_places;
     public static Vector3 t;
-    public const float xMarginStandart = 5, yMarginStandart = 5;
+    public const float xMarginStandart = 5, yMarginStandart = 1;
 
     // Use this for initialization
     void Start () {

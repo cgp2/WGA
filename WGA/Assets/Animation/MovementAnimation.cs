@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementAnimation : MonoBehaviour {
     public List<CardAction> actions;
     private bool needToMove = false;
+    public GameObject ExplodePrefab;
     public enum Acts
     {
         move,
@@ -112,7 +113,11 @@ public class MovementAnimation : MonoBehaviour {
                 if (actions[0].action == Acts.fight)
                 {
                     if (this.GetComponent<Card>().Health <= 0)
+                    {
                         Add_Action(Acts.destroy, Directions.Top, 0);
+                        var temp = Instantiate(ExplodePrefab);
+                        temp.transform.position = this.transform.position - new Vector3(0,0,10) ;
+                    }
                     Battle.UpdateUI();
                 }
                 if(actions[0].action==Acts.destroy)

@@ -27,7 +27,8 @@ public class Battle : MonoBehaviour
         //float defaultscaley = 0.5f;
         //RollTheCards();
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
-        rescalecard = new Vector3(5, 5, 1);
+        //rescalecard = new Vector3(5, 5, 1);
+        rescalecard = new Vector3(3.6f, 2.9f, 1);
 
     }
     public static Card Get_Card(int x, int y)
@@ -1004,9 +1005,9 @@ public class Battle : MonoBehaviour
     {
         var ret = new List<Card>();
         c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
-      /*  c1.StaticSHLD = */c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
+       c1.StaticSHLD = c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
         c2.StaticHP = c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
-      /*  c2.StaticSHLD = */c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
+      c2.StaticSHLD = c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
         ret.Add(c1);
         ret.Add(c2);
         return ret;
