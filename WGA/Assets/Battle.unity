@@ -532,6 +532,12 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d8d3627b1eb90c244a0b353b5191b135,
         type: 3}
+    - target: {fileID: 114424487852508056, guid: 8d797dd590c423049853dba7b67a6281,
+        type: 2}
+      propertyPath: frontSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a58c3e5a0acfc143a1819ba6ebe5f9b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d797dd590c423049853dba7b67a6281, type: 2}
   m_IsPrefabParent: 0
@@ -1203,7 +1209,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 471957587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.11, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0.11, z: -0.52}
   m_LocalScale: {x: 9.11256, y: 8.730656, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2877,6 +2883,12 @@ Prefab:
       propertyPath: sprites.Array.data[5]
       value: 
       objectReference: {fileID: 21300000, guid: a10903b2fb0e9814293cf11ca243d0db,
+        type: 3}
+    - target: {fileID: 114424487852508056, guid: 8d797dd590c423049853dba7b67a6281,
+        type: 2}
+      propertyPath: frontSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 27ad48648c9170c48859a00b6dced3c6,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d797dd590c423049853dba7b67a6281, type: 2}
