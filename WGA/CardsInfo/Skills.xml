@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0"?>
 <ArrayOfSkill>
-	<Skill>
-		<Name>HPBufBC</Name>
-		<Type>BattleCry</Type>
+	<Skill> 
+		<Name>HPBufBC</Name> 
+		<Type>BattleCry</Type> 
 		<Ally>True</Ally>
 		<Input>
 			<inp name="HpBuf" value="2" />
@@ -13,24 +13,9 @@
 		</Dirs>
 		<Description>This skill add HP to ally cards on card play</Description>
 	</Skill>
-	<Skill>
-		<Name>DMGBufAura</Name>
-		<Type>Aura</Type>
-		<Ally>True</Ally>
-		<Input>
-			<inp name="DMGBuf" value="3" />
-		</Input>
-		<Dirs>
-			<dir type="Left" />
-			<dir type="Right" />
-			<dir type="Top" />
-			<dir type="Bottom" />
-		</Dirs>
-		<Description>This aura add DMG to ally cards</Description>
-	</Skill>
-	<Skill>
-		<Name>DMGDebufAura</Name>
-		<Type>Aura</Type>
+	<Skill> 
+		<Name>DMGDebufAura</Name> 
+		<Type>Aura</Type> 
 		<Ally>False</Ally>
 		<Input>
 			<inp name="DMGBuf" value="-2" />
@@ -39,17 +24,5 @@
 			<dir type="Top" />
 		</Dirs>
 		<Description>This aura reduce DMG to enemy cards</Description>
-	</Skill>
-	<Skill>
-		<Name>SHLDDebufDR</Name>
-		<Type>DeathRattle</Type>
-		<Ally>False</Ally>
-		<Input>
-			<inp name="ShldBuf" value="-1" />
-		</Input>
-		<Dirs>
-			<dir type="Map" />
-		</Dirs>
-		<Description>This skill reduce SHLD to eneme cards on card death</Description>
 	</Skill>
 </ArrayOfSkill>

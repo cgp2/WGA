@@ -44,4 +44,18 @@
     <DeathRattleName />
     <AuraName />
   </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>C:\Users\Kudro\Desktop\G5I_vvCxF5g.jpg</ImagePath>
+    <Health>6</Health>
+    <Shield>2</Shield>
+    <Attack>3</Attack>
+    <Name>гуф</Name>
+    <Description>Охуенная карта</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+  </CardInfo>
 </ArrayOfCardInfo>
