@@ -84,7 +84,7 @@ public class Battle : MonoBehaviour
         else
         {
             turn = Player2;
-            var r =  Player2.GetComponent<AIEnemy>().MakeMove();
+            var r = Player2.GetComponent<AIEnemy>().MakeMove();
             if (r.IsMoving)
             {
                 var dir = r.Movement.Direction;
@@ -93,12 +93,12 @@ public class Battle : MonoBehaviour
             }
             else
             {
-               
+
                 var col = r.Placing.Col;
                 var row = r.Placing.Row;
                 var crd = r.Placing.CardNum; //Номер карты в руке
                 Player.Selectedcard = Player2.deck[crd];
-                Set_Card(row, col,Player.Selectedcard.GetComponent<Card>());
+                Set_Card(row, col, Player.Selectedcard.GetComponent<Card>());
                 //Тут выставлять карту
             }
         }
@@ -559,7 +559,7 @@ public class Battle : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-           // UnityEditor.EditorApplication.isPlaying = false;
+           UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
         else if (!lockedInput)
