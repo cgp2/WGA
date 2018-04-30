@@ -326,7 +326,6 @@ public class AIEnemy : MonoBehaviour
             }       
         }
 
-        int mult = 1;
         switch (numberOfMax)
         {
             case 0:

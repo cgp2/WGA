@@ -138,7 +138,7 @@ public abstract class ASkill
                     {
                         if (row - 1 >= 0)
                             slots.Add(bufMap[row - 1, col]);
-                    }                     
+                    }
                     break;
                 case Directions.Right:
                     if (playerID == 0)
@@ -148,7 +148,7 @@ public abstract class ASkill
                     }
                     else
                     {
-                         if (col - 1 >= 0)
+                        if (col - 1 >= 0)
                             slots.Add(bufMap[row, col - 1]);
                     }
                     break;
@@ -162,7 +162,7 @@ public abstract class ASkill
                     {
                         if ((col + 1 < bufMap.GetLength(1)) && (row - 1 >= 0))
                             slots.Add(bufMap[row - 1, col + 1]);
-                    }                
+                    }
                     break;
                 case Directions.LeftBottom:
                     if (playerID == 0)
@@ -184,7 +184,7 @@ public abstract class ASkill
                             slots.Add(bufMap[row + 1, col + 1]);
                     }
                     else
-                    {                    
+                    {
                         if ((col - 1 >= 0) && (row - 1 >= 0))
                             slots.Add(bufMap[row - 1, col - 1]);
                     }
@@ -208,6 +208,9 @@ public abstract class ASkill
                     {
                         slots.Add(slot);
                     }
+                    break;
+                case Directions.Self:
+                    slots.Add(bufMap[row, col]);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

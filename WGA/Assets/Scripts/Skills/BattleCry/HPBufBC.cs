@@ -12,7 +12,7 @@ namespace Assets.Scripts.Skills.BattleCry
 
             InputParametrs = new[] { "HpBuf" };
             InputValues = new[] {"2"};
-            Dirs = new[] { Directions.Left, Directions.Right };
+            Dirs = new[] { Directions.Self };
             Type = SkillType.BattleCry;
 
             Input = new SkillsInput()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public enum Directions { Top, Bottom, Left, Right, LeftTop, LeftBottom, RightTop, RightBottom, Map }
+public enum Directions { Top, Bottom, Left, Right, LeftTop, LeftBottom, RightTop, RightBottom, Map, Self }
 
 public struct SkillsInput
 {
