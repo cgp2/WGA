@@ -25,6 +25,8 @@ public class Card : MonoBehaviour
     private SkillMaster skillMaster;
     public bool front_rotate = false;
     public bool back_rotate = false;
+
+    public bool IsActiveSkillAvaliable = true;
     
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
@@ -195,6 +197,18 @@ public class Card : MonoBehaviour
         }
     }
 
+    public void ActiveSkill(ref Card[,] board, ref SlotBuff[,] bufMap)
+    {
+        if (IsActiveSkillAvaliable)
+        {
+            if (Info.ActiveSkillName != null)
+            {
+                skillMaster.ExecuteSkillByInput(this, Info.ActiveSkillInput, ref board);
+                IsActiveSkillAvaliable = false;
+            }
+        }
+    }
+
     public static CardData[] Deserialize(string pathToFile)
     {
         List<CardData> cards = new List<CardData>();
@@ -288,7 +302,8 @@ public class Card : MonoBehaviour
         public string[] BattleCryNames;
         public string[] DeathRattleNames;
         public string[] AurasNames;
-        
+        public string ActiveSkillName;
+
     }
     // Use this for initialization
     void Start()
@@ -315,10 +330,12 @@ public class Card : MonoBehaviour
         public string[] DeathRattleName;
         public string[] BattleCryNames;
         public string[] AuraNames;
+        public string ActiveSkillName;
 
         public SkillsInput[] BattleCryInput;
         public SkillsInput[] AuraInput;
         public SkillsInput[] DeathRattleInput;
+        public SkillsInput ActiveSkillInput;
 
         public Sprite CardBackSprite;
         public Sprite CardFrontSprite;

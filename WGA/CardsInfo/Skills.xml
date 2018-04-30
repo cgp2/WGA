@@ -8,8 +8,7 @@
 			<inp name="HpBuf" value="2" />
 		</Input>
 		<Dirs>
-			<dir type="Left" />
-			<dir type="Right" />
+			<dir type="Self" />
 		</Dirs>
 		<Description>This skill add HP to ally cards on card play</Description>
 	</Skill>

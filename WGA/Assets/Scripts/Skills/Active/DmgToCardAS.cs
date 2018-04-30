@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Skills.DeathRattle
+namespace Assets.Scripts.Skills.Active
 {
-    class ShldDebufDR : ASkill
+    class DmgToCardAS : ASkill
     {
-        public ShldDebufDR()
+        public DmgToCardAS()
         {
-            Name = "SHLDDebufDR";
-            Description = "This skill reduce SHLD to eneme cards on card death";
+            Name = "DmgToCard";
+            Description = "This skill do some damage (interesting)";
             Ally = false;
 
-            InputParametrs = new[] { "ShldBuf" };
-            InputValues = new[] { "-1" };
-            Dirs = new[] { Directions.Map};
-            Type = SkillType.DeathRattle;
+            InputParametrs = new[] { "DmgTo" };
+            InputValues = new[] { "5" };
+            Dirs = new[] { Directions.Map };
+            Type = SkillType.Active;
 
             Input = new SkillsInput()
             {
@@ -32,30 +32,29 @@ namespace Assets.Scripts.Skills.DeathRattle
             var t = input;
             var buffedSlots = GetCardSlotsInDirections(ref bufMap, input.Directions, playerID, row, col);
 
-            var n = Array.IndexOf(input.InputParamsNames, "ShldBuf");
+            var n = Array.IndexOf(input.InputParamsNames, "DmgTo");
             var buf = input.InputParamsValues[n];
             for (var i = 0; i < buffedSlots.Length; i++)
             {
                 if (playerID == 0)
                 {
-                    if (Ally)
+                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
+                        buffedSlots[i].StaticShieldBufPlayer2 -= int.Parse(buf);
+                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
                     {
-                        buffedSlots[i].StaticHPBufPlayer1 += int.Parse(buf);
+                        buffedSlots[i].StaticShieldBufPlayer2 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        buffedSlots[i].StaticHPBufPlayer2 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
                     }
-                    else
-                    {
-                        buffedSlots[i].StaticShieldBufPlayer2 += int.Parse(buf);
-                    }
+                        
                 }
                 else
                 {
-                    if (Ally)
+                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
+                        buffedSlots[i].StaticShieldBufPlayer1 -= int.Parse(buf);
+                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
                     {
-                        buffedSlots[i].StaticShieldBufPlayer2 += int.Parse(buf);
-                    }
-                    else
-                    {
-                        buffedSlots[i].StaticShieldBufPlayer1 += int.Parse(buf);
+                        buffedSlots[i].StaticShieldBufPlayer1 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
                     }
                 }
             }
@@ -78,7 +77,7 @@ namespace Assets.Scripts.Skills.DeathRattle
                 {
                     if (Ally)
                     {
-                        buffedSlots[i].StaticShieldBufPlayer1-= int.Parse(buf);
+                        buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf);
                     }
                     else
                     {

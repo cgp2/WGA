@@ -302,6 +302,7 @@ public enum SkillType
 {
     Aura,
     DeathRattle,
-    BattleCry
+    BattleCry,
+    Active
 }
 
