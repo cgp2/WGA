@@ -57,6 +57,7 @@ public class test : MonoBehaviour
         needToRescaleMinus = false;
         needToRescalePlus = false;
     }
+    
     private void OnMouseDown()
     {
         if (gameObject.GetComponent<Card>().Owner == Battle.turn)

@@ -16,7 +16,7 @@ public class Battle : MonoBehaviour
     public static Player Player2;
     static Vector3 rescalecard;
     public static int TurnNumber;
-
+    public static bool preGameStage;
     private static bool lockedInput = false;
     private static Card[,] savedBoard;
 
@@ -29,7 +29,7 @@ public class Battle : MonoBehaviour
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
         //rescalecard = new Vector3(5, 5, 1);
         rescalecard = new Vector3(3.2f, 2.5f, 1);
-
+        preGameStage = true;
     }
     public static Card Get_Card(int x, int y)
     {
@@ -43,15 +43,21 @@ public class Battle : MonoBehaviour
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         turn = Player1;
         TurnNumber = 1;
+        RoundUIUpdate();
+    }
+    private static  void RoundUIUpdate()
+    {
         GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
     }
     public static void NextTurn()
     {
+        
+        
         if (turn == Player2)
         {
             turn = Player1;
             TurnNumber++;
-            GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
+            
             for (var i = 0; i < Board.GetLength(0); i++)
             {
                 for (var j = 0; j < Board.GetLength(1); j++)
@@ -103,6 +109,8 @@ public class Battle : MonoBehaviour
             }
         }
 
+
+            
         if (TurnNumber == 20)
         {
             var winner = CalculateWiningPlayer();
@@ -165,7 +173,12 @@ public class Battle : MonoBehaviour
                 t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
             }
         }
-      
+        if (preGameStage && TurnNumber >= 3)
+        {
+            preGameStage = false;
+            TurnNumber = 1;
+        }
+        RoundUIUpdate();
     }
 
     private static Player CalculateWiningPlayer()
@@ -562,7 +575,7 @@ public class Battle : MonoBehaviour
            //UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
-        else if (!lockedInput)
+        else if (!lockedInput && !preGameStage)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {

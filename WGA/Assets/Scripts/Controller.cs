@@ -36,7 +36,10 @@ public class Controller : MonoBehaviour
         //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();    
     }
-
+    public void ToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
     public void ReturnToGame()
     {
         CanvGroupMain.blocksRaycasts = true;
