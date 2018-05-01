@@ -322,7 +322,7 @@ public class CreateMovementAnimation : MonoBehaviour
     //            }
     //    }
     //}
-    public Card[,] Move(Card[,] Board, Directions dir)
+    public bool Move(Card[,] Board, Directions dir)
     {
         
         int n = Battle.n;
@@ -1418,7 +1418,7 @@ public class CreateMovementAnimation : MonoBehaviour
             //Battle.NextTurn();
 
         }
-        return Board;
+        return moved;
     }
 }
 

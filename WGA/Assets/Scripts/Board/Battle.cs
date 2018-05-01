@@ -51,8 +51,8 @@ public class Battle : MonoBehaviour
     }
     public static void NextTurn()
     {
-        
-        
+
+        lockedInput = false;
         if (turn == Player2)
         {
             turn = Player1;
@@ -177,7 +177,7 @@ public class Battle : MonoBehaviour
         {
             preGameStage = false;
             TurnNumber = 1;
-        }
+        }   
         RoundUIUpdate();
     }
 
@@ -515,7 +515,10 @@ public class Battle : MonoBehaviour
     //}
     public static void Move(Directions dir)
     {
-       GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir);
+        if (GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir))
+            lockedInput = true;
+        else
+            lockedInput = false;
     }
     public static void UpdateUI()
     {
