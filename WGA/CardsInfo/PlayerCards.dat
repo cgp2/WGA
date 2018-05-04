@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>5</Health>
+    <Shield>1</Shield>
+    <Attack>7</Attack>
+    <Name>Strike Dreadnought</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>5</Health>
+    <Shield>1</Shield>
+    <Attack>6</Attack>
+    <Name>Dreadnought</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>4</Health>
+    <Shield>3</Shield>
+    <Attack>3</Attack>
+    <Name>Strike destroyer</Name>
+    <Description>Add damage to allies</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGBufAura</string>
+    </AuraName>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>4</Health>
+    <Shield>2</Shield>
+    <Attack>3</Attack>
+    <Name>Destroyer</Name>
+    <Description>Add damage to allies</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+      <string>DMGBufAura</string>
+    </AuraName>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>3</Health>
+    <Shield>3</Shield>
+    <Attack>1</Attack>
+    <Name>Strike Frigate</Name>
+    <Description>Add HP to allies</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>1</Health>
+    <Shield>2</Shield>
+    <Attack>1</Attack>
+    <Name>Strike Fighter</Name>
+    <Description>-1 dmg to enemy in front of this ship</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+  </CardInfo>
+</ArrayOfCardInfo>

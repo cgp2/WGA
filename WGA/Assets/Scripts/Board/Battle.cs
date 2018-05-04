@@ -561,6 +561,7 @@ public class Battle : MonoBehaviour
         Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
         Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
         targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
+        turn.UpdatePosition();
         targetcard.GetComponent<Card>().OnBoard = true;
         targetcard.GetComponent<test>().SetFalse();
 
