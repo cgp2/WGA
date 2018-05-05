@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
-    public static int n =4;
+    public static int n = 4;
     public static int m = 4;
     public static Card[,] Board;
     public static GameObject[,] coor = new GameObject[n, m];
@@ -20,6 +20,8 @@ public class Battle : MonoBehaviour
     private static bool lockedInput = false;
     private static Card[,] savedBoard;
 
+    private static Battle instance;
+
     // Use this for initialization
     void Start()
     {
@@ -28,8 +30,14 @@ public class Battle : MonoBehaviour
         //RollTheCards();
         //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
         //rescalecard = new Vector3(5, 5, 1);
+
         rescalecard = new Vector3(3.2f, 2.5f, 1);
         preGameStage = true;
+
+        var t = GameObject.Find("BattleStageInfo");
+        StartCoroutine(ShowCanvasForSeconds(t, 2f));
+
+        instance = this;
     }
     public static Card Get_Card(int x, int y)
     {
@@ -38,26 +46,26 @@ public class Battle : MonoBehaviour
     private void Awake()
     {
         Board = new Card[n, m];
-        
+
         Player1 = GameObject.Find("Player1").GetComponent<Player>();
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         turn = Player1;
         TurnNumber = 1;
         RoundUIUpdate();
     }
-    private static  void RoundUIUpdate()
+    private static void RoundUIUpdate()
     {
         GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
     }
     public static void NextTurn()
     {
-        
-        
+
+        lockedInput = false;
         if (turn == Player2)
         {
             turn = Player1;
             TurnNumber++;
-            
+
             for (var i = 0; i < Board.GetLength(0); i++)
             {
                 for (var j = 0; j < Board.GetLength(1); j++)
@@ -110,7 +118,7 @@ public class Battle : MonoBehaviour
         }
 
 
-            
+
         if (TurnNumber == 20)
         {
             var winner = CalculateWiningPlayer();
@@ -144,7 +152,7 @@ public class Battle : MonoBehaviour
                 }
             }
 
-            if ( !pl1HasCard && pl2HasCard)
+            if (!pl1HasCard && pl2HasCard)
             {
                 var winner = Player2;
                 lockedInput = true;
@@ -165,9 +173,9 @@ public class Battle : MonoBehaviour
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
                 var t = GameObject.Find("BattleEndMenu");
-                var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
-                CanvGroupBattleMenu.alpha = 1f;
-                CanvGroupBattleMenu.blocksRaycasts = true;
+                var canvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+                canvGroupBattleMenu.alpha = 1f;
+                canvGroupBattleMenu.blocksRaycasts = true;
 
                 t = GameObject.Find("Main");
                 t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
@@ -177,6 +185,9 @@ public class Battle : MonoBehaviour
         {
             preGameStage = false;
             TurnNumber = 1;
+
+            var t = GameObject.Find("BattleStageInfo");
+            instance.StartCoroutine(ShowCanvasForSeconds(t, 2f));
         }
         RoundUIUpdate();
     }
@@ -209,7 +220,7 @@ public class Battle : MonoBehaviour
         {
             for (int i = 0; i < Player1.deck.Count; i++)
             {
-               
+
                 Player1.deck[i].GetComponent<Card>().Spin(true);
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
@@ -221,7 +232,7 @@ public class Battle : MonoBehaviour
                 {
                     Player2.deck[i].GetComponent<Card>().Spin(false);
                     Player2.deck[i].GetComponentInChildren<Canvas>().enabled = false;
-                    Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false ;
+                    Player2.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
                     Player2.deck[i].GetComponent<Card>().back_rotate = true;
                 }
         }
@@ -515,7 +526,10 @@ public class Battle : MonoBehaviour
     //}
     public static void Move(Directions dir)
     {
-       GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir);
+        if (GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir))
+            lockedInput = true;
+        else
+            lockedInput = false;
     }
     public static void UpdateUI()
     {
@@ -539,17 +553,18 @@ public class Battle : MonoBehaviour
     public static void Set_Card(int x, int y, Card tg)
     {
         var targetcard = Player.Selectedcard;
-        targetcard.transform.parent = coor[x,y].transform.parent;
-        targetcard.transform.position = coor[x,y].transform.position;
-       // targetcard.GetComponent<BoxCollider2D>().enabled = false;
+        targetcard.transform.parent = coor[x, y].transform.parent;
+        targetcard.transform.position = coor[x, y].transform.position;
+        // targetcard.GetComponent<BoxCollider2D>().enabled = false;
         Player.Selectedcard.transform.localScale = rescalecard;
-        Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0,1);
+        Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0, 1);
         Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
         Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
         targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
+        turn.UpdatePosition();
         targetcard.GetComponent<Card>().OnBoard = true;
         targetcard.GetComponent<test>().SetFalse();
-        
+
         Board[x, y] = tg;
         tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
         //if (tg.Owner == Player2)
@@ -572,7 +587,7 @@ public class Battle : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-           //UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
         else if (!lockedInput && !preGameStage)
@@ -610,8 +625,8 @@ public class Battle : MonoBehaviour
                     for (int i = n - 2; i >= 0; i--)
                         for (int j = 0; j < m; j++)
                         {
-                            
-                            if (field[i, j]!= null)
+
+                            if (field[i, j] != null)
                             {
                                 int k = i;
 
@@ -622,9 +637,9 @@ public class Battle : MonoBehaviour
                                         if (field[k + 1, j] != null)
                                         {
                                             if (field[k + 1, j].Owner != turn)
-                                            {                                              
+                                            {
                                                 initialHP0 = field[k, j].Health + field[k, j].Shield;
-                                                initialHP1 = field[k+1, j].Health + field[k+1, j].Shield;
+                                                initialHP1 = field[k + 1, j].Health + field[k + 1, j].Shield;
 
                                                 var temp = Fight(field[k, j], field[k + 1, j]);
 
@@ -633,10 +648,10 @@ public class Battle : MonoBehaviour
                                                 else
                                                     damageReceived += initialHP0 - field[k, j].Health - field[k, j].Shield;
 
-                                                if (field[k+1, j].Owner == Player1)
-                                                    damageDone += initialHP1 - field[k+1, j].Health - field[k+1, j].Shield;
+                                                if (field[k + 1, j].Owner == Player1)
+                                                    damageDone += initialHP1 - field[k + 1, j].Health - field[k + 1, j].Shield;
                                                 else
-                                                    damageReceived += initialHP1 - field[k+1, j].Health - field[k+1, j].Shield;
+                                                    damageReceived += initialHP1 - field[k + 1, j].Health - field[k + 1, j].Shield;
 
                                                 field[k, j] = temp[0];
                                                 field[k + 1, j] = temp[1];
@@ -655,7 +670,7 @@ public class Battle : MonoBehaviour
                                                 if (field[k + 1, j].Health <= 0)
                                                 {
                                                     //DestroyCard(k + 1, j);
-                                                    if (field[k+1, j].Owner == Player1)
+                                                    if (field[k + 1, j].Owner == Player1)
                                                         enemiesKilled++;
                                                     else
                                                         alliesDead++;
@@ -727,7 +742,7 @@ public class Battle : MonoBehaviour
                                                 else
                                                     damageReceived += initialHP0 - field[k, j].Health - field[k, j].Shield;
 
-                                                if (field[k +-1, j].Owner == Player1)
+                                                if (field[k + -1, j].Owner == Player1)
                                                     damageDone += initialHP1 - field[k - 1, j].Health - field[k - 1, j].Shield;
                                                 else
                                                     damageReceived += initialHP1 - field[k - 1, j].Health - field[k - 1, j].Shield;
@@ -748,13 +763,13 @@ public class Battle : MonoBehaviour
 
                                                 if (field[k - 1, j].Health <= 0)
                                                 {
-                                                    if (field[k-1, j].Owner == Player1)
+                                                    if (field[k - 1, j].Owner == Player1)
                                                         enemiesKilled++;
                                                     else
                                                         alliesDead++;
                                                     //DestroyCard(k - 1, j);
-                                                    field[k-1, j].Destroy(ref field, ref bufMap);
-                                                    field[k-1, j] = null;
+                                                    field[k - 1, j].Destroy(ref field, ref bufMap);
+                                                    field[k - 1, j] = null;
                                                     if (field[k, j] != null)
                                                     {
                                                         field[k - 1, j] = field[k, j];
@@ -813,7 +828,7 @@ public class Battle : MonoBehaviour
                                             if (field[i, k - 1].Owner != turn)
                                             {
                                                 initialHP0 = field[i, k].Health + field[i, k].Shield;
-                                                initialHP1 = field[i, k-1].Health + field[i, k - 1].Shield;
+                                                initialHP1 = field[i, k - 1].Health + field[i, k - 1].Shield;
 
                                                 var temp = Fight(field[i, k], field[i, k - 1]);
 
@@ -842,7 +857,7 @@ public class Battle : MonoBehaviour
 
                                                 if (field[i, k - 1].Health <= 0)
                                                 {
-                                                    if (field[i, k-1].Owner == Player1)
+                                                    if (field[i, k - 1].Owner == Player1)
                                                         enemiesKilled++;
                                                     else
                                                         alliesDead++;
@@ -886,7 +901,7 @@ public class Battle : MonoBehaviour
 
                     }
                     else
-                        return  null;
+                        return null;
                 }
             case Directions.Right:
                 {
@@ -937,7 +952,7 @@ public class Battle : MonoBehaviour
 
                                                 if (field[i, k + 1].Health <= 0)
                                                 {
-                                                    if (field[i, k+1].Owner == Player1)
+                                                    if (field[i, k + 1].Owner == Player1)
                                                         enemiesKilled++;
                                                     else
                                                         alliesDead++;
@@ -977,7 +992,7 @@ public class Battle : MonoBehaviour
                         return field;
                         //NextTurn();
                         //RollTheCards();
-                       // GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
+                        // GameObject.Find("Field").GetComponent<SkillMaster>().RebuidBufMap();
                     }
                     else
                         return null;
@@ -1004,10 +1019,26 @@ public class Battle : MonoBehaviour
             {
                 if (Board[l, j] != null)
                 {
-                    savedBoard[l, j] = Board[l, j];               
+                    savedBoard[l, j] = Board[l, j];
                 }
             }
         }
+    }
+
+    private static IEnumerator ShowCanvasForSeconds(GameObject obj, float seconds)
+    {
+        var canvasGroup = obj.GetComponentInChildren<CanvasGroup>();
+        if (preGameStage) obj.GetComponentInChildren<Text>().text = "Tactical Stage";
+        else
+        {
+            obj.GetComponentInChildren<Text>().text = "Battle Stage";
+        }
+
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        yield return new WaitForSeconds(seconds);
+        canvasGroup.alpha = 0f;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public static void RestoreBoard()
@@ -1029,9 +1060,9 @@ public class Battle : MonoBehaviour
     {
         var ret = new List<Card>();
         c1.StaticHP = c1.Health = c1.Shield < c2.Attack ? c1.Health - c2.Attack + c1.Shield : c1.Health;
-       c1.StaticSHLD = c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
+        c1.StaticSHLD = c1.Shield = c1.Shield < c2.Attack ? 0 : c1.Shield - c2.Attack;
         c2.StaticHP = c2.Health = c2.Shield < c1.Attack ? c2.Health - c1.Attack + c2.Shield : c2.Health;
-      c2.StaticSHLD = c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
+        c2.StaticSHLD = c2.Shield = c2.Shield < c1.Attack ? 0 : c2.Shield - c1.Attack;
         ret.Add(c1);
         ret.Add(c2);
         return ret;

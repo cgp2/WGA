@@ -187,7 +187,7 @@ public class AIEnemy : MonoBehaviour
 
     private MovementAction CalculateMovementUtility()
     {
-        if (Battle.TurnNumber >= 2)
+        if (!Battle.preGameStage)
         {
             var ret = new MovementAction();
             ret.Utillity = int.MinValue;
