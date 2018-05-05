@@ -11,6 +11,9 @@
     <BattleCryName />
     <DeathRattleName />
     <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -25,6 +28,9 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
+    <valueBatterCry>1000</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -39,6 +45,9 @@
     <AuraName>
       <string>DMGBufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1000</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -54,6 +63,9 @@
       <string>DMGDebufAura</string>
       <string>DMGBufAura</string>
     </AuraName>
+    <valueBatterCry>1000</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -68,6 +80,9 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
+    <valueBatterCry>1000</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -82,5 +97,8 @@
     <AuraName>
       <string>DMGDebufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>10</valueAura>
   </CardInfo>
 </ArrayOfCardInfo>

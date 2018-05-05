@@ -29,7 +29,8 @@ public class Card : MonoBehaviour
     public bool IsActiveSkillAvaliable = true;
     
 
-    public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
+    public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, 
+        string battleCryValue = null, string deathRattleValue = null, string auraValue = null, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
     {
         this.skillMaster = skillMaster;
 
@@ -55,36 +56,59 @@ public class Card : MonoBehaviour
         StaticSHLD = Shield = shield;
         StaticDMG = Attack = attack;
 
+        var battleCryInp = new List<string>();
         if (battleCryName != null)
         {
             var t = new List<SkillsInput>();
             foreach (var n in battleCryName)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                if (battleCryValue != null) input.InputParamsValues[0] = battleCryValue;
+                t.Add(input);
+                battleCryInp.Add(input.InputParamsValues[0]);
+            }
+
             Info.BattleCryInput = t.ToArray();
         }
+        Info.BattleCryValue = battleCryInp.ToArray();
 
+        var deathRattleInp = new List<string>();
         if (deathRattleName != null)
         {
             var t = new List<SkillsInput>();
             foreach (var n in deathRattleName)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                if (deathRattleValue != null) input.InputParamsValues[0] = deathRattleValue;
+                t.Add(input);
+                deathRattleInp.Add(input.InputParamsValues[0]);
+            }
+
             Info.DeathRattleInput = t.ToArray();
         }
+        Info.DeathRattleInputValue = deathRattleInp.ToArray();
 
+        var auraInp = new List<string>();
         if (auraName != null)
         {
             var t = new List<SkillsInput>();
             foreach (var n in Info.AuraNames)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                if (auraValue != null) input.InputParamsValues[0] = auraValue;
+                t.Add(input);
+                auraInp.Add(input.InputParamsValues[0]);
+            }
             Info.AuraInput = t.ToArray();
         }
+        Info.AuraInputValue = auraInp.ToArray();
 
         OnBoard = false;
     }
 
     public void Initialize(CardData data)
     {
-        this.skillMaster = data.SkillM;
+        skillMaster = data.SkillM;
 
         Info = new CardInfo
         {
@@ -93,7 +117,7 @@ public class Card : MonoBehaviour
 
             InitialHealth = data.HP,
             InitialShield = data.Shield,
-            InitialAttack =data.Attack,
+            InitialAttack = data.Attack,
 
             BattleCryNames = data.BattleCryNames,
             DeathRattleName = data.DeathRattleNames,
@@ -108,29 +132,52 @@ public class Card : MonoBehaviour
         StaticSHLD = Shield = data.Shield;
         StaticDMG = Attack = data.Attack;
 
+        var battleCryInp = new List<string>(); 
         if (data.BattleCryNames.Length !=0)
         {
             var t = new List<SkillsInput>();
             foreach (var n in data.BattleCryNames)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                input.InputParamsValues[0] = data.BattleCryInputValue[0].ToString();
+                t.Add(input);
+                battleCryInp.Add(input.InputParamsValues[0]);
+            }
             Info.BattleCryInput = t.ToArray();
         }
+        Info.BattleCryValue = battleCryInp.ToArray();
 
+        var deathRattleInp = new List<string>();
         if (data.DeathRattleNames.Length != 0)
         {
             var t = new List<SkillsInput>();
             foreach (var n in data.DeathRattleNames)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                input.InputParamsValues[0] = data.DeathRattleInputValue[0].ToString();
+                t.Add(input);
+                deathRattleInp.Add(input.InputParamsValues[0]);
+            }
             Info.DeathRattleInput = t.ToArray();
         }
 
+        Info.DeathRattleInputValue = deathRattleInp.ToArray();
+
+        var auraInp = new List<string>();
         if (data.AurasNames.Length != 0)
         {
             var t = new List<SkillsInput>();
             foreach (var n in data.AurasNames)
-                t.Add(skillMaster.GetISkillInputByName(n));
+            {
+                var input = skillMaster.GetISkillInputByName(n);
+                input.InputParamsValues[0] = data.AuraInputValue[0].ToString();
+                t.Add(input);
+                auraInp.Add(input.InputParamsValues[0]);
+            }
             Info.AuraInput = t.ToArray();
         }
+
+        Info.AuraInputValue = auraInp.ToArray();
 
         OnBoard = false;
     }
@@ -215,6 +262,10 @@ public class Card : MonoBehaviour
         var reader = new XmlTextReader(pathToFile);
         while (reader.ReadToFollowing("CardInfo"))
         {
+            reader.ReadToFollowing("CardClass");
+            reader.Read();
+            var race = reader.Value;
+
             reader.ReadToFollowing("Health");
             reader.Read();
             var health = reader.Value;
@@ -283,7 +334,38 @@ public class Card : MonoBehaviour
                 }
             }
 
-            var crd = new CardData { Name = name,HP =  int.Parse(health), Shield= int.Parse(shield), Attack = int.Parse(attack), Desk = desk, SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(), BattleCryNames = battleCry.ToArray(), DeathRattleNames = deathRattle.ToArray(), AurasNames =aura.ToArray() };
+            var BCinp = new List<int>();
+            reader.ReadToFollowing("valueBatterCry");
+            reader.Read();
+            BCinp.Add(int.Parse(reader.Value));
+
+            var DRinp = new List<int>();
+            reader.ReadToFollowing("valueDeathRattle");
+            reader.Read();
+            DRinp.Add(int.Parse(reader.Value));
+
+            var Aurainp = new List<int>();
+            reader.ReadToFollowing("valueAura");
+            reader.Read();
+            Aurainp.Add(int.Parse(reader.Value));
+
+
+            var crd = new CardData
+            {
+                Name = name,
+                Race = race,
+                HP =  int.Parse(health),
+                Shield = int.Parse(shield),
+                Attack = int.Parse(attack),
+                Desk = desk,
+                SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(),
+                BattleCryNames = battleCry.ToArray(),
+                BattleCryInputValue = BCinp.ToArray(),
+                DeathRattleNames = deathRattle.ToArray(),
+                DeathRattleInputValue = DRinp.ToArray(),
+                AurasNames = aura.ToArray(),
+                AuraInputValue = Aurainp.ToArray(),
+            };
 
             //crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
             cards.Add(crd);
@@ -291,20 +373,7 @@ public class Card : MonoBehaviour
 
         return cards.ToArray();
     }
-    public struct CardData
-    {
-        public string Name;
-        public int HP;
-        public int Shield;
-        public int Attack;
-        public string Desk;
-        public SkillMaster SkillM;
-        public string[] BattleCryNames;
-        public string[] DeathRattleNames;
-        public string[] AurasNames;
-        public string ActiveSkillName;
-
-    }
+  
     // Use this for initialization
     void Start()
     {
@@ -321,6 +390,7 @@ public class Card : MonoBehaviour
     public struct CardInfo
     {
         public string Name;
+        public string Race;
         public string Description;
 
         public int InitialHealth;
@@ -332,6 +402,10 @@ public class Card : MonoBehaviour
         public string[] AuraNames;
         public string ActiveSkillName;
 
+        public string[] BattleCryValue;
+        public string[] AuraInputValue;
+        public string[] DeathRattleInputValue;
+
         public SkillsInput[] BattleCryInput;
         public SkillsInput[] AuraInput;
         public SkillsInput[] DeathRattleInput;
@@ -340,5 +414,29 @@ public class Card : MonoBehaviour
         public Sprite CardBackSprite;
         public Sprite CardFrontSprite;
         public Sprite ShipSprite;
+    }
+
+    public struct CardData
+    {
+        public string Name;
+        public string Race;
+        public int HP;
+        public int Shield;
+        public int Attack;
+        public string Desk;
+        public SkillMaster SkillM;
+
+        public string[] BattleCryNames;
+        public int[] BattleCryInputValue;
+
+        public string[] DeathRattleNames;
+        public int[] DeathRattleInputValue;
+
+        public string[] AurasNames;
+        public int[] AuraInputValue;
+
+        public string ActiveSkillName;
+        public int ActiveInputValue;
+
     }
 }
