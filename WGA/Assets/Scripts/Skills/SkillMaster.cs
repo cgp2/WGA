@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using Assets.Scripts.Skills.Active;
 using Assets.Scripts.Skills.Aura;
 using Assets.Scripts.Skills.BattleCry;
 using Assets.Scripts.Skills.DeathRattle;
@@ -32,6 +33,9 @@ public class SkillMaster : MonoBehaviour
 
         var shldDebufDR = new ShldDebufDR();
         SkillsList.Add(shldDebufDR);
+
+        var dmgToCard = new DmgToCardAS();
+        SkillsList.Add(dmgToCard);
 
         BufMap = new SlotBuff[Battle.n, Battle.m];
 
@@ -69,7 +73,8 @@ public class SkillMaster : MonoBehaviour
 
                         if(field[i, j].StaticHP + bufMap[i, j].FloatingHPBufPlayer1 <= 0)
                         {
-                           // Battle.DestroyCard(i, j);
+                            field[i, j].Health = 0;
+                            field[i,j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight,Directions.Left,0,1);
                         }
                         else
                         {
@@ -87,7 +92,8 @@ public class SkillMaster : MonoBehaviour
 
                         if (field[i, j].StaticHP + bufMap[i, j].FloatingHPBufPlayer2 <= 0)
                         {
-                           // Battle.DestroyCard(i, j);
+                            field[i, j].Health = 0;
+                            field[i,j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, Directions.Left, 0,5);
                         }
                         else
                         {

@@ -408,7 +408,7 @@ Prefab:
     - target: {fileID: 114424487852508056, guid: 8d797dd590c423049853dba7b67a6281,
         type: 2}
       propertyPath: sprites.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4028068625721182, guid: 8d797dd590c423049853dba7b67a6281, type: 2}
       propertyPath: m_LocalPosition.x
@@ -535,6 +535,12 @@ Prefab:
       propertyPath: frontSprite
       value: 
       objectReference: {fileID: 21300000, guid: 4a58c3e5a0acfc143a1819ba6ebe5f9b,
+        type: 3}
+    - target: {fileID: 114424487852508056, guid: 8d797dd590c423049853dba7b67a6281,
+        type: 2}
+      propertyPath: sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: d8d3627b1eb90c244a0b353b5191b135,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d797dd590c423049853dba7b67a6281, type: 2}
@@ -3108,7 +3114,7 @@ Prefab:
         type: 2}
       propertyPath: sprites.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: a10903b2fb0e9814293cf11ca243d0db,
+      objectReference: {fileID: 21300000, guid: a32c45cf033f40648abf356df2ed3b92,
         type: 3}
     - target: {fileID: 114424487852508056, guid: 8d797dd590c423049853dba7b67a6281,
         type: 2}
@@ -3444,7 +3450,7 @@ GameObject:
   - component: {fileID: 1800966013}
   - component: {fileID: 1800966012}
   m_Layer: 5
-  m_Name: WinnerText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

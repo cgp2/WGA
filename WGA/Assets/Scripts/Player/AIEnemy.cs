@@ -93,9 +93,12 @@ public class AIEnemy : MonoBehaviour
                                     }
 
                                     field[l, j] = new Card();
-
+                                    var BCinp = Battle.Board[l, j].Info.BattleCryInput != null ? Battle.Board[l, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
+                                    var DRinp = Battle.Board[l, j].Info.DeathRattleInput != null ? Battle.Board[l, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                                    var AUinp = Battle.Board[l, j].Info.AuraInput != null ? Battle.Board[l, j].Info.AuraInput[0].InputParamsValues[0] : null;
                                     c.GetComponent<Card>().Initialize(Battle.Board[l, j].Info.Name, Battle.Board[l, j].Health, Battle.Board[l, j].Shield, Battle.Board[l, j].Attack, Battle.Board[l, j].Info.Description, skillMaster,
-                                        Battle.Board[l, j].Info.BattleCryNames);
+                                        BCinp, DRinp, AUinp,
+                                        Battle.Board[l, j].Info.BattleCryNames, Battle.Board[l, j].Info.DeathRattleName, Battle.Board[l, j].Info.AuraNames);
                                     field[l, j] = c.GetComponent<Card>();
 
                                     field[l, j].OnBoard = true;
@@ -215,9 +218,13 @@ public class AIEnemy : MonoBehaviour
                             c.GetComponent<Card>().Owner = Battle.Player1;
                         }
 
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
-                            Battle.Board[i, j].Info.Description, skillMaster,
-                            Battle.Board[i, j].Info.BattleCryNames);
+                        var BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
+                        var DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                        var AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                            BCinp, DRinp, AUinp,
+                            Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
+
                         field0[i, j] = c.GetComponent<Card>();
                         Destroy(c);
 
@@ -227,9 +234,12 @@ public class AIEnemy : MonoBehaviour
                             c.GetComponent<Card>().Owner = Battle.Player1;
                         }
 
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
-                            Battle.Board[i, j].Info.Description, skillMaster,
-                            Battle.Board[i, j].Info.BattleCryNames);
+                        BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
+                        DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                        AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                            BCinp, DRinp, AUinp,
+                            Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field1[i, j] = c.GetComponent<Card>();
                         Destroy(c);
 
@@ -239,9 +249,12 @@ public class AIEnemy : MonoBehaviour
                             c.GetComponent<Card>().Owner = Battle.Player1;
                         }
 
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
-                            Battle.Board[i, j].Info.Description, skillMaster,
-                            Battle.Board[i, j].Info.BattleCryNames);
+                        BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
+                        DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                        AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                            BCinp, DRinp, AUinp,
+                            Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field2[i, j] = c.GetComponent<Card>();
                         Destroy(c);
 
@@ -251,9 +264,12 @@ public class AIEnemy : MonoBehaviour
                             c.GetComponent<Card>().Owner = Battle.Player1;
                         }
 
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
-                            Battle.Board[i, j].Info.Description, skillMaster,
-                            Battle.Board[i, j].Info.BattleCryNames);
+                        BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
+                        DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                        AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                            BCinp, DRinp, AUinp,
+                            Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field3[i, j] = c.GetComponent<Card>();
                         Destroy(c);
 

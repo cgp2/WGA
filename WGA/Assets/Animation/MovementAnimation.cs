@@ -22,11 +22,11 @@ public class MovementAnimation : MonoBehaviour {
         public Acts action;
         public float deltaPosition;
         public float deltaRotation;
-        public CardAction(Acts act, Directions _dir, float range, int time = 0, bool rotation = false)
+        public CardAction(Acts act, Directions dir, float range, int time = 0, bool rotation = false)
         {
             action = act;
             ticks = time==0 ? GetTimeFromAction(act) : time;
-            dir = _dir;
+            this.dir = dir;
             deltaPosition = range / ticks;
             if (rotation)
                 deltaRotation = 180f / ticks;
@@ -118,7 +118,7 @@ public class MovementAnimation : MonoBehaviour {
                         var temp = Instantiate(ExplodePrefab);
                         temp.transform.position = this.transform.position - new Vector3(0,0,10) ;
                     }
-                    Battle.UpdateUI();
+                    
                 }
                 if(actions[0].action==Acts.destroy)
                 {
@@ -128,6 +128,7 @@ public class MovementAnimation : MonoBehaviour {
                 totalTime -= actions[0].ticks;
                 actions.RemoveAt(0);
                 tickCounter = 0;
+                Battle.UpdateUI();
             }
             if (actions.Count == 0)
                 needToMove = false;

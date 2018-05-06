@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
     }
     void Start()
     {
-        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
+        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
         var k = 0;
         for (int i =0; i < cards.Length;i++)
         {
@@ -55,7 +55,9 @@ public class Player : MonoBehaviour {
             if (this.name == "Player1")
             {
                 deck[i].transform.position = new Vector3(93, -37.1f, -30);
-                deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x,0,true);
+                //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x,0,true);
+                
+                
             }
             else
                 deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 15 * k , transform.position.y, -30);
@@ -91,6 +93,21 @@ public class Player : MonoBehaviour {
            
             
         }
+        for(int i=0;i<deck.Count;i++)
+        {
+            float xFirst = 0;
+            if (deck.Count % 2 == 0)
+            {
+                xFirst -= 10 * deck.Count / 2;
+            }
+            else
+            {
+                xFirst = -5 - (10 * deck.Count - 1) / 2;
+            }
+
+            //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x, 0);
+            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 13, 0, true);
+        }
         Battle.UpdateUI();
         //Battle.NextTurn();
         //for (int i = 0; i < Hand.Length; i++)
@@ -100,7 +117,24 @@ public class Player : MonoBehaviour {
         //        deck[i].GetComponent<Card>().Spin(false);
        // Battle.RollTheCards();
 	}
-   
+    public void UpdatePosition()
+    {
+        for (int i = 0; i < deck.Count; i++)
+        {
+            float xFirst = 0;
+            if (deck.Count % 2 == 0)
+            {
+                xFirst -= 10 * deck.Count / 2;
+            }
+            else
+            {
+                xFirst = -5 - (10 * deck.Count - 1) / 2;
+            }
+
+            //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x, 0);
+            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 13, 0, false);
+        }
+    }
     // Update is called once per frame
     void Update () {     
 	}
