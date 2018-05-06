@@ -226,6 +226,7 @@ public abstract class ASkill
         {
             bufMap[slot.Row, slot.Col] = slot;
         }
+       
     }
 }
 

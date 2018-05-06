@@ -108,7 +108,7 @@ public class Card : MonoBehaviour
 
 
         Info.ActiveSkillInput = activeInput;
-
+        Info.ActiveSkillName = "DmgToCard";
         OnBoard = false;
     }
 
@@ -188,7 +188,7 @@ public class Card : MonoBehaviour
 
         Info.ActiveSkillInput = activeInput;
         Info.AuraInputValue = auraInp.ToArray();
-
+        Info.ActiveSkillName = data.ActiveSkillName;
         OnBoard = false;
     }
     public void InitializeSprites(Sprite cardFront, Sprite cardBack, Sprite ship)
@@ -254,16 +254,23 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void ActiveSkill(ref Card[,] board, ref SlotBuff[,] bufMap)
+    public bool ExecuteActiveSkill(ref Card[,] board, ref SlotBuff[,] bufMap)
     {
         if (IsActiveSkillAvaliable)
         {
             if (Info.ActiveSkillName != null)
             {
                 skillMaster.ExecuteSkillByInput(this, Info.ActiveSkillInput, ref board);
+                skillMaster.ApplyBufsToBoard(ref board, ref bufMap);
                 IsActiveSkillAvaliable = false;
+                Battle.UpdateUI();
+
+                return true;
             }
+            
+           
         }
+        return false;
     }
 
     public static CardData[] Deserialize(string pathToFile)

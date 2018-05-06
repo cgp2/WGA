@@ -36,25 +36,29 @@ namespace Assets.Scripts.Skills.Active
             var buf = input.InputParamsValues[n];
             for (var i = 0; i < buffedSlots.Length; i++)
             {
-                if (playerID == 0)
+                if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col] != null)
                 {
-                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
-                        buffedSlots[i].StaticShieldBufPlayer2 -= int.Parse(buf);
-                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
+                    if (playerID == 0)
                     {
-                        buffedSlots[i].StaticShieldBufPlayer2 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
-                        buffedSlots[i].StaticHPBufPlayer2 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
+                            buffedSlots[i].StaticShieldBufPlayer2 -= int.Parse(buf);
+                            
+                        if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
+                        {
+                            buffedSlots[i].StaticShieldBufPlayer2 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                            buffedSlots[i].StaticHPBufPlayer2 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        }
+
                     }
-                        
-                }
-                else
-                {
-                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
-                        buffedSlots[i].StaticShieldBufPlayer1 -= int.Parse(buf);
-                    if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
+                    else
                     {
-                        buffedSlots[i].StaticShieldBufPlayer1 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
-                        buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield >= int.Parse(buf))
+                            buffedSlots[i].StaticShieldBufPlayer1 -= int.Parse(buf);
+                        if (Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield <= int.Parse(buf))
+                        {
+                            buffedSlots[i].StaticShieldBufPlayer1 -= Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                            buffedSlots[i].StaticHPBufPlayer1 -= int.Parse(buf) - Battle.Board[buffedSlots[i].Row, buffedSlots[i].Col].Shield;
+                        }
                     }
                 }
             }

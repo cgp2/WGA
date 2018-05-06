@@ -118,7 +118,7 @@ public class MovementAnimation : MonoBehaviour {
                         var temp = Instantiate(ExplodePrefab);
                         temp.transform.position = this.transform.position - new Vector3(0,0,10) ;
                     }
-                    Battle.UpdateUI();
+                    
                 }
                 if(actions[0].action==Acts.destroy)
                 {
@@ -128,6 +128,7 @@ public class MovementAnimation : MonoBehaviour {
                 totalTime -= actions[0].ticks;
                 actions.RemoveAt(0);
                 tickCounter = 0;
+                Battle.UpdateUI();
             }
             if (actions.Count == 0)
                 needToMove = false;

@@ -51,4 +51,16 @@
 		</Dirs>
 		<Description>This skill reduce SHLD to eneme cards on card death</Description>
 	</Skill>
+	<Skill>
+		<Name>DmgToCard</Name>
+		<Type>Active</Type>
+		<Ally>False</Ally>
+		<Input>
+			<inp name="DmgTo" value="5" />
+		</Input>
+		<Dirs>
+			<dir type="Map" />
+		</Dirs>
+		<Description>This skill do some damage (interesting)</Description>
+	</Skill>
 </ArrayOfSkill>

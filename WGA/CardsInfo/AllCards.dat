@@ -5,21 +5,6 @@
     <ImagePath />
     <Health>5</Health>
     <Shield>1</Shield>
-    <Attack>7</Attack>
-    <Name>Strike Dreadnought</Name>
-    <Description>Damage dealer</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
-    <ImagePath />
-    <Health>5</Health>
-    <Shield>1</Shield>
     <Attack>6</Attack>
     <Name>Dreadnought</Name>
     <Description>Damage dealer</Description>
@@ -350,6 +335,21 @@
       <string>HPBufBC</string>
       <string>HPBufBC</string>
     </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>D:\BANKPROGRAMMISTA\UnityProjects\WGA_clone\WGA\Assets\Content\CardSprites\Ships\vanguard_spaceship_by_gustvoc-d4xy3sg.jpg</ImagePath>
+    <Health>5</Health>
+    <Shield>1</Shield>
+    <Attack>7</Attack>
+    <Name>Strike Dreadnought</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
     <DeathRattleName />
     <AuraName />
     <valueBatterCry>0</valueBatterCry>

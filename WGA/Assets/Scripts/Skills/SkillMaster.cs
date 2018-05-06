@@ -73,7 +73,8 @@ public class SkillMaster : MonoBehaviour
 
                         if(field[i, j].StaticHP + bufMap[i, j].FloatingHPBufPlayer1 <= 0)
                         {
-                           // Battle.DestroyCard(i, j);
+                            field[i, j].Health = 0;
+                            field[i,j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight,Directions.Left,0,1);
                         }
                         else
                         {
@@ -91,7 +92,8 @@ public class SkillMaster : MonoBehaviour
 
                         if (field[i, j].StaticHP + bufMap[i, j].FloatingHPBufPlayer2 <= 0)
                         {
-                           // Battle.DestroyCard(i, j);
+                            field[i, j].Health = 0;
+                            field[i,j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, Directions.Left, 0,5);
                         }
                         else
                         {
