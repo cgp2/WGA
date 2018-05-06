@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
+using Assets.Scripts.Skills.Active;
 using Assets.Scripts.Skills.Aura;
 using Assets.Scripts.Skills.BattleCry;
 using Assets.Scripts.Skills.DeathRattle;
@@ -32,6 +33,9 @@ public class SkillMaster : MonoBehaviour
 
         var shldDebufDR = new ShldDebufDR();
         SkillsList.Add(shldDebufDR);
+
+        var dmgToCard = new DmgToCardAS();
+        SkillsList.Add(dmgToCard);
 
         BufMap = new SlotBuff[Battle.n, Battle.m];
 

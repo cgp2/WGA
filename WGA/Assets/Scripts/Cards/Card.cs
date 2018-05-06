@@ -103,6 +103,12 @@ public class Card : MonoBehaviour
         }
         Info.AuraInputValue = auraInp.ToArray();
 
+
+        var activeInput = skillMaster.GetISkillInputByName("DmgToCard");
+
+
+        Info.ActiveSkillInput = activeInput;
+
         OnBoard = false;
     }
 
@@ -177,6 +183,10 @@ public class Card : MonoBehaviour
             Info.AuraInput = t.ToArray();
         }
 
+        var activeInput = skillMaster.GetISkillInputByName(data.ActiveSkillName);
+
+
+        Info.ActiveSkillInput = activeInput;
         Info.AuraInputValue = auraInp.ToArray();
 
         OnBoard = false;
@@ -349,7 +359,6 @@ public class Card : MonoBehaviour
             reader.Read();
             Aurainp.Add(int.Parse(reader.Value));
 
-
             var crd = new CardData
             {
                 Name = name,
@@ -365,6 +374,8 @@ public class Card : MonoBehaviour
                 DeathRattleInputValue = DRinp.ToArray(),
                 AurasNames = aura.ToArray(),
                 AuraInputValue = Aurainp.ToArray(),
+                ActiveInputValue = 5,
+                ActiveSkillName = "DmgToCard",
             };
 
             //crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
