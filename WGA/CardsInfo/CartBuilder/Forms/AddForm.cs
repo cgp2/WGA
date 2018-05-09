@@ -76,6 +76,21 @@ namespace CartBuilder
 
             foreach (var skill in SkillsArray)
                 SkillsCheckBox.Items.Add(skill);
+
+            for (int i = 0; i < SkillsCheckBox.Items.Count; i++)
+            {
+                foreach (var bc in info.BattleCryName)
+                    if (((Skill)SkillsCheckBox.Items[i]).Name == bc)
+                        SkillsCheckBox.SetItemChecked(i, true);
+
+                foreach (var dr in info.DeathRattleName)
+                    if (((Skill)SkillsCheckBox.Items[i]).Name == dr)
+                        SkillsCheckBox.SetItemChecked(i, true);
+
+                foreach (var au in info.AuraName)
+                    if (((Skill)SkillsCheckBox.Items[i]).Name == au)
+                        SkillsCheckBox.SetItemChecked(i, true);
+            }
         }
 
         private void attackBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -109,16 +124,19 @@ namespace CartBuilder
                 MessageBox.Show("Введите все поля плз, оч надо :)");
             else
             {
-                info.Attack = int.Parse(attackBox.Text);
-                info.Description = descriptionBox.Text;
-                info.Health = int.Parse(hpBox.Text);
-                info.Name = nameBox.Text;
-                info.Shield = int.Parse(shieldBox.Text);
-                info.ImagePath = ImagePathBox.Text;
+                info = new CardInfo
+                {
+                    Attack = int.Parse(attackBox.Text),
+                    Description = descriptionBox.Text,
+                    Health = int.Parse(hpBox.Text),
+                    Name = nameBox.Text,
+                    Shield = int.Parse(shieldBox.Text),
+                    ImagePath = ImagePathBox.Text,
 
-                info.valueAura = int.Parse(ASettingsBox.Text);
-                info.valueBatterCry = int.Parse(BCSettingsBox.Text);
-                info.valueDeathRattle = int.Parse(DRSettingsBox.Text);
+                    valueAura = int.Parse(ASettingsBox.Text),
+                    valueBatterCry = int.Parse(BCSettingsBox.Text),
+                    valueDeathRattle = int.Parse(DRSettingsBox.Text)
+                };
 
                 switch (ClassCardBox.Text)
                 {
@@ -152,7 +170,7 @@ namespace CartBuilder
         private void ImagePathButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg";
+            openFile.Filter = "Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
 
             if (openFile.ShowDialog() == DialogResult.Cancel)
                 return;

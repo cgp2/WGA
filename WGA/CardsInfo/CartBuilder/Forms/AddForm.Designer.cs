@@ -112,6 +112,7 @@
             this.nameBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameBox.Location = new System.Drawing.Point(243, 12);
+            this.nameBox.MaxLength = 10;
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(756, 32);
             this.nameBox.TabIndex = 1;
@@ -121,6 +122,7 @@
             this.shieldBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.shieldBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.shieldBox.Location = new System.Drawing.Point(243, 126);
+            this.shieldBox.MaxLength = 3;
             this.shieldBox.Name = "shieldBox";
             this.shieldBox.Size = new System.Drawing.Size(756, 32);
             this.shieldBox.TabIndex = 4;
@@ -131,6 +133,7 @@
             this.hpBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.hpBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hpBox.Location = new System.Drawing.Point(243, 88);
+            this.hpBox.MaxLength = 3;
             this.hpBox.Name = "hpBox";
             this.hpBox.Size = new System.Drawing.Size(756, 32);
             this.hpBox.TabIndex = 3;
@@ -141,6 +144,7 @@
             this.attackBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.attackBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.attackBox.Location = new System.Drawing.Point(243, 50);
+            this.attackBox.MaxLength = 3;
             this.attackBox.Name = "attackBox";
             this.attackBox.Size = new System.Drawing.Size(756, 32);
             this.attackBox.TabIndex = 2;
@@ -164,6 +168,7 @@
             this.descriptionBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.descriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.descriptionBox.Location = new System.Drawing.Point(243, 164);
+            this.descriptionBox.MaxLength = 70;
             this.descriptionBox.Name = "descriptionBox";
             this.descriptionBox.Size = new System.Drawing.Size(756, 32);
             this.descriptionBox.TabIndex = 5;
@@ -306,6 +311,7 @@
             this.BCSettingsBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BCSettingsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BCSettingsBox.Location = new System.Drawing.Point(243, 665);
+            this.BCSettingsBox.MaxLength = 3;
             this.BCSettingsBox.Name = "BCSettingsBox";
             this.BCSettingsBox.Size = new System.Drawing.Size(753, 32);
             this.BCSettingsBox.TabIndex = 10;
@@ -316,6 +322,7 @@
             this.DRSettingsBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.DRSettingsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DRSettingsBox.Location = new System.Drawing.Point(243, 703);
+            this.DRSettingsBox.MaxLength = 3;
             this.DRSettingsBox.Name = "DRSettingsBox";
             this.DRSettingsBox.Size = new System.Drawing.Size(753, 32);
             this.DRSettingsBox.TabIndex = 12;
@@ -326,6 +333,7 @@
             this.ASettingsBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ASettingsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ASettingsBox.Location = new System.Drawing.Point(243, 741);
+            this.ASettingsBox.MaxLength = 3;
             this.ASettingsBox.Name = "ASettingsBox";
             this.ASettingsBox.Size = new System.Drawing.Size(753, 32);
             this.ASettingsBox.TabIndex = 14;

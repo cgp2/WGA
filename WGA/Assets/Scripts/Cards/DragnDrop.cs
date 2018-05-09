@@ -25,19 +25,36 @@ public class DragnDrop : MonoBehaviour {
 	}
     private void OnMouseDown()
     {
-            dragnow = true;
-        defpos = this.transform.position;
-        if(gameObject.GetComponent<Card>().Owner==Battle.turn)
-            Player.Selectedcard = gameObject;
-        if (!GetComponentInParent<Card>().OnBoard)
+        if (!this.GetComponent<Card>().OnBoard)
         {
-            var testscript = this.GetComponent<test>();
-            //defpos = testscript.defaultPosition;
-            
-            if (testscript.needToRescalePlus || testscript.IsClose(this.transform.localScale.x, testscript.defaultXScale) || testscript.IsClose(transform.localScale.y, testscript.defaultYScale))
+            dragnow = true;
+            defpos = this.transform.position;
+            if (gameObject.GetComponent<Card>().Owner == Battle.turn)
+                Player.Selectedcard = gameObject;
+            if (!GetComponentInParent<Card>().OnBoard)
             {
-                this.GetComponent<test>().needToRescalePlus = false;
-                this.GetComponent<test>().needToRescaleMinus = true;
+                var testscript = this.GetComponent<test>();
+                //defpos = testscript.defaultPosition;
+
+                if (testscript.needToRescalePlus || testscript.IsClose(this.transform.localScale.x, testscript.defaultXScale) || testscript.IsClose(transform.localScale.y, testscript.defaultYScale))
+                {
+                    this.GetComponent<test>().needToRescalePlus = false;
+                    this.GetComponent<test>().needToRescaleMinus = true;
+                }
+            }
+        }
+        else
+        {
+            var temp = this.GetComponent<Card>();
+            if (temp.IsActiveSkillAvaliable && !Battle.skillUsed)
+            {
+                if (this.GetComponent<Card>().ExecuteActiveSkill(ref Battle.Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap))
+                    Battle.skillUsed = true;
+            }
+            else
+            {
+
+                //говорим о том, що незя
             }
         }
     }
@@ -45,8 +62,10 @@ public class DragnDrop : MonoBehaviour {
     {
 
         dragnow = false;
-        if (!GetComponentInParent<Card>().OnBoard)
+       
+        if (!GetComponentInParent<Card>().OnBoard && !Battle.cardSeted)
         {
+            
             if (!DropCard(Input.mousePosition))
             {
                 this.transform.position = defpos;

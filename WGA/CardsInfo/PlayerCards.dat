@@ -11,6 +11,9 @@
     <BattleCryName />
     <DeathRattleName />
     <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -25,6 +28,9 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
+    <valueBatterCry>1</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -39,6 +45,9 @@
     <AuraName>
       <string>DMGBufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>2</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -51,23 +60,28 @@
     <BattleCryName />
     <DeathRattleName />
     <AuraName>
-      <string>DMGDebufAura</string>
       <string>DMGBufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
   </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
+ <CardInfo>
+    <CardClass>Insect</CardClass>
     <ImagePath />
-    <Health>3</Health>
+    <Health>4</Health>
     <Shield>3</Shield>
-    <Attack>1</Attack>
-    <Name>Strike Frigate</Name>
-    <Description>Add HP to allies</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
+    <Attack>2</Attack>
+    <Name>Wasp</Name>
+    <Description>Reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
     <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>1231823</valueDeathRattle>
+    <valueAura>0</valueAura>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -82,5 +96,8 @@
     <AuraName>
       <string>DMGDebufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>-1</valueAura>
   </CardInfo>
 </ArrayOfCardInfo>
