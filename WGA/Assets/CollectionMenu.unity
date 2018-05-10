@@ -296,16 +296,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 928116974}
-    - target: {fileID: 224001127135553308, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224001127135553308, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224627086109479964, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -319,6 +309,11 @@ Prefab:
     - target: {fileID: 224627086109479964, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
         type: 2}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224441511119036772, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
+        type: 2}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224441511119036772, guid: 76dfb9293f52d6c4fab5a30a1e87b95c,
