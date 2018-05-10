@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
+using System.IO;
 
 public class Controller : MonoBehaviour
 {
@@ -47,7 +48,15 @@ public class Controller : MonoBehaviour
         CanvGroupBattleMenu.alpha = 0f;
         CanvGroupBattleMenu.blocksRaycasts = false;
     }
+    public void GameScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
+    }
+    public void OpenCollection()
+    {
+        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
 
+    }
     public void ShowMenu()
     {
         CanvGroupBattleMenu.alpha = 1f;
