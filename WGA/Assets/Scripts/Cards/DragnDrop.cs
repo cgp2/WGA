@@ -52,7 +52,7 @@ public class DragnDrop : MonoBehaviour {
                 var skillList = temp.GetSkillsList();
                 for (int i = 0; i < skillList.Count; i++)
                     if (skillList[i].Type == SkillType.Active)
-                        //if (skillList[i].Dirs[0] == Directions.Target)
+                        if (skillList[i].Dirs[0] == Directions.Target)
                             Cursor.SetCursor(cursor,new Vector2(32,32),CursorMode.ForceSoftware);
                 if (this.GetComponent<Card>().ExecuteActiveSkill(ref Battle.Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap))
                 {
