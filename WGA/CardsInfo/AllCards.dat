@@ -356,25 +356,4 @@
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
   </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
-    <ImagePath>D:\BANKPROGRAMMISTA\UnityProjects\WGA_clone\WGA\Assets\Content\CardSprites\Ships\Insect\DestroyerInsect.png</ImagePath>
-    <Health>3</Health>
-    <Shield>4</Shield>
-    <Attack>2</Attack>
-    <Name>абвгд</Name>
-    <Description>Хмм</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName>
-      <string>DMGBufAura</string>
-    </AuraName>
-    <valueBatterCry>4</valueBatterCry>
-    <valueDeathRattle>3</valueDeathRattle>
-    <valueAura>1</valueAura>
-  </CardInfo>
 </ArrayOfCardInfo>

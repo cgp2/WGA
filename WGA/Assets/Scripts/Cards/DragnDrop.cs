@@ -5,7 +5,6 @@ using UnityEngine;
 public class DragnDrop : MonoBehaviour {
     public bool dragnow;
     public Vector3 defpos;
-    public Texture2D cursor;
     // Use this for initialization
     void Start () {
         dragnow = false;
@@ -49,17 +48,8 @@ public class DragnDrop : MonoBehaviour {
             var temp = this.GetComponent<Card>();
             if (temp.IsActiveSkillAvaliable && !Battle.skillUsed)
             {
-                var skillList = temp.GetSkillsList();
-                for (int i = 0; i < skillList.Count; i++)
-                    if (skillList[i].Type == SkillType.Active)
-                        if (skillList[i].Dirs[0] == Directions.Target)
-                            Cursor.SetCursor(cursor,new Vector2(32,32),CursorMode.ForceSoftware);
                 if (this.GetComponent<Card>().ExecuteActiveSkill(ref Battle.Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap))
-                {
                     Battle.skillUsed = true;
-                    Cursor.SetCursor(null, new Vector2(0, 0), CursorMode.Auto);
-                }
-                
             }
             else
             {

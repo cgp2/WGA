@@ -211,12 +211,7 @@ public class Battle : MonoBehaviour
         {
             preGameStage = false;
             TurnNumber = 1;
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    if (Board[i, j] != null)
-                        Board[i, j].GetComponentInChildren<Canvas>().enabled = true;
-            //GameObject.Find("Fog").GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(GameObject.Find("Fog"));
+
             var t = GameObject.Find("BattleStageInfo");
             instance.StartCoroutine(ShowCanvasForSeconds(t, 2f));
         }
@@ -325,10 +320,7 @@ public class Battle : MonoBehaviour
         // targetcard.GetComponent<BoxCollider2D>().enabled = false;
         Player.Selectedcard.transform.localScale = rescalecard;
         Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0, 1);
-        if (turn == Player2 && preGameStage)
-            Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = false;
-        else
-            Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true ;
+        Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
         Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
         targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
         turn.UpdatePosition();

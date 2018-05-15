@@ -391,10 +391,7 @@ public class Card : MonoBehaviour
 
         return cards.ToArray();
     }
-    public List<ASkill> GetSkillsList()
-    {
-        return skillMaster.SkillsList;
-    }
+  
     // Use this for initialization
     void Start()
     {

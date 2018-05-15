@@ -298,7 +298,6 @@ MonoBehaviour:
   StaticSHLD: 2
   front_rotate: 0
   back_rotate: 0
-  IsActiveSkillAvaliable: 1
 --- !u!114 &114005283923347980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,7 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragnow: 0
   defpos: {x: 93, y: -37.1, z: -30}
-  cursor: {fileID: 2800000, guid: ad8550dd57df7194f9a32ce1ebaefb35, type: 3}
 --- !u!114 &114126547831601766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -502,7 +500,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062612250843300}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82d2dc2106b245f4c8a7e0cbf8026ca9, type: 3}
   m_Name: 
