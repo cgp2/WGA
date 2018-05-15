@@ -14,17 +14,25 @@ public class Controller : MonoBehaviour
     void Start ()
 	{
 	    var t = GameObject.Find("BattleMenu");
-	    CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
-	    CanvGroupBattleMenu.alpha = 0f;
-	    CanvGroupBattleMenu.blocksRaycasts = false;
-
+        if (t!=null)
+        {
+            CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+            CanvGroupBattleMenu.alpha = 0f;
+            CanvGroupBattleMenu.blocksRaycasts = false;
+        }
 	    t = GameObject.Find("BattleEndMenu");
-	    CanGroupBattleEnd = t.GetComponentInChildren<CanvasGroup>();
-	    CanGroupBattleEnd.alpha = 0f;
-        CanGroupBattleEnd.blocksRaycasts = false;
-
+        if (t!=null)
+        {
+            CanGroupBattleEnd = t.GetComponentInChildren<CanvasGroup>();
+            CanGroupBattleEnd.alpha = 0f;
+            CanGroupBattleEnd.blocksRaycasts = false;
+        }
         t = GameObject.Find("Main");
-        CanvGroupMain = t.GetComponentInChildren<CanvasGroup>();
+        if (t!= null)
+        {
+            CanvGroupMain = t.GetComponentInChildren<CanvasGroup>();
+
+        }
     }
 	
 	// Update is called once per frame

@@ -48,8 +48,16 @@ public class Battle : MonoBehaviour
     {
         Board = new Card[n, m];
 
-        Player1 = GameObject.Find("Player1").GetComponent<Player>();
+        if (Player1 != null)
+        {
+            Player1.plInfo.deck.ReadFromFile();
+            GameObject.Find("Player1").GetComponent<Player>().SetPlayerInfo(Player1.plInfo);
+        }
+            Player1 = GameObject.Find("Player1").GetComponent<Player>();
+
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
+        if (Player2.GetComponent<AIEnemy>() != null)
+            Player2.AI = true;
         turn = Player1;
         TurnNumber = 1;
         RoundUIUpdate();

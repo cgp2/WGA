@@ -13,7 +13,8 @@ public class Player : MonoBehaviour {
     public static GameObject Selectedcard;
     public Sprite frontSprite;
     public Sprite backSprite;
-
+    public bool AI;
+    public PlayerInfo plInfo;
     // Use this for initialization
     private void Awake()
     {
@@ -38,9 +39,18 @@ public class Player : MonoBehaviour {
             deck[i].name = "card#" + i + "/player=" + this.name;
         }*/
     }
+   public void SetPlayerInfo(PlayerInfo pl)
+    {
+        plInfo = pl;
+    }
+
     void Start()
     {
-        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
+        Card.CardData[] cards;
+        if (plInfo)
+            cards = plInfo.deck.ToCardData();
+        else
+            cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
         var k = 0;
         for (int i =0; i < cards.Length;i++)
         {
