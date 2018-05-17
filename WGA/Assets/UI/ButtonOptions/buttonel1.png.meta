@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 6808df770aa4cf149bfdc2bce9721d30
-timeCreated: 1525548046
+guid: 475ff1fb6f354af44bfeb5baaad7087e
+timeCreated: 1525989656
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: buttonel_0
-    21300002: buttonel_1
+    21300000: buttonel1_0
+    21300002: buttonel1_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: buttonel_0
+      name: buttonel1_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 8
-        width: 81
-        height: 64
+        x: 11
+        y: 0
+        width: 64
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,13 +127,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: buttonel_1
+      name: buttonel1_1
       rect:
         serializedVersion: 2
-        x: 180
-        y: 7
-        width: 79
-        height: 63
+        x: 78
+        y: 0
+        width: 64
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

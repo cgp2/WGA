@@ -1,9 +1,15 @@
 fileFormatVersion: 2
-guid: 82ac0104d72adec46b97d3c35496c669
-timeCreated: 1525958507
+guid: 0fd6964473c7364408e6a8197af3b72f
+timeCreated: 1525545657
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_0"
+    21300002: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_1"
+    21300004: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_2"
+    21300006: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_3"
+    21300008: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_4"
+    21300010: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_5"
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,13 +46,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -66,9 +73,133 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_0"
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 76
+        width: 57
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_1"
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 67
+        width: 43
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_2"
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 66
+        width: 162
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_3"
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 3
+        width: 263
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_4"
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 8
+        width: 65
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u043C\u0443\u0437\u044B\u043A\u0430\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C_5"
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 15
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
