@@ -446,7 +446,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 344e20f11f990814daa25741bb0e707a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a24fe944c1389e4e946bda6fa23e59d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -562,6 +562,47 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 302361705}
+    - target: {fileID: 224577134936100060, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -17.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114732035817420484, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 307b98165e8f86743911787ac9d1e013,
+        type: 3}
+    - target: {fileID: 114681213419351010, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 307b98165e8f86743911787ac9d1e013,
+        type: 3}
+    - target: {fileID: 114606782108963430, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 307b98165e8f86743911787ac9d1e013,
+        type: 3}
+    - target: {fileID: 114521207497410026, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 307b98165e8f86743911787ac9d1e013,
+        type: 3}
+    - target: {fileID: 114238966852639290, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 307b98165e8f86743911787ac9d1e013,
+        type: 3}
+    - target: {fileID: 114803548073968262, guid: 4739a38184853da4b96839a29e970e71,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 234ac69f4ff33c049860398f1dedbe6b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4739a38184853da4b96839a29e970e71, type: 2}
   m_IsPrefabParent: 0
