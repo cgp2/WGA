@@ -116,7 +116,7 @@ public class Player : MonoBehaviour {
             }
 
             //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x, 0);
-            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 13, 0, true);
+            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 12.5f, 0, true);
         }
         Battle.UpdateUI();
         //Battle.NextTurn();

@@ -290,10 +290,15 @@ public class Battle : MonoBehaviour
  
     public static void Move(Directions dir)
     {
+       
         if (!preGameStage)
         {
             if (GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir))
+            {
                 lockedInput = true;
+                skillUsed = true;
+                cardSeted = true;
+            }
             else
                 lockedInput = false;
         }
