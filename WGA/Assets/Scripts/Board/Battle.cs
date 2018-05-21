@@ -217,7 +217,7 @@ public class Battle : MonoBehaviour
                     if (Board[i, j] != null)
                         Board[i, j].GetComponentInChildren<Canvas>().enabled = true;
             //GameObject.Find("Fog").GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(GameObject.Find("Fog"));
+            Destroy(GameObject.Find("FogCanvas"));
             var t = GameObject.Find("BattleStageInfo");
             instance.StartCoroutine(ShowCanvasForSeconds(t, 2f));
         }
