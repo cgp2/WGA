@@ -56,7 +56,7 @@
 		<Type>Active</Type>
 		<Ally>False</Ally>
 		<Input>
-			<inp name="DmgTo" value="5" />
+			<inp name="DmgTo" value="1" />
 		</Input>
 		<Dirs>
 			<dir type="Map" />
