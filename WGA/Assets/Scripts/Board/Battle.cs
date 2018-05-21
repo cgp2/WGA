@@ -109,7 +109,7 @@ public class Battle : MonoBehaviour
         }
         else
         {
-            bool pl2HasCard = Player2.deck.Count != 0;
+            var pl2HasCard = Player2.deck.Count != 0;
             foreach (var card in Board)
             {
                 if (card != null)
@@ -124,21 +124,22 @@ public class Battle : MonoBehaviour
             {
                 turn = Player2;
                 var r = Player2.GetComponent<AIEnemy>().MakeMove();
-                if (r.IsMoving)
+                if (r.Placing.IsPlacing)
                 {
-                    var dir = r.Movement.Direction;
-                    Move(dir);
-                    //Тут двигать поле в сторону дир
-                }
-                else
-                {
-
                     var col = r.Placing.Col;
                     var row = r.Placing.Row;
                     var crd = r.Placing.CardNum; //Номер карты в руке
                     Player.Selectedcard = Player2.deck[crd];
                     Set_Card(row, col, Player.Selectedcard.GetComponent<Card>());
-                    //Тут выставлять карту
+                }
+                if(r.ActiveSkill.IsAplliedSkill)
+                {
+                    Board[r.ActiveSkill.Row, r.ActiveSkill.Col].ExecuteActiveSkill(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                }
+                if (!preGameStage)
+                {
+                    var dir = r.Movement.Direction;
+                    Move(dir);
                 }
             }
         }

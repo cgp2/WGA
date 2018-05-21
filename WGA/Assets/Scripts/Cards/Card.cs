@@ -381,7 +381,7 @@ public class Card : MonoBehaviour
                 DeathRattleInputValue = DRinp.ToArray(),
                 AurasNames = aura.ToArray(),
                 AuraInputValue = Aurainp.ToArray(),
-                ActiveInputValue = 5,
+                ActiveInputValue = 1,
                 ActiveSkillName = "DmgToCard",
             };
 
