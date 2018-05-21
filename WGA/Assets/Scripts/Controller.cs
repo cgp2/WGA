@@ -45,9 +45,17 @@ public class Controller : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();    
     }
+    public void ToColliction()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+    public void ToOptions()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+    }
     public void ToMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void ReturnToGame()
     {
