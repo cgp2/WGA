@@ -126,7 +126,7 @@ public class AIEnemy : MonoBehaviour
                                     var AUinp = Battle.Board[l, j].Info.AuraInput != null ? Battle.Board[l, j].Info.AuraInput[0].InputParamsValues[0] : null;
                                     c.GetComponent<Card>().Initialize(Battle.Board[l, j].Info.Name, Battle.Board[l, j].Health, Battle.Board[l, j].Shield, Battle.Board[l, j].Attack, Battle.Board[l, j].Info.Description, skillMaster,
                                         BCinp, DRinp, AUinp,
-                                        Battle.Board[l, j].Info.BattleCryNames, Battle.Board[l, j].Info.DeathRattleName, Battle.Board[l, j].Info.AuraNames);
+                                        Battle.Board[l, j].Info.BattleCryNames, Battle.Board[l, j].Info.DeathRattleName, Battle.Board[l, j].Info.AuraNames,null);
                                     field[l, j] = c.GetComponent<Card>();
 
                                     field[l, j].OnBoard = true;

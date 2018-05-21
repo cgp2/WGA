@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
     
 
     public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, 
-        string battleCryValue = null, string deathRattleValue = null, string auraValue = null, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null)
+        string battleCryValue = null, string deathRattleValue = null, string auraValue = null, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null, string imgPath="")
     {
         this.skillMaster = skillMaster;
 
@@ -46,7 +46,8 @@ public class Card : MonoBehaviour
             BattleCryNames = battleCryName,
             DeathRattleName = deathRattleName,
             AuraNames = auraName,
-
+            ImagePath = imgPath,
+            ShipSprite = Resources.Load<Sprite>("Assets/Content/CardSprites/Ships/" + imgPath)
             // CardFrontSprite = cardFront,
             // CardBackSprite = cardBack,
             //ShipSprite = ship
@@ -128,8 +129,10 @@ public class Card : MonoBehaviour
             BattleCryNames = data.BattleCryNames,
             DeathRattleName = data.DeathRattleNames,
             AuraNames = data.AurasNames,
-
-            ImagePath = data.ImagePath,
+            ShipSprite = Resources.Load<Sprite>("CardSprites/Ships/" + data.ImagePath),
+            //ShipSprite = Resources.Load<Sprite>("BattleshipInsect"),
+            ImagePath = data.ImagePath
+            //ImagePath = data.ImagePath,
             // CardFrontSprite = cardFront,
             // CardBackSprite = cardBack,
             //ShipSprite = ship
@@ -196,7 +199,8 @@ public class Card : MonoBehaviour
     {
         Info.CardFrontSprite = cardFront;
         Info.CardBackSprite = cardBack;
-        Info.ShipSprite = ship;
+        if(Info.ShipSprite==null)
+            Info.ShipSprite = ship;
     }
 
     private void Awake()

@@ -74,7 +74,7 @@ public class Player : MonoBehaviour {
                 
             }
             else
-                deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 15 * k , transform.position.y, -30);
+                deck[i].transform.position = new Vector3(transform.position.x + Mathf.Pow(-1, i) * 6 * k , transform.position.y, -30);
             deck[i].GetComponent<Card>().Initialize(cards[i]);
             deck[i].GetComponent<Card>().Owner = this;
 
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour {
 
             var cord = deck[i];
             //cord.GetComponent<Card>().Initialize("kek"+i, 2, 2, 2, "lolkek? kekLol", GameObject.Find("Field").GetComponent<SkillMaster>(), new[] { "HPBufBC" }, new [] { "SHLDDebufDR" }, new []{"DMGBufAura"});
-            cord.GetComponent<Card>().InitializeSprites(frontSprite, backSprite, sprites[i]);
+            cord.GetComponent<Card>().InitializeSprites(frontSprite, backSprite, cord.GetComponent<Card>().Info.ShipSprite);
             cord.GetComponent<Card>().Owner = this.GetComponent<Player>();
             deck[i].transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = frontSprite;
             deck[i].transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = backSprite;
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour {
             x.GetChild(1).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Shield;
             x.GetChild(2).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Attack;
             x.GetChild(3).GetComponent<Text>().text = "" + cord.GetComponent<Card>().Info.Name;
-            deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[i];
+            deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = deck[i].GetComponent<Card>().Info.ShipSprite;
 
            
             
@@ -112,15 +112,15 @@ public class Player : MonoBehaviour {
             float xFirst = 0;
             if (deck.Count % 2 == 0)
             {
-                xFirst -= 10 * deck.Count / 2;
+                xFirst -= 9 * deck.Count / 2;
             }
             else
             {
-                xFirst = -5 - (10 * deck.Count - 1) / 2;
+                xFirst = -5 - (9 * deck.Count - 1) / 2;
             }
 
             //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x, 0);
-            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 12.5f, 0, true);
+            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 10f, 0, true);
         }
         Battle.UpdateUI();
         //Battle.NextTurn();
@@ -138,15 +138,15 @@ public class Player : MonoBehaviour {
             float xFirst = 0;
             if (deck.Count % 2 == 0)
             {
-                xFirst -= 10 * deck.Count / 2;
+                xFirst -= 9 * deck.Count / 2;
             }
             else
             {
-                xFirst = -5 - (10 * deck.Count - 1) / 2;
+                xFirst = -5 - (9 * deck.Count - 1) / 2;
             }
 
             //deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, -transform.position.x - Mathf.Pow(-1, i) * 15 * k + deck[i].transform.position.x, 0);
-            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 13, 0, false);
+            deck[i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, Directions.Left, deck[i].transform.position.x - transform.position.x + xFirst + i * 10f, 0, false);
         }
     }
     // Update is called once per frame
