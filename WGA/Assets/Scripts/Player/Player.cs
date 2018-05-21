@@ -43,14 +43,18 @@ public class Player : MonoBehaviour {
     {
         plInfo = pl;
     }
+    public PlayerInfo ReadPlayerFromFile(string PathToFile)
+    {
+        PlayerInfo result= new PlayerInfo();
+        SetPlayerInfo(result);
+        return null;
+    }
 
     void Start()
     {
-        Card.CardData[] cards;
-        if (plInfo)
-            cards = plInfo.deck.ToCardData();
-        else
-            cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
+
+        this.ReadPlayerFromFile(Path.GetDirectoryName(Application.dataPath)+"");
+        var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
         var k = 0;
         for (int i =0; i < cards.Length;i++)
         {
