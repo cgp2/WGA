@@ -129,6 +129,7 @@ public class Card : MonoBehaviour
             DeathRattleName = data.DeathRattleNames,
             AuraNames = data.AurasNames,
 
+            ImagePath = data.ImagePath,
             // CardFrontSprite = cardFront,
             // CardBackSprite = cardBack,
             //ShipSprite = ship
@@ -283,6 +284,10 @@ public class Card : MonoBehaviour
             reader.Read();
             var race = reader.Value;
 
+            reader.ReadToFollowing("ImagePath");
+            reader.Read();
+            var imgPath = reader.Value;
+
             reader.ReadToFollowing("Health");
             reader.Read();
             var health = reader.Value;
@@ -369,6 +374,7 @@ public class Card : MonoBehaviour
             var crd = new CardData
             {
                 Name = name,
+                ImagePath = imgPath,
                 Race = race,
                 HP =  int.Parse(health),
                 Shield = int.Parse(shield),
@@ -413,6 +419,7 @@ public class Card : MonoBehaviour
         public string Name;
         public string Race;
         public string Description;
+        public string ImagePath;
 
         public int InitialHealth;
         public int InitialShield;
@@ -446,6 +453,8 @@ public class Card : MonoBehaviour
         public int Attack;
         public string Desk;
         public SkillMaster SkillM;
+
+        public string ImagePath;
 
         public string[] BattleCryNames;
         public int[] BattleCryInputValue;
