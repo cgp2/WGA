@@ -26,7 +26,7 @@ public class DragnDrop : MonoBehaviour {
 	}
     private void OnMouseDown()
     {
-        if (!this.GetComponent<Card>().OnBoard)
+        if (!this.GetComponent<Card>().OnBoard && !Battle.cardSeted)
         {
             dragnow = true;
             defpos = this.transform.position;
@@ -87,19 +87,22 @@ public class DragnDrop : MonoBehaviour {
     }
     private  bool DropCard(Vector3 mousePosition)
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        if(Physics.Raycast(ray,out hit))
+        if (!Battle.cardSeted)
         {
-            Transform objectHit = hit.transform;
-            var xy = objectHit.name.Split(',');
-            if (Battle.Get_Card(int.Parse(xy[1]), int.Parse(xy[2])) != null)
-                return false ;
-            if (GetComponentInParent<Card>().OnBoard)
-                return false;
-            if(Player.Selectedcard!=null)
-                Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
-            return true;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                var xy = objectHit.name.Split(',');
+                if (Battle.Get_Card(int.Parse(xy[1]), int.Parse(xy[2])) != null)
+                    return false;
+                if (GetComponentInParent<Card>().OnBoard)
+                    return false;
+                if (Player.Selectedcard != null)
+                    Battle.Set_Card(int.Parse(xy[1]), int.Parse(xy[2]), Player.Selectedcard.GetComponent<Card>());
+                return true;
+            }
         }
         return false;
     }

@@ -325,40 +325,43 @@ public class Battle : MonoBehaviour
     }
     public static void Set_Card(int x, int y, Card tg)
     {
-        var targetcard = Player.Selectedcard;
-        targetcard.transform.parent = coor[x, y].transform.parent;
-        targetcard.transform.position = coor[x, y].transform.position;
-        // targetcard.GetComponent<BoxCollider2D>().enabled = false;
-        Player.Selectedcard.transform.localScale = rescalecard;
-        Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0, 1);
-        if (turn == Player2 && preGameStage)
-            Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = false;
-        else
-            Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true ;
-        Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
-        targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
-        turn.UpdatePosition();
-        targetcard.GetComponent<Card>().OnBoard = true;
-        targetcard.GetComponent<test>().SetFalse();
+        if (!cardSeted)
+        {
+            var targetcard = Player.Selectedcard;
+            targetcard.transform.parent = coor[x, y].transform.parent;
+            targetcard.transform.position = coor[x, y].transform.position;
+            // targetcard.GetComponent<BoxCollider2D>().enabled = false;
+            Player.Selectedcard.transform.localScale = rescalecard;
+            Player.Selectedcard.transform.rotation = new Quaternion(0, 0, 0, 1);
+            if (turn == Player2 && preGameStage)
+                Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = false;
+            else
+                Player.Selectedcard.GetComponentInChildren<Canvas>().enabled = true;
+            Player.Selectedcard.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+            targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
+            turn.UpdatePosition();
+            targetcard.GetComponent<Card>().OnBoard = true;
+            targetcard.GetComponent<test>().SetFalse();
 
-        Board[x, y] = tg;
-        tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
-        //if (tg.Owner == Player2)
-        //{
-        //    var r = targetcard.GetComponents<Canvas>();
-        //    foreach (var text in r)
-        //    {
-        //    //    if (text.name == "Name")
-        //    //    {
-        //    //        text.color = Color.red;
-        //    //    }
-        //    }
-        //}
-        //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
-        Player.Selectedcard = null;
-        cardSeted = true;
-        if(preGameStage)
-            Battle.NextTurn();
+            Board[x, y] = tg;
+            tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+            //if (tg.Owner == Player2)
+            //{
+            //    var r = targetcard.GetComponents<Canvas>();
+            //    foreach (var text in r)
+            //    {
+            //    //    if (text.name == "Name")
+            //    //    {
+            //    //        text.color = Color.red;
+            //    //    }
+            //    }
+            //}
+            //GameObject.Find("Field").GetComponent<SkillMaster>().ApplyBufsToBoard(out Battle.Board);
+            Player.Selectedcard = null;
+            cardSeted = true;
+            if (preGameStage)
+                Battle.NextTurn();
+        }
     }
     // Update is called once per frame
     void Update()
