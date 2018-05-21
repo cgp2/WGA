@@ -47,12 +47,6 @@ public class Battle : MonoBehaviour
     private void Awake()
     {
         Board = new Card[n, m];
-
-        if (Player1 != null)
-        {
-            Player1.plInfo.deck.ReadFromFile();
-            GameObject.Find("Player1").GetComponent<Player>().SetPlayerInfo(Player1.plInfo);
-        }
             Player1 = GameObject.Find("Player1").GetComponent<Player>();
 
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
@@ -149,8 +143,13 @@ public class Battle : MonoBehaviour
         if (TurnNumber == 20)
         {
             var winner = CalculateWiningPlayer();
+            if(winner==Player1)
+            {
+                Player1.PlInfo.Exp += 123123;
+                Player1.PlInfo.SaveToFile();
+            }
             lockedInput = true;
-            GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+            //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
             var t = GameObject.Find("BattleEndMenu");
             var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
