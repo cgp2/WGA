@@ -66,7 +66,7 @@ public class Controller : MonoBehaviour
     }
     public void GameScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void OpenCollection()
     {
