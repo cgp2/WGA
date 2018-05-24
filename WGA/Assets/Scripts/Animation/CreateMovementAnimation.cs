@@ -271,8 +271,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                     {
                                                                         //if (Board[w + 1, j].GetComponent<MovementAnimation>().totalTime < Board[w, j].GetComponent<MovementAnimation>().totalTime)
                                                                         //    Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[w, j].GetComponent<MovementAnimation>().totalTime - Board[w + 1, j].GetComponent<MovementAnimation>().totalTime);
-                                                                        //if (Board[w, j].GetComponent<MovementAnimation>().totalTime < Board[w + 1, j].GetComponent<MovementAnimation>().totalTime)
-                                                                        //    Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[w + 1, j].GetComponent<MovementAnimation>().totalTime - Board[w, j].GetComponent<MovementAnimation>().totalTime);
+                                                                        if (Board[w, j].GetComponent<MovementAnimation>().totalTime < Board[w + 1, j].GetComponent<MovementAnimation>().totalTime)
+                                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[w + 1, j].GetComponent<MovementAnimation>().totalTime - Board[w, j].GetComponent<MovementAnimation>().totalTime);
                                                                     }
                                                                     break;
                                                                 }
