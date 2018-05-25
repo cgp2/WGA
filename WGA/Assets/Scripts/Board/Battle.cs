@@ -146,8 +146,9 @@ public class Battle : MonoBehaviour
             if(winner==Player1)
             {
                 Player1.PlInfo.Exp += 123123;
-                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+                Player1.PlInfo.SaveToFile(Application.dataPath+ "/PlayerInfo/PlayerInfo.dat");
             }
+            Player1.PlInfo.Exp += 123123;
             lockedInput = true;
             //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
@@ -195,6 +196,8 @@ public class Battle : MonoBehaviour
             else if (!pl2HasCard && pl1HasCard)
             {
                 var winner = Player1;
+                Player1.PlInfo.Exp += 123123;
+                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
                 lockedInput = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
