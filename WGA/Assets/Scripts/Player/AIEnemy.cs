@@ -31,34 +31,38 @@ public class AIEnemy : MonoBehaviour
     private MovementAction maxMovingActionUt;
     private ActiveSkillAction maxActiveSkillUt;
 
+    public bool IsActive = false;
+    public bool IsActionComplete = true;
+
     private void Awake()
     {
 
     }
 
-    public Action MakeMove()
-    {       
-        Battle.SaveBoard();
-        var str = CalculateOnBoardStrength(Battle.Board);
-        initialStr0 = str[0];
-        initialStr1 = str[1];
+    public void MakeMove()
+    {
+        IsActive = true;
+        //Battle.SaveBoard();
+        
 
-        maxPlacingActionUt = CalculateCardPlacingUtility();
-        maxPlacingActionUt.IsPlacing = maxPlacingActionUt.Utillity > 10f || Battle.preGameStage;
+        //maxPlacingActionUt = CalculateCardPlacingUtility();
 
-        maxMovingActionUt = CalculateMovementUtility();
-        maxActiveSkillUt = CalculateActiveSkillUtility();
-        maxActiveSkillUt.IsAplliedSkill = maxActiveSkillUt.Utillity > 10f;
-       // maxActiveSkillUt.IsAplliedSkill = false;
+        //maxMovingActionUt = CalculateMovementUtility();
+        //maxActiveSkillUt = CalculateActiveSkillUtility();
 
-        var ret = new Action
-        {
-            Movement = maxMovingActionUt,
-            Placing = maxPlacingActionUt,
-            ActiveSkill = maxActiveSkillUt,
-        };
+        StartCoroutine(AIMakeMove(0.5f));
+        
 
-        return ret;
+        // maxActiveSkillUt.IsAplliedSkill = false;
+
+        //var ret = new Action
+        //{
+        //    Movement = maxMovingActionUt,
+        //    Placing = maxPlacingActionUt,
+        //    ActiveSkill = maxActiveSkillUt,
+        //};
+
+        //return ret;
     }
 
     private int[] CalculateOnBoardStrength(Card[,] board)
@@ -82,8 +86,12 @@ public class AIEnemy : MonoBehaviour
         return str;
     }
 
-    private CardPlacingAction CalculateCardPlacingUtility()
+    public CardPlacingAction CalculateCardPlacingUtility()
     {
+        var strInit = CalculateOnBoardStrength(Battle.Board);
+        initialStr0 = strInit[0];
+        initialStr1 = strInit[1];
+
         var ret = new CardPlacingAction
         {
             Utillity = int.MinValue
@@ -176,6 +184,7 @@ public class AIEnemy : MonoBehaviour
                                 CardNum = i,
                                 Row = m,
                                 Col = n,
+                                IsPlacing = maxUtility > 10f || Battle.preGameStage,
                             };
                         }
                         else if (utility == maxUtility)
@@ -190,7 +199,8 @@ public class AIEnemy : MonoBehaviour
                                     CardNum = i,
                                     Row = m,
                                     Col = n,
-                                };
+                                    IsPlacing = maxUtility > 10f || Battle.preGameStage,
+                            };
                             }
                         }
 
@@ -201,14 +211,15 @@ public class AIEnemy : MonoBehaviour
             }
         }
 
-        Battle.RestoreBoard();
+       // Battle.RestoreBoard();
         return ret;
     }
 
-    private MovementAction CalculateMovementUtility()
+    public MovementAction CalculateMovementUtility()
     {
         if (!Battle.preGameStage)
         {
+            Battle.SaveBoard();
             var ret = new MovementAction();
             ret.Utillity = int.MinValue;
             var fields = new List<Card[,]>();
@@ -416,8 +427,11 @@ public class AIEnemy : MonoBehaviour
         }
     }
 
-    private ActiveSkillAction CalculateActiveSkillUtility()
+    public ActiveSkillAction CalculateActiveSkillUtility()
     {
+        var initStr = CalculateOnBoardStrength(Battle.Board);
+        initialStr0 = initStr[0];
+        initialStr1 = initStr[1];
         var ret = new ActiveSkillAction
         {
             Utillity = int.MinValue
@@ -470,31 +484,31 @@ public class AIEnemy : MonoBehaviour
                                 }
                             }
 
-                            if (maxPlacingActionUt.IsPlacing)
-                            {
-                                var i = maxPlacingActionUt.Col;
-                                var j = maxPlacingActionUt.Row;
-                                var crd = possesedPlayer.deck[maxPlacingActionUt.CardNum].GetComponent<Card>(); ;
+                            //if (maxPlacingActionUt.IsPlacing)
+                            //{
+                            //    var i = maxPlacingActionUt.Col;
+                            //    var j = maxPlacingActionUt.Row;
+                            //    var crd = possesedPlayer.deck[maxPlacingActionUt.CardNum].GetComponent<Card>(); ;
 
-                                field0[i, j] = new Card();
+                            //    field0[i, j] = new Card();
 
-                                var c = Instantiate(prefab);
-                                c.GetComponent<Card>().Owner = Battle.Player2;
+                            //    var c = Instantiate(prefab);
+                            //    c.GetComponent<Card>().Owner = Battle.Player2;
 
-                                var BCinp = crd.Info.BattleCryInput != null ? crd.Info.BattleCryInput[0].InputParamsValues[0] : null;
-                                var DRinp = crd.Info.DeathRattleInput != null ? crd.Info.DeathRattleInput[0].InputParamsValues[0] : null;
-                                var AUinp = crd.Info.AuraInput != null ? crd.Info.AuraInput[0].InputParamsValues[0] : null;
-                                c.GetComponent<Card>().Initialize(crd.Info.Name, crd.Health, crd.Shield, crd.Attack,
-                                    crd.Info.Description, skillMaster,
-                                    BCinp, DRinp, AUinp,
-                                    crd.Info.BattleCryNames, crd.Info.DeathRattleName, crd.Info.AuraNames);
+                            //    var BCinp = crd.Info.BattleCryInput != null ? crd.Info.BattleCryInput[0].InputParamsValues[0] : null;
+                            //    var DRinp = crd.Info.DeathRattleInput != null ? crd.Info.DeathRattleInput[0].InputParamsValues[0] : null;
+                            //    var AUinp = crd.Info.AuraInput != null ? crd.Info.AuraInput[0].InputParamsValues[0] : null;
+                            //    c.GetComponent<Card>().Initialize(crd.Info.Name, crd.Health, crd.Shield, crd.Attack,
+                            //        crd.Info.Description, skillMaster,
+                            //        BCinp, DRinp, AUinp,
+                            //        crd.Info.BattleCryNames, crd.Info.DeathRattleName, crd.Info.AuraNames);
 
-                                field0[i, j] = c.GetComponent<Card>();
-                                Destroy(c);
+                            //    field0[i, j] = c.GetComponent<Card>();
+                            //    Destroy(c);
 
-                                field0[i, j].OnBoard = true;
-                                initialStr1 += crd.Attack + crd.Shield + crd.Health;
-                            }
+                            //    field0[i, j].OnBoard = true;
+                            //    initialStr1 += crd.Attack + crd.Shield + crd.Health;
+                            //}
 
                             var bufMap = GameObject.Find("Field").GetComponent<SkillMaster>().BufMap;
                             var isSuccess = field0[m, n].ExecuteActiveSkill(ref field0, ref bufMap);
@@ -515,7 +529,8 @@ public class AIEnemy : MonoBehaviour
                                         Utillity = utility,
                                         Row = m,
                                         Col = n,
-                                    };
+                                        IsAplliedSkill = maxUtility > 0f && !Battle.preGameStage,
+                                };
                                 }
                                 else if (Math.Abs(utility - maxUtility) < 0.000000001f)
                                 {
@@ -528,6 +543,7 @@ public class AIEnemy : MonoBehaviour
                                             Utillity = utility,
                                             Row = m,
                                             Col = n,
+                                            IsAplliedSkill = maxUtility > 0f && !Battle.preGameStage,
                                         };
                                     }
                                 }
@@ -535,7 +551,7 @@ public class AIEnemy : MonoBehaviour
                                 //skillMaster.ReExecuteSkillByInput(field0[m, n], field0[m, n].Info.ActiveSkillInput, ref field0);
                                 //skillMaster.ApplyBufsToBoard(ref field0, ref bufMap);
                                 skillMaster.RebuidBufMap();
-                                Battle.RestoreBoard();
+                                //Battle.RestoreBoard();
                             }
                         }
                     }
@@ -556,11 +572,49 @@ public class AIEnemy : MonoBehaviour
         prefab.transform.position = new Vector3(0, 0, -10000);
     }
 
-    // Update is called once per frameя
-    void Update()
+    private IEnumerator AIMakeMove(float seconds)
     {
+        Battle.isInputLocked = true;
+        var placingAction = CalculateCardPlacingUtility();
+        if (placingAction.IsPlacing)
+        {
+            var col = placingAction.Col;
+            var row = placingAction.Row;
+            var crd = placingAction.CardNum; //Номер карты в руке
+            Player.Selectedcard = Battle.Player2.deck[crd];
+            Battle.Set_Card(row, col, Player.Selectedcard.GetComponent<Card>());
+            Battle.UpdateUI();
+        }
 
+        if (!Battle.preGameStage)
+        {
+            yield return new WaitForSeconds(seconds);
+
+            if (!Battle.preGameStage)
+            {
+                var activeSkillAction = CalculateActiveSkillUtility();
+                if(activeSkillAction.IsAplliedSkill)
+                    Battle.Board[activeSkillAction.Row, activeSkillAction.Col].ExecuteActiveSkill(ref Battle.Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+            }
+
+            IsActive = false;
+            yield return new WaitForSeconds(0.2f);
+            if (!Battle.preGameStage)
+            {
+                var movementAction = CalculateMovementUtility();
+                var dir = movementAction.Direction;
+                Battle.Move(dir);
+                Battle.EndTurn();
+            }
+        }
+        else
+        {
+            Battle.isInputLocked = false;
+            Battle.EndTurn();
+            StopCoroutine(AIMakeMove(2));
+        }
     }
+
 
     public struct MovementAction
     {
