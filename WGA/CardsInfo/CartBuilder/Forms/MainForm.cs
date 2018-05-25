@@ -96,12 +96,12 @@ namespace CartBuilder
             AddForm form = new AddForm();
 
             form.FormClosing += (sender1, e1) =>
-                {
-                    CardInfo cardInfo = form.info;
-                    if (cardInfo.Name == null || cardInfo.Name == "")
-                        return;
-                    cardList.Items.Add(cardInfo);
-                };
+            {
+                CardInfo cardInfo = form.info;
+                if (cardInfo.Name == null || cardInfo.Name == "")
+                    return;
+                cardList.Items.Add(cardInfo);
+            };
 
             form.Show();
         }
