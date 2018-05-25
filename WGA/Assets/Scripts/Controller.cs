@@ -43,6 +43,7 @@ public class Controller : MonoBehaviour
     public void CloseGame()
     {
         UnityEditor.EditorApplication.isPlaying = false;
+        GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         Application.Quit();    
     }
     public void ToColliction()

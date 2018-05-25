@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 335555185}
   - component: {fileID: 335555184}
   m_Layer: 5
-  m_Name: Player1Frame
+  m_Name: Player2Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3076,7 +3076,7 @@ GameObject:
   - component: {fileID: 1394215924}
   - component: {fileID: 1394215923}
   m_Layer: 5
-  m_Name: Player2Frame
+  m_Name: Player1Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3812,7 +3812,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 12.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &1547210519
 GameObject:

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     public Sprite frontSprite;
     public Sprite backSprite;
     public bool AI;
-    public PlayerInfo PlInfo;
+    public PlayerInfo PlInfo=null;
     // Use this for initialization
     private void Awake()
     {
@@ -39,21 +39,11 @@ public class Player : MonoBehaviour {
             deck[i].name = "card#" + i + "/player=" + this.name;
         }*/
     }
-   public void SetPlayerInfo(PlayerInfo pl)
-    {
-        PlInfo = pl;
-    }
-    public void ReadPlayerFromFile(string PathToFile)
-    {
-        PlayerInfo result= new PlayerInfo();
-        SetPlayerInfo(result);
-        return;
-    }
 
     void Start()
     {
-
-        this.ReadPlayerFromFile(Path.GetDirectoryName(Application.dataPath)+"/PlayerInfo/PlayerInfo.dat");
+        if(PlInfo.PathToAvatar!="")
+            GameObject.Find("Player1Image").GetComponent<Image>().sprite= Resources.Load<Sprite>(PlInfo.PathToAvatar);
         var cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/PlayerCards.dat");
         var k = 0;
         for (int i =0; i < cards.Length;i++)
