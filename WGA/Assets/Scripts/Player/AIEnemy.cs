@@ -132,7 +132,7 @@ public class AIEnemy : MonoBehaviour
                                     var BCinp = Battle.Board[l, j].Info.BattleCryInput != null ? Battle.Board[l, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                                     var DRinp = Battle.Board[l, j].Info.DeathRattleInput != null ? Battle.Board[l, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                                     var AUinp = Battle.Board[l, j].Info.AuraInput != null ? Battle.Board[l, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                                    c.GetComponent<Card>().Initialize(Battle.Board[l, j].Info.Name, Battle.Board[l, j].Health, Battle.Board[l, j].Shield, Battle.Board[l, j].Attack, Battle.Board[l, j].Info.Description, skillMaster,
+                                    c.GetComponent<Card>().Initialize(Battle.Board[l, j].Info.ID,Battle.Board[l, j].Info.Name, Battle.Board[l, j].Health, Battle.Board[l, j].Shield, Battle.Board[l, j].Attack, Battle.Board[l, j].Info.Description, skillMaster,
                                         BCinp, DRinp, AUinp,
                                         Battle.Board[l, j].Info.BattleCryNames, Battle.Board[l, j].Info.DeathRattleName, Battle.Board[l, j].Info.AuraNames,null);
                                     field[l, j] = c.GetComponent<Card>();
@@ -249,7 +249,7 @@ public class AIEnemy : MonoBehaviour
                         var BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                         var DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                         var AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.ID, Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                             BCinp, DRinp, AUinp,
                             Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
 
@@ -265,7 +265,7 @@ public class AIEnemy : MonoBehaviour
                         BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                         DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                         AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.ID, Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                             BCinp, DRinp, AUinp,
                             Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field1[i, j] = c.GetComponent<Card>();
@@ -280,7 +280,7 @@ public class AIEnemy : MonoBehaviour
                         BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                         DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                         AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.ID, Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                             BCinp, DRinp, AUinp,
                             Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field2[i, j] = c.GetComponent<Card>();
@@ -295,7 +295,7 @@ public class AIEnemy : MonoBehaviour
                         BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                         DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                         AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
+                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.ID, Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack, Battle.Board[i, j].Info.Description, skillMaster,
                             BCinp, DRinp, AUinp,
                             Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
                         field3[i, j] = c.GetComponent<Card>();
@@ -470,7 +470,7 @@ public class AIEnemy : MonoBehaviour
                                         var BCinp = Battle.Board[i, j].Info.BattleCryInput != null ? Battle.Board[i, j].Info.BattleCryInput[0].InputParamsValues[0] : null;
                                         var DRinp = Battle.Board[i, j].Info.DeathRattleInput != null ? Battle.Board[i, j].Info.DeathRattleInput[0].InputParamsValues[0] : null;
                                         var AUinp = Battle.Board[i, j].Info.AuraInput != null ? Battle.Board[i, j].Info.AuraInput[0].InputParamsValues[0] : null;
-                                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
+                                        c.GetComponent<Card>().Initialize(Battle.Board[i, j].Info.ID, Battle.Board[i, j].Info.Name, Battle.Board[i, j].Health, Battle.Board[i, j].Shield, Battle.Board[i, j].Attack,
                                             Battle.Board[i, j].Info.Description, skillMaster,
                                             BCinp, DRinp, AUinp,
                                             Battle.Board[i, j].Info.BattleCryNames, Battle.Board[i, j].Info.DeathRattleName, Battle.Board[i, j].Info.AuraNames);
@@ -499,7 +499,7 @@ public class AIEnemy : MonoBehaviour
                             //    var DRinp = crd.Info.DeathRattleInput != null ? crd.Info.DeathRattleInput[0].InputParamsValues[0] : null;
                             //    var AUinp = crd.Info.AuraInput != null ? crd.Info.AuraInput[0].InputParamsValues[0] : null;
                             //    c.GetComponent<Card>().Initialize(crd.Info.Name, crd.Health, crd.Shield, crd.Attack,
-                            //        crd.Info.Description, skillMaster,
+                            //        crd.Info.Description, SkillMaster,
                             //        BCinp, DRinp, AUinp,
                             //        crd.Info.BattleCryNames, crd.Info.DeathRattleName, crd.Info.AuraNames);
 
@@ -548,8 +548,8 @@ public class AIEnemy : MonoBehaviour
                                     }
                                 }
 
-                                //skillMaster.ReExecuteSkillByInput(field0[m, n], field0[m, n].Info.ActiveSkillInput, ref field0);
-                                //skillMaster.ApplyBufsToBoard(ref field0, ref bufMap);
+                                //SkillMaster.ReExecuteSkillByInput(field0[m, n], field0[m, n].Info.ActiveSkillInput, ref field0);
+                                //SkillMaster.ApplyBufsToBoard(ref field0, ref bufMap);
                                 skillMaster.RebuidBufMap();
                                 //Battle.RestoreBoard();
                             }

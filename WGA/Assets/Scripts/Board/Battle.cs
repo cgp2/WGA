@@ -22,6 +22,7 @@ public class Battle : MonoBehaviour
     public static bool cardSeted;
     public static bool skillUsed;
     private static Battle instance;
+    public static SkillMaster SkillMaster;
 
     // Use this for initialization
     void Start()
@@ -34,6 +35,7 @@ public class Battle : MonoBehaviour
 
         rescalecard = new Vector3(3.2f, 2.75f, 1);
         preGameStage = true;
+       
 
         var t = GameObject.Find("BattleStageInfo");
         StartCoroutine(ShowCanvasForSeconds(t, 2f));
@@ -46,6 +48,7 @@ public class Battle : MonoBehaviour
     }
     private void Awake()
     {
+        SkillMaster = GameObject.Find("Field").GetComponent<SkillMaster>();
         Board = new Card[n, m];
         Player1 = GameObject.Find("Player1").GetComponent<Player>();
         Player1.PlInfo = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
@@ -214,7 +217,7 @@ public class Battle : MonoBehaviour
             }
         }
 
-        if (preGameStage && TurnNumber >= 3)
+        if (preGameStage && TurnNumber >= 5)
         {
             preGameStage = false;
             TurnNumber = 1;
