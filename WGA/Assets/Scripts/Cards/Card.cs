@@ -216,9 +216,9 @@ public class Card : MonoBehaviour
 
     private void Awake()
     {
-        SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
-        shipSprite.sprite = Info.CardBackSprite;
-        shipSprite.size = new Vector2(2f, 3f);
+        //SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
+        //shipSprite.sprite = Info.CardBackSprite;
+        //shipSprite.size = new Vector2(2f, 3f);
     }
     public void Spin(bool front)
     {

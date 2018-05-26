@@ -15,7 +15,9 @@ public class CollectionController : MonoBehaviour {
         //and  assigned a prefab to it
         PlInfo.ReadFromFile(Path.GetDirectoryName(Application.dataPath) + "/PlayerInfo/PlayerInfo.dat");
         //var AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
-	    foreach(Card.CardData card in DeckMaster.AllCards)
+        if(DeckMaster.AllCards==null)
+            DeckMaster.AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
+        foreach (Card.CardData card in DeckMaster.AllCards)
         {
             var c = (GameObject)Instantiate(CollectionPrefab, transform);
             
