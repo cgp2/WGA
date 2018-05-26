@@ -22,6 +22,7 @@ public class Battle : MonoBehaviour
     public static bool cardSeted;
     public static bool skillUsed;
     private static Battle instance;
+    public static SkillMaster skillMaster;
 
     // Use this for initialization
     void Start()
@@ -34,6 +35,7 @@ public class Battle : MonoBehaviour
 
         rescalecard = new Vector3(3.2f, 2.75f, 1);
         preGameStage = true;
+        skillMaster = GameObject.Find("Field").GetComponent<SkillMaster>();
 
         var t = GameObject.Find("BattleStageInfo");
         StartCoroutine(ShowCanvasForSeconds(t, 2f));

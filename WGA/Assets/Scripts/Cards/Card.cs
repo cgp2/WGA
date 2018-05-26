@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
 
     public Player Owner;
 
-    public bool OnBoard;
+    public bool OnBoard = false;
     public int StaticHP;
     public int StaticDMG;
     public int StaticSHLD;
@@ -57,60 +57,65 @@ public class Card : MonoBehaviour
         StaticSHLD = Shield = shield;
         StaticDMG = Attack = attack;
 
-        var battleCryInp = new List<string>();
-        if (battleCryName != null)
+        if (skillMaster != null)
         {
-            var t = new List<SkillsInput>();
-            foreach (var n in battleCryName)
+            var battleCryInp = new List<string>();
+            if (battleCryName != null)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                if (battleCryValue != null) input.InputParamsValues[0] = battleCryValue;
-                t.Add(input);
-                battleCryInp.Add(input.InputParamsValues[0]);
+                var t = new List<SkillsInput>();
+                foreach (var n in battleCryName)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    if (battleCryValue != null) input.InputParamsValues[0] = battleCryValue;
+                    t.Add(input);
+                    battleCryInp.Add(input.InputParamsValues[0]);
+                }
+
+                Info.BattleCryInput = t.ToArray();
             }
 
-            Info.BattleCryInput = t.ToArray();
-        }
-        Info.BattleCryValue = battleCryInp.ToArray();
+            Info.BattleCryValue = battleCryInp.ToArray();
 
-        var deathRattleInp = new List<string>();
-        if (deathRattleName != null)
-        {
-            var t = new List<SkillsInput>();
-            foreach (var n in deathRattleName)
+
+            var deathRattleInp = new List<string>();
+            if (deathRattleName != null)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                if (deathRattleValue != null) input.InputParamsValues[0] = deathRattleValue;
-                t.Add(input);
-                deathRattleInp.Add(input.InputParamsValues[0]);
+                var t = new List<SkillsInput>();
+                foreach (var n in deathRattleName)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    if (deathRattleValue != null) input.InputParamsValues[0] = deathRattleValue;
+                    t.Add(input);
+                    deathRattleInp.Add(input.InputParamsValues[0]);
+                }
+
+                Info.DeathRattleInput = t.ToArray();
             }
 
-            Info.DeathRattleInput = t.ToArray();
-        }
-        Info.DeathRattleInputValue = deathRattleInp.ToArray();
+            Info.DeathRattleInputValue = deathRattleInp.ToArray();
 
-        var auraInp = new List<string>();
-        if (auraName != null)
-        {
-            var t = new List<SkillsInput>();
-            foreach (var n in Info.AuraNames)
+            var auraInp = new List<string>();
+            if (auraName != null)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                if (auraValue != null) input.InputParamsValues[0] = auraValue;
-                t.Add(input);
-                auraInp.Add(input.InputParamsValues[0]);
+                var t = new List<SkillsInput>();
+                foreach (var n in Info.AuraNames)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    if (auraValue != null) input.InputParamsValues[0] = auraValue;
+                    t.Add(input);
+                    auraInp.Add(input.InputParamsValues[0]);
+                }
+
+                Info.AuraInput = t.ToArray();
             }
-            Info.AuraInput = t.ToArray();
+
+            Info.AuraInputValue = auraInp.ToArray();
+
+
+            var activeInput = skillMaster.GetISkillInputByName("DmgToCard");
+            Info.ActiveSkillInput = activeInput;
+            Info.ActiveSkillName = "DmgToCard";
         }
-        Info.AuraInputValue = auraInp.ToArray();
-
-
-        var activeInput = skillMaster.GetISkillInputByName("DmgToCard");
-
-
-        Info.ActiveSkillInput = activeInput;
-        Info.ActiveSkillName = "DmgToCard";
-        OnBoard = false;
     }
 
     public void Initialize(CardData data)
@@ -130,70 +135,74 @@ public class Card : MonoBehaviour
             DeathRattleName = data.DeathRattleNames,
             AuraNames = data.AurasNames,
             ShipSprite = Resources.Load<Sprite>("CardSprites/Ships/" + data.ImagePath),
-            //ShipSprite = Resources.Load<Sprite>("BattleshipInsect"),
+
             ImagePath = data.ImagePath
-            //ImagePath = data.ImagePath,
-            // CardFrontSprite = cardFront,
-            // CardBackSprite = cardBack,
-            //ShipSprite = ship
+
         };
 
         StaticHP = Health = data.HP;
         StaticSHLD = Shield = data.Shield;
         StaticDMG = Attack = data.Attack;
 
-        var battleCryInp = new List<string>(); 
-        if (data.BattleCryNames.Length !=0)
+        if (skillMaster != null)
         {
-            var t = new List<SkillsInput>();
-            foreach (var n in data.BattleCryNames)
+            var battleCryInp = new List<string>();
+            if (data.BattleCryNames.Length != 0)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                input.InputParamsValues[0] = data.BattleCryInputValue[0].ToString();
-                t.Add(input);
-                battleCryInp.Add(input.InputParamsValues[0]);
-            }
-            Info.BattleCryInput = t.ToArray();
-        }
-        Info.BattleCryValue = battleCryInp.ToArray();
+                var t = new List<SkillsInput>();
+                foreach (var n in data.BattleCryNames)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    input.InputParamsValues[0] = data.BattleCryInputValue[0].ToString();
+                    t.Add(input);
+                    battleCryInp.Add(input.InputParamsValues[0]);
+                }
 
-        var deathRattleInp = new List<string>();
-        if (data.DeathRattleNames.Length != 0)
-        {
-            var t = new List<SkillsInput>();
-            foreach (var n in data.DeathRattleNames)
+                Info.BattleCryInput = t.ToArray();
+            }
+
+            Info.BattleCryValue = battleCryInp.ToArray();
+
+            var deathRattleInp = new List<string>();
+            if (data.DeathRattleNames.Length != 0)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                input.InputParamsValues[0] = data.DeathRattleInputValue[0].ToString();
-                t.Add(input);
-                deathRattleInp.Add(input.InputParamsValues[0]);
+                var t = new List<SkillsInput>();
+                foreach (var n in data.DeathRattleNames)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    input.InputParamsValues[0] = data.DeathRattleInputValue[0].ToString();
+                    t.Add(input);
+                    deathRattleInp.Add(input.InputParamsValues[0]);
+                }
+
+                Info.DeathRattleInput = t.ToArray();
             }
-            Info.DeathRattleInput = t.ToArray();
-        }
 
-        Info.DeathRattleInputValue = deathRattleInp.ToArray();
+            Info.DeathRattleInputValue = deathRattleInp.ToArray();
 
-        var auraInp = new List<string>();
-        if (data.AurasNames.Length != 0)
-        {
-            var t = new List<SkillsInput>();
-            foreach (var n in data.AurasNames)
+            var auraInp = new List<string>();
+            Info.AuraInputValue = auraInp.ToArray();
+
+            if (data.AurasNames.Length != 0)
             {
-                var input = skillMaster.GetISkillInputByName(n);
-                input.InputParamsValues[0] = data.AuraInputValue[0].ToString();
-                t.Add(input);
-                auraInp.Add(input.InputParamsValues[0]);
+                var t = new List<SkillsInput>();
+                foreach (var n in data.AurasNames)
+                {
+                    var input = skillMaster.GetISkillInputByName(n);
+                    input.InputParamsValues[0] = data.AuraInputValue[0].ToString();
+                    t.Add(input);
+                    auraInp.Add(input.InputParamsValues[0]);
+                }
+
+                Info.AuraInput = t.ToArray();
             }
-            Info.AuraInput = t.ToArray();
+
+            var activeInput = skillMaster.GetISkillInputByName(data.ActiveSkillName);
+            Info.ActiveSkillInput = activeInput;
+
         }
 
-        var activeInput = skillMaster.GetISkillInputByName(data.ActiveSkillName);
-
-
-        Info.ActiveSkillInput = activeInput;
-        Info.AuraInputValue = auraInp.ToArray();
         Info.ActiveSkillName = data.ActiveSkillName;
-        OnBoard = false;
     }
     public void InitializeSprites(Sprite cardFront, Sprite cardBack, Sprite ship)
     {
@@ -384,7 +393,7 @@ public class Card : MonoBehaviour
                 Shield = int.Parse(shield),
                 Attack = int.Parse(attack),
                 Desk = desk,
-                SkillM = GameObject.Find("Field").GetComponent<SkillMaster>(),
+                SkillM = Battle.SkillMaster,
                 BattleCryNames = battleCry.ToArray(),
                 BattleCryInputValue = BCinp.ToArray(),
                 DeathRattleNames = deathRattle.ToArray(),
@@ -420,6 +429,7 @@ public class Card : MonoBehaviour
     [Serializable]
     public struct CardInfo
     {
+        public Guid ID;
         public string Name;
         public string Race;
         public string Description;
