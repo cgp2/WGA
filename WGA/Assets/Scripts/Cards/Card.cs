@@ -29,13 +29,14 @@ public class Card : MonoBehaviour
     public bool IsActiveSkillAvaliable = true;
     
 
-    public void Initialize(string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, 
+    public void Initialize(Guid id, string cardName, int health, int shield, int attack, string description, SkillMaster skillMaster, 
         string battleCryValue = null, string deathRattleValue = null, string auraValue = null, string[] battleCryName = null, string[] deathRattleName = null, string[] auraName = null, string imgPath="")
     {
         this.skillMaster = skillMaster;
 
         Info = new CardInfo
         {
+            ID = id,
             Name = cardName,
             Description = description,
 
@@ -124,6 +125,7 @@ public class Card : MonoBehaviour
 
         Info = new CardInfo
         {
+            ID = data.id,
             Name = data.Name,
             Description = data.Desk,
 
@@ -218,7 +220,6 @@ public class Card : MonoBehaviour
         shipSprite.sprite = Info.CardBackSprite;
         shipSprite.size = new Vector2(2f, 3f);
     }
-
     public void Spin(bool front)
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
@@ -385,8 +386,13 @@ public class Card : MonoBehaviour
             reader.Read();
             Aurainp.Add(int.Parse(reader.Value));
 
+            reader.ReadToFollowing("CardID");
+            reader.Read();
+            var guid = new Guid(reader.Value);
+
             var crd = new CardData
             {
+                id = guid,
                 Name = name,
                 ImagePath = imgPath,
                 Race = race,
@@ -458,9 +464,10 @@ public class Card : MonoBehaviour
         public Sprite CardFrontSprite;
         public Sprite ShipSprite;
     }
-    [Serializable]
+
     public struct CardData
     {
+        public Guid id;
         public string Name;
         public string Race;
         public int HP;
