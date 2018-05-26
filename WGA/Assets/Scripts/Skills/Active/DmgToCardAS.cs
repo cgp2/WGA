@@ -10,7 +10,7 @@ namespace Assets.Scripts.Skills.Active
         public DmgToCardAS()
         {
             Name = "DmgToCard";
-            Description = "This skill do some damage (interesting)";
+            Description = "This skill does damage to all enemies. ";
             Ally = false;
 
             InputParametrs = new[] { "DmgTo" };

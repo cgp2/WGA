@@ -417,7 +417,7 @@ public class Card : MonoBehaviour
     {
 
     }
-
+    [Serializable]
     public struct CardInfo
     {
         public string Name;

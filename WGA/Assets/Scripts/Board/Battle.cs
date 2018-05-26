@@ -17,7 +17,7 @@ public class Battle : MonoBehaviour
     static Vector3 rescalecard;
     public static int TurnNumber;
     public static bool preGameStage;
-    private static bool lockedInput = false;
+    public static bool isInputLocked = false;
     private static Card[,] savedBoard;
     public static bool cardSeted;
     public static bool skillUsed;
@@ -47,8 +47,8 @@ public class Battle : MonoBehaviour
     private void Awake()
     {
         Board = new Card[n, m];
-            Player1 = GameObject.Find("Player1").GetComponent<Player>();
-
+        Player1 = GameObject.Find("Player1").GetComponent<Player>();
+        Player1.PlInfo = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         if (Player2.GetComponent<AIEnemy>() != null)
             Player2.AI = true;
@@ -61,9 +61,8 @@ public class Battle : MonoBehaviour
         GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
     }
     public static void NextTurn()
-    {
-
-        lockedInput = false;
+    { 
+        isInputLocked = false;
         cardSeted = false;
         skillUsed = false;
 
@@ -103,6 +102,7 @@ public class Battle : MonoBehaviour
         }
         else
         {
+            EndTurn();
             var pl2HasCard = Player2.deck.Count != 0;
             foreach (var card in Board)
             {
@@ -117,38 +117,42 @@ public class Battle : MonoBehaviour
             if (pl2HasCard)
             {
                 turn = Player2;
-                var r = Player2.GetComponent<AIEnemy>().MakeMove();
-                if (r.Placing.IsPlacing)
-                {
-                    var col = r.Placing.Col;
-                    var row = r.Placing.Row;
-                    var crd = r.Placing.CardNum; //Номер карты в руке
-                    Player.Selectedcard = Player2.deck[crd];
-                    Set_Card(row, col, Player.Selectedcard.GetComponent<Card>());
-                }
-                if(r.ActiveSkill.IsAplliedSkill)
-                {
-                    Board[r.ActiveSkill.Row, r.ActiveSkill.Col].ExecuteActiveSkill(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
-                }
-                if (!preGameStage)
-                {
-                    var dir = r.Movement.Direction;
-                    Move(dir);
-                }
+                Player2.GetComponent<AIEnemy>().MakeMove();                             
+                //var r = Player2.GetComponent<AIEnemy>().MakeMove();
+                //if (r.Placing.IsPlacing)
+                //{
+                //    var col = r.Placing.Col;
+                //    var row = r.Placing.Row;
+                //    var crd = r.Placing.CardNum; //Номер карты в руке
+                //    Player.Selectedcard = Player2.deck[crd];
+                //    Set_Card(row, col, Player.Selectedcard.GetComponent<Card>());
+                //}
+                //if (r.ActiveSkill.IsAplliedSkill)
+                //{
+                //    Board[r.ActiveSkill.Row, r.ActiveSkill.Col].ExecuteActiveSkill(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
+                //}
+                //if (!preGameStage)
+                //{
+                //    var dir = r.Movement.Direction;
+                //    Move(dir);
+                //}
             }
         }
 
+    }
 
-
+    public static void EndTurn()
+    {
         if (TurnNumber == 20)
         {
             var winner = CalculateWiningPlayer();
-            if(winner==Player1)
+            if (winner == Player1)
             {
                 Player1.PlInfo.Exp += 123123;
-                Player1.PlInfo.SaveToFile();
+                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
             }
-            lockedInput = true;
+            Player1.PlInfo.Exp += 123123;
+            isInputLocked = true;
             //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
             var t = GameObject.Find("BattleEndMenu");
@@ -181,7 +185,7 @@ public class Battle : MonoBehaviour
             if (!pl1HasCard && pl2HasCard)
             {
                 var winner = Player2;
-                lockedInput = true;
+                isInputLocked = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
                 var t = GameObject.Find("BattleEndMenu");
@@ -195,7 +199,9 @@ public class Battle : MonoBehaviour
             else if (!pl2HasCard && pl1HasCard)
             {
                 var winner = Player1;
-                lockedInput = true;
+                Player1.PlInfo.Exp += 123123;
+                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+                isInputLocked = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
                 var t = GameObject.Find("BattleEndMenu");
@@ -207,20 +213,20 @@ public class Battle : MonoBehaviour
                 t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
             }
         }
+
         if (preGameStage && TurnNumber >= 3)
         {
             preGameStage = false;
             TurnNumber = 1;
             for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    if (Board[i, j] != null)
-                        Board[i, j].GetComponentInChildren<Canvas>().enabled = true;
+            for (int j = 0; j < m; j++)
+                if (Board[i, j] != null)
+                    Board[i, j].GetComponentInChildren<Canvas>().enabled = true;
             //GameObject.Find("Fog").GetComponent<SpriteRenderer>().enabled = false;
             Destroy(GameObject.Find("FogCanvas"));
             var t = GameObject.Find("BattleStageInfo");
             instance.StartCoroutine(ShowCanvasForSeconds(t, 2f));
         }
-        RoundUIUpdate();
     }
 
     private static Player CalculateWiningPlayer()
@@ -289,18 +295,17 @@ public class Battle : MonoBehaviour
     }
  
     public static void Move(Directions dir)
-    {
-       
+    {       
         if (!preGameStage)
         {
             if (GameObject.Find("Field").GetComponent<CreateMovementAnimation>().Move(Board, dir))
             {
-                lockedInput = true;
+                isInputLocked = true;
                 skillUsed = true;
                 cardSeted = true;
             }
             else
-                lockedInput = false;
+                isInputLocked = false;
         }
     }
     public static void UpdateUI()
@@ -365,29 +370,33 @@ public class Battle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (!isInputLocked)
         {
-            //UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
-        }
-        else if (!lockedInput && !preGameStage)
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown("escape"))
             {
-                Move(Directions.Bottom);
+                //UnityEditor.EditorApplication.isPlaying = false;
+                Application.Quit();
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (!isInputLocked && !preGameStage)
             {
-                Move(Directions.Top);
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    Move(Directions.Bottom);
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    Move(Directions.Top);
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    Move(Directions.Left);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    Move(Directions.Right);
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                Move(Directions.Left);
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Move(Directions.Right);
-            }
+
         }
     }
     public static Card[,] MoveField(Card[,] field, SlotBuff[,] bufMap, Directions dir, out int enemiesKilled, out int alliesDead, out int damageDone, out int damageReceived)
@@ -808,11 +817,7 @@ public class Battle : MonoBehaviour
     private static IEnumerator ShowCanvasForSeconds(GameObject obj, float seconds)
     {
         var canvasGroup = obj.GetComponentInChildren<CanvasGroup>();
-        if (preGameStage) obj.GetComponentInChildren<Text>().text = "Tactical Stage";
-        else
-        {
-            obj.GetComponentInChildren<Text>().text = "Battle Stage";
-        }
+        obj.GetComponentInChildren<Text>().text = preGameStage ? "Tactical Stage" : "Battle Stage";
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -820,6 +825,8 @@ public class Battle : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
     }
+
+    
 
     public static void RestoreBoard()
     {

@@ -24,7 +24,6 @@ public abstract class ASkill
     public abstract bool ExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
     public abstract bool ReExecuteSkill(SkillsInput input, int row, int col, int playerID, ref SlotBuff[,] bufMap);
 
-
     //public void Serialize(ref XmlDocument document)
     //{
     //    XmlElement skillElement = document.CreateElement("Skill");

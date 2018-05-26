@@ -86,7 +86,26 @@ public class test : MonoBehaviour
                 }
                 if (txt.name == "Description")
                 {
-                    txt.text = gameObject.GetComponent<Card>().Info.Description;
+                    string temp = "";
+                    var obj = this.GetComponent<Card>();
+                    temp += obj.Info.Description;
+                    temp += "\n";
+                    for(int i=0;i<obj.Info.BattleCryNames.Length;i++)
+                    {
+                        temp += obj.Info.BattleCryNames[i]+". Value: "+obj.Info.BattleCryValue[i]+"\n";
+                    }
+                    for (int i = 0; i < obj.Info.AuraNames.Length; i++)
+                    {
+                        temp += obj.Info.AuraNames[i] + ". Value: " + obj.Info.AuraInputValue[i]+"\n";
+                    }
+                    for (int i = 0; i < obj.Info.DeathRattleName.Length; i++)
+                    {
+                        temp += obj.Info.DeathRattleName[i] + ". Value: " + obj.Info.DeathRattleInputValue[i]+"\n";
+                    }
+                    temp += obj.Info.ActiveSkillName + ". Value: " + obj.Info.ActiveSkillInput.InputParamsValues[0] + "\n";
+                    txt.text = temp;
+                        
+                    
                 }
             }
 

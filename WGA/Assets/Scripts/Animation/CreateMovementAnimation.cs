@@ -57,271 +57,7 @@ public class CreateMovementAnimation : MonoBehaviour
                 return Directions.Map;
         }
     }
-    //public static void Move(Card[,] Board, Directions dir)
-    //{
-    //    switch (dir)
-    //    {
-    //        case Directions.Top:
-    //            {
-    //                for (int i = 0; i < Battle.m; i++)
-    //                {
-    //                    int j = Battle.n - 2;
-    //                    int k = j;
-    //                    while (j >= 0)
-    //                    {
-    //                        k = j;
-    //                        if (Board[j, i] != null)
-    //                        {
-    //                            if (Board[j, i].Owner == Battle.turn)
-    //                            {
-    //                                if (Board[j + 1, i] == null)
-    //                                {
-
-    //                                    Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y);
-    //                                    Board[j + 1, i] = Board[j, i];
-    //                                    Board[j, i] = null;
-    //                                    for (k = j; k >= 0; k--)
-    //                                    {
-    //                                        if (Board[k, i] != null)
-    //                                        {
-    //                                            if (Board[k, i].Owner == Battle.turn)
-    //                                            {
-    //                                                if (Board[k + 1, i] == null)
-    //                                                {
-    //                                                    Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y);
-    //                                                    Board[k + 1, i] = Board[k, i];
-    //                                                    Board[k, i] = null;
-    //                                                    k += 2;
-    //                                                    if (k > Battle.n - 1)
-    //                                                        k = Battle.n - 2;
-    //                                                }
-    //                                                else
-    //                                                {
-    //                                                    if (Board[k + 1, i].Owner == Battle.turn)
-    //                                                        Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-    //                                                    else
-    //                                                    {
-    //                                                        Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-    //                                                        Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                        Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-    //                                                        Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                        if (Board[k, i].Health > 0)
-    //                                                        {
-    //                                                            if (Board[k + 1, i].Health <= 0)
-    //                                                            {
-    //                                                                Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 + 1);
-    //                                                                Board[k + 1, i] = Board[k, i];
-    //                                                                Board[k, i] = null;
-    //                                                            }
-    //                                                            else
-    //                                                            {
-    //                                                                Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-    //                                                                Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-    //                                                            }
-    //                                                        }
-    //                                                        else
-    //                                                        {
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                            if (Board[k + 1, i].Health <= 0)
-    //                                                            {
-    //                                                                Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                            }
-    //                                                            else
-    //                                                            {
-    //                                                                Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-
-    //                                                            }
-
-    //                                                        }
-    //                                                    }
-    //                                                }
-    //                                            }
-    //                                        }
-    //                                    }
-    //                                    j += 2;
-    //                                    if (j > Battle.n - 1)
-    //                                        j = Battle.n - 2;
-    //                                }
-    //                                else
-    //                                {
-    //                                    if (Board[j + 1, i].Owner == Battle.turn)
-    //                                    {
-    //                                        Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-    //                                        for (k = j; k >= 0; k--)
-    //                                        {
-    //                                            if (Board[k, i] != null)
-    //                                            {
-    //                                                if (Board[k, i].Owner == Battle.turn)
-    //                                                {
-    //                                                    if (Board[k + 1, i] == null)
-    //                                                    {
-    //                                                        Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart);
-    //                                                        Board[k + 1, i] = Board[k, i];
-    //                                                        Board[k, i] = null;
-    //                                                        k += 2;
-    //                                                        if (k > Battle.n - 1)
-    //                                                            k = Battle.n - 2;
-    //                                                    }
-    //                                                    else
-    //                                                    {
-    //                                                        if (Board[k + 1, i].Owner == Battle.turn)
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-    //                                                        else
-    //                                                        {
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                            Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                            Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                            if (Board[k, i].Health > 0)
-    //                                                            {
-    //                                                                if (Board[k + 1, i].Health <= 0)
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                    Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 + 1);
-    //                                                                    Board[k + 1, i] = Board[k, i];
-    //                                                                    Board[k, i] = null;
-    //                                                                }
-    //                                                                else
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, Card_Place_Creation.yMarginStandart - 1);
-    //                                                                    Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                                }
-    //                                                            }
-    //                                                            else
-    //                                                            {
-    //                                                                Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                if (Board[k + 1, i].Health <= 0)
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                }
-    //                                                                else
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, Card_Place_Creation.yMarginStandart - 1);
-
-    //                                                                }
-
-    //                                                            }
-    //                                                        }
-    //                                                    }
-    //                                                }
-    //                                            }
-    //                                        }
-    //                                    }
-    //                                    else
-    //                                    {
-    //                                        Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, (Card_Place_Creation.yMarginStandart) / 2 - 1);
-    //                                        Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                        Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart) / 2 - 1);
-    //                                        Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                        Battle.Fight(Board[j, i], Board[j + 1, i]);
-    //                                        if (Board[j, i].Health > 0)
-    //                                        {
-    //                                            if (Board[j + 1, i].Health <= 0)
-    //                                            {
-    //                                                Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, (Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 + 1);
-    //                                                Board[j + 1, i] = Board[j, i];
-    //                                                Board[j, i] = null;
-    //                                            }
-    //                                            else
-    //                                            {
-    //                                                Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y - 1);
-    //                                                Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y) / 2 - 1);
-    //                                            }
-    //                                        }
-    //                                        else
-    //                                        {
-    //                                            Board[j, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                            if (Board[j + 1, i].Health <= 0)
-    //                                            {
-    //                                                Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                            }
-    //                                            else
-    //                                            {
-    //                                                Board[j + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart + Card_Place_Creation.t.y - 1);
-
-    //                                            }
-
-
-
-    //                                        }
-    //                                        for (k = j-1; k >= 0; k--)
-    //                                        {
-    //                                            if (Board[k, i] != null)
-    //                                            {
-    //                                                if (Board[k, i].Owner == Battle.turn)
-    //                                                {
-    //                                                    if (Board[k + 1, i] == null)
-    //                                                    {
-    //                                                        Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart+Card_Place_Creation.t.y);
-    //                                                        Board[k + 1, i] = Board[k, i];
-    //                                                        Board[k, i] = null;
-    //                                                        k += 2;
-    //                                                        if (k > Battle.n - 1)
-    //                                                            k = Battle.n - 2;
-    //                                                    }
-    //                                                    else
-    //                                                    {
-    //                                                        if (Board[k + 1, i].Owner == Battle.turn)
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
-    //                                                        else
-    //                                                        {
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                            Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                            Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                            Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-    //                                                            if (Board[k, i].Health > 0)
-    //                                                            {
-    //                                                                if (Board[k + 1, i].Health <= 0)
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                    Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 + 1);
-    //                                                                    Board[k + 1, i] = Board[k, i];
-    //                                                                    Board[k, i] = null;
-    //                                                                }
-    //                                                                else
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, Card_Place_Creation.yMarginStandart - 1);
-    //                                                                    Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
-    //                                                                }
-    //                                                            }
-    //                                                            else
-    //                                                            {
-    //                                                                Board[k, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                if (Board[k + 1, i].Health <= 0)
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, 0);
-    //                                                                }
-    //                                                                else
-    //                                                                {
-    //                                                                    Board[k + 1, i].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.destroy, dir, Card_Place_Creation.yMarginStandart - 1);
-
-    //                                                                }
-
-    //                                                            }
-    //                                                        }
-    //                                                    }
-    //                                                }
-    //                                            }
-    //                                        }
-    //                                    }
-    //                                }
-
-
-
-
-
-    //                            }
-    //                        }
-    //                        j--;
-    //                    }
-    //                }
-    //                break;
-
-    //            }
-    //    }
-    //}
+  
     public bool Move(Card[,] Board, Directions dir)
     {
         
@@ -494,9 +230,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[w + 1, j].GetComponent<MovementAnimation>().totalTime - Board[w, j].GetComponent<MovementAnimation>().totalTime);
                                                                     if (Board[w + 1, j].Owner != Battle.turn)
                                                                     {
-                                                                        Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                        Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart );// tut delenie na 2
                                                                         Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                                        Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart / 2 - 1));
+                                                                        //Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart / 2 - 1));
+                                                                        //Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                        Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                                         Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                                         Battle.Fight(Board[w, j], Board[w + 1, j]);
 
@@ -508,7 +246,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart);//del 2
                                                                         }
                                                                         if (Board[w + 1, j].Health <= 0)
                                                                         {
@@ -527,7 +265,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                            //Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                            //Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                            Board[w + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, 0);
                                                                         }
 
                                                                     }
@@ -551,9 +291,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 var temp = Battle.Fight(Board[k, j], Board[k + 1, j]);
                                                 Board[k, j] = temp[0];
                                                 Board[k + 1, j] = temp[1];
-                                                Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart);//del na 2
                                                 Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                //Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                //Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                 Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                 if (Board[k, j].Health <= 0)
                                                 {
@@ -564,7 +306,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                    Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart);//del 2
                                                 }
                                                 if (Board[k + 1, j].Health <= 0)
                                                 {
@@ -582,7 +324,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                    //Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                    Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir,0);
+                                                    //Board[k + 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
                                                 }
 
                                                 moved = true;
@@ -657,9 +401,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[w - 1, j].GetComponent<MovementAnimation>().totalTime - Board[w, j].GetComponent<MovementAnimation>().totalTime);
                                                                     if (Board[w - 1, j].Owner != Battle.turn)
                                                                     {
-                                                                        Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                        Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart);// del 2
                                                                         Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                                        Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart / 2 - 1));
+                                                                        //Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.yMarginStandart / 2 - 1));
+                                                                        //Board[w-1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                        Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                                         Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                                         Battle.Fight(Board[w, j], Board[w - 1, j]);
 
@@ -671,7 +417,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart);//del 2
                                                                         }
                                                                         if (Board[w- 1, j].Health <= 0)
                                                                         {
@@ -690,7 +436,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                                            //Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                            Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
+                                                                            // Board[w - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
                                                                         }
 
                                                                     }
@@ -714,9 +462,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 var temp = Battle.Fight(Board[k, j], Board[k - 1, j]);
                                                 Board[k, j] = temp[0];
                                                 Board[k -1, j] = temp[1];
-                                                Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart);//del 2
                                                 Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                //Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                //Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                 Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                 if (Board[k, j].Health <= 0)
                                                 {
@@ -727,7 +477,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart / 2 - 1);
+                                                    Board[k, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.yMarginStandart);//del 2
                                                 }
                                                 if (Board[k - 1, j].Health <= 0)
                                                 {
@@ -745,6 +495,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
+                                                    // Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                    //Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
                                                     Board[k - 1, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.yMarginStandart / 2 - 1);
                                                 }
 
@@ -925,9 +677,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[i, w - 1].GetComponent<MovementAnimation>().totalTime - Board[i, w].GetComponent<MovementAnimation>().totalTime);
                                                                     if (Board[i, w - 1].Owner != Battle.turn)
                                                                     {
-                                                                        Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                        Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart - 1);//del 2
                                                                         Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                                        Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.xMarginStandart / 2 - 1));
+                                                                        //Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.xMarginStandart / 2 - 1));
+                                                                        //Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                        Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                                         Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                                         Battle.Fight(Board[i, w], Board[i, w - 1]);
 
@@ -939,7 +693,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                            Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart - 1);//del 2
                                                                         }
                                                                         if (Board[i, w - 1].Health <= 0)
                                                                         {
@@ -958,7 +712,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                            //Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                            Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, 0);
+                                                                            //Board[i, w - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
                                                                         }
 
                                                                     }
@@ -982,9 +738,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 var temp = Battle.Fight(Board[i, k], Board[i, k - 1]);
                                                 Board[i, k] = temp[0];
                                                 Board[i, k - 1] = temp[1];
-                                                Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart  - 1);//del 2
                                                 Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                //Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
+                                                //Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
                                                 Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                 if (Board[i, k].Health <= 0)
                                                 {
@@ -995,7 +753,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart - 1);
                                                 }
                                                 if (Board[i, k - 1].Health <= 0)
                                                 {
@@ -1013,7 +771,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[i, k -1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    //Board[i, k - 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                    //Board[i, k -1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    Board[i, k -1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, 0);
                                                 }
 
                                                 moved = true;
@@ -1193,9 +953,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0, Board[i, w+1].GetComponent<MovementAnimation>().totalTime - Board[i, w].GetComponent<MovementAnimation>().totalTime);
                                                                     if (Board[i, w+1].Owner != Battle.turn)
                                                                     {
-                                                                        Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                        Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart - 1);//del 2
                                                                         Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                                        Board[i, w+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.xMarginStandart / 2 - 1));
+                                                                        //Board[i, w+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), -(Card_Place_Creation.xMarginStandart / 2 - 1));
+                                                                        //Board[i, w + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                        Board[i, w + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                                         Board[i, w+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                                         Battle.Fight(Board[i, w], Board[i, w+1]);
 
@@ -1207,7 +969,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                            Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart - 1);//del 2
                                                                         }
                                                                         if (Board[i, w+1].Health <= 0)
                                                                         {
@@ -1226,7 +988,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                         }
                                                                         else
                                                                         {
-                                                                            Board[i, w+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                                            //Board[i, w + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                                            Board[i, w + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, 0);
+                                                                            //Board[i, w+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
                                                                         }
 
                                                                     }
@@ -1250,9 +1014,11 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 var temp = Battle.Fight(Board[i, k], Board[i, k+1]);
                                                 Board[i, k] = temp[0];
                                                 Board[i, k+1] = temp[1];
-                                                Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart - 1);//del 2
                                                 Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
-                                                Board[i, k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                //Board[i, k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                //Board[i,k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop,dir,0);
+                                                Board[i, k + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), 0);
                                                 Board[i, k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.fight, dir, 0);
                                                 if (Board[i, k].Health <= 0)
                                                 {
@@ -1263,7 +1029,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    Board[i, k].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, ReverseDirection(dir), Card_Place_Creation.xMarginStandart - 1);//del 2
                                                 }
                                                 if (Board[i, k+1].Health <= 0)
                                                 {
@@ -1281,7 +1047,9 @@ public class CreateMovementAnimation : MonoBehaviour
                                                 }
                                                 else
                                                 {
-                                                    Board[i, k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    //Board[i, k + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                    //Board[i, k+1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, Card_Place_Creation.xMarginStandart / 2 - 1);
+                                                    Board[i, k + 1].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.move, dir, 0);
                                                 }
 
                                                 moved = true;

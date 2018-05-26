@@ -45,6 +45,8 @@ namespace CartBuilder
         public int valueDeathRattle = 0;
         public int valueAura = 0;
 
+        public Guid CardID;
+
         public CardInfo()
         {
             BattleCryName = new string[0];

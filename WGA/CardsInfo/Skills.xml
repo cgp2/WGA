@@ -61,6 +61,6 @@
 		<Dirs>
 			<dir type="Map" />
 		</Dirs>
-		<Description>This skill do some damage (interesting)</Description>
+		<Description>This skill does damage to all enemies. </Description>
 	</Skill>
 </ArrayOfSkill>

@@ -13,7 +13,10 @@ namespace CartBuilder
         public AddForm()
         {
             InitializeComponent();
-            info = new CardInfo();
+            info = new CardInfo
+            {
+                CardID = Guid.NewGuid()
+            };
 
             Skill[] SkillsArray;
             if (!File.Exists(SkillsFileName))
@@ -36,6 +39,9 @@ namespace CartBuilder
         {
             InitializeComponent();
             info = newInfo;
+
+            if (info.CardID == Guid.Empty)
+                info.CardID = Guid.NewGuid();
 
             attackBox.Text = info.Attack.ToString();
             descriptionBox.Text = info.Description;
@@ -124,6 +130,16 @@ namespace CartBuilder
                 MessageBox.Show("Введите все поля плз, оч надо :)");
             else
             {
+                string path = "";
+
+                try
+                {
+                    path = Path.Combine(
+                        Path.GetFileNameWithoutExtension(Path.GetDirectoryName(ImagePathBox.Text)),
+                        Path.GetFileNameWithoutExtension(ImagePathBox.Text));
+                }
+                catch { }
+
                 info = new CardInfo
                 {
                     Attack = int.Parse(attackBox.Text),
@@ -131,11 +147,11 @@ namespace CartBuilder
                     Health = int.Parse(hpBox.Text),
                     Name = nameBox.Text,
                     Shield = int.Parse(shieldBox.Text),
-                    ImagePath = ImagePathBox.Text,
-
+                    ImagePath = path,
                     valueAura = int.Parse(ASettingsBox.Text),
                     valueBatterCry = int.Parse(BCSettingsBox.Text),
-                    valueDeathRattle = int.Parse(DRSettingsBox.Text)
+                    valueDeathRattle = int.Parse(DRSettingsBox.Text),
+                    CardID = info.CardID
                 };
 
                 switch (ClassCardBox.Text)
@@ -169,12 +185,24 @@ namespace CartBuilder
 
         private void ImagePathButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
+            OpenFileDialog openFile = new OpenFileDialog
+            {
+                Filter = "Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png"
+            };
 
             if (openFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            ImagePathBox.Text = openFile.FileName;
+
+            try
+            {
+                ImagePathBox.Text = Path.Combine(
+                        Path.GetFileNameWithoutExtension(Path.GetDirectoryName(openFile.FileName)),
+                        Path.GetFileNameWithoutExtension(openFile.FileName));
+            }
+            catch
+            {
+                ImagePathBox.Text = "";
+            }
         }
 
         private void BCSettingsBox_KeyPress(object sender, KeyPressEventArgs e)
