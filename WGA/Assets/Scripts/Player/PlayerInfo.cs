@@ -16,13 +16,13 @@ public class PlayerInfo {
     public PlayerInfo(string path)
     {
         var playerFromFile = ReadFromFile(path);
-        this.Name = playerFromFile.Name;
-        this.Level = playerFromFile.Level;
-        this.Exp = playerFromFile.Exp;
-        this.PathToAvatar = playerFromFile.PathToAvatar;
-        this.ExpToNextLevel = playerFromFile.ExpToNextLevel;
-        this.DeckName = playerFromFile.DeckName;
-        this.PathToAvatar = playerFromFile.PathToAvatar;
+        Level = playerFromFile.Level;
+        Name = playerFromFile.Name;
+        Exp = playerFromFile.Exp;
+        PathToAvatar = playerFromFile.PathToAvatar;
+        ExpToNextLevel = playerFromFile.ExpToNextLevel;
+        DeckName = playerFromFile.DeckName;
+        PathToAvatar = playerFromFile.PathToAvatar;
     }
  
     public PlayerInfo()
@@ -38,6 +38,9 @@ public class PlayerInfo {
             Exp = 0,
             ExpToNextLevel = 100
         };
+
+
+
         return newPlayer;
     }
     public void SaveToFile(string path)
