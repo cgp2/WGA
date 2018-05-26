@@ -218,6 +218,7 @@ public class Card : MonoBehaviour
         shipSprite.sprite = Info.CardBackSprite;
         shipSprite.size = new Vector2(2f, 3f);
     }
+
     public void Spin(bool front)
     {
         SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
@@ -457,7 +458,7 @@ public class Card : MonoBehaviour
         public Sprite CardFrontSprite;
         public Sprite ShipSprite;
     }
-
+    [Serializable]
     public struct CardData
     {
         public string Name;

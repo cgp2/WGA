@@ -13,6 +13,7 @@ public class PlayerInfo {
     public int Exp;
     public int ExpToNextLevel;
     public string PathToAvatar;
+    public Guid[] AvaliableCards;
     public PlayerInfo(string path)
     {
         var playerFromFile = ReadFromFile(path);
