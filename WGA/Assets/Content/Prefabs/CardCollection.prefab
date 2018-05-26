@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1481632260635180
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222011597564073006}
   - component: {fileID: 114459095344860492}
   - component: {fileID: 114244681580741686}
+  - component: {fileID: 114364733204705090}
   m_Layer: 0
   m_Name: CardCollection
   m_TagString: Untagged
@@ -121,6 +122,46 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114364733204705090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481632260635180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cb6cda9f22d5948aa7410a1e46d5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Info:
+    Name: 
+    Race: 
+    Description: 
+    ImagePath: 
+    InitialHealth: 0
+    InitialShield: 0
+    InitialAttack: 0
+    DeathRattleName: []
+    BattleCryNames: []
+    AuraNames: []
+    ActiveSkillName: 
+    BattleCryValue: []
+    AuraInputValue: []
+    DeathRattleInputValue: []
+    CardBackSprite: {fileID: 0}
+    CardFrontSprite: {fileID: 0}
+    ShipSprite: {fileID: 0}
+  Health: 0
+  Shield: 0
+  Attack: 0
+  Owner: {fileID: 0}
+  OnBoard: 0
+  StaticHP: 0
+  StaticDMG: 0
+  StaticSHLD: 0
+  front_rotate: 0
+  back_rotate: 0
+  IsActiveSkillAvaliable: 1
 --- !u!114 &114459095344860492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,7 +313,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481632260635180}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -13.2, y: -7.3999996, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224325053202571090}
@@ -283,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.2, y: -7.4}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 16.63, y: 22.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224325053202571090
@@ -293,7 +334,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188783778857048}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224250286906267818}
@@ -311,7 +352,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1144262500118436}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: -9.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.09, y: 0.09, z: 1}
   m_Children: []
   m_Father: {fileID: 224250286906267818}
@@ -319,7 +360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -9.1}
+  m_AnchoredPosition: {x: -0, y: -12}
   m_SizeDelta: {x: 176.6, y: 21.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224619697926192684
@@ -329,7 +370,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1618641222431526}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.10000038, y: 0.10000038, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224250286906267818}
