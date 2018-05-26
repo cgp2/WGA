@@ -16,6 +16,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -33,6 +34,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>    
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -50,6 +52,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
@@ -67,6 +70,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -84,6 +88,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -101,6 +106,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -118,6 +124,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -135,6 +142,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -150,6 +158,7 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -165,5 +174,6 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
+    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
   </CardInfo>
 </ArrayOfCardInfo>

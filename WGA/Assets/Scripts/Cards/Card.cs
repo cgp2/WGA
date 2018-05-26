@@ -108,9 +108,9 @@ public class Card : MonoBehaviour
                 }
 
                 Info.AuraInput = t.ToArray();
-            }
+        }
 
-            Info.AuraInputValue = auraInp.ToArray();
+        Info.AuraInputValue = auraInp.ToArray();
 
 
             var activeInput = skillMaster.GetISkillInputByName("DmgToCard");
@@ -183,7 +183,7 @@ public class Card : MonoBehaviour
             Info.DeathRattleInputValue = deathRattleInp.ToArray();
 
             var auraInp = new List<string>();
-            Info.AuraInputValue = auraInp.ToArray();
+
 
             if (data.AurasNames.Length != 0)
             {
@@ -198,7 +198,7 @@ public class Card : MonoBehaviour
 
                 Info.AuraInput = t.ToArray();
             }
-
+            Info.AuraInputValue = auraInp.ToArray();
             var activeInput = skillMaster.GetISkillInputByName(data.ActiveSkillName);
             Info.ActiveSkillInput = activeInput;
 

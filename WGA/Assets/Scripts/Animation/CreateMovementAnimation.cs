@@ -282,7 +282,8 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                 }
                                                                 w++;
                                                             }
-                                                            Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+
+                                                            if (Board != null) Board[w, j].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
                                                         }
                                                     }
 
