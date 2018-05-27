@@ -54,17 +54,17 @@ public class Controller : MonoBehaviour
 
     public void ToColliction()
     {
-        SoundMaster.PauseSound();
+        SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
     public void ToOptions()
     {
-        SoundMaster.PauseSound();
+        SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(3);
     }
     public void ToMainMenu()
     {
-        SoundMaster.PauseSound();
+        SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void ReturnToGame()
@@ -76,7 +76,7 @@ public class Controller : MonoBehaviour
     }
     public void GameScene()
     {
-        SoundMaster.ResetSound();
+        SoundMaster.ResetMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void OpenCollection()

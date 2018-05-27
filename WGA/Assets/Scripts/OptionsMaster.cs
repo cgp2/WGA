@@ -12,8 +12,10 @@ public class OptionsMaster : MonoBehaviour
 
     public static int Difficult;
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    GameObject.Find("music").GetComponent<Slider>().value = SoundMaster.MusicLevel * 100;
+	    GameObject.Find("sound").GetComponent<Slider>().value = SoundMaster.SoundLevel * 100;
 	}
 
     public void ChangeMusicValue()

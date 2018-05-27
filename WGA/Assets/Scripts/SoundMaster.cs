@@ -12,6 +12,7 @@ public class SoundMaster : MonoBehaviour
     public static float MusicLevel = 1f;
 
     public static AudioClip[] Clips;
+    public static AudioSource MusicSource;
     public static AudioSource SoundSource;
     public static float PauseTime;
     public static AudioClip CurrentClip;
@@ -22,9 +23,9 @@ public class SoundMaster : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         SoundSource = gameObject.AddComponent<AudioSource>();
-        SoundSource.volume = MusicLevel;
+        MusicSource = gameObject.AddComponent<AudioSource>();
+        MusicSource.volume = MusicLevel;
 
         //Clips = new List<AudioClip>();
         //var r = Resources.LoadAll<AudioClip>("Music/");
@@ -33,64 +34,73 @@ public class SoundMaster : MonoBehaviour
             Clips = Resources.LoadAll<AudioClip>("Music/");
         }
         
-        PlaySound();
+        PlayMusic();
     }
 
     public static void ToggleMusicSound()
     {
-        SoundSource.volume = SoundSource.volume == 0f ? MusicLevel : 0f;
+        MusicSource.volume = MusicSource.volume == 0f ? MusicLevel : 0f;
     }
 
-    public static void PauseSound()
+    public static void PauseMusic()
     {
-        if (SoundSource != null)
+        if (MusicSource != null)
         {
-            SoundSource.Pause();
-            PauseTime = SoundSource.time;
-            CurrentClip = SoundSource.clip;
+            MusicSource.Pause();
+            PauseTime = MusicSource.time;
+            CurrentClip = MusicSource.clip;
         }
     }
 
     public static void ChangeMusicVolume(float newValue)
     {
         MusicLevel = newValue;
+        if (MusicSource)
+        {
+            MusicSource.volume = MusicLevel;
+        }
+    }
+
+    public static void ChangeSoundVolume(float newValue)
+    {
+        SoundLevel = newValue;
         if (SoundSource)
         {
             SoundSource.volume = MusicLevel;
         }
     }
 
-    public static void ResetSound()
+    public static void ResetMusic()
     {
         PauseTime = 0f;
         CurrentClip = null;
     }
 
-    public static void PlaySound()
+    public static void PlayMusic()
     {
         if (PauseTime == 0f)
         {
-            SoundSource.clip = Clips[Random.Range(0, Clips.Length)];
-            SoundSource.Play();
+            MusicSource.clip = Clips[Random.Range(0, Clips.Length)];
+            MusicSource.Play();
         }
         else
         {
-            SoundSource.clip = CurrentClip;
-            SoundSource.time = PauseTime;
+            MusicSource.clip = CurrentClip;
+            MusicSource.time = PauseTime;
             PauseTime = 0f;
-            SoundSource.Play();
+            MusicSource.Play();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SoundSource)
+        if (MusicSource)
         {
-            if (!SoundSource.isPlaying && PauseTime == 0f && Application.isFocused && !isToogled)
+            if (!MusicSource.isPlaying && PauseTime == 0f && Application.isFocused && !isToogled)
             {
                 isToogled = true;
-                ResetSound();
+                ResetMusic();
                 var delay = Random.Range(5, 15);
                 StartCoroutine(NextClipStart(delay));
             }
@@ -100,7 +110,7 @@ public class SoundMaster : MonoBehaviour
     private IEnumerator NextClipStart(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        PlaySound();
+        PlayMusic();
         isToogled = false;
     }
 }
