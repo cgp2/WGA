@@ -45,7 +45,7 @@ public class DeckMaster{
 
         if (AllCards != null)
         {
-            ret.AddRange(AllCards.Where(card => card.Race == raceName));
+            ret.AddRange(AllCards.Where(card => card.Race.ToLower() == raceName.ToLower()));
         }
 
         return ret.ToArray();

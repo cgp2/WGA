@@ -253,23 +253,6 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <Health>2</Health>
-    <Shield>5</Shield>
-    <Attack>2</Attack>
-    <Name>Strike destroyer</Name>
-    <Description>reduce enemy shield</Description>
-    <BattleCryName />
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>00000000-0000-0000-0000-000000000000</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <Health>3</Health>
     <Shield>4</Shield>
     <Attack>3</Attack>
@@ -332,5 +315,22 @@
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>7257229a-291d-4eef-8aa5-5962173bb0bb</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <Health>2</Health>
+    <Shield>5</Shield>
+    <Attack>2</Attack>
+    <Name>Strike destroyer</Name>
+    <Description>reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>8d213de5-edda-4d1d-89d6-44b98e1756e7</CardID>
   </CardInfo>
 </ArrayOfCardInfo>

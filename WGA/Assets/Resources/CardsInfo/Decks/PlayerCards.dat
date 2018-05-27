@@ -5,196 +5,169 @@
 		<ImagePath>
     </ImagePath>
 		<Health>4</Health>
-		<Shield>1</Shield>
-		<Attack>1</Attack>
-		<Name>Acrid</Name>
-		<Description>reduce enemy damage</Description>
+		<Shield>5</Shield>
+		<Attack>4</Attack>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
 		<DeathRattleName />
 		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>0dd1df9f-e569-4f2e-b1bb-a44c3b61569a</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>
+    </ImagePath>
+		<Health>4</Health>
+		<Shield>5</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>"Scylla" hornet</Name>
+		<Description>Damage dealer</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName>
-			<string>SHLDDebufDR</string>
-		</AuraName>
+		<DeathRattleName />
+		<AuraName />
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
 	</CardInfo>
 </ArrayOfCardInfo>
