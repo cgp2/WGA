@@ -348,8 +348,13 @@ public class Battle : MonoBehaviour
             targetcard.GetComponent<Card>().Owner.deck.Remove(targetcard);
             turn.UpdatePosition();
             targetcard.GetComponent<Card>().OnBoard = true;
-            targetcard.GetComponent<test>().SetFalse();
-
+            targetcard.GetComponent<test>().SetFalse();     
+            if(new List<string>(Player.Selectedcard.GetComponent<Card>().Info.AuraNames).Contains("DMGBufAura"))
+            {
+                var aurapref = Instantiate(Resources.Load<GameObject>("SkillsAnimation/Aura/DMGAuraPrefab"));
+                aurapref.transform.SetParent(Player.Selectedcard.transform);
+                aurapref.transform.localPosition = new Vector3(0, 0, 5);
+            }
             Board[x, y] = tg;
             tg.Play(ref Board, ref GameObject.Find("Field").GetComponent<SkillMaster>().BufMap);
             //if (tg.Owner == Player2)
