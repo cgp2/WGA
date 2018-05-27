@@ -2,24 +2,6 @@
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
     <CardClass>Insect</CardClass>
-    <ImagePath>Insect\5</ImagePath>
-    <Health>3</Health>
-    <Shield>1</Shield>
-    <Attack>3</Attack>
-    <Name>Snoop</Name>
-    <Description>Reduce enemy shield</Description>
-    <BattleCryName />
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>545d9072-3ee5-48a3-9c16-598a17ca5cdc</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Insect</CardClass>
     <ImagePath>Insect\5vip</ImagePath>
     <Health>3</Health>
     <Shield>1</Shield>
@@ -335,24 +317,6 @@
     <CardID>f0de7d87-ce60-4259-a0b3-c079338107dc</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>People</CardClass>
-    <ImagePath>Human\15vip</ImagePath>
-    <Health>6</Health>
-    <Shield>5</Shield>
-    <Attack>3</Attack>
-    <Name>"Colossus" Battleship</Name>
-    <Description>add damage to allies</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGBufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
     <CardClass>Mechanism</CardClass>
     <ImagePath>Robots\8</ImagePath>
     <Health>1</Health>
@@ -472,6 +436,42 @@
     <DeathRattleName />
     <AuraName>
       <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Insect</CardClass>
+    <ImagePath>Insect\5</ImagePath>
+    <Health>3</Health>
+    <Shield>1</Shield>
+    <Attack>3</Attack>
+    <Name>Snoop</Name>
+    <Description>Reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName />
+    <valueBatterCry>1</valueBatterCry>
+    <valueDeathRattle>1</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>545d9072-3ee5-48a3-9c16-598a17ca5cdc</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\15vip</ImagePath>
+    <Health>6</Health>
+    <Shield>5</Shield>
+    <Attack>3</Attack>
+    <Name>"Colossus" Battleship</Name>
+    <Description>add damage to allies</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGBufAura</string>
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>

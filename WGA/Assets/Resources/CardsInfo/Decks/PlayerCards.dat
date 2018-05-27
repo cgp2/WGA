@@ -2,172 +2,182 @@
 <ArrayOfCardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>5</Shield>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>"Scylla" hornet</Name>
-		<Description>Damage dealer</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 </ArrayOfCardInfo>

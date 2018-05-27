@@ -232,7 +232,23 @@ public class Card : MonoBehaviour
         if(Info.ShipSprite==null)
             Info.ShipSprite = ship;
     }
+    public void SetInfo(CardInfo tempInfo)
+    {
+        Info.ID = tempInfo.ID;
+        Info.Name = tempInfo.Name;
+        Info.Description = tempInfo.Description;
 
+        Info.InitialHealth = tempInfo.InitialHealth;
+        Info.InitialShield = tempInfo.InitialShield;
+        Info.InitialAttack = tempInfo.InitialAttack;
+
+        Info.BattleCryNames = tempInfo.BattleCryNames;
+        Info.DeathRattleName = tempInfo.DeathRattleName;
+        Info.AuraNames = tempInfo.AuraNames;
+        Info.ShipSprite = tempInfo.ShipSprite;
+
+        Info.ImagePath = tempInfo.ImagePath;
+    }
     private void Awake()
     {
         //SpriteRenderer shipSprite = GetComponent<SpriteRenderer>();
@@ -560,7 +576,7 @@ public class Card : MonoBehaviour
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("AuraName");
-                foreach (var name in DeathRattleNames)
+                foreach (var name in AurasNames)
                 {
                     writer.WriteStartElement("string");
                     writer.WriteRaw(name);

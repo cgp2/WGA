@@ -38,7 +38,7 @@ public class CollectionCardManager : MonoBehaviour {
                 //            BCinp, DRinp, AUinp,
                 //            this.GetComponent<Card>().Info.BattleCryNames, this.GetComponent<Card>().Info.DeathRattleName, this.GetComponent<Card>().Info.AuraNames);
                 c.GetComponent<Card>().Initialize(this.GetComponent<Card>().Data);
-                c.GetComponent<Card>().Info = this.GetComponent<Card>().Info;
+                c.GetComponent<Card>().SetInfo(this.GetComponent<Card>().Info);
                 c.GetComponent<Card>().Info.ShipSprite = this.GetComponent<Card>().Info.ShipSprite;
                 var q = c.GetComponent<Card>();
                 //c.GetComponentInChildren<Text>().text = "null";
@@ -48,6 +48,7 @@ public class CollectionCardManager : MonoBehaviour {
                 c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
                 c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
                 c.transform.parent = GameObject.Find("DeckScrollView").transform.GetChild(0).GetChild(0).transform;
+                
                 CollectionController.PlayerDeck.Add(c.GetComponent<Card>().Data);
                 
             }

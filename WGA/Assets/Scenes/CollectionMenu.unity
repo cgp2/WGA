@@ -1105,7 +1105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.15, y: 151.55002}
+  m_AnchoredPosition: {x: -225.15001, y: 151.55002}
   m_SizeDelta: {x: 449.7, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &207520234
@@ -2608,13 +2608,24 @@ MonoBehaviour:
     m_Options:
     - m_Text: INSECT
       m_Image: {fileID: 0}
-    - m_Text: HUMAN
+    - m_Text: PEOPLE
       m_Image: {fileID: 0}
-    - m_Text: ROBOT
+    - m_Text: MECHANISM
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1887943609}
+        m_MethodName: ChangeContent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1048266845
@@ -2637,7 +2648,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bda24cdb69e99414a86d5d8219f87e47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49bf8006b7c26324f9efd0afe222c0a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3411,8 +3422,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2136222524}
   m_HandleRect: {fileID: 2136222523}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.50133246
+  m_Value: 1
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

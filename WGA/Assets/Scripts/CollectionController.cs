@@ -66,12 +66,12 @@ public class CollectionController : MonoBehaviour {
     }
     public void ChangeContent()
     {
-
+        GameObject.Find("Race").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/"+GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text.ToLower());
         for (int i = 0; i < CollectionScroll.transform.GetChild(0).GetChild(0).childCount; i++)
         {
             GameObject.Destroy(CollectionScroll.transform.GetChild(0).GetChild(0).GetChild(i).gameObject);
         }
-        foreach (Card.CardData card in DeckMaster.GetCardsOfRace(GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text))
+        foreach (Card.CardData card in DeckMaster.GetCardsOfRace(GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text.ToLower()))
         {
             var c = (GameObject)Instantiate(CollectionPrefab, transform);
 
