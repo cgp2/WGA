@@ -56,6 +56,7 @@ public class CollectionController : MonoBehaviour {
             c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
             c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
             c.transform.parent = GameObject.Find("DeckScrollView").transform.GetChild(0).GetChild(0).transform;
+            c.GetComponent<Image>().sprite = Resources.Load<Sprite>("CardSprites/CardFronts/CollectionFrame" + GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text.ToLower());
         }
     }
     // Update is called once per frame
@@ -78,6 +79,7 @@ public class CollectionController : MonoBehaviour {
             c.GetComponent<Card>().Initialize(card);
             var q = c.GetComponent<Card>();
             c.GetComponentInChildren<Text>().text = "null";
+            c.GetComponent<Image>().sprite = Resources.Load<Sprite>("CardSprites/CardFronts/CollectionFrame" + GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text.ToLower());
             c.transform.GetChild(1).GetComponent<Image>().sprite = c.GetComponent<Card>().Info.ShipSprite;
             c.transform.GetChild(2).GetComponent<Text>().text = c.GetComponent<Card>().Info.Name;
             c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialAttack;
