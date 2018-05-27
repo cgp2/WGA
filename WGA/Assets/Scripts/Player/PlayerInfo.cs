@@ -12,6 +12,8 @@ public class PlayerInfo {
     public int Level;
     public int Exp;
     public int ExpToNextLevel;
+    public int GamesWin;
+    public int GamesLost;
     public string PathToAvatar;
     public Guid[] AvaliableCards;
     public Options Opt;
@@ -26,8 +28,31 @@ public class PlayerInfo {
         DeckName = playerFromFile.DeckName;
         PathToAvatar = playerFromFile.PathToAvatar;
         Opt = playerFromFile.Opt;
+        GamesWin = playerFromFile.GamesWin;
+        GamesLost = playerFromFile.GamesLost;
     }
- 
+
+
+    public void BattleResults(bool win, int expGain)
+    {
+        if (win)
+        {
+            GamesWin++;
+
+            Exp += expGain;
+            if (Exp >= ExpToNextLevel)
+            {
+                Level++;
+                Exp = Exp - ExpToNextLevel;
+                ExpToNextLevel = Level * 100;
+            }
+        }
+        else
+        {
+            GamesLost++;
+        }
+    }
+
     public PlayerInfo()
     {
 
@@ -39,6 +64,8 @@ public class PlayerInfo {
             Name = "Default",
             Level = 0,
             Exp = 0,
+            GamesWin = 0,
+            GamesLost = 0,
             ExpToNextLevel = 100,
             DeckName="Default",
             Opt = new Options()

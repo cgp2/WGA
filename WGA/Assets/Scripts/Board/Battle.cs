@@ -40,6 +40,8 @@ public class Battle : MonoBehaviour
         var t = GameObject.Find("BattleStageInfo");
         StartCoroutine(ShowCanvasForSeconds(t, 2f));
 
+        isInputLocked = false;
+
         instance = this;
     }
     public static Card Get_Card(int x, int y)
@@ -151,10 +153,10 @@ public class Battle : MonoBehaviour
             var winner = CalculateWiningPlayer();
             if (winner == Player1)
             {
-                Player1.PlInfo.Exp += 123123;
+                Player1.PlInfo.BattleResults(true, 70);
                 Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
             }
-            Player1.PlInfo.Exp += 123123;
+            Player1.PlInfo.BattleResults(false, 0);
             isInputLocked = true;
             //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
@@ -188,6 +190,7 @@ public class Battle : MonoBehaviour
             if (!pl1HasCard && pl2HasCard)
             {
                 var winner = Player2;
+                Player1.PlInfo.BattleResults(false, 0);
                 isInputLocked = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
@@ -202,7 +205,7 @@ public class Battle : MonoBehaviour
             else if (!pl2HasCard && pl1HasCard)
             {
                 var winner = Player1;
-                Player1.PlInfo.Exp += 123123;
+                Player1.PlInfo.BattleResults(true, 70);
                 Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
                 isInputLocked = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
