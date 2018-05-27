@@ -4376,7 +4376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1011fc040b702a4ba51003fbe9d8c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectionPrefab: {fileID: 1594183037782368, guid: 98b56b0bc4226824f920e14b153f9f43,
+  CollectionPrefab: {fileID: 1481632260635180, guid: 4ca8976557bfcb146975747dba84f00a,
     type: 2}
   DeckPrefab: {fileID: 1642033419453214, guid: c43c2ac5e47f180498ef0ab8781efac1, type: 2}
 --- !u!4 &1887943610

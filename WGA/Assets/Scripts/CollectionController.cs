@@ -14,12 +14,15 @@ public class CollectionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         CollectionScroll = GameObject.Find("CollectionScrollView");
-        PlInfo = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+        var pn = new ProfileNames();
+        pn.InitializeLastProfile();
+        var plName = pn.GetCurrentProfileName();
+        PlInfo = new PlayerInfo(plName);
         //ItemGameObject is my prefab pointer that i previous made a public property  
         //and  assigned a prefab to it
         //PlInfo.ReadFromFile(Path.GetDirectoryName(Application.dataPath) + "/PlayerInfo/PlayerInfo.dat");
         //var AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
-        if(DeckMaster.AllCards==null)
+        if (DeckMaster.AllCards==null)
             DeckMaster.AllCards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/AllCards.dat");
         ChangeContent();
         //foreach (Card.CardData card in DeckMaster.GetCardsOfRace(GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text))
