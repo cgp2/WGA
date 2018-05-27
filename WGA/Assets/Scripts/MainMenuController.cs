@@ -7,6 +7,8 @@ public class MainMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DeckMaster.AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
+	    //DeckMaster.AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/lol.xml");   
+
         int n = 10;
     }
 	

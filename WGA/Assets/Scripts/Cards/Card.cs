@@ -414,7 +414,7 @@ public class Card : MonoBehaviour
             //crd.Initialize(name, int.Parse(health), int.Parse(shield), int.Parse(attack), desk, GameObject.Find("Field").GetComponent<SkillMaster>(), battleCry.ToArray(), deathRattle.ToArray(), aura.ToArray());
             cards.Add(crd);
         }
-
+        reader.Close();
         return cards.ToArray();
     }
     public List<ASkill> GetSkillsList()
@@ -489,6 +489,85 @@ public class Card : MonoBehaviour
 
         public string ActiveSkillName;
         public int ActiveInputValue;
+
+        public void Serialize(ref XmlTextWriter writer)
+        {
+            writer.WriteStartElement("CardInfo");
+            {
+                writer.WriteStartElement("CardClass");
+                writer.WriteRaw(Race);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("ImagePath");
+                writer.WriteRaw(ImagePath);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Health");
+                writer.WriteRaw(HP.ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Shield");
+                writer.WriteRaw(Shield.ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Attack");
+                writer.WriteRaw(Attack.ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Name");
+                writer.WriteRaw(Name);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Description");
+                writer.WriteRaw(Desk);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("BattleCryName");
+                foreach (var name in BattleCryNames)
+                {
+                    writer.WriteStartElement("string");
+                    writer.WriteRaw(name);
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("DeathRattleName");
+                foreach (var name in DeathRattleNames)
+                {
+                    writer.WriteStartElement("string");
+                    writer.WriteRaw(name);
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("AuraName");
+                foreach (var name in DeathRattleNames)
+                {
+                    writer.WriteStartElement("string");
+                    writer.WriteRaw(name);
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("valueBatterCry");
+                writer.WriteRaw(BattleCryInputValue[0].ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("valueDeathRattle");
+                writer.WriteRaw(DeathRattleInputValue[0].ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("valueAura");
+                writer.WriteRaw(AuraInputValue[0].ToString());
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("CardID");
+                writer.WriteRaw(id.ToString());
+                writer.WriteEndElement();              
+            }
+
+            writer.WriteEndElement();
+        }
 
     }
 }
