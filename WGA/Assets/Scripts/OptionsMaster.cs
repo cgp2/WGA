@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsMaster : MonoBehaviour
@@ -10,19 +12,73 @@ public class OptionsMaster : MonoBehaviour
     public static int Difficult;
 
     private PlayerInfo pl;
-	// Use this for initialization
-	void Start ()
-	{
-	    pl = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+
+    private ProfileNames pn;
+    // Use this for initialization
+    void Start()
+    {
+        pn = new ProfileNames();
+        pn.InitializeLastProfile();
+
+        var plName = pn.GetCurrentProfileName();
+        pl = new PlayerInfo(plName);
 
         GameObject.Find("music").GetComponent<Slider>().value = SoundMaster.MusicLevel * 100;
-	    GameObject.Find("sound").GetComponent<Slider>().value = SoundMaster.SoundLevel * 100;
+        GameObject.Find("sound").GetComponent<Slider>().value = SoundMaster.SoundLevel * 100;
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().ClearOptions();
+        var names = pn.ProfileList;
+        foreach (var n in names)
+        {
+            GameObject.Find("Dropdown").GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(n));
+        }
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().value = pn.CurrentProfile;
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
+
+    }
+
+
+    public void AddNewProfile()
+    {
+        var t = pn.ProfileList;
+        var list = new List<string>(t);
+        var name = GameObject.Find("NewProfile").GetComponent<Text>().text;
+        list.Add(name);
+        pn.ProfileList = list.ToArray();
+        pn.SaveToFile();
+
+        var newPl = new PlayerInfo();
+        newPl.InitializeByName(name);
+        StartCoroutine(SaveProfile(2f, newPl));
+    }
+
+    private static IEnumerator SaveProfile(float seconds, PlayerInfo pl)
+    {
+       
+        yield return new WaitForSeconds(seconds);
+        pl.SaveToFile(pl.Name);
+    }
+
+
+    public void ProfileChange()
+    {
+        var r = GameObject.Find("Dropdown").GetComponent<Dropdown>().value;
+        pn.CurrentProfile = r;
+        pl = new PlayerInfo(pn.GetCurrentProfileName());
+        GameObject.Find("music").GetComponent<Slider>().value = pl.Opt.MusicVolume * 100;
+        GameObject.Find("sound").GetComponent<Slider>().value = pl.Opt.SoundVolume * 100;
+        SoundMaster.SoundLevel = pl.Opt.SoundVolume * 100;
+        SoundMaster.MusicLevel = pl.Opt.MusicVolume * 100;
 
     }
 
     public void ToMainMenu()
     {
-        pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+        pn.SaveToFile();
+
+        var plName = pn.GetCurrentProfileName();
+        pl.SaveToFile(plName);
         SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
@@ -44,7 +100,8 @@ public class OptionsMaster : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 }

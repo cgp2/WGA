@@ -50,7 +50,12 @@ public class Battle : MonoBehaviour
         SkillMaster = GameObject.Find("Field").GetComponent<SkillMaster>();
         Board = new Card[n, m];
         Player1 = GameObject.Find("Player1").GetComponent<Player>();
-        Player1.PlInfo = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+
+        var pn = new ProfileNames();
+        pn.InitializeLastProfile();
+        var plName = pn.GetCurrentProfileName();
+        Player1.PlInfo = new PlayerInfo(plName);
+
         Player2 = GameObject.Find("Player2").GetComponent<Player>();
         if (Player2.GetComponent<AIEnemy>() != null)
             Player2.AI = true;
@@ -149,7 +154,7 @@ public class Battle : MonoBehaviour
             if (winner == Player1)
             {
                 Player1.PlInfo.BattleResults(true, 70);
-                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+                Player1.PlInfo.SaveToFile(Player1.PlInfo.Name);
             }
             Player1.PlInfo.BattleResults(false, 0);
             isInputLocked = true;
@@ -201,7 +206,7 @@ public class Battle : MonoBehaviour
             {
                 var winner = Player1;
                 Player1.PlInfo.BattleResults(true, 70);
-                Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+                Player1.PlInfo.SaveToFile(Player1.PlInfo.Name);
                 isInputLocked = true;
                 GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 

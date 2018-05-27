@@ -43,11 +43,13 @@ public class Controller : MonoBehaviour
     public void CloseGame()
     {
         if (Battle.Player1 != null)
-            Battle.Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+            Battle.Player1.PlInfo.SaveToFile(Battle.Player1.PlInfo.Name);
         else
         {
-            
-            GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+            var pn = new ProfileNames();
+            pn.InitializeLastProfile();
+            var plName = pn.GetCurrentProfileName();
+            GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(plName);
         }
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();    
@@ -71,7 +73,7 @@ public class Controller : MonoBehaviour
     public void ToMainMenu()
     {
         if(Battle.Player1!=null)
-            Battle.Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+            Battle.Player1.PlInfo.SaveToFile(Battle.Player1.PlInfo.Name);
         SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
