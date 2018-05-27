@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 114887453626756772}
   - component: {fileID: 114445555849916204}
   - component: {fileID: 114816647397771212}
-  - component: {fileID: 114863039734722092}
   m_Layer: 0
   m_Name: CollectionCardPrefa
   m_TagString: Untagged
@@ -395,20 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58502030c886e574ab8f448106b8dcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114863039734722092
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1594183037782368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
 --- !u!114 &114887453626756772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -446,7 +431,7 @@ MonoBehaviour:
   StaticHP: 0
   StaticDMG: 0
   StaticSHLD: 0
-  front_rotate: 0
+  front_rotate: 1
   back_rotate: 0
   IsActiveSkillAvaliable: 1
 --- !u!114 &114943047184813316
@@ -604,7 +589,7 @@ RectTransform:
   m_GameObject: {fileID: 1594183037782368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 0.8, z: 1}
   m_Children:
   - {fileID: 224650778200917110}
   - {fileID: 224477200436654052}
