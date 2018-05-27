@@ -19,10 +19,18 @@ public class SoundMaster : MonoBehaviour
 
     private bool isToogled = false;
 
+    public PlayerInfo pl;
+
 
     // Use this for initialization
     void Start()
     {
+     
+        pl = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+
+        SoundLevel = pl.Opt.SoundVolume;
+        MusicLevel = pl.Opt.MusicVolume;
+            
         SoundSource = gameObject.AddComponent<AudioSource>();
         MusicSource = gameObject.AddComponent<AudioSource>();
         MusicSource.volume = MusicLevel;
