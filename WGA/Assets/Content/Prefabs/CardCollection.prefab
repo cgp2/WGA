@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 114459095344860492}
   - component: {fileID: 114244681580741686}
   - component: {fileID: 114364733204705090}
+  - component: {fileID: 114534335713520154}
   m_Layer: 0
   m_Name: CardCollection
   m_TagString: Untagged
@@ -221,7 +222,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114459095344860492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114534335713520154}
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114267759697537528
@@ -312,6 +324,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
+--- !u!114 &114534335713520154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481632260635180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443031f59d7e951449a7f8b3d4c3a1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114656108823128304
 MonoBehaviour:
   m_ObjectHideFlags: 1

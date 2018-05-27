@@ -26,6 +26,7 @@ public class CollectionController : MonoBehaviour {
             c.GetComponent<Card>().Initialize(card);
             var q = c.GetComponent<Card>();
             //c.GetComponentInChildren<Text>().text = "null";
+            c.transform.GetChild(1).GetComponent<Image>().sprite = c.GetComponent<Card>().Info.ShipSprite;
             c.transform.GetChild(2).GetComponent<Text>().text = c.GetComponent<Card>().Info.Name;
             c.transform.GetChild(3).GetComponent<Text>().text = ""+c.GetComponent<Card>().Info.InitialAttack;
             c.transform.GetChild(4).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
