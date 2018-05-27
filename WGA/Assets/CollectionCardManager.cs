@@ -93,7 +93,7 @@ public class CollectionCardManager : MonoBehaviour {
                 c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
                 c.transform.parent = GameObject.Find("DeckScrollView").transform.GetChild(0).GetChild(0).transform;
                 CollectionController.PlayerDeck.Add(c.GetComponent<Card>().Data);
-                
+                c.GetComponent<Image>().sprite = Resources.Load<Sprite>("CardSprites/CardFronts/CollectionFrame" + GameObject.Find("Race").transform.GetChild(0).GetComponent<Text>().text.ToLower());
             }
         }
         else
