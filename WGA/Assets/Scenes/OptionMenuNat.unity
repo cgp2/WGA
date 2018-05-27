@@ -511,7 +511,7 @@ RectTransform:
   m_GameObject: {fileID: 138217000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 190}
-  m_LocalScale: {x: 0.13454345, y: 0.13454345, z: 0.13454345}
+  m_LocalScale: {x: 0.13454343, y: 0.13454343, z: 0.13454343}
   m_Children:
   - {fileID: 1039127347}
   - {fileID: 387965748}
@@ -857,6 +857,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cd25ba11f352344a9c26a28a126a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pl:
+    Name: 
+    DeckName: 
+    Level: 0
+    Exp: 0
+    ExpToNextLevel: 0
+    PathToAvatar: 
+    Opt:
+      MusicVolume: 0
+      SoundVolume: 0
 --- !u!4 &369669857
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,7 +1281,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 573340283}
+      - m_Target: {fileID: 682413450}
         m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -2036,7 +2046,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039107083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -406, y: 0, z: -516.14886}
+  m_LocalPosition: {x: -406.00006, y: 0, z: -516.14886}
   m_LocalScale: {x: 0.99998677, y: 0.99998677, z: 0.99998677}
   m_Children:
   - {fileID: 573340279}
@@ -3122,7 +3132,18 @@ MonoBehaviour:
   m_Value: 47
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 682413450}
+        m_MethodName: ChangeSoundValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1732314944
