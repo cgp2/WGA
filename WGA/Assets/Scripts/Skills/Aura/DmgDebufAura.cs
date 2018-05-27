@@ -15,7 +15,7 @@ namespace Assets.Scripts.Skills.Aura
 
             InputParametrs = new[] { "DMGBuf" };
             InputValues = new[] { "-2" };
-            Dirs = new[] {Directions.Top};
+            Dirs = new[] {Directions.Bottom, Directions.Left, Directions.Right, Directions.Top};
             Type = SkillType.Aura;
 
             Input = new SkillsInput()
