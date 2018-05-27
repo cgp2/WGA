@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 using System;
 using System.IO;
@@ -76,8 +74,6 @@ public class PlayerInfo {
             }
         };
 
-
-
         return newPlayer;
     }
 
@@ -95,7 +91,9 @@ public class PlayerInfo {
             MusicVolume = 0.5f,
             SoundVolume = 0.5f
         };
-       
+
+        //var port = Resources.LoadAll<Sprite>("Leaders/")
+        //PathToAvatar = port[UnityEngine.Random.Range(0, port.Length)];
 
         var path = Application.dataPath + "/PlayerInfo/" + name + ".dat";
         var fs = new FileStream(path, FileMode.CreateNew);

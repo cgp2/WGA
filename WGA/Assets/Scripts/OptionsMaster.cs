@@ -46,18 +46,31 @@ public class OptionsMaster : MonoBehaviour
         var name = GameObject.Find("NewProfile").GetComponent<Text>().text;
         list.Add(name);
         pn.ProfileList = list.ToArray();
+        pn.CurrentProfile = pn.ProfileList.Length - 1;
         pn.SaveToFile();
 
         var newPl = new PlayerInfo();
         newPl.InitializeByName(name);
-        StartCoroutine(SaveProfile(2f, newPl));
+        StartCoroutine(SaveProfile(0.1f, newPl));
+        pl = newPl;
+
+      
     }
 
-    private static IEnumerator SaveProfile(float seconds, PlayerInfo pl)
-    {
-       
+    private IEnumerator SaveProfile(float seconds, PlayerInfo pl)
+    {    
         yield return new WaitForSeconds(seconds);
         pl.SaveToFile(pl.Name);
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().ClearOptions();
+        var names = pn.ProfileList;
+        foreach (var n in names)
+        {
+            GameObject.Find("Dropdown").GetComponent<Dropdown>().options.Add(new Dropdown.OptionData(n));
+        }
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().value = pn.CurrentProfile;
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
     }
 
 
