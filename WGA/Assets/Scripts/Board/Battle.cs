@@ -27,22 +27,19 @@ public class Battle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //float defaultscalex = 0.2601453f;
-        //float defaultscaley = 0.5f;
-        //RollTheCards();
-        //rescalecard = new Vector3(defaultscalex * 4 / Battle.n, defaultscaley * 4 / Battle.m, 1);
-        //rescalecard = new Vector3(5, 5, 1);
-
         rescalecard = new Vector3(3.2f, 2.75f, 1);
         preGameStage = true;
        
-
         var t = GameObject.Find("BattleStageInfo");
         StartCoroutine(ShowCanvasForSeconds(t, 2f));
+
 
         isInputLocked = false;
 
         instance = this;
+
+        GameObject.Find("EnemyName").GetComponent<Text>().text = Player2.PlInfo.Name;
+        GameObject.Find("PlayerName").GetComponent<Text>().text = Player1.PlInfo.Name;
     }
     public static Card Get_Card(int x, int y)
     {
@@ -59,12 +56,10 @@ public class Battle : MonoBehaviour
             Player2.AI = true;
         turn = Player1;
         TurnNumber = 1;
-        RoundUIUpdate();
+
+      
     }
-    private static void RoundUIUpdate()
-    {
-        GameObject.Find("RoundText").GetComponent<Text>().text = "Round " + TurnNumber;
-    }
+   
     public static void NextTurn()
     { 
         isInputLocked = false;
@@ -263,7 +258,6 @@ public class Battle : MonoBehaviour
         {
             for (int i = 0; i < Player1.deck.Count; i++)
             {
-
                 Player1.deck[i].GetComponent<Card>().Spin(true);
                 Player1.deck[i].GetComponentInChildren<Canvas>().enabled = true;
                 Player1.deck[i].transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
@@ -316,8 +310,8 @@ public class Battle : MonoBehaviour
     }
     public static void UpdateUI()
     {
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++)
+        for (var i = 0; i < n; i++)
+            for (var j = 0; j < m; j++)
             {
                 //var x = Board[i, j].GetComponentInParent<Canvas>().GetComponent<GUIText>();
                 // x.text = "" + Board[i, j].InitialHealth;
@@ -332,6 +326,15 @@ public class Battle : MonoBehaviour
                     x.GetChild(3).GetComponent<Text>().text = "" + Board[i, j].Info.Name;
                 }
             }
+
+        if (!preGameStage)
+        {
+            GameObject.Find("RoundText").GetComponent<Text>().text = "Round: " + TurnNumber;
+        }
+        else
+        {
+            GameObject.Find("RoundText").GetComponent<Text>().text = "";
+        }
     }
     public static void Set_Card(int x, int y, Card tg)
     {
