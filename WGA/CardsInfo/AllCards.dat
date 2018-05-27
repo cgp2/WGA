@@ -14,7 +14,7 @@
     </DeathRattleName>
     <AuraName />
     <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
+    <valueDeathRattle>1</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>545d9072-3ee5-48a3-9c16-598a17ca5cdc</CardID>
   </CardInfo>
@@ -32,7 +32,7 @@
     </DeathRattleName>
     <AuraName />
     <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
+    <valueDeathRattle>2</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>90a286b9-c134-4849-89dd-7d64709417f7</CardID>
   </CardInfo>
@@ -51,7 +51,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>312bc7de-3eb3-4e65-99ec-2b38548db5bc</CardID>
   </CardInfo>
   <CardInfo>
@@ -69,7 +69,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>5b27aa3f-7805-48dc-8199-ea8eac1c9a79</CardID>
   </CardInfo>
   <CardInfo>
@@ -85,7 +85,7 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>1</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>7a7f4dc2-5ab8-4f1a-9630-0835f14fd553</CardID>
@@ -103,7 +103,7 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>2</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>184aea70-ef7c-4e31-9250-bd56d5efe56b</CardID>
@@ -123,7 +123,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>8bd03c4e-69a5-46ef-bae0-4d8c9a889a0e</CardID>
   </CardInfo>
   <CardInfo>
@@ -141,7 +141,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
   </CardInfo>
   <CardInfo>
@@ -191,7 +191,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>7c8dc0ce-e089-4190-953d-a25fbb06f793</CardID>
   </CardInfo>
   <CardInfo>
@@ -209,7 +209,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>7240f642-8bda-4226-ba92-2e92091fef64</CardID>
   </CardInfo>
   <CardInfo>
@@ -225,7 +225,7 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>1</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>8216d738-b788-4744-86da-2e227eb9ffcd</CardID>
@@ -243,7 +243,7 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>2</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>62f3ec0e-be57-4b80-b6ae-b57d8bba9fd3</CardID>
@@ -262,7 +262,7 @@
     </DeathRattleName>
     <AuraName />
     <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
+    <valueDeathRattle>1</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>c67b03d2-eade-40ac-8bdd-c3c3a8a18366</CardID>
   </CardInfo>
@@ -280,7 +280,7 @@
     </DeathRattleName>
     <AuraName />
     <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
+    <valueDeathRattle>2</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>5d996951-eefc-4156-a451-2d44c09d834b</CardID>
   </CardInfo>
@@ -331,7 +331,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>f0de7d87-ce60-4259-a0b3-c079338107dc</CardID>
   </CardInfo>
   <CardInfo>
@@ -349,7 +349,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -367,7 +367,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -385,7 +385,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -403,7 +403,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>1</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -421,7 +421,7 @@
     </AuraName>
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
+    <valueAura>2</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -437,7 +437,7 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>1</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
@@ -455,16 +455,34 @@
     </BattleCryName>
     <DeathRattleName />
     <AuraName />
-    <valueBatterCry>0</valueBatterCry>
+    <valueBatterCry>2</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\7</ImagePath>
+    <Health>4</Health>
+    <Shield>5</Shield>
+    <Attack>2</Attack>
+    <Name>Hammer </Name>
+    <Description>Reduce enemy damage</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
     <ImagePath>Robots\7vip</ImagePath>
     <Health>5</Health>
-    <Shield>5</Shield>
+    <Shield>6</Shield>
     <Attack>2</Attack>
     <Name>Hammer R1</Name>
     <Description>Reduce enemy damage</Description>
@@ -473,6 +491,38 @@
     <AuraName>
       <string>DMGDebufAura</string>
     </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>2</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\6</ImagePath>
+    <Health>2</Health>
+    <Shield>5</Shield>
+    <Attack>6</Attack>
+    <Name>Monolith</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\6vip</ImagePath>
+    <Health>2</Health>
+    <Shield>5</Shield>
+    <Attack>7</Attack>
+    <Name>"The Ark"</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
