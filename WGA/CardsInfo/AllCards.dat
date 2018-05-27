@@ -2,7 +2,7 @@
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
     <CardClass>Insect</CardClass>
-    <ImagePath />
+    <ImagePath>Insect/BattleshipInsect</ImagePath>
     <Health>2</Health>
     <Shield>0</Shield>
     <Attack>3</Attack>
@@ -20,7 +20,7 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
-    <ImagePath />
+    <ImagePath>Insect/BattleshipInsect</ImagePath>
     <Health>2</Health>
     <Shield>0</Shield>
     <Attack>4</Attack>
