@@ -6,7 +6,6 @@ public class MainMenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        DontDestroyOnLoad(this);
         DeckMaster.AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
         int n = 10;
     }

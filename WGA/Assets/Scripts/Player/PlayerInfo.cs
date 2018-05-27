@@ -37,7 +37,8 @@ public class PlayerInfo {
             Name = "Default",
             Level = 0,
             Exp = 0,
-            ExpToNextLevel = 100
+            ExpToNextLevel = 100,
+            DeckName="Default"
         };
 
 

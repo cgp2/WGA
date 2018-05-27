@@ -10,7 +10,7 @@ using System.Xml;
 public class Card : MonoBehaviour
 {
     public CardInfo Info;
-
+    public CardData Data;
     public int Health;
     public int Shield;
     public int Attack;
@@ -122,7 +122,7 @@ public class Card : MonoBehaviour
     public void Initialize(CardData data)
     {
         skillMaster = data.SkillM;
-
+        Data = data;
         Info = new CardInfo
         {
             ID = data.id,
