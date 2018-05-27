@@ -25,12 +25,18 @@ public class CollectionController : MonoBehaviour {
             
             c.GetComponent<Card>().Initialize(card);
             var q = c.GetComponent<Card>();
-            //c.GetComponentInChildren<Text>().text = "null";
+            c.GetComponentInChildren<Text>().text = "null";
             c.transform.GetChild(1).GetComponent<Image>().sprite = c.GetComponent<Card>().Info.ShipSprite;
             c.transform.GetChild(2).GetComponent<Text>().text = c.GetComponent<Card>().Info.Name;
-            c.transform.GetChild(3).GetComponent<Text>().text = ""+c.GetComponent<Card>().Info.InitialAttack;
+            c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialAttack;
             c.transform.GetChild(4).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
             c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
+            //c.GetComponent<Image>().sprite = c.GetComponent<Card>().Info.ShipSprite;
+            //c.transform.GetChild(0).GetComponent<Image>().sprite = c.GetComponent<Card>().Info.ShipSprite;
+            //c.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = c.GetComponent<Card>().Info.Name;
+            //c.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialAttack;
+            //c.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
+            //c.transform.GetChild(1).GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
             c.transform.parent = GameObject.Find("CollectionScrollView").transform.GetChild(0).GetChild(0).transform;
         }
         PlayerDeck = new List<Card.CardData>(Card.Deserialize(Application.dataPath +"/Resources/CardsInfo/Decks/" + PlInfo.DeckName + ".dat"));
