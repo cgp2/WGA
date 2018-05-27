@@ -43,8 +43,8 @@ public class CollectionController : MonoBehaviour {
             //c.GetComponentInChildren<Text>().text = "null";
             c.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = c.GetComponent<Card>().Info.ShipSprite; 
             c.transform.GetChild(2).GetComponent<Text>().text = c.GetComponent<Card>().Info.Name;
-            c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialAttack;
-            c.transform.GetChild(4).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
+            c.transform.GetChild(4).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialAttack;
+            c.transform.GetChild(3).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialHealth;
             c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
             c.transform.parent = GameObject.Find("DeckScrollView").transform.GetChild(0).GetChild(0).transform;
         }
