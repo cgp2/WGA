@@ -52,7 +52,7 @@ public class Controller : MonoBehaviour
        SoundMaster.ToggleMusicSound();
     }
 
-    public void ToColliction()
+    public void ToCollection()
     {
         SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour
         CanvGroupBattleMenu.alpha = 0f;
         CanvGroupBattleMenu.blocksRaycasts = false;
     }
-    public void GameScene()
+    public void ToBattle()
     {
         SoundMaster.ResetMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);

@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 154393147}
   - component: {fileID: 154393146}
   m_Layer: 0
-  m_Name: BACKButton (2)
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,7 +1009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.15001, y: 151.55002}
+  m_AnchoredPosition: {x: -225.15, y: 151.55002}
   m_SizeDelta: {x: 449.7, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &207520234
@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 233319110}
   - component: {fileID: 233319109}
   m_Layer: 0
-  m_Name: BACKButton (1)
+  m_Name: BattleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,7 +1183,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 233319109}
-        m_MethodName: ToMainMenu
+        m_MethodName: ToBattle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3276,8 +3276,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2136222524}
   m_HandleRect: {fileID: 2136222523}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.5
+  m_Value: 0
+  m_Size: 0.50133246
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
