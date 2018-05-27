@@ -46,16 +46,25 @@ public class Controller : MonoBehaviour
         GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         Application.Quit();    
     }
+
+    public void MusicButtonClick()
+    {
+       SoundMaster.ToggleMusicSound();
+    }
+
     public void ToColliction()
     {
+        SoundMaster.PauseSound();
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
     public void ToOptions()
     {
+        SoundMaster.PauseSound();
         UnityEngine.SceneManagement.SceneManager.LoadScene(3);
     }
     public void ToMainMenu()
     {
+        SoundMaster.PauseSound();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void ReturnToGame()
@@ -67,6 +76,7 @@ public class Controller : MonoBehaviour
     }
     public void GameScene()
     {
+        SoundMaster.ResetSound();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void OpenCollection()
