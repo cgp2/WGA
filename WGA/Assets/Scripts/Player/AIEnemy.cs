@@ -12,17 +12,17 @@ public class AIEnemy : MonoBehaviour
     private int initialStr0, initialStr1;
 
     //Отвечает за то, насколько ИИ будет стараться убить как можно больше врагов 0<Aggression
-    public const float Aggression = 100f;
-    //Отвечает за то, насколько ИИ будет стараться нанести как можно больше урона 0<Maddness<100
-    public const float Maddness = 10f;
-    //Отвечает за то, насколько ИИ будет стараться потерять как можно меньше кораблей 0<Сaution
-    public const float Сaution = 1f;
-    //Отвечает за то, насколько ИИ будет стараться получить как можно меньше урона 0<Safeness
-    public const float Safeness = 1f;
-    //Отвечает за то, насколько ИИ будет бояться выставлять корабли при доминации противника 0<Fear<1
-    public const float Fear = 0.1f;
-    //Отвечает за то, насколько ИИ будет стараться выставлять новые корабли 0<Domination
-    public const float Domination = 50f;
+    public float Aggression = 100f;
+    //Отвеа то, насколько ИИ будет стараться нанести как можно больше урона 0<Maddness<100
+    public float Maddness = 10f;
+    //Отвеа то, насколько ИИ будет стараться потерять как можно меньше кораблей 0<Caution
+    public float Caution = 1f;
+    //Отвеа то, насколько ИИ будет стараться получить как можно меньше урона 0<Safeness
+    public float Safeness = 1f;
+    //Отвеа то, насколько ИИ будет бояться выставлять корабли при доминации противника 0<Fear<1
+    public float Fear = 0.1f;
+    //Отвеа то, насколько ИИ будет стараться выставлять новые корабли 0<Domination
+    public float Domination = 50f;
 
 
     private CardPlacingAction maxPlacingActionUt;
@@ -82,6 +82,17 @@ public class AIEnemy : MonoBehaviour
         }
 
         return str;
+    }
+
+    public void InitializeParametrs(float aggr, float maddness, float caution, float safeness, float fear, float domination)
+    {
+        Aggression = aggr;
+        Maddness = maddness;
+        Caution = caution;
+        Safeness = safeness;
+        Fear = fear;
+        Domination = domination;
+
     }
 
     public CardPlacingAction CalculateCardPlacingUtility()
@@ -368,7 +379,7 @@ public class AIEnemy : MonoBehaviour
                     }
 
                     utility += Mathf.RoundToInt(Aggression * killedDead[i].EnemiesDead - Safeness * killedDead[i].DamageReceived - (Maddness - 100) * killedDead[i].DamageReceived -
-                                                Сaution * killedDead[i].AlliesDead);
+                                                Caution * killedDead[i].AlliesDead);
                 }
                 else utility = int.MinValue;
 
@@ -516,7 +527,7 @@ public class AIEnemy : MonoBehaviour
                                 var str0 = str[0];
                                 var str1 = str[1];
 
-                                var utility = Mathf.RoundToInt(Maddness * (str0 - initialStr0) - Сaution * (str1 - initialStr1));
+                                var utility = Mathf.RoundToInt(Maddness * (str0 - initialStr0) - Caution * (str1 - initialStr1));
 
                                 if (utility > maxUtility)
                                 {
