@@ -2984,6 +2984,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cd25ba11f352344a9c26a28a126a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pl:
+    Name: 
+    DeckName: 
+    Level: 0
+    Exp: 0
+    ExpToNextLevel: 0
+    PathToAvatar: 
+    Opt:
+      MusicVolume: 0
+      SoundVolume: 0
 --- !u!4 &1299170019
 Transform:
   m_ObjectHideFlags: 0
