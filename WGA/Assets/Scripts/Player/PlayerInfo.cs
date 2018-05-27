@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 using System;
 using System.IO;
 
@@ -67,13 +66,25 @@ public class PlayerInfo {
             GamesLost = 0,
             ExpToNextLevel = 100,
             DeckName="Default",
+
             Opt = new Options()
             {
                 MusicVolume = 0.5f,
                 SoundVolume = 0.5f
             }
         };
-
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                newPlayer.PathToAvatar = "Leaders/insect";
+                break;
+            case 1:
+                newPlayer.PathToAvatar = "Leaders/people";
+                break;
+            case 2:
+                newPlayer.PathToAvatar = "Leaders/Mechanism";
+                break;
+        }
         return newPlayer;
     }
 
@@ -85,13 +96,30 @@ public class PlayerInfo {
         GamesWin = 0;
         GamesLost = 0;
         ExpToNextLevel = 100;
-        DeckName = "Default";
+        DeckName = "PlayerCards";
         Opt = new Options()
         {
             MusicVolume = 0.5f,
             SoundVolume = 0.5f
         };
-
+        switch (UnityEngine.Random.Range(0, 5))
+        {
+            case 0:
+                PathToAvatar = "Leaders/insect";
+                break;
+            case 1:
+                PathToAvatar = "Leaders/people";
+                break;
+            case 2:
+                PathToAvatar = "Leaders/Mechanism";
+                break;
+            case 3:
+                PathToAvatar = "Leaders/monstor";
+                break;
+            case 4:
+                PathToAvatar = "Leaders/cat";
+                break;
+        }
         //var port = Resources.LoadAll<Sprite>("Leaders/")
         //PathToAvatar = port[UnityEngine.Random.Range(0, port.Length)];
 
