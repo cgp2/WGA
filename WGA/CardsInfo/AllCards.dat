@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <ArrayOfCardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath>Insect/BattleshipInsect</ImagePath>
+    <CardClass>People</CardClass>
     <Health>2</Health>
     <Shield>0</Shield>
     <Attack>3</Attack>
@@ -16,11 +15,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>ae17469e-6cf0-4c8e-aec9-9355411acc98</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath>Insect/BattleshipInsect</ImagePath>
+    <CardClass>People</CardClass>
     <Health>2</Health>
     <Shield>0</Shield>
     <Attack>4</Attack>
@@ -34,11 +32,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>4</Health>
     <Shield>1</Shield>
     <Attack>1</Attack>
@@ -52,11 +49,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>0dd1df9f-e569-4f2e-b1bb-a44c3b61569a</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>4</Health>
     <Shield>2</Shield>
     <Attack>1</Attack>
@@ -70,11 +66,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>5951cd86-25e7-42ea-a8c8-f70201ce6234</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>1</Health>
     <Shield>2</Shield>
     <Attack>5</Attack>
@@ -88,11 +83,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>dfc9a03d-9aaa-4a20-b144-3ad208d2e2d1</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>2</Health>
     <Shield>2</Shield>
     <Attack>5</Attack>
@@ -106,11 +100,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>c3312c20-96f4-436d-8c8a-5b1dd84b6f09</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>3</Health>
     <Shield>3</Shield>
     <Attack>3</Attack>
@@ -124,11 +117,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>ab2ddaa6-70fc-4767-ae95-e2cc1f6b3b19</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>4</Health>
     <Shield>3</Shield>
     <Attack>3</Attack>
@@ -142,11 +134,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>082c5b98-10fd-4ec8-8d17-1938ad447a50</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>3</Health>
     <Shield>4</Shield>
     <Attack>3</Attack>
@@ -158,11 +149,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>2a4883ee-95f0-4112-bb7b-eeab7e14914f</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath />
+    <CardClass>People</CardClass>
     <Health>4</Health>
     <Shield>5</Shield>
     <Attack>4</Attack>
@@ -174,11 +164,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>d645eab2-4278-491a-b5bb-53df793a9ac9</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Insect\DestroyerInsect</ImagePath>
     <Health>2</Health>
     <Shield>2</Shield>
     <Attack>1</Attack>
@@ -192,11 +181,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>6394b317-dae3-4db9-ae6f-ab5ca9f3ba31</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>2</Health>
     <Shield>2</Shield>
     <Attack>2</Attack>
@@ -210,11 +198,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>3d378ee6-f6c7-4646-82ed-6b05f01236d5</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>3</Health>
     <Shield>2</Shield>
     <Attack>1</Attack>
@@ -228,11 +215,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>db38622b-f13d-47e3-94ea-5f8330891058</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>3</Health>
     <Shield>3</Shield>
     <Attack>1</Attack>
@@ -246,11 +232,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>0d9d51a7-c2ef-402e-9e4f-b182c826a960</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>2</Health>
     <Shield>4</Shield>
     <Attack>2</Attack>
@@ -264,11 +249,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>d01c28cd-6167-4ab9-9d4a-c2c4cdcf098c</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>2</Health>
     <Shield>5</Shield>
     <Attack>2</Attack>
@@ -282,43 +266,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>3de24d7e-cdbd-4c02-89da-4722a2303ea3</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
-    <Health>2</Health>
-    <Shield>3</Shield>
-    <Attack>4</Attack>
-    <Name>Dreadnought</Name>
-    <Description>Damage dealer</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>9c3591a9-a937-48db-bb71-20dd27893159</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
-    <ImagePath>Ships\vanguard_spaceship_by_gustvoc-d4xy3sg</ImagePath>
-    <Health>2</Health>
-    <Shield>3</Shield>
-    <Attack>5</Attack>
-    <Name>Strike Dreadnought</Name>
-    <Description>Damage dealer</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>bad777a3-ee3f-4e36-ab74-a439f881e09d</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
-    <ImagePath />
     <Health>3</Health>
     <Shield>4</Shield>
     <Attack>3</Attack>
@@ -332,11 +283,10 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>bb98618b-3c84-4b5b-a3bc-4ef0524943b5</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath />
     <Health>4</Health>
     <Shield>4</Shield>
     <Attack>3</Attack>
@@ -350,6 +300,37 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
-    <CardID>9830dc4c-c590-4c51-8add-21c1cc313735</CardID>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <Health>2</Health>
+    <Shield>3</Shield>
+    <Attack>4</Attack>
+    <Name>Dreadnought</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>00000000-0000-0000-0000-000000000000</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath />
+    <Health>2</Health>
+    <Shield>3</Shield>
+    <Attack>5</Attack>
+    <Name>Strike Dre</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>7257229a-291d-4eef-8aa5-5962173bb0bb</CardID>
   </CardInfo>
 </ArrayOfCardInfo>

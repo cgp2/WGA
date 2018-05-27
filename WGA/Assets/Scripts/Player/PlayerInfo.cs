@@ -14,6 +14,7 @@ public class PlayerInfo {
     public int ExpToNextLevel;
     public string PathToAvatar;
     public Guid[] AvaliableCards;
+    public Options Opt;
     public PlayerInfo(string path)
     {
         var playerFromFile = ReadFromFile(path);
@@ -24,6 +25,7 @@ public class PlayerInfo {
         ExpToNextLevel = playerFromFile.ExpToNextLevel;
         DeckName = playerFromFile.DeckName;
         PathToAvatar = playerFromFile.PathToAvatar;
+        Opt = playerFromFile.Opt;
     }
  
     public PlayerInfo()
@@ -38,7 +40,12 @@ public class PlayerInfo {
             Level = 0,
             Exp = 0,
             ExpToNextLevel = 100,
-            DeckName="Default"
+            DeckName="Default",
+            Opt = new Options()
+            {
+                MusicVolume = 0.5f,
+                SoundVolume = 0.5f
+            }
         };
 
 
@@ -67,11 +74,17 @@ public class PlayerInfo {
         }
         else
         {
-            string dataJSon = File.ReadAllText(path);
-            PlayerInfo pl = new PlayerInfo();
-            pl = JsonUtility.FromJson<PlayerInfo>(dataJSon);
+            var dataJSon = File.ReadAllText(path);
+            
+            var pl = JsonUtility.FromJson<PlayerInfo>(dataJSon);
             return pl;
         }
+    }
+    [Serializable]
+    public struct Options
+    {
+        public float MusicVolume;
+        public float SoundVolume;
     }
 }
 
