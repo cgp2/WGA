@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,20 +42,21 @@ public class OptionsMaster : MonoBehaviour
 
     public void AddNewProfile()
     {
-        var t = pn.ProfileList;
-        var list = new List<string>(t);
-        var name = GameObject.Find("NewProfile").GetComponent<Text>().text;
-        list.Add(name);
-        pn.ProfileList = list.ToArray();
-        pn.CurrentProfile = pn.ProfileList.Length - 1;
-        pn.SaveToFile();
+        if (GameObject.Find("NewProfile").GetComponent<Text>().text != "" && !pn.ProfileList.Contains(GameObject.Find("NewProfile").GetComponent<Text>().text))
+        {
+            var t = pn.ProfileList;
+            var list = new List<string>(t);
+            var name = GameObject.Find("NewProfile").GetComponent<Text>().text;
+            list.Add(name);
+            pn.ProfileList = list.ToArray();
+            pn.CurrentProfile = pn.ProfileList.Length - 1;
+            pn.SaveToFile();
 
-        var newPl = new PlayerInfo();
-        newPl.InitializeByName(name);
-        StartCoroutine(SaveProfile(0.1f, newPl));
-        pl = newPl;
-
-      
+            var newPl = new PlayerInfo();
+            newPl.InitializeByName(name);
+            StartCoroutine(SaveProfile(0.1f, newPl));
+            pl = newPl;
+        }
     }
 
     private IEnumerator SaveProfile(float seconds, PlayerInfo pl)
