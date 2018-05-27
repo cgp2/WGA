@@ -46,11 +46,11 @@ public class Player : MonoBehaviour {
         if (PlInfo.PathToAvatar != "")
         {
             GameObject.Find("Player1Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(PlInfo.PathToAvatar);
-            cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Decks/" + PlInfo.DeckName + ".dat");
+            cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/" + PlInfo.DeckName + ".dat");
         }
         else
         {
-            cards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/Decks/Default.dat");
+            cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/Default.dat");
         }
         var k = 0;
         for (int i =0; i < cards.Length;i++)

@@ -64,6 +64,8 @@ public class Controller : MonoBehaviour
     }
     public void ToMainMenu()
     {
+        if(Battle.Player1!=null)
+            Battle.Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         SoundMaster.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }

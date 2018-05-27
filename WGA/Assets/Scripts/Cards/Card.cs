@@ -122,7 +122,7 @@ public class Card : MonoBehaviour
     public void Initialize(CardData data)
     {
         skillMaster = data.SkillM;
-        Data = data;
+       
         Info = new CardInfo
         {
             ID = data.id,
@@ -141,7 +141,26 @@ public class Card : MonoBehaviour
             ImagePath = data.ImagePath
 
         };
-
+        Data = new CardData
+        {
+            HP = Info.InitialHealth,
+            Name = data.Name,
+            Shield = data.Shield,
+            Attack = data.Attack,
+            id = data.id,
+            ActiveInputValue = data.ActiveInputValue,
+            ActiveSkillName = data.ActiveSkillName,
+            BattleCryInputValue = data.BattleCryInputValue,
+            BattleCryNames = data.BattleCryNames,
+            AuraInputValue = data.AuraInputValue,
+            AurasNames = data.AurasNames,
+            DeathRattleInputValue = data.DeathRattleInputValue,
+            DeathRattleNames = data.DeathRattleNames,
+            Desk = data.Desk,
+            ImagePath = data.ImagePath,
+            Race = data.Race,
+            SkillM = null
+        };
         StaticHP = Health = data.HP;
         StaticSHLD = Shield = data.Shield;
         StaticDMG = Attack = data.Attack;

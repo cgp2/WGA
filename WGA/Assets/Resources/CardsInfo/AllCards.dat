@@ -5,6 +5,24 @@
     <ImagePath>Insect/BattleshipInsect</ImagePath>
     <Health>2</Health>
     <Shield>0</Shield>
+    <Attack>3</Attack>
+    <Name>Snoop</Name>
+    <Description>Reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>ae17469e-6cf0-4c8e-aec9-9355411acc98</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Insect</CardClass>
+    <ImagePath>Insect/BattleshipInsect</ImagePath>
+    <Health>2</Health>
+    <Shield>0</Shield>
     <Attack>4</Attack>
     <Name>Alpha-snoop</Name>
     <Description>Add HP to allies</Description>
@@ -315,24 +333,6 @@
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>0</valueAura>
     <CardID>bb98618b-3c84-4b5b-a3bc-4ef0524943b5</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath>Insect/BattleshipInsect</ImagePath>
-    <Health>2</Health>
-    <Shield>0</Shield>
-    <Attack>3</Attack>
-    <Name>Snoop</Name>
-    <Description>Reduce enemy shield</Description>
-    <BattleCryName />
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>ae17469e-6cf0-4c8e-aec9-9355411acc98</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>

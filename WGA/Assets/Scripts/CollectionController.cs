@@ -18,7 +18,7 @@ public class CollectionController : MonoBehaviour {
         //PlInfo.ReadFromFile(Path.GetDirectoryName(Application.dataPath) + "/PlayerInfo/PlayerInfo.dat");
         //var AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
         if(DeckMaster.AllCards==null)
-            DeckMaster.AllCards = Card.Deserialize(Path.GetDirectoryName(Application.dataPath) + "/CardsInfo/AllCards.dat");
+            DeckMaster.AllCards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/AllCards.dat");
         foreach (Card.CardData card in DeckMaster.AllCards)
         {
             var c = (GameObject)Instantiate(CollectionPrefab, transform);
@@ -33,7 +33,7 @@ public class CollectionController : MonoBehaviour {
             c.transform.GetChild(5).GetComponent<Text>().text = "" + c.GetComponent<Card>().Info.InitialShield;
             c.transform.parent = GameObject.Find("CollectionScrollView").transform.GetChild(0).GetChild(0).transform;
         }
-        PlayerDeck = new List<Card.CardData>(Card.Deserialize(Path.GetDirectoryName(Application.dataPath) +"/CardsInfo/Decks/" + PlInfo.DeckName + ".dat"));
+        PlayerDeck = new List<Card.CardData>(Card.Deserialize(Application.dataPath +"/Resources/CardsInfo/Decks/" + PlInfo.DeckName + ".dat"));
         foreach (Card.CardData card in PlayerDeck)
         {
             var c = (GameObject)Instantiate(DeckPrefab, GameObject.Find("DeckScrollView").transform);
@@ -50,7 +50,11 @@ public class CollectionController : MonoBehaviour {
         }
     }
     // Update is called once per frame
-
+    public void SaveDeck()
+    {
+        if (PlayerDeck.Count == 10)
+            DeckMaster.SaveDeckToFile(PlayerDeck.ToArray(), Application.dataPath + "/Resources/CardsInfo/Decks/" + PlInfo.DeckName + ".dat");
+    }
     void Update () {
 		
 	}
