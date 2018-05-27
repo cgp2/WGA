@@ -11,13 +11,15 @@ public class GlobalPlayerInfo : MonoBehaviour {
         pl = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         UpdateUI();
 
-
+        
     }
 	public void UpdateUI()
     {
-        GameObject.Find("LvlText").GetComponent<Text>().text = "LVL:" + pl.Level;
-        GameObject.Find("ExpText").GetComponent<Text>().text = "EXP:" + pl.Exp;
+        GameObject.Find("LvlText").GetComponent<Text>().text = "Level: " + pl.Level;
+        GameObject.Find("Experience").GetComponent<Slider>().value = pl.Exp * 100f / pl.ExpToNextLevel;
         GameObject.Find("NameText").GetComponent<Text>().text = ""+pl.Name;
+        GameObject.Find("GamesWin").GetComponent<Text>().text = "Games Win: " + pl.GamesWin;
+        GameObject.Find("GamesLost").GetComponent<Text>().text = "Games Lost: " + pl.GamesLost;
         GameObject.Find("Avatar").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(pl.PathToAvatar);
     }
 	// Update is called once per frame
