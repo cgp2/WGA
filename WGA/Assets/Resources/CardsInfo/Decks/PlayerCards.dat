@@ -2,199 +2,182 @@
 <ArrayOfCardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>
-    </ImagePath>
+		<ImagePath>Insect/1vip</ImagePath>
 		<Health>4</Health>
-		<Shield>1</Shield>
-		<Attack>1</Attack>
-		<Name>Acrid</Name>
-		<Description>reduce enemy damage</Description>
+		<Shield>4</Shield>
+		<Attack>4</Attack>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
-		<AuraName />
-		<valueBatterCry>0</valueBatterCry>
-		<valueDeathRattle>0</valueDeathRattle>
-		<valueAura>0</valueAura>
-		<CardID>0dd1df9f-e569-4f2e-b1bb-a44c3b61569a</CardID>
-	</CardInfo>
-	<CardInfo>
-		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
-		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
-		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 	<CardInfo>
 		<CardClass>Insect</CardClass>
-		<ImagePath>Insect/BattleshipInsect</ImagePath>
-		<Health>2</Health>
-		<Shield>0</Shield>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Alpha-snoop</Name>
-		<Description>Add HP to allies</Description>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
 		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
+		<DeathRattleName />
 		<AuraName>
-			<string>SHLDDebufDR</string>
+			<string>DMGBufAura</string>
 		</AuraName>
 		<valueBatterCry>0</valueBatterCry>
 		<valueDeathRattle>0</valueDeathRattle>
 		<valueAura>0</valueAura>
-		<CardID>989ef1f4-6b4e-49c1-9361-5a40f2e453e6</CardID>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
+	</CardInfo>
+	<CardInfo>
+		<CardClass>Insect</CardClass>
+		<ImagePath>Insect/1vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
+		<Attack>4</Attack>
+		<Name>Alpha-philanthus</Name>
+		<Description>Add damage to allies</Description>
+		<BattleCryName />
+		<DeathRattleName />
+		<AuraName>
+			<string>DMGBufAura</string>
+		</AuraName>
+		<valueBatterCry>0</valueBatterCry>
+		<valueDeathRattle>0</valueDeathRattle>
+		<valueAura>0</valueAura>
+		<CardID>b87e8255-df94-403d-8051-b201dd54c616</CardID>
 	</CardInfo>
 </ArrayOfCardInfo>

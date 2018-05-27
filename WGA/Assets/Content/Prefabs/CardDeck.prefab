@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 114509596664883390}
   - component: {fileID: 114304972295629246}
   - component: {fileID: 114676079619602578}
+  - component: {fileID: 114919048473576022}
   m_Layer: 0
   m_Name: CardDeck
   m_TagString: Untagged
@@ -158,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 1502631847295800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 8, z: 0}
-  m_LocalScale: {x: 13, y: 27, z: 1}
+  m_LocalScale: {x: 3, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 224265988882446060}
   m_RootOrder: 1
@@ -495,6 +496,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114919048473576022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1642033419453214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58502030c886e574ab8f448106b8dcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212840437101306864
 SpriteRenderer:
   m_ObjectHideFlags: 1

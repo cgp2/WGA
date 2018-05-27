@@ -44,6 +44,7 @@
             this.cardList.ItemHeight = 20;
             this.cardList.Location = new System.Drawing.Point(12, 51);
             this.cardList.Name = "cardList";
+            this.cardList.ScrollAlwaysVisible = true;
             this.cardList.Size = new System.Drawing.Size(399, 544);
             this.cardList.TabIndex = 0;
             this.cardList.SelectedIndexChanged += new System.EventHandler(this.cardList_SelectedIndexChanged);
