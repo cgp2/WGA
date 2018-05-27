@@ -42,8 +42,14 @@ public class Controller : MonoBehaviour
 
     public void CloseGame()
     {
+        if (Battle.Player1 != null)
+            Battle.Player1.PlInfo.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+        else
+        {
+            
+            GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+        }
         UnityEditor.EditorApplication.isPlaying = false;
-        GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
         Application.Quit();    
     }
 
