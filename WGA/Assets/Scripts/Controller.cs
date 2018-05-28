@@ -51,7 +51,7 @@ public class Controller : MonoBehaviour
             var plName = pn.GetCurrentProfileName();
             GameObject.Find("Main Camera").GetComponent<GlobalPlayerInfo>().pl.SaveToFile(plName);
         }
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();    
     }
 
