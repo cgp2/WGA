@@ -102,21 +102,15 @@ public class PlayerInfo {
             MusicVolume = 0.5f,
             SoundVolume = 0.5f
         };
-        switch (UnityEngine.Random.Range(0, 5))
+        switch (UnityEngine.Random.Range(0, 3))
         {
             case 0:
                 PathToAvatar = "Leaders/insect";
                 break;
             case 1:
-                PathToAvatar = "Leaders/people";
-                break;
-            case 2:
-                PathToAvatar = "Leaders/Mechanism";
-                break;
-            case 3:
                 PathToAvatar = "Leaders/monstor";
                 break;
-            case 4:
+            case 2:
                 PathToAvatar = "Leaders/cat";
                 break;
         }

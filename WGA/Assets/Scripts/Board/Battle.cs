@@ -192,15 +192,16 @@ public class Battle : MonoBehaviour
                 var winner = Player2;
                 Player1.PlInfo.BattleResults(false, 0);
                 isInputLocked = true;
-                GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+                //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
-                var t = GameObject.Find("BattleEndMenu");
-                var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
-                CanvGroupBattleMenu.alpha = 1f;
-                CanvGroupBattleMenu.blocksRaycasts = true;
-
-                t = GameObject.Find("Main");
-                t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
+                //var t = GameObject.Find("BattleEndMenu");
+                //var CanvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+                //CanvGroupBattleMenu.alpha = 1f;
+                //CanvGroupBattleMenu.blocksRaycasts = true;
+                var win = Instantiate((GameObject)Resources.Load<GameObject>("UIPrefabs/Loose"));
+                
+                //t = GameObject.Find("Main");
+                //t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
             }
             else if (!pl2HasCard && pl1HasCard)
             {
@@ -208,15 +209,16 @@ public class Battle : MonoBehaviour
                 Player1.PlInfo.BattleResults(true, 70);
                 Player1.PlInfo.SaveToFile(Player1.PlInfo.Name);
                 isInputLocked = true;
-                GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
+                //GameObject.Find("WinnerText").GetComponent<Text>().text = (winner.name == "Player1") ? "You Win!" : "You Loose!";
 
-                var t = GameObject.Find("BattleEndMenu");
-                var canvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
-                canvGroupBattleMenu.alpha = 1f;
-                canvGroupBattleMenu.blocksRaycasts = true;
+                //var t = GameObject.Find("BattleEndMenu");
+                //var canvGroupBattleMenu = t.GetComponentInChildren<CanvasGroup>();
+                //canvGroupBattleMenu.alpha = 1f;
+                //canvGroupBattleMenu.blocksRaycasts = true;
 
-                t = GameObject.Find("Main");
-                t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
+                //t = GameObject.Find("Main");
+                //t.GetComponentInChildren<CanvasGroup>().blocksRaycasts = false;
+                var loose = Instantiate((GameObject)Resources.Load<GameObject>("UIPrefabs/Win"));
             }
         }
 
