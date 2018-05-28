@@ -8,7 +8,10 @@ public class GlobalPlayerInfo : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-        pl = new PlayerInfo(Application.dataPath + "/PlayerInfo/PlayerInfo.dat");
+        var pn = new ProfileNames();
+        pn.InitializeLastProfile();
+        var plName = pn.GetCurrentProfileName();
+        pl = new PlayerInfo(plName);
         UpdateUI();
 
         

@@ -56,21 +56,21 @@ public class Player : MonoBehaviour {
             switch (Random.Range(0, 3))
             {
                 case 0:
-                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/Default.dat");
+                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/InsectBot.dat");
                     PlInfo.Name = "Kerrigan";
-                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/insects");
+                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/insect");
                     GameObject.Find("Player2").GetComponent<AIEnemy>().InitializeParametrs(100f, 40f, 1f,1f, 0.1f, 40f);
                     break;
                 case 1:
-                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/Default.dat");
+                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/PeopleBot.dat");
                     PlInfo.Name = "Jaina";
-                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/human");
+                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/people");
                     GameObject.Find("Player2").GetComponent<AIEnemy>().InitializeParametrs(50f, 10f, 30f, 30f, 0.5f, 20f);
                     break;
                 case 2:
-                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/Default.dat");
+                    cards = Card.Deserialize(Application.dataPath + "/Resources/CardsInfo/Decks/MechanismBot.dat");
                     PlInfo.Name = "R2-D2";
-                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/robot");
+                    GameObject.Find("Player2Image").GetComponent<Image>().sprite = Resources.Load<Sprite>("Leaders/Mechanism");
                     GameObject.Find("Player2").GetComponent<AIEnemy>().InitializeParametrs(30f, 60f, 0f, 30f, 0.01f, 70f);
                     break;
             }      

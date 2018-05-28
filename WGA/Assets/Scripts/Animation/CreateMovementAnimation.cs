@@ -1006,7 +1006,7 @@ public class CreateMovementAnimation : MonoBehaviour
                                                                 }
                                                                 w++;
                                                             }
-                                                            //Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
+                                                            Board[i, w].GetComponent<MovementAnimation>().Add_Action(MovementAnimation.Acts.stop, dir, 0);
                                                         }
                                                     }
 

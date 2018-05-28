@@ -20,24 +20,6 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
-    <ImagePath>Insect\5vip</ImagePath>
-    <Health>3</Health>
-    <Shield>1</Shield>
-    <Attack>4</Attack>
-    <Name>Alpha-snoop</Name>
-    <Description>Reduce enemy shield</Description>
-    <BattleCryName />
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>2</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>90a286b9-c134-4849-89dd-7d64709417f7</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Insect</CardClass>
     <ImagePath>Insect\4</ImagePath>
     <Health>5</Health>
     <Shield>2</Shield>
@@ -53,24 +35,6 @@
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>1</valueAura>
     <CardID>312bc7de-3eb3-4e65-99ec-2b38548db5bc</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Insect</CardClass>
-    <ImagePath>Insect\4vip</ImagePath>
-    <Health>5</Health>
-    <Shield>3</Shield>
-    <Attack>1</Attack>
-    <Name>Alpha-acrid</Name>
-    <Description>reduce enemy damage</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGDebufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>2</valueAura>
-    <CardID>5b27aa3f-7805-48dc-8199-ea8eac1c9a79</CardID>
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
@@ -92,11 +56,239 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
+    <ImagePath>Insect\2</ImagePath>
+    <Health>5</Health>
+    <Shield>4</Shield>
+    <Attack>3</Attack>
+    <Name>Hornet</Name>
+    <Description>giant balanced ship</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>1889f2b1-952e-4687-a4d1-9bb1d0be4ae1</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\9</ImagePath>
+    <Health>3</Health>
+    <Shield>3</Shield>
+    <Attack>1</Attack>
+    <Name>Fighter</Name>
+    <Description>reduce enemy damage</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>7c8dc0ce-e089-4190-953d-a25fbb06f793</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\12</ImagePath>
+    <Health>4</Health>
+    <Shield>3</Shield>
+    <Attack>1</Attack>
+    <Name>Frigate</Name>
+    <Description>Add HP to allies</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>1</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>8216d738-b788-4744-86da-2e227eb9ffcd</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\13</ImagePath>
+    <Health>3</Health>
+    <Shield>5</Shield>
+    <Attack>2</Attack>
+    <Name>Destroyer</Name>
+    <Description>reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>1</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>c67b03d2-eade-40ac-8bdd-c3c3a8a18366</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\14</ImagePath>
+    <Health>3</Health>
+    <Shield>4</Shield>
+    <Attack>4</Attack>
+    <Name>Dreadnought</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>1aab2a39-e87b-4a1e-9804-ec01d483ed79</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>People</CardClass>
+    <ImagePath>Human\15</ImagePath>
+    <Health>6</Health>
+    <Shield>4</Shield>
+    <Attack>3</Attack>
+    <Name>Battleship </Name>
+    <Description>Add damage to allies</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGBufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>f0de7d87-ce60-4259-a0b3-c079338107dc</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\8</ImagePath>
+    <Health>1</Health>
+    <Shield>4</Shield>
+    <Attack>2</Attack>
+    <Name>Drone</Name>
+    <Description>add damage to allies</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGBufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\10</ImagePath>
+    <Health>2</Health>
+    <Shield>2</Shield>
+    <Attack>4</Attack>
+    <Name>Harpoon</Name>
+    <Description>Reduce enemy shields</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\11</ImagePath>
+    <Health>4</Health>
+    <Shield>5</Shield>
+    <Attack>1</Attack>
+    <Name>Sickle</Name>
+    <Description>Add hp to allies</Description>
+    <BattleCryName>
+      <string>HPBufBC</string>
+    </BattleCryName>
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>1</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\7</ImagePath>
+    <Health>4</Health>
+    <Shield>5</Shield>
+    <Attack>2</Attack>
+    <Name>Hammer </Name>
+    <Description>Reduce enemy damage</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>1</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Mechanism</CardClass>
+    <ImagePath>Robots\6</ImagePath>
+    <Health>2</Health>
+    <Shield>5</Shield>
+    <Attack>6</Attack>
+    <Name>Monolith</Name>
+    <Description>Damage dealer</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Insect</CardClass>
+    <ImagePath>Insect\5vip</ImagePath>
+    <Health>3</Health>
+    <Shield>1</Shield>
+    <Attack>4</Attack>
+    <Name>A-Snoop</Name>
+    <Description>Reduce enemy shield</Description>
+    <BattleCryName />
+    <DeathRattleName>
+      <string>SHLDDebufDR</string>
+    </DeathRattleName>
+    <AuraName />
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>2</valueDeathRattle>
+    <valueAura>0</valueAura>
+    <CardID>90a286b9-c134-4849-89dd-7d64709417f7</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Insect</CardClass>
+    <ImagePath>Insect\4vip</ImagePath>
+    <Health>5</Health>
+    <Shield>3</Shield>
+    <Attack>1</Attack>
+    <Name>A-Acrid</Name>
+    <Description>reduce enemy damage</Description>
+    <BattleCryName />
+    <DeathRattleName />
+    <AuraName>
+      <string>DMGDebufAura</string>
+    </AuraName>
+    <valueBatterCry>0</valueBatterCry>
+    <valueDeathRattle>0</valueDeathRattle>
+    <valueAura>2</valueAura>
+    <CardID>5b27aa3f-7805-48dc-8199-ea8eac1c9a79</CardID>
+  </CardInfo>
+  <CardInfo>
+    <CardClass>Insect</CardClass>
     <ImagePath>Insect\3vip</ImagePath>
     <Health>3</Health>
     <Shield>4</Shield>
     <Attack>5</Attack>
-    <Name>Alpha-wasp</Name>
+    <Name>A-Wasp</Name>
     <Description>Add hp to allies</Description>
     <BattleCryName>
       <string>HPBufBC</string>
@@ -132,7 +324,7 @@
     <Health>4</Health>
     <Shield>4</Shield>
     <Attack>4</Attack>
-    <Name>Alpha-philanthus</Name>
+    <Name>Philant</Name>
     <Description>Add damage to allies</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -146,27 +338,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Insect</CardClass>
-    <ImagePath>Insect\2</ImagePath>
-    <Health>5</Health>
-    <Shield>4</Shield>
-    <Attack>3</Attack>
-    <Name>Hornet</Name>
-    <Description>giant balanced ship</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>1889f2b1-952e-4687-a4d1-9bb1d0be4ae1</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Insect</CardClass>
     <ImagePath>Insect\2vip</ImagePath>
     <Health>5</Health>
     <Shield>5</Shield>
     <Attack>4</Attack>
-    <Name>"Scylla" hornet</Name>
+    <Name>Scylla</Name>
     <Description>giant balanced ship</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -178,29 +354,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Human\9</ImagePath>
-    <Health>3</Health>
-    <Shield>3</Shield>
-    <Attack>1</Attack>
-    <Name>Fighter</Name>
-    <Description>reduce enemy damage</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGDebufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>1</valueAura>
-    <CardID>7c8dc0ce-e089-4190-953d-a25fbb06f793</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <ImagePath>Human\9vip</ImagePath>
     <Health>3</Health>
     <Shield>3</Shield>
     <Attack>2</Attack>
-    <Name>Strike Fighter</Name>
+    <Name>S-Fighter</Name>
     <Description>reduce enemy damage</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -214,29 +372,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Human\12</ImagePath>
-    <Health>4</Health>
-    <Shield>3</Shield>
-    <Attack>1</Attack>
-    <Name>Frigate</Name>
-    <Description>Add HP to allies</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>1</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>8216d738-b788-4744-86da-2e227eb9ffcd</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <ImagePath>Human\12vip</ImagePath>
     <Health>4</Health>
     <Shield>4</Shield>
     <Attack>1</Attack>
-    <Name>Strike Frigate</Name>
+    <Name>S-Frigate</Name>
     <Description>Add HP to allies</Description>
     <BattleCryName>
       <string>HPBufBC</string>
@@ -250,29 +390,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Human\13</ImagePath>
-    <Health>3</Health>
-    <Shield>5</Shield>
-    <Attack>2</Attack>
-    <Name>Destroyer</Name>
-    <Description>reduce enemy shield</Description>
-    <BattleCryName />
-    <DeathRattleName>
-      <string>SHLDDebufDR</string>
-    </DeathRattleName>
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>1</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>c67b03d2-eade-40ac-8bdd-c3c3a8a18366</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <ImagePath>Human\13vip</ImagePath>
     <Health>6</Health>
     <Shield>3</Shield>
     <Attack>2</Attack>
-    <Name>Strike destroyer</Name>
+    <Name>SDestroyer</Name>
     <Description>reduce enemy shield</Description>
     <BattleCryName />
     <DeathRattleName>
@@ -286,27 +408,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Human\14</ImagePath>
-    <Health>3</Health>
-    <Shield>4</Shield>
-    <Attack>4</Attack>
-    <Name>Dreadnought</Name>
-    <Description>Damage dealer</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>1aab2a39-e87b-4a1e-9804-ec01d483ed79</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <ImagePath>Human\14vip</ImagePath>
     <Health>3</Health>
     <Shield>4</Shield>
     <Attack>5</Attack>
-    <Name>Strike Dre</Name>
+    <Name>Dread</Name>
     <Description>Damage dealer</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -318,29 +424,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>People</CardClass>
-    <ImagePath>Human\15</ImagePath>
-    <Health>6</Health>
-    <Shield>4</Shield>
-    <Attack>3</Attack>
-    <Name>Battleship </Name>
-    <Description>Add damage to allies</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGBufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>1</valueAura>
-    <CardID>f0de7d87-ce60-4259-a0b3-c079338107dc</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>People</CardClass>
     <ImagePath>Human\15vip</ImagePath>
     <Health>6</Health>
     <Shield>5</Shield>
     <Attack>3</Attack>
-    <Name>"Colossus" Battleship</Name>
+    <Name>Colossus</Name>
     <Description>add damage to allies</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -350,24 +438,6 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>2</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Mechanism</CardClass>
-    <ImagePath>Robots\8</ImagePath>
-    <Health>1</Health>
-    <Shield>4</Shield>
-    <Attack>2</Attack>
-    <Name>Drone</Name>
-    <Description>add damage to allies</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGBufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>1</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -376,7 +446,7 @@
     <Health>1</Health>
     <Shield>5</Shield>
     <Attack>2</Attack>
-    <Name>Drone R1.2</Name>
+    <Name>DroneR1.2</Name>
     <Description>add damage to allies</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -386,24 +456,6 @@
     <valueBatterCry>0</valueBatterCry>
     <valueDeathRattle>0</valueDeathRattle>
     <valueAura>2</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Mechanism</CardClass>
-    <ImagePath>Robots\10</ImagePath>
-    <Health>2</Health>
-    <Shield>2</Shield>
-    <Attack>4</Attack>
-    <Name>Harpoon</Name>
-    <Description>Reduce enemy shields</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGDebufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>1</valueAura>
     <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
   </CardInfo>
   <CardInfo>
@@ -412,7 +464,7 @@
     <Health>2</Health>
     <Shield>3</Shield>
     <Attack>4</Attack>
-    <Name>Harpoon R1</Name>
+    <Name>HarpoonR1</Name>
     <Description>Reduce enemy shields</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -426,29 +478,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Mechanism</CardClass>
-    <ImagePath>Robots\11</ImagePath>
-    <Health>4</Health>
-    <Shield>5</Shield>
-    <Attack>1</Attack>
-    <Name>Sickle</Name>
-    <Description>Add hp to allies</Description>
-    <BattleCryName>
-      <string>HPBufBC</string>
-    </BattleCryName>
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>1</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Mechanism</CardClass>
     <ImagePath>Robots\11vip</ImagePath>
     <Health>5</Health>
     <Shield>5</Shield>
     <Attack>1</Attack>
-    <Name>Sickle R1</Name>
+    <Name>SickleR1</Name>
     <Description>Add hp to allies</Description>
     <BattleCryName>
       <string>HPBufBC</string>
@@ -462,29 +496,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Mechanism</CardClass>
-    <ImagePath>Robots\7</ImagePath>
-    <Health>4</Health>
-    <Shield>5</Shield>
-    <Attack>2</Attack>
-    <Name>Hammer </Name>
-    <Description>Reduce enemy damage</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName>
-      <string>DMGDebufAura</string>
-    </AuraName>
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>1</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Mechanism</CardClass>
     <ImagePath>Robots\7vip</ImagePath>
     <Health>5</Health>
     <Shield>6</Shield>
     <Attack>2</Attack>
-    <Name>Hammer R1</Name>
+    <Name>HammerR1</Name>
     <Description>Reduce enemy damage</Description>
     <BattleCryName />
     <DeathRattleName />
@@ -498,27 +514,11 @@
   </CardInfo>
   <CardInfo>
     <CardClass>Mechanism</CardClass>
-    <ImagePath>Robots\6</ImagePath>
-    <Health>2</Health>
-    <Shield>5</Shield>
-    <Attack>6</Attack>
-    <Name>Monolith</Name>
-    <Description>Damage dealer</Description>
-    <BattleCryName />
-    <DeathRattleName />
-    <AuraName />
-    <valueBatterCry>0</valueBatterCry>
-    <valueDeathRattle>0</valueDeathRattle>
-    <valueAura>0</valueAura>
-    <CardID>170aeb05-1f0b-4243-a716-48b91a10d030</CardID>
-  </CardInfo>
-  <CardInfo>
-    <CardClass>Mechanism</CardClass>
     <ImagePath>Robots\6vip</ImagePath>
     <Health>2</Health>
     <Shield>5</Shield>
     <Attack>7</Attack>
-    <Name>"The Ark"</Name>
+    <Name>The Ark</Name>
     <Description>Damage dealer</Description>
     <BattleCryName />
     <DeathRattleName />

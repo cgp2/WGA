@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 using System;
 using System.IO;
 
@@ -17,9 +14,10 @@ public class PlayerInfo {
     public string PathToAvatar;
     public Guid[] AvaliableCards;
     public Options Opt;
-    public PlayerInfo(string path)
+    public PlayerInfo(string name)
     {
-        var playerFromFile = ReadFromFile(path);
+        var path = Application.dataPath + "/PlayerInfo/" + name + ".dat";
+        var playerFromFile = ReadFromFile(name);
         Level = playerFromFile.Level;
         Name = playerFromFile.Name;
         Exp = playerFromFile.Exp;
@@ -68,19 +66,67 @@ public class PlayerInfo {
             GamesLost = 0,
             ExpToNextLevel = 100,
             DeckName="Default",
+
             Opt = new Options()
             {
-                MusicVolume = 0.5f,
-                SoundVolume = 0.5f
+                MusicVolume = 0.2f,
+                SoundVolume = 0.2f
             }
         };
-
-
-
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                newPlayer.PathToAvatar = "Leaders/insect";
+                break;
+            case 1:
+                newPlayer.PathToAvatar = "Leaders/people";
+                break;
+            case 2:
+                newPlayer.PathToAvatar = "Leaders/Mechanism";
+                break;
+        }
         return newPlayer;
     }
-    public void SaveToFile(string path)
+
+    public PlayerInfo InitializeByName(string name)
     {
+        Name = name;
+        Level = 0;
+        Exp = 0;
+        GamesWin = 0;
+        GamesLost = 0;
+        ExpToNextLevel = 100;
+        DeckName = "PlayerCards";
+        Opt = new Options()
+        {
+            MusicVolume = 0.2f,
+            SoundVolume = 0.2f
+        };
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                PathToAvatar = "Leaders/insect";
+                break;
+            case 1:
+                PathToAvatar = "Leaders/monstor";
+                break;
+            case 2:
+                PathToAvatar = "Leaders/cat";
+                break;
+        }
+        //var port = Resources.LoadAll<Sprite>("Leaders/")
+        //PathToAvatar = port[UnityEngine.Random.Range(0, port.Length)];
+
+        var path = Application.dataPath + "/PlayerInfo/" + name + ".dat";
+        var fs = new FileStream(path, FileMode.CreateNew);
+        fs.Close();
+
+        return this;
+    }
+
+    public void SaveToFile(string name)
+    {
+        var path = Application.dataPath + "/PlayerInfo/" + name + ".dat";
         string data = JsonUtility.ToJson(this);
         //if (!File.Exists(Application.dataPath + "/PlayerInfo/PlayerInfo.dat"))
         //{
@@ -92,8 +138,9 @@ public class PlayerInfo {
         File.WriteAllText(path, data);
 
     }
-    public PlayerInfo ReadFromFile(string path)
+    public PlayerInfo ReadFromFile(string name)
     {
+        var path = Application.dataPath + "/PlayerInfo/" + name + ".dat";
         if (!File.Exists(path))
         {
             File.Create(path);
