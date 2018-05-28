@@ -2,7 +2,7 @@
 <ArrayOfCardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/9</ImagePath>
+		<ImagePath>Human\9</ImagePath>
 		<Health>3</Health>
 		<Shield>3</Shield>
 		<Attack>1</Attack>
@@ -20,25 +20,7 @@
 	</CardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/9vip</ImagePath>
-		<Health>3</Health>
-		<Shield>3</Shield>
-		<Attack>2</Attack>
-		<Name>Strike Fighter</Name>
-		<Description>reduce enemy damage</Description>
-		<BattleCryName />
-		<DeathRattleName />
-		<AuraName>
-			<string>DMGDebufAura</string>
-		</AuraName>
-		<valueBatterCry>0</valueBatterCry>
-		<valueDeathRattle>0</valueDeathRattle>
-		<valueAura>2</valueAura>
-		<CardID>7240f642-8bda-4226-ba92-2e92091fef64</CardID>
-	</CardInfo>
-	<CardInfo>
-		<CardClass>People</CardClass>
-		<ImagePath>Human/12</ImagePath>
+		<ImagePath>Human\12</ImagePath>
 		<Health>4</Health>
 		<Shield>3</Shield>
 		<Attack>1</Attack>
@@ -56,25 +38,7 @@
 	</CardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/12vip</ImagePath>
-		<Health>4</Health>
-		<Shield>4</Shield>
-		<Attack>1</Attack>
-		<Name>Strike Frigate</Name>
-		<Description>Add HP to allies</Description>
-		<BattleCryName>
-			<string>HPBufBC</string>
-		</BattleCryName>
-		<DeathRattleName />
-		<AuraName />
-		<valueBatterCry>2</valueBatterCry>
-		<valueDeathRattle>0</valueDeathRattle>
-		<valueAura>0</valueAura>
-		<CardID>62f3ec0e-be57-4b80-b6ae-b57d8bba9fd3</CardID>
-	</CardInfo>
-	<CardInfo>
-		<CardClass>People</CardClass>
-		<ImagePath>Human/13</ImagePath>
+		<ImagePath>Human\13</ImagePath>
 		<Health>3</Health>
 		<Shield>5</Shield>
 		<Attack>2</Attack>
@@ -92,29 +56,11 @@
 	</CardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/13vip</ImagePath>
-		<Health>6</Health>
-		<Shield>3</Shield>
-		<Attack>2</Attack>
-		<Name>Strike destroyer</Name>
-		<Description>reduce enemy shield</Description>
-		<BattleCryName />
-		<DeathRattleName>
-			<string>SHLDDebufDR</string>
-		</DeathRattleName>
-		<AuraName />
-		<valueBatterCry>0</valueBatterCry>
-		<valueDeathRattle>2</valueDeathRattle>
-		<valueAura>0</valueAura>
-		<CardID>5d996951-eefc-4156-a451-2d44c09d834b</CardID>
-	</CardInfo>
-	<CardInfo>
-		<CardClass>People</CardClass>
-		<ImagePath>Human/14</ImagePath>
+		<ImagePath>Human\14</ImagePath>
 		<Health>3</Health>
 		<Shield>4</Shield>
 		<Attack>4</Attack>
-		<Name>Dreadnought</Name>
+		<Name>Dread</Name>
 		<Description>Damage dealer</Description>
 		<BattleCryName />
 		<DeathRattleName />
@@ -126,23 +72,7 @@
 	</CardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/14vip</ImagePath>
-		<Health>3</Health>
-		<Shield>4</Shield>
-		<Attack>5</Attack>
-		<Name>Strike Dre</Name>
-		<Description>Damage dealer</Description>
-		<BattleCryName />
-		<DeathRattleName />
-		<AuraName />
-		<valueBatterCry>0</valueBatterCry>
-		<valueDeathRattle>0</valueDeathRattle>
-		<valueAura>0</valueAura>
-		<CardID>7257229a-291d-4eef-8aa5-5962173bb0bb</CardID>
-	</CardInfo>
-	<CardInfo>
-		<CardClass>People</CardClass>
-		<ImagePath>Human/15</ImagePath>
+		<ImagePath>Human\15</ImagePath>
 		<Health>6</Health>
 		<Shield>4</Shield>
 		<Attack>3</Attack>
@@ -160,11 +90,81 @@
 	</CardInfo>
 	<CardInfo>
 		<CardClass>People</CardClass>
-		<ImagePath>Human/15vip</ImagePath>
+		<ImagePath>Human\9vip</ImagePath>
+		<Health>3</Health>
+		<Shield>3</Shield>
+		<Attack>2</Attack>
+		<Name>S-Fighter</Name>
+		<Description>reduce enemy damage</Description>
+		<BattleCryName />
+		<DeathRattleName />
+		<AuraName>
+			<string>DMGDebufAura</string>
+		</AuraName>
+		<valueBatterCry>0</valueBatterCry>
+		<valueDeathRattle>0</valueDeathRattle>
+		<valueAura>2</valueAura>
+		<CardID>7240f642-8bda-4226-ba92-2e92091fef64</CardID>
+	</CardInfo>
+	<CardInfo>
+		<CardClass>People</CardClass>
+		<ImagePath>Human\12vip</ImagePath>
+		<Health>4</Health>
+		<Shield>4</Shield>
+		<Attack>1</Attack>
+		<Name>S-Frigate</Name>
+		<Description>Add HP to allies</Description>
+		<BattleCryName>
+			<string>HPBufBC</string>
+		</BattleCryName>
+		<DeathRattleName />
+		<AuraName />
+		<valueBatterCry>2</valueBatterCry>
+		<valueDeathRattle>0</valueDeathRattle>
+		<valueAura>0</valueAura>
+		<CardID>62f3ec0e-be57-4b80-b6ae-b57d8bba9fd3</CardID>
+	</CardInfo>
+	<CardInfo>
+		<CardClass>People</CardClass>
+		<ImagePath>Human\13vip</ImagePath>
+		<Health>6</Health>
+		<Shield>3</Shield>
+		<Attack>2</Attack>
+		<Name>S-Destr</Name>
+		<Description>reduce enemy shield</Description>
+		<BattleCryName />
+		<DeathRattleName>
+			<string>SHLDDebufDR</string>
+		</DeathRattleName>
+		<AuraName />
+		<valueBatterCry>0</valueBatterCry>
+		<valueDeathRattle>2</valueDeathRattle>
+		<valueAura>0</valueAura>
+		<CardID>5d996951-eefc-4156-a451-2d44c09d834b</CardID>
+	</CardInfo>
+	<CardInfo>
+		<CardClass>People</CardClass>
+		<ImagePath>Human\14vip</ImagePath>
+		<Health>3</Health>
+		<Shield>4</Shield>
+		<Attack>5</Attack>
+		<Name>S-Dread</Name>
+		<Description>Damage dealer</Description>
+		<BattleCryName />
+		<DeathRattleName />
+		<AuraName />
+		<valueBatterCry>0</valueBatterCry>
+		<valueDeathRattle>0</valueDeathRattle>
+		<valueAura>0</valueAura>
+		<CardID>7257229a-291d-4eef-8aa5-5962173bb0bb</CardID>
+	</CardInfo>
+	<CardInfo>
+		<CardClass>People</CardClass>
+		<ImagePath>Human\15vip</ImagePath>
 		<Health>6</Health>
 		<Shield>5</Shield>
 		<Attack>3</Attack>
-		<Name>"Colossus" Battleship</Name>
+		<Name>Colossus</Name>
 		<Description>add damage to allies</Description>
 		<BattleCryName />
 		<DeathRattleName />
