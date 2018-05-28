@@ -35,6 +35,9 @@
 			<inp name="DMGBuf" value="-2" />
 		</Input>
 		<Dirs>
+			<dir type="Bottom" />
+			<dir type="Left" />
+			<dir type="Right" />
 			<dir type="Top" />
 		</Dirs>
 		<Description>This aura reduce DMG to enemy cards</Description>
