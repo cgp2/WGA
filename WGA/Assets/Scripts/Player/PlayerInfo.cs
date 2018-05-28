@@ -69,8 +69,8 @@ public class PlayerInfo {
 
             Opt = new Options()
             {
-                MusicVolume = 0.5f,
-                SoundVolume = 0.5f
+                MusicVolume = 0.2f,
+                SoundVolume = 0.2f
             }
         };
         switch (UnityEngine.Random.Range(0, 3))
@@ -99,8 +99,8 @@ public class PlayerInfo {
         DeckName = "PlayerCards";
         Opt = new Options()
         {
-            MusicVolume = 0.5f,
-            SoundVolume = 0.5f
+            MusicVolume = 0.2f,
+            SoundVolume = 0.2f
         };
         switch (UnityEngine.Random.Range(0, 5))
         {
